@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'				
-				sh './main_script.sh env-int3.yaml'
+				sh './tests/base_tests/test_script.sh env-int3.yaml'
             }
         }
 
@@ -15,7 +15,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'results/**/*.log'
+            archiveArtifacts artifacts: 'results/**/*.xml'
             
         }
     }

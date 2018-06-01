@@ -1,0 +1,34 @@
+#get token
+test_name: get_packages
+
+includes:
+  - !include environment_file
+
+stages:
+  - name: get_token
+    request:
+      url: "{login_host:s}"
+      json: 
+        username: sonata
+        password: '1234'
+      method: POST
+      headers:
+        Content-Type: application/json
+    response: 
+      status_code: 200
+      headers:
+        content-type: application/json
+      save:
+        body:
+          test_login_token: token.access_token
+
+#get packages
+  - name: get_packages
+    request:
+      url: "{api_host:s}"
+      method: GET
+      headers:
+        content-type: application/json
+        authorization: "Bearer {test_login_token:s}"
+    response:
+      status_code: 200

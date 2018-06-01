@@ -1,0 +1,16 @@
+#ent-int3.yaml
+---
+
+# Each file should have a name and description
+name: test information for env-int3
+description: Login information for test server
+
+# Variables should just be a mapping of key: value pairs
+variables:
+  login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
+  api_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/packages
+  delete_host: http://sp.int3.sonata-nfv.eu:4002/catalogues/clean
+  mqqt_ip_1: 143.233.127.27
+  logs_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/admin/logs
+  file_to_upload: components/commons/package_example.son 
+  
