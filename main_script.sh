@@ -5,7 +5,7 @@ ENV=$1
 echo "This is the environment file you have select:"
 echo $ENV
 
-cd components/packages/
+cd test/base_tests/
 VAR=$(sh test_script.sh ''$ENV'')
 echo $VAR
 
