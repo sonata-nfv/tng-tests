@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'	
-				sh 'cd /tests/base_tests'			
+				sh 'cd tests/base_tests'			
 				sh 'echo'
 				sh 'pwd'
 				sh 'echo'
