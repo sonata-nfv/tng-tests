@@ -10,10 +10,10 @@ echo
 composed_env_path="../../environments/$ENV_0"
 
 #checking the env file
-ls $composed_env_path
+ls "$composed_env_path"
 #
 
-cp -v $composed_env_path envfile.yml
+cp -v "$composed_env_path" envfile.yml
 
 #cat envfile.yml
 mkdir ../../results/base_tests
