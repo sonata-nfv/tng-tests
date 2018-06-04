@@ -5,13 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Testing basic elements...'				
-				sh './main_script.sh env-int3.yaml'
-				sh 'echo'
-				sh 'pwd'
-				sh 'tree'
-				sh 'echo'
-				sh 'cd tests/base_tests'
-				sh 'pwd'
+#				sh './main_script.sh env-int3.yaml'
+				sh './tests/base_tests/test_script.sh env-int3.yaml'
             }
         }
 
