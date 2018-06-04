@@ -9,7 +9,7 @@ pipeline {
 
 				sh './test_script.sh env-int3.yaml'
 				sh 'ls -ltr'	
-				sh 'pytest --junitxml=../../results/base_tests/base_tests.xml'
+				sh 'pytest'
 				sh 'echo ../../results/base_tests/base_tests.xml'
 			}
             }
