@@ -42,4 +42,5 @@ pytest --junitxml=../../results/base_tests/base_tests.xml
 #echo
 #sed -i -- "s/$ENV/environment_file/g" test.01.get_packages.tavern.yml
 #sed -i -- "s/$ENV/environment_file/g" test.02.get_admin_logs.tavern.yml
-#echo
+echo
+cat test.01.get_packages.tavern.yml
