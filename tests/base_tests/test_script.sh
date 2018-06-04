@@ -25,12 +25,12 @@ cat envfile.yml
 echo
 
 #pytest --junitxml=base_tests.xml
-
-pip install pytest
+echo "updating pytest"
+pip install -U pytest
 
 #echo
-#echo
-#pytest --junitxml=../../results/base_tests/base_tests.xml
+echo "running pytest"
+pytest --junitxml=../../results/base_tests/base_tests.xml
 
 #echo
 echo base_tests_script_finished

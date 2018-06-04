@@ -7,11 +7,9 @@ pipeline {
                 echo 'Testing basic elements...'	
 			dir ('tests/base_tests/')	{	
 
-				sh './test_script.sh env-int3.yaml'
 				sh 'ls -ltr'	
-				sh 'tavern-ci test_01.get_packages.tavern.yml --stdout --debug'
-				sh 'resulting xml'
-				sh 'echo ../../results/base_tests/base_tests.xml'
+				sh './test_script.sh env-int3.yaml'
+
 		
 			}
             }
