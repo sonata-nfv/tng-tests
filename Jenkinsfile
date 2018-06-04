@@ -6,11 +6,7 @@ pipeline {
             steps {
                 echo 'Testing basic elements...'	
 			dir ('tests/base_tests/')	{	
-
-				sh 'ls -ltr'	
-				sh './test_script.sh env-int3.yaml'
-
-		
+				sh './test_script.sh env-int3.yaml'		
 			}
             }
         }
