@@ -2,7 +2,7 @@
 test_name: get_packages
 
 includes:
-  - !include environment_file
+  - !include envfile.yml
 
 stages:
   - name: get_token
