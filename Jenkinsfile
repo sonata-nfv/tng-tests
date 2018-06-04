@@ -26,14 +26,14 @@ pipeline {
 
 
 
-        publishHTML target: [
+        publishHTML (target: [
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: true,
             reportDir: 'results',
             reportFiles: 'index.html',
             reportName: 'Results'
-          ]
+          ])
       }
 
 
