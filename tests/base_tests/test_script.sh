@@ -26,11 +26,11 @@ echo
 
 #pytest --junitxml=base_tests.xml
 
-
+pip install tavern
 
 #echo
 #echo
-pytest --junitxml=../../results/base_tests/base_tests.xml
+#pytest --junitxml=../../results/base_tests/base_tests.xml
 
 #echo
 echo base_tests_script_finished
