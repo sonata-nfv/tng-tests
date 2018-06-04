@@ -26,7 +26,7 @@ echo
 
 #pytest --junitxml=base_tests.xml
 
-pip install tavern
+pip install pytest
 
 #echo
 #echo
