@@ -24,21 +24,24 @@ pipeline {
             archiveArtifacts artifacts: 'results/**/*.xml'
 	    junit 'results/**/*.xml'
 
-
-
-        publishHTML (target: [
-            allowMissing: false,
-            alwaysLinkToLastBuild: false,
-            keepAll: true,
-            reportDir: 'results',
-            reportFiles: 'index.html',
-            reportName: 'Results'
-          ])
-      }
-
-
-            
+       
         }
+
+
+	success {
+		  publishHTML target: [
+			allowMissing: false,
+			alwaysLinkToLastBuild: false,
+			keepAll: true,
+			reportDir: 'results/base_tests',
+			reportFiles: 'index.html',
+			reportName: 'Results Report'
+		  ]	
+	}
+
+
+
+
 
     }
 
