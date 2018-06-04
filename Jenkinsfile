@@ -9,7 +9,6 @@ pipeline {
 
 				sh './test_script.sh env-int3.yaml'
 				sh 'ls -ltr'	
-				sh 'pytest'
 				sh 'tavern-ci test_01.get_packages.tavern.yml --sdtout --debug'
 				sh 'resulting xml'
 				sh 'echo ../../results/base_tests/base_tests.xml'
