@@ -16,7 +16,7 @@ ls "$composed_env_path"
 cp -v "$composed_env_path" envfile.yml
 
 #cat envfile.yml
-mkdir ../../../results/sp.9
+mkdir ../../../results/sp.1
 
 ENV="envfile.yml"
 
@@ -27,7 +27,7 @@ echo
 
 #echo
 echo "running pytest"
-py.test --junitxml=../../../results/sp.9/sp.9.xml
+py.test --junitxml=../../../results/sp.1/sp.1.xml
 
 #echo
-echo sp_9_script_finished
+echo sp_1_script_finished
