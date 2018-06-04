@@ -22,18 +22,10 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'results/**/*.xml'
+	    junit 'results/**/*.xml'
             
         }
-	success {
-		  publishHTML target: [
-			allowMissing: false,
-			alwaysLinkToLastBuild: false,
-			keepAll: true,
-			reportDir: 'results/base_tests',
-			reportFiles: 'index.html',
-			reportName: 'Results Report'
-		  ]	
-	}
+
     }
 
 
