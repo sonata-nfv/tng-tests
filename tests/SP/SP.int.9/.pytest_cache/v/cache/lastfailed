@@ -1,0 +1,4 @@
+{
+  "test.01.inst-nst.tavern.yml::instantiate_nst": true, 
+  "test.02.inst-nst.tavern.yml::instantiate_nst": true
+}

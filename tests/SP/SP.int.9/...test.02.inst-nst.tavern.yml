@@ -5,10 +5,9 @@ includes:
   - !include envfile.yml
 
 stages:
-  - name: get_descriptors
+  - name: get_slices
     request:
-      url: "{get_descriptors:s}"
+      url: "{get_slices:s}"
       method: GET
     response:
-      status_code: 200
-     
+      status_code: 200      

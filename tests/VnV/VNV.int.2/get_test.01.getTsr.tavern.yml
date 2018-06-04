@@ -1,0 +1,16 @@
+#upload test suite result
+test_name: upload trr
+#
+includes:
+  - !include envfile.yml
+
+stages:
+  - name: upload_trr
+    request:
+      url: "{trr_host:s}"
+      method: GET     
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json      
+     

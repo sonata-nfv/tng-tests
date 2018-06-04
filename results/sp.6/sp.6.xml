@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="1" name="pytest" skips="0" tests="1" time="63.485"><testcase classname="test.01.addPolicy.tavern.yml" file="test.01.addPolicy.tavern.yml" line="0" name="upload_policy" time="63.2009999752"><failure message="RestRequestException">self = &lt;CallInfo when=&apos;call&apos; exception: &gt;
+func = &lt;function &lt;lambda&gt; at 0x0000000003BC9C88&gt;, when = &apos;call&apos;
+treat_keyboard_interrupt_as_exception = False
+
+    def __init__(self, func, when, treat_keyboard_interrupt_as_exception=False):
+        #: context of invocation: one of &quot;setup&quot;, &quot;call&quot;,
+        #: &quot;teardown&quot;, &quot;memocollect&quot;
+        self.when = when
+        self.start = time()
+        try:
+&gt;           self.result = func()
+
+c:\python27\lib\site-packages\_pytest\runner.py:194: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+&gt;   return CallInfo(lambda: ihook(item=item, **kwds), when=when,
+                    treat_keyboard_interrupt_as_exception=item.config.getvalue(&quot;usepdb&quot;))
+
+c:\python27\lib\site-packages\_pytest\runner.py:179: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;_HookCaller &apos;pytest_runtest_call&apos;&gt;, args = ()
+kwargs = {&apos;item&apos;: &lt;YamlItem &apos;upload_policy&apos;&gt;}, notincall = set([])
+
+    def __call__(self, *args, **kwargs):
+        if args:
+            raise TypeError(&quot;hook calling supports only keyword arguments&quot;)
+        assert not self.is_historic()
+        if self.argnames:
+            notincall = set(self.argnames) - set([&apos;__multicall__&apos;]) - set(
+                kwargs.keys())
+            if notincall:
+                warnings.warn(
+                    &quot;Argument(s) {} which are declared in the hookspec &quot;
+                    &quot;can not be found in this hook call&quot;
+                    .format(tuple(notincall)),
+                    stacklevel=2,
+                )
+&gt;       return self._hookexec(self, self._nonwrappers + self._wrappers, kwargs)
+
+c:\python27\lib\site-packages\pluggy\__init__.py:617: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;_pytest.config.PytestPluginManager object at 0x0000000001F4B630&gt;
+hook = &lt;_HookCaller &apos;pytest_runtest_call&apos;&gt;
+methods = [&lt;pluggy.HookImpl object at 0x0000000002BC0208&gt;, &lt;pluggy.HookImpl object at 0x0000000003BA5A20&gt;, &lt;pluggy.HookImpl object at 0x0000000003BBE908&gt;]
+kwargs = {&apos;item&apos;: &lt;YamlItem &apos;upload_policy&apos;&gt;}
+
+    def _hookexec(self, hook, methods, kwargs):
+        # called from all hookcaller instances.
+        # enable_tracing will set its own wrapping function at self._inner_hookexec
+&gt;       return self._inner_hookexec(hook, methods, kwargs)
+
+c:\python27\lib\site-packages\pluggy\__init__.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+hook = &lt;_HookCaller &apos;pytest_runtest_call&apos;&gt;
+methods = [&lt;pluggy.HookImpl object at 0x0000000002BC0208&gt;, &lt;pluggy.HookImpl object at 0x0000000003BA5A20&gt;, &lt;pluggy.HookImpl object at 0x0000000003BBE908&gt;]
+kwargs = {&apos;item&apos;: &lt;YamlItem &apos;upload_policy&apos;&gt;}
+
+    self._inner_hookexec = lambda hook, methods, kwargs: \
+        hook.multicall(
+            methods, kwargs,
+&gt;           firstresult=hook.spec_opts.get(&apos;firstresult&apos;),
+        )
+
+c:\python27\lib\site-packages\pluggy\__init__.py:216: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+hook_impls = [&lt;pluggy.HookImpl object at 0x0000000002BC0208&gt;, &lt;pluggy.HookImpl object at 0x0000000003BA5A20&gt;, &lt;pluggy.HookImpl object at 0x0000000003BBE908&gt;]
+caller_kwargs = {&apos;item&apos;: &lt;YamlItem &apos;upload_policy&apos;&gt;}, firstresult = False
+
+    def _multicall(hook_impls, caller_kwargs, firstresult=False):
+        &quot;&quot;&quot;Execute a call into multiple python functions/methods and return the
+        result(s).
+    
+        ``caller_kwargs`` comes from _HookCaller.__call__().
+        &quot;&quot;&quot;
+        __tracebackhide__ = True
+        results = []
+        excinfo = None
+        try:  # run impl and wrapper setup functions in a loop
+            teardowns = []
+            try:
+                for hook_impl in reversed(hook_impls):
+                    try:
+                        args = [caller_kwargs[argname] for argname in hook_impl.argnames]
+                    except KeyError:
+                        for argname in hook_impl.argnames:
+                            if argname not in caller_kwargs:
+                                raise HookCallError(
+                                    &quot;hook call must provide argument %r&quot; % (argname,))
+    
+                    if hook_impl.hookwrapper:
+                        try:
+                            gen = hook_impl.function(*args)
+                            next(gen)   # first yield
+                            teardowns.append(gen)
+                        except StopIteration:
+                            _raise_wrapfail(gen, &quot;did not yield&quot;)
+                    else:
+                        res = hook_impl.function(*args)
+                        if res is not None:
+                            results.append(res)
+                            if firstresult:  # halt further impl calls
+                                break
+            except BaseException:
+                excinfo = sys.exc_info()
+        finally:
+            if firstresult:  # first result hooks return a single value
+                outcome = _Result(results[0] if results else None, excinfo)
+            else:
+                outcome = _Result(results, excinfo)
+    
+            # run all wrapper post-yield blocks
+            for gen in reversed(teardowns):
+                try:
+                    gen.send(outcome)
+                    _raise_wrapfail(gen, &quot;has second yield&quot;)
+                except StopIteration:
+                    pass
+    
+&gt;           return outcome.get_result()
+
+c:\python27\lib\site-packages\pluggy\callers.py:201: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;pluggy.callers._Result object at 0x0000000003C52EF0&gt;
+
+    def get_result(self):
+        &quot;&quot;&quot;Get the result(s) for this hook call.
+    
+            If the hook was marked as a ``firstresult`` only a single value
+            will be returned otherwise a list of results.
+            &quot;&quot;&quot;
+        __tracebackhide__ = True
+        if self._excinfo is None:
+            return self._result
+        else:
+            ex = self._excinfo
+            if _py3:
+                raise ex[1].with_traceback(ex[2])
+&gt;           _reraise(*ex)  # noqa
+
+c:\python27\lib\site-packages\pluggy\callers.py:77: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+hook_impls = [&lt;pluggy.HookImpl object at 0x0000000002BC0208&gt;, &lt;pluggy.HookImpl object at 0x0000000003BA5A20&gt;, &lt;pluggy.HookImpl object at 0x0000000003BBE908&gt;]
+caller_kwargs = {&apos;item&apos;: &lt;YamlItem &apos;upload_policy&apos;&gt;}, firstresult = False
+
+    def _multicall(hook_impls, caller_kwargs, firstresult=False):
+        &quot;&quot;&quot;Execute a call into multiple python functions/methods and return the
+        result(s).
+    
+        ``caller_kwargs`` comes from _HookCaller.__call__().
+        &quot;&quot;&quot;
+        __tracebackhide__ = True
+        results = []
+        excinfo = None
+        try:  # run impl and wrapper setup functions in a loop
+            teardowns = []
+            try:
+                for hook_impl in reversed(hook_impls):
+                    try:
+                        args = [caller_kwargs[argname] for argname in hook_impl.argnames]
+                    except KeyError:
+                        for argname in hook_impl.argnames:
+                            if argname not in caller_kwargs:
+                                raise HookCallError(
+                                    &quot;hook call must provide argument %r&quot; % (argname,))
+    
+                    if hook_impl.hookwrapper:
+                        try:
+                            gen = hook_impl.function(*args)
+                            next(gen)   # first yield
+                            teardowns.append(gen)
+                        except StopIteration:
+                            _raise_wrapfail(gen, &quot;did not yield&quot;)
+                    else:
+&gt;                       res = hook_impl.function(*args)
+
+c:\python27\lib\site-packages\pluggy\callers.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+item = &lt;YamlItem &apos;upload_policy&apos;&gt;
+
+    def pytest_runtest_call(item):
+        _update_current_test_var(item, &apos;call&apos;)
+        sys.last_type, sys.last_value, sys.last_traceback = (None, None, None)
+        try:
+&gt;           item.runtest()
+
+c:\python27\lib\site-packages\_pytest\runner.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;YamlItem &apos;upload_policy&apos;&gt;
+
+    def runtest(self):
+        verify_tests(self.spec)
+    
+        # Load ini first
+        ini_global_cfg_paths = self.config.getini(&quot;tavern-global-cfg&quot;) or []
+        # THEN load command line, to allow overwriting of values
+        cmdline_global_cfg_paths = self.config.getoption(&quot;tavern_global_cfg&quot;) or []
+    
+        all_paths = ini_global_cfg_paths + cmdline_global_cfg_paths
+        global_cfg = load_global_config(all_paths)
+    
+&gt;       run_test(self.path, self.spec, global_cfg)
+
+c:\python27\lib\site-packages\tavern\testutils\pytesthook.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+in_file = local(&apos;C:\\Users\\A695159\\Desktop\\cosas\\repositorios\\tng-tests\\tests\\SP\\SP.int.6\\test.01.addPolicy.tavern.yml&apos;)
+test_spec = {&apos;includes&apos;: [{&apos;description&apos;: &apos;Login information for test server&apos;, &apos;name&apos;: &apos;test information for env-int3&apos;, &apos;variables...yml&apos;}, &apos;method&apos;: &apos;POST&apos;, &apos;url&apos;: &apos;{upload_policy:s}&apos;}, &apos;response&apos;: {&apos;status_code&apos;: 200}}], &apos;test_name&apos;: &apos;upload_policy&apos;}
+global_cfg = {}
+
+    def run_test(in_file, test_spec, global_cfg):
+        &quot;&quot;&quot;Run a single tavern test
+    
+        Note that each tavern test can consist of multiple requests (log in,
+        create, update, delete, etc).
+    
+        The global configuration is copied and used as an initial configuration for
+        this test. Any values which are saved from any tests are saved into this
+        test block and can be used for formatting in later stages in the test.
+    
+        Args:
+            in_file (str): filename containing this test
+            test_spec (dict): The specification for this test
+            global_cfg (dict): Any global configuration for this test
+    
+        Raises:
+            TavernException: If any of the tests failed
+        &quot;&quot;&quot;
+    
+        # pylint: disable=too-many-locals
+    
+        # Initialise test config for this test with the global configuration before
+        # starting
+        test_block_config = dict(global_cfg)
+    
+        if &quot;variables&quot; not in test_block_config:
+            test_block_config[&quot;variables&quot;] = {}
+    
+        tavern_box = Box({
+            &quot;env_vars&quot;: dict(os.environ),
+        })
+    
+        test_block_config[&quot;variables&quot;][&quot;tavern&quot;] = tavern_box
+    
+        if not test_spec:
+            logger.warning(&quot;Empty test block in %s&quot;, in_file)
+            return
+    
+        if test_spec.get(&quot;includes&quot;):
+            for included in test_spec[&quot;includes&quot;]:
+                if &quot;variables&quot; in included:
+                    formatted_include = format_keys(included[&quot;variables&quot;], {&quot;tavern&quot;: tavern_box})
+                    test_block_config[&quot;variables&quot;].update(formatted_include)
+    
+        test_block_name = test_spec[&quot;test_name&quot;]
+    
+        logger.info(&quot;Running test : %s&quot;, test_block_name)
+    
+        with ExitStack() as stack:
+            sessions = get_extra_sessions(test_spec)
+    
+            for name, session in sessions.items():
+                logger.debug(&quot;Entering context for %s&quot;, name)
+                stack.enter_context(session)
+    
+            # Run tests in a path in order
+            for stage in test_spec[&quot;stages&quot;]:
+                name = stage[&quot;name&quot;]
+    
+                try:
+                    r = get_request_type(stage, test_block_config, sessions)
+                except exceptions.MissingFormatError:
+                    log_fail(stage, None, None)
+                    raise
+    
+                tavern_box.update(request_vars=r.request_vars)
+    
+                try:
+                    expected = get_expected(stage, test_block_config, sessions)
+                except exceptions.TavernException:
+                    log_fail(stage, None, None)
+                    raise
+    
+                delay(stage, &quot;before&quot;)
+    
+                logger.info(&quot;Running stage : %s&quot;, name)
+    
+                try:
+&gt;                   response = r.run()
+
+c:\python27\lib\site-packages\tavern\core.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tavern.request.rest.RestRequest object at 0x0000000003B96DA0&gt;
+
+    def run(self):
+        &quot;&quot;&quot; Runs the prepared request and times it
+    
+            Todo:
+                time it
+    
+            Returns:
+                requests.Response: response object
+            &quot;&quot;&quot;
+    
+        try:
+            return self._prepared()
+        except requests.exceptions.RequestException as e:
+            logger.exception(&quot;Error running prepared request&quot;)
+&gt;           raise_from(exceptions.RestRequestException, e)
+
+c:\python27\lib\site-packages\tavern\request\rest.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+exc = &lt;class &apos;tavern.util.exceptions.RestRequestException&apos;&gt;
+cause = ConnectionError(ProtocolError(&apos;Connection aborted.&apos;, error(10054, &apos;Se ha forzado la interrupci\xf3n de una conexi\xf3n existente por el host remoto&apos;)),)
+
+    def raise_from(exc, cause):
+        &quot;&quot;&quot;
+            Equivalent to:
+    
+                raise EXCEPTION from CAUSE
+    
+            on Python 3. (See PEP 3134).
+            &quot;&quot;&quot;
+        # Is either arg an exception class (e.g. IndexError) rather than
+        # instance (e.g. IndexError(&apos;my message here&apos;)? If so, pass the
+        # name of the class undisturbed through to &quot;raise ... from ...&quot;.
+        if isinstance(exc, type) and issubclass(exc, Exception):
+            e = exc()
+            # exc = exc.__name__
+            # execstr = &quot;e = &quot; + _repr_strip(exc) + &quot;()&quot;
+            # myglobals, mylocals = _get_caller_globals_and_locals()
+            # exec(execstr, myglobals, mylocals)
+        else:
+            e = exc
+        e.__suppress_context__ = False
+        if isinstance(cause, type) and issubclass(cause, Exception):
+            e.__cause__ = cause()
+            e.__suppress_context__ = True
+        elif cause is None:
+            e.__cause__ = None
+            e.__suppress_context__ = True
+        elif isinstance(cause, BaseException):
+            e.__cause__ = cause
+            e.__suppress_context__ = True
+        else:
+            raise TypeError(&quot;exception causes must derive from BaseException&quot;)
+        e.__context__ = sys.exc_info()[1]
+&gt;       raise e
+E       RestRequestException
+
+c:\python27\lib\site-packages\future\utils\__init__.py:454: RestRequestException</failure></testcase></testsuite>

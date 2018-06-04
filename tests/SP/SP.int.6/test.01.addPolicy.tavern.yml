@@ -1,0 +1,15 @@
+#upload policy
+test_name: upload_policy
+#
+includes:
+  - !include envfile.yml
+
+stages:
+  - name: upload_policy
+    request:
+      url: "{upload_policy:s}"
+      method: POST
+      files:
+        package: "samplepolicyv1.yml"
+    response:
+      status_code: 200
