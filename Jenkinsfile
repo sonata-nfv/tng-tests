@@ -22,7 +22,8 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'results/**/*.xml'
-	    junit 'results/**/*.xml'
+	   sh 'cp results/**/*.xml results'	
+	    junit 'results/*.xml'
 
        
         }
@@ -33,7 +34,7 @@ pipeline {
 			allowMissing: false,
 			alwaysLinkToLastBuild: false,
 			keepAll: true,
-			reportDir: 'results/base_tests',
+			reportDir: 'results/',
 			reportFiles: 'index.html',
 			reportName: 'Results Report'
 		  ]	
