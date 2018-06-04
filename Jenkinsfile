@@ -6,6 +6,12 @@ pipeline {
             steps {
                 echo 'Testing basic elements...'				
 				sh './main_script.sh env-int3.yaml'
+				sh 'echo'
+				sh 'pwd'
+				sh 'tree'
+				sh 'echo'
+				sh 'cd tests/base_tests'
+				sh 'pwd'
             }
         }
 
