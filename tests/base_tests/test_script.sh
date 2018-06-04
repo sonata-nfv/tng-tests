@@ -26,7 +26,7 @@ echo
 
 #pytest --junitxml=base_tests.xml
 echo "updating pytest"
-pip install -U pytest
+sudo pip install -U pytest
 
 #echo
 echo "running pytest"
