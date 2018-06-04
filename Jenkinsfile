@@ -8,6 +8,13 @@ pipeline {
 			dir ('tests/base_tests/')	{	
 				sh './test_script.sh env-int3.yaml'		
 			}
+
+                echo 'Testing slice manager'	
+			dir ('tests/SP/SP.int.9')	{	
+				sh './test_script.sh env-int3.yaml'		
+			}
+
+
             }
         }
 
