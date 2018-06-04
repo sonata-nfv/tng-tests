@@ -4,9 +4,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Testing basic elements...'				
+                echo 'Testing basic elements...'	
+			dir ('tests/base_tests/')	{	
 
-				sh './tests/base_tests/test_script.sh env-int3.yaml'
+				sh './test_script.sh env-int3.yaml'
+			}
             }
         }
 
