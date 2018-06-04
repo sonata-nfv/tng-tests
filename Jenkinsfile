@@ -9,8 +9,8 @@ pipeline {
 				sh './test_script.sh env-int3.yaml'		
 			}
 
-                echo 'Testing slice manager'	
-			dir ('tests/SP/SP.int.9')	{	
+                echo 'Testing upload package'	
+			dir ('tests/SP/SP.int.1')	{	
 				sh './test_script.sh env-int3.yaml'		
 			}
 
