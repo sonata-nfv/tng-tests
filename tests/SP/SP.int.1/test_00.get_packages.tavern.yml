@@ -1,11 +1,11 @@
 #upload package
-test_name: upload package
+test_name: get packages
 #
 includes:
   - !include envfile.yml
 
 stages:
-  - name: upload_package
+  - name: get_packages
     request:
       url: "{upload_package:s}"
       method: GET
@@ -13,8 +13,6 @@ stages:
         Content-Type: application/json
     response:
       headers:
-        Accept: application/json      
-        Accept: text/html              
-        Accept: application/xml       
-        Accept: application/xhtml+xml        
+        status_code: 200
+   
      
