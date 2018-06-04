@@ -24,18 +24,19 @@ echo This is the content of the env file:
 cat envfile.yml
 echo
 
-pytest --junitxml=base_tests.xml
+#pytest --junitxml=base_tests.xml
 
 
 
 ##deleting elements
-#sed -i -- "s/environment_file/$ENV/g" delete_packages.yml
+sed -i -- "s/environment_file/$ENV/g" test.01.get_packages.tavern.yml
+sed -i -- "s/environment_file/$ENV/g" test.02.get_admin_logs.tavern.yml
 #echo
 #echo
-#result_delete=$(tavern-ci delete_packages.yml --stdout --debug)
-#echo $result_delete
-#echo "" > ../../results/packages/delete_results.log
-#echo $result_delete >> ../../results/packages/delete_results.log
+pytest --junitxml=../../results/base_tests/base_tests.xml
+
+
 #echo
-#sed -i -- "s/$ENV/environment_file/g" delete_packages.yml
+#sed -i -- "s/$ENV/environment_file/g" test.01.get_packages.tavern.yml
+#sed -i -- "s/$ENV/environment_file/g" test.02.get_admin_logs.tavern.yml
 #echo

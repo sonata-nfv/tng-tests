@@ -2,7 +2,7 @@
 test_name: get_admin_logs
 
 includes:
-  - !include environment_file
+  - !include envfile.yml
 
 stages:
   - name: get_logs
