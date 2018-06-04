@@ -13,5 +13,5 @@ variables:
   mqqt_ip_1: 143.233.127.27
   logs_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/admin/logs
   file_to_upload: components/commons/package_example.son 
-  get_slices: http://int-sp-ath.5gtango.eu:32001/api/v3/slices/descriptors
+  get_slices:  http://pre-int-sp-ath.5gtango.eu:5998/api/nst/v1/descriptors
   
