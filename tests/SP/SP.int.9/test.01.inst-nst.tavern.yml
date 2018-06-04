@@ -8,11 +8,6 @@ stages:
   - name: get_slices
     request:
       url: "{get_slices:s}"
-      method: POST
-      headers:
-        Content-Type: application/json
-    response: 
+      method: GET
+    response:
       status_code: 200
-      headers:
-        content-type: application/json
-
