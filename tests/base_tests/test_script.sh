@@ -28,9 +28,12 @@ echo
 
 
 
-##deleting elements
+##changing env info in tests
 sed -i -- "s/environment_file/$ENV/g" test.01.get_packages.tavern.yml
 sed -i -- "s/environment_file/$ENV/g" test.02.get_admin_logs.tavern.yml
+echo
+cat test.01.get_packages.tavern.yml
+echo 
 #echo
 #echo
 pytest --junitxml=../../results/base_tests/base_tests.xml
