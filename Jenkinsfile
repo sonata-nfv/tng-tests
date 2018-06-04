@@ -8,7 +8,7 @@ pipeline {
 			dir ('tests/base_tests/')	{	
 
 				sh './test_script.sh env-int3.yaml'
-				sh '. /pytest --junitxml=../../results/base_tests/base_tests.xml'
+				sh 'pytest --junitxml=../../results/base_tests/base_tests.xml'
 				sh 'echo ../../results/base_tests/base_tests.xml'
 			}
             }
