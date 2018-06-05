@@ -9,8 +9,6 @@ stages:
     request:
       url: "{upload_package:s}"
       method: POST
-      headers:
-        Content-Type: multipart/form-data
       files:
         package: "5gtango-ns-package-example.tgo"
     response:
