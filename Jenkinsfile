@@ -31,7 +31,7 @@ pipeline {
 		  publishHTML target: [
 			allowMissing: false,
 			alwaysLinkToLastBuild: false,
-			keepAll: true,
+			keepAll: false,
 			reportDir: 'results/',
 			reportFiles: 'index.html',
 			reportName: 'Results Report'
