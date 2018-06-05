@@ -12,7 +12,6 @@ stages:
       headers:
         Content-Type: application/json
     response:
-      headers:
-        status_code: 200
+      status_code: 200
    
      
