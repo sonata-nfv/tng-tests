@@ -13,9 +13,9 @@ stages:
         package: "5gtango-ns-package-example.tgo"
     response:
       status_code: 200
-    save:
-      body:
-        package_process_uuid: package_process_uuid
+      save:
+        body:
+          package_process_uuid: package_process_uuid
     delay_after: 15    
         
   - name: check_upload_status
@@ -24,8 +24,8 @@ stages:
       method: GET
     response:
       status_code: 200
-    save:
-      body:
-        package_process_status : package_process_status          
+      save:
+        body:
+          package_process_status : package_process_status          
    
      
