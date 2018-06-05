@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Testing upload package'	
-			dir ('tests/SP/SP.int.10')	{	
+			dir ('tests/VnV/VNV.int.2')	{	
 				sh './test_script.sh env-int3.yaml'		
 			}
 

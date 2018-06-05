@@ -5,6 +5,15 @@ includes:
   - !include envfile.yml
 
 stages:
+
+ - name: get_all_tests
+   request:
+      url: "{trr_host:s}"
+      method: GET
+    response:
+      status_code: 200
+
+
   - name: upload_trr
     request:
       url: "{trr_host:s}"
@@ -13,4 +22,31 @@ stages:
         package: "test-descriptor-example.json"
     response:
       status_code: 200
-     
+      save:
+        body:
+          id: id
+
+ - name: get_all_tests
+   request:
+      url: "{trr_host:s}"
+      method: GET
+    response:
+      status_code: 200
+
+ - name: get_1_test
+   request:
+      url: "{trr_host:s}/{id:s}"
+      method: GET
+    response:
+      status_code: 200
+
+ - name: get_1_test
+   request:
+      url: "{trr_host:s}/{id:s}"
+      method: DELETE
+    response:
+      status_code: 200
+
+
+
+

@@ -1,8 +1,8 @@
 #!/bin/bash
-
+#
 ENV_0=$1
 echo $ENV_0
-
+#
 echo this is your selected environment:
 echo "" > envfile.yml
 echo
@@ -27,7 +27,12 @@ echo
 
 #echo
 echo "running pytest"
-py.test --junitxml=../../../results/vnv.2/vnv.2.xml
+######
+#py.test --junitxml=../../../results/vnv.2/vnv.2.xml
+######
+tavern-ci test.01.uploadTsr.tavern.yml --stdout --debug
+######
+
 
 #echo
-echo vnv_2_script_finished
+echo sp_1_script_finished
