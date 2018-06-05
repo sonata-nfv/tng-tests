@@ -12,7 +12,7 @@ stages:
       headers:
         Content-Type: application/json
         files:
-	  package: "5gtango-ns-package-example.tgo"
+          package: "5gtango-ns-package-example.tgo"
     response:
       status_code: 200
    
