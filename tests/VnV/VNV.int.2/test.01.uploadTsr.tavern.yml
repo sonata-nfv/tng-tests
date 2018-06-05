@@ -16,6 +16,7 @@ stages:
       save:
         body:
           package_process_uuid: package_process_uuid
+    delay_after: 30 
 
  - name: check_upload
    request:
