@@ -25,6 +25,13 @@ stages:
    response:
       status_code: 200
 
+ - name: get_tests
+   request:
+      url: "{trr_host:s}"
+      method: GET
+   response:
+      status_code: 200
+
 
 
 
