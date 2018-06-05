@@ -1,0 +1,46 @@
+#upload package
+test_name: get services
+#
+includes:
+  - !include envfile.yml
+
+stages:
+
+  - name: get_token
+    request:
+      url: "{login_host:s}"
+      json: 
+        username: sonata
+        password: '1234'
+      method: POST
+      headers:
+        Content-Type: application/json
+    response: 
+      status_code: 200
+      headers:
+        content-type: application/json
+      save:
+        body:
+          test_login_token: token.access_token
+
+  - name: get_services
+    request:
+      url: "{services_host:s}"
+      method: GET
+      headers:
+        content-type: application/json
+        authorization: "Bearer {test_login_token:s}"
+    response:
+      status_code: 200
+
+  - name: get_functions
+    request:
+      url: "{functions_host:s}"
+      method: GET
+      headers:
+        content-type: application/json
+        authorization: "Bearer {test_login_token:s}"
+    response:
+      status_code: 200
+   
+     
