@@ -26,6 +26,6 @@ stages:
       status_code: 200
       save:
         body:
-          package_process_status : package_process_status          
+          status : status          
    
      
