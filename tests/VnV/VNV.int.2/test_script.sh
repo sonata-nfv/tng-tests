@@ -7,6 +7,9 @@ echo this is your selected environment:
 echo "" > envfile.yml
 echo
 
+##delete old tests if they exist
+rm -rf ../../../results/../*.xml
+
 composed_env_path="../../../environments/$ENV_0"
 
 #checking the env file
@@ -35,4 +38,4 @@ tavern-ci test.01.uploadTsr.tavern.yml --stdout --debug
 
 
 #echo
-echo sp_1_script_finished
+echo vnv_2_script_finished

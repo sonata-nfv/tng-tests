@@ -5,14 +5,12 @@ includes:
   - !include envfile.yml
 
 stages:
-
  - name: get_all_tests
    request:
       url: "{trr_host:s}"
       method: GET
     response:
       status_code: 200
-
 
   - name: upload_trr
     request:
