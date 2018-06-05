@@ -5,46 +5,11 @@ includes:
   - !include envfile.yml
 
 stages:
- - name: get_all_tests
+ - name: upload_test
    request:
-      url: "{trr_host:s}"
-      method: GET
-    response:
-      status_code: 200
-
-  - name: upload_trr
-    request:
-      url: "{trr_host:s}"
+      url: "{vnv_packages:s}"
       method: POST
       files:
-        package: "test-descriptor-example.json"
-    response:
+        package: "5gtango-test-package-example.tgo"
+   response:
       status_code: 200
-      save:
-        body:
-          id: id
-
- - name: get_all_tests
-   request:
-      url: "{trr_host:s}"
-      method: GET
-    response:
-      status_code: 200
-
- - name: get_1_test
-   request:
-      url: "{trr_host:s}/{id:s}"
-      method: GET
-    response:
-      status_code: 200
-
- - name: get_1_test
-   request:
-      url: "{trr_host:s}/{id:s}"
-      method: DELETE
-    response:
-      status_code: 200
-
-
-
-
