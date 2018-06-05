@@ -24,9 +24,7 @@ stages:
       method: GET
    response:
       status_code: 200
-      save:
-        body:
-          status : status
+
 
 
 
