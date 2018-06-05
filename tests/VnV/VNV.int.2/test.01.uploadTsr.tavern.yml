@@ -17,11 +17,11 @@ stages:
         body:
           package_process_uuid: package_process_uuid
 
-  - name: check_upload
-    request:
+ - name: check_upload
+   request:
       url: "{vnv_packages:s}/status/{package_process_uuid:s}"
       method: GET
-    response:
+   response:
       status_code: 200
       save:
         body:
