@@ -1,8 +1,7 @@
 pipeline{
-  agentanyparameters{
-    choice(choices: 'env-int3.yaml\nenv-test2.yaml\ntest3.yaml',
-    description: 'What enviroment file do you want to use?',
-    name: 'ENV_FILE')
+  agent any
+	parameters{
+    	choice(choices: 'env-int3.yaml\nenv-test2.yaml\ntest3.yaml', description: 'What enviroment file do you want to use?', name: 'ENV_FILE')
 	}
 	stages{
 		stage('Run Tests'){
