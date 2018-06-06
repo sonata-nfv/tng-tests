@@ -14,6 +14,16 @@ pipeline {
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}
+						echo'Testing SP 2'
+						dir('tests/SP/SP.int.2')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}		
+						echo'Testing SP 3'
+						dir('tests/SP/SP.int.3')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}					
                     }
                     post {
                         always {
@@ -30,6 +40,11 @@ pipeline {
                     steps {
 						echo'Testing VnV 1'
 						dir('tests/VnV/VNV.int.1')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}
+						echo'Testing VnV 2'
+						dir('tests/VnV/VNV.int.2')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}
