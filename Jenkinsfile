@@ -8,7 +8,7 @@ pipeline {
             parallel {
 			
 
-                stages('SP tests') {
+                stage('SP tests') {
 					stage('Testing SP 1'){
 						steps {
 							echo'Testing SP 1'
@@ -38,7 +38,7 @@ pipeline {
 					}
 				}
 				
-                stages('VnV tests') {
+                stage('VnV tests') {
 					stage('Testing VnV 1'){
 						steps {
 							echo'Testing VnV 1'
