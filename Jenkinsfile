@@ -52,10 +52,14 @@ pipeline {
 				sh"./test_script.sh ${params.ENV_FILE}"
 				}
 			}
-		}	
-
-								
-
-        
+		}	  
     }
+	post {
+		always {
+			archiveArtifacts artifacts: 'results/**/*.xml'
+			sh 'cp results/**/*.xml results'
+			junit 'results/*.xml'
+		}
+	}
+	
 }
