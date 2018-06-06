@@ -5,25 +5,55 @@ pipeline {
 	}
     stages {
 
-		stage('Testing SP 1'){
-			steps {
-				echo'Testing SP 1'
-				dir('tests/SP/SP.int.1')
-				{
-				sh"./test_script.sh ${params.ENV_FILE}"
+		stage(test step 1){
+			parallel{
+				stage(Test SP.int.1){
+					steps{
+						echo'Testing SP 1'
+						dir('tests/SP/SP.int.1')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				
+				}
+				stage(Test VnV.int.1){
+					steps{
+						echo'Testing VnV 1'
+						dir('tests/VnV/VNV.int.1')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
 				}
 			}
 		}
-		stage('Testing SP 2'){
-			steps {
-				echo'Testing SP 2'
-				dir('tests/SP/SP.int.2')
-				{
-				sh"./test_script.sh ${params.ENV_FILE}"
+
+		stage(test step 2){
+			parallel{
+				stage(Test SP.int.2){
+					steps{
+						echo'Testing SP 2'
+						dir('tests/SP/SP.int.2')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				
+				}
+				stage(Test VnV.int.2){
+					steps{
+						echo'Testing VnV 3'
+						dir('tests/VnV/VNV.int.3')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
 				}
 			}
-		}	
-		stage('Testing SP 3'){
+		}
+
+		stage('test step 3'){
 			steps {
 				echo'Testing SP 3'
 				dir('tests/SP/SP.int.3')
@@ -32,22 +62,10 @@ pipeline {
 				}
 			}
 		}
-	
-	
-
-		stage('Testing VnV 1'){
+		stage('test step 4'){
 			steps {
-				echo'Testing VnV 1'
-				dir('tests/VnV/VNV.int.1')
-				{
-				sh"./test_script.sh ${params.ENV_FILE}"
-				}
-			}
-		}
-		stage('Testing VnV 2'){
-			steps {
-				echo'Testing VnV 2'
-				dir('tests/VnV/VNV.int.2')
+				echo'Testing SP 10'
+				dir('tests/SP/SP.int.10')
 				{
 				sh"./test_script.sh ${params.ENV_FILE}"
 				}
