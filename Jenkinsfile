@@ -17,9 +17,9 @@ pipeline {
                     }
                     post {
                         always {
-							archiveArtifactsartifacts: 'results/**/*.xml
-							'sh'cp results/**/*.xml results
-							'junit'results/*.xml'
+							archiveArtifacts artifacts: 'results/**/*.xml'
+							sh 'cp results/**/*.xml results'
+							junit 'results/*.xml'
                         }
 						success{
 							publishHTMLtarget: [
@@ -45,9 +45,9 @@ pipeline {
                     }
                     post {
                         always {
-							archiveArtifactsartifacts: 'results/**/*.xml
-							'sh'cp results/**/*.xml results
-							'junit'results/*.xml'
+							archiveArtifacts artifacts: 'results/**/*.xml'
+							sh 'cp results/**/*.xml results'
+							junit 'results/*.xml'
                         }
 						success{
 							publishHTMLtarget: [
