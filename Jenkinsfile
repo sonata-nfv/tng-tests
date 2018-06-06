@@ -31,7 +31,7 @@ pipeline {
 
 		stage('test step 2'){
 			parallel{
-				stage(Test SP.int.2){
+				stage('Test SP.int.2'){
 					steps{
 						echo'Testing SP 2'
 						dir('tests/SP/SP.int.2')
@@ -43,8 +43,8 @@ pipeline {
 				}
 				stage('Test VnV.int.2'){
 					steps{
-						echo'Testing VnV 3'
-						dir('tests/VnV/VNV.int.3')
+						echo'Testing VnV 2'
+						dir('tests/VnV/VNV.int.2')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}			
