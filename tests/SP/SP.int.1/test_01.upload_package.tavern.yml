@@ -26,6 +26,14 @@ stages:
       status_code: 200
       save:
         body:
-          status : status          
+          package_id: package_id         
+
+  - name: delete_package
+    request:
+      url: "{upload_package:s}{package_id:s}"
+      method: DELETE
+    response:
+      status_code: 200
+
    
      
