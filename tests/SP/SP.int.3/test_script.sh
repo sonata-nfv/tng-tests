@@ -28,11 +28,11 @@ echo
 #echo
 echo "running pytest"
 ######
-#py.test --junitxml=../../../results/sp.1/sp.1.xml
+py.test --junitxml=../../../results/sp.1/sp.1.xml
 ######
-tavern-ci test_01.query_services.tavern.yml --stdout --debug
+#tavern-ci test_01.query_services.tavern.yml --stdout --debug
 ######
 
 
 #echo
-echo sp_1_script_finished
+echo sp_3_script_finished

@@ -8,7 +8,7 @@ echo "" > envfile.yml
 echo
 
 ##delete old tests if they exist
-rm -rf ../../../results/../*.xml
+#rm -rf ../../../results/../*.xml
 
 composed_env_path="../../../environments/$ENV_0"
 
@@ -31,9 +31,9 @@ echo
 #echo
 echo "running pytest"
 ######
-#py.test --junitxml=../../../results/vnv.2/vnv.2.xml
+py.test --junitxml=../../../results/vnv.2/vnv.2.xml
 ######
-tavern-ci test.01.uploadTsr.tavern.yml --stdout --debug
+#tavern-ci test.01.uploadTsr.tavern.yml --stdout --debug
 ######
 
 

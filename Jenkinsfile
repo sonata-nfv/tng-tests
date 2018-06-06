@@ -5,6 +5,16 @@ pipeline {
 	}
     stages {
 
+		stage('test step 0'){
+			steps {
+				echo'Testing Base Tests'
+				dir('tests/base_tests')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}
+			}
+		}
+
 		stage('test step 1'){
 			parallel{
 				stage('Test SP.int.1'){

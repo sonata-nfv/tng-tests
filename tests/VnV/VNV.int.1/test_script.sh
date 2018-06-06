@@ -28,11 +28,11 @@ echo
 #echo
 echo "running pytest"
 ######
-#py.test --junitxml=../../../results/sp.1/sp.1.xml
+py.test --junitxml=../../../results/vnv.1/vnv.1.xml
 ######
-tavern-ci test_00.get_packages.tavern.yml --stdout --debug
+#tavern-ci test_00.get_packages.tavern.yml --stdout --debug
 ######
-tavern-ci test_01.upload_package.tavern.yml --stdout --debug
+#tavern-ci test_01.upload_package.tavern.yml --stdout --debug
 
 #echo
 echo vnv_1_script_finished
