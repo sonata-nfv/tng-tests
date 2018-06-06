@@ -6,64 +6,61 @@ pipeline {
     stages {
         stage('Run Tests') {
             parallel {
-                stage('SP tests') {
+			
 
-                    steps {
-						echo'Testing SP 1'
-						dir('tests/SP/SP.int.1')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
+                stages('SP tests') {
+					stage('Testing SP 1'){
+						steps {
+							echo'Testing SP 1'
+							dir('tests/SP/SP.int.1')
+							{
+							sh"./test_script.sh ${params.ENV_FILE}"
+							}
 						}
-						echo'Testing SP 2'
-						dir('tests/SP/SP.int.2')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
-						}		
-						echo'Testing SP 3'
-						dir('tests/SP/SP.int.3')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
-						}					
-                    }
-                    post {
-                        always {
-							archiveArtifacts artifacts: 'results/**/*.xml'
-							sh 'cp results/**/*.xml results'
-							junit 'results/*.xml'
-                        }
-
-                    }
-					
-                }
-                stage('VnV tests') {
-
-                    steps {
-						echo'Testing VnV 1'
-						dir('tests/VnV/VNV.int.1')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
+					}
+					stage('Testing SP 2'){
+						steps {
+							echo'Testing SP 2'
+							dir('tests/SP/SP.int.2')
+							{
+							sh"./test_script.sh ${params.ENV_FILE}"
+							}
 						}
-						echo'Testing VnV 2'
-						dir('tests/VnV/VNV.int.2')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
+					}	
+					stage('Testing SP 3'){
+						steps {
+							echo'Testing SP 3'
+							dir('tests/SP/SP.int.3')
+							{
+							sh"./test_script.sh ${params.ENV_FILE}"
+							}
 						}
-                    }
-                    post {
-                        always {
-							archiveArtifacts artifacts: 'results/**/*.xml'
-							sh 'cp results/**/*.xml results'
-							junit 'results/*.xml'
-                        }
+					}
+				}
+				
+                stages('VnV tests') {
+					stage('Testing VnV 1'){
+						steps {
+							echo'Testing VnV 1'
+							dir('tests/VnV/VNV.int.1')
+							{
+							sh"./test_script.sh ${params.ENV_FILE}"
+							}
+						}
+					}
+					stage('Testing VnV 2'){
+						steps {
+							echo'Testing VnV 2'
+							dir('tests/VnV/VNV.int.2')
+							{
+							sh"./test_script.sh ${params.ENV_FILE}"
+							}
+						}
+					}	
 
-                    }
-                }
+				}				
+
             }
-	stage('SDK tests'){
-		steps{
-			echo 'SDK tests'
-		}
-	}
         }
     }
 }
