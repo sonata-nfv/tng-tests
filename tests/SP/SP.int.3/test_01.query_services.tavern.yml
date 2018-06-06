@@ -27,9 +27,9 @@ stages:
       save:
         body:
           package_id: package_id
-          name: package_conten.id.name
-          vendor: package_conten.id.vendor
-          version: package_conten.id.version           
+          name: package_content.id.name
+          vendor: package_content.id.vendor
+          version: package_content.id.version           
 
   - name: get_services
     request:
