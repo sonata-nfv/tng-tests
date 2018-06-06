@@ -29,7 +29,19 @@ stages:
           package_id: package_id
           name: package_content.id.name
           vendor: package_content.id.vendor
-          version: package_content.id.version           
+          version: package_content.id.version    
+
+  - name: check_upload_status
+    request:
+      url: "{upload_package:s}/{package_id:s}"
+      method: GET
+    response:
+      status_code: 200
+      save:
+        body:
+          name: pd.package_content.id.name
+          vendor: pd.package_content.id.vendor
+          version: pd.package_content.id.version          
 
   - name: get_services
     request:
