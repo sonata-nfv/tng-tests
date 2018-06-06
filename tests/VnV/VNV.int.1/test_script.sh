@@ -16,7 +16,7 @@ ls "$composed_env_path"
 cp -v "$composed_env_path" envfile.yml
 
 #cat envfile.yml
-mkdir ../../../results/sp.1
+mkdir ../../../results/vnv.1
 
 ENV="envfile.yml"
 

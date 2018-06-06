@@ -16,7 +16,7 @@ ls "$composed_env_path"
 cp -v "$composed_env_path" envfile.yml
 
 #cat envfile.yml
-mkdir ../../../results/sp.1
+mkdir ../../../results/sp.3
 
 ENV="envfile.yml"
 
@@ -28,7 +28,7 @@ echo
 #echo
 echo "running pytest"
 ######
-py.test --junitxml=../../../results/sp.1/sp.1.xml
+py.test --junitxml=../../../results/sp.3/sp.3.xml
 ######
 #tavern-ci test_01.query_services.tavern.yml --stdout --debug
 ######
