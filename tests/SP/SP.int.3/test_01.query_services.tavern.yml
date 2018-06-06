@@ -27,9 +27,6 @@ stages:
       save:
         body:
           package_id: package_id
-          name: package_content.id.name
-          vendor: package_content.id.vendor
-          version: package_content.id.version    
 
   - name: check_trio
     request:
