@@ -22,5 +22,7 @@ variables:
   upload_policy: http://pre-int-sp-ath.5gtango.eu/api/v3/policies
   trr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-plans
   vnv_packages: http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/packages
+  tsr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-suite-results
+  trigger_test: http://pre-int-vnv-bcn.5gtango.eu:6100/tng-vnv-lcm/api/v1/packages/on-change
   
   

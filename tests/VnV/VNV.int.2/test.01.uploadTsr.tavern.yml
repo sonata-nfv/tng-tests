@@ -24,13 +24,36 @@ stages:
       method: GET
    response:
       status_code: 200
+      save:
+        body:
+          package_id: package_id
 
- - name: get_tests
+
+ - name: trigger_test
+   request:
+      url: "{trigger_test:s}"
+      json: 
+        event_name: UPDATED
+        package_id: "{package_id:s}"
+      method: GET
+   response:
+      status_code: 200
+   delay_after: 30 
+
+ - name: get_tests_plans
    request:
       url: "{trr_host:s}"
       method: GET
    response:
       status_code: 200
+
+ - name: get_tests_suite_results
+   request:
+      url: "{tsr_host:s}"
+      method: GET
+   response:
+      status_code: 200
+
 
 
 
