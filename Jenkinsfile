@@ -21,16 +21,7 @@ pipeline {
 							sh 'cp results/**/*.xml results'
 							junit 'results/*.xml'
                         }
-						success{
-							publishHTMLtarget: [
-							  allowMissing: false,
-							  alwaysLinkToLastBuild: false,
-							  keepAll: false,
-							  reportDir: 'results/',
-							  reportFiles: 'index.html',
-							  reportName: 'Results Report'
-							]
-						}
+
                     }
 					
                 }
@@ -49,16 +40,7 @@ pipeline {
 							sh 'cp results/**/*.xml results'
 							junit 'results/*.xml'
                         }
-						success{
-							publishHTMLtarget: [
-							  allowMissing: false,
-							  alwaysLinkToLastBuild: false,
-							  keepAll: false,
-							  reportDir: 'results/',
-							  reportFiles: 'index.html',
-							  reportName: 'Results Report'
-							]
-						}
+
                     }
                 }
             }
