@@ -43,7 +43,7 @@ stages:
       url: "{upload_package:s}{package_id:s}"
       method: DELETE
     response:
-      status_code: 200
+      status_code: 204
 
    
      
