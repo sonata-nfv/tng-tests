@@ -31,7 +31,7 @@ stages:
           vendor: package_content.id.vendor
           version: package_content.id.version    
 
-  - name: check_upload_status
+  - name: check_trio
     request:
       url: "{upload_package:s}/{package_id:s}"
       method: GET
