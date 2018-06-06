@@ -59,6 +59,11 @@ pipeline {
                     }
                 }
             }
+	stage('SDK tests'){
+		steps{
+			echo 'SDK tests'
+		}
+	}
         }
     }
 }
