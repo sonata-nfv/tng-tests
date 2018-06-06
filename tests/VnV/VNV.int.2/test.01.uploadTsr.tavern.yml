@@ -16,7 +16,7 @@ stages:
       save:
         body:
           package_process_uuid: package_process_uuid
-   delay_after: 30 
+   delay_after: 30
 
  - name: check_upload
    request:
@@ -38,7 +38,7 @@ stages:
       method: GET
    response:
       status_code: 200
-   delay_after: 30 
+   delay_after: 120 
 
  - name: get_tests_plans
    request:
