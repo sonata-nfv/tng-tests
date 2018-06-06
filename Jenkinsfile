@@ -5,9 +5,9 @@ pipeline {
 	}
     stages {
 
-		stage(test step 1){
+		stage('test step 1'){
 			parallel{
-				stage(Test SP.int.1){
+				stage('Test SP.int.1'){
 					steps{
 						echo'Testing SP 1'
 						dir('tests/SP/SP.int.1')
@@ -17,7 +17,7 @@ pipeline {
 					}
 				
 				}
-				stage(Test VnV.int.1){
+				stage('Test VnV.int.1'){
 					steps{
 						echo'Testing VnV 1'
 						dir('tests/VnV/VNV.int.1')
@@ -29,7 +29,7 @@ pipeline {
 			}
 		}
 
-		stage(test step 2){
+		stage('test step 2'){
 			parallel{
 				stage(Test SP.int.2){
 					steps{
@@ -41,7 +41,7 @@ pipeline {
 					}
 				
 				}
-				stage(Test VnV.int.2){
+				stage('Test VnV.int.2'){
 					steps{
 						echo'Testing VnV 3'
 						dir('tests/VnV/VNV.int.3')
