@@ -1,8 +1,8 @@
 #!/bin/bash
-
+#
 ENV_0=$1
 echo $ENV_0
-
+#
 echo this is your selected environment:
 echo "" > envfile.yml
 echo
@@ -16,7 +16,7 @@ ls "$composed_env_path"
 cp -v "$composed_env_path" envfile.yml
 
 #cat envfile.yml
-mkdir ../../../results/sp.4
+mkdir ../../../results/sp.1
 
 ENV="envfile.yml"
 
@@ -27,8 +27,12 @@ echo
 
 #echo
 echo "running pytest"
-#py.test --junitxml=../../../results/sp.4/sp.4.xml
-tavern-ci test.01.addSLATemplate.tavern.yml --stdout --debug
+######
+#py.test --junitxml=../../../results/sp.1/sp.1.xml
+######
+tavern-ci test_00.get_packages.tavern.yml --stdout --debug
+######
+tavern-ci test_01.upload_package.tavern.yml --stdout --debug
 
 #echo
-echo sp_4_script_finished
+echo vnv_1_script_finished
