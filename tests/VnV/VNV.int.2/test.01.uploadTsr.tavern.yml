@@ -35,7 +35,7 @@ stages:
       json: 
         event_name: UPDATED
         package_id: "{package_id:s}"
-      method: GET
+      method: POST
    response:
       status_code: 200
    delay_after: 120 
