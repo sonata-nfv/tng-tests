@@ -129,7 +129,8 @@ pipeline {
 				}				
 				
 			}  
-    }
+		}
+	}
 	post {
 		always {
 			archiveArtifacts artifacts: 'results/**/*.xml'
