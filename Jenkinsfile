@@ -36,6 +36,15 @@ pipeline {
 						}			
 					}
 				}
+				stage('Test SDK.int.1'){
+					steps{
+						echo'Testing SDK 1'
+						dir('tests/SDK/SDK.int.1')
+						{
+						sh"ls"
+						}			
+					}
+				}				
 			}
 		}
 
@@ -60,27 +69,66 @@ pipeline {
 						}			
 					}
 				}
+				stage('Test SDK.int.2'){
+					steps{
+						echo'Testing SDK 2'
+						dir('tests/SDK/SDK.int.2')
+						{
+						sh"ls"
+						}			
+					}
+				}				
+				
 			}
 		}
 
 		stage('test step 3'){
-			steps {
-				echo'Testing SP 3'
-				dir('tests/SP/SP.int.3')
-				{
-				sh"./test_script.sh ${params.ENV_FILE}"
+			parallel{
+				stage('Test SP.int.3'){
+					steps{
+						echo'Testing SP 2'
+						dir('tests/SP/SP.int.2')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				
 				}
+				stage('Test SDK.int.3'){
+					steps{
+						echo'Testing SDK 3'
+						dir('tests/SDK/SDK.int.3')
+						{
+						sh"ls"
+						}			
+					}
+				}				
+				
 			}
 		}
 		stage('test step 4'){
-			steps {
-				echo'Testing SP 10'
-				dir('tests/SP/SP.int.10')
-				{
-				sh"./test_script.sh ${params.ENV_FILE}"
+			parallel{
+				stage('Test SP.int.10'){
+					steps{
+						echo'Testing SP 10'
+						dir('tests/SP/SP.int.10')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				
 				}
-			}
-		}	  
+				stage('Test SDK.int.4'){
+					steps{
+						echo'Testing SDK 4'
+						dir('tests/SDK/SDK.int.4')
+						{
+						sh"ls"
+						}			
+					}
+				}				
+				
+			}  
     }
 	post {
 		always {
