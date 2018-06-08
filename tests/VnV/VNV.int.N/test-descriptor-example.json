@@ -1,0 +1,47 @@
+{
+    "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml",
+    "vendor": "eu.5gtango.huawei.simple-test-descriptor",
+    "name": "simple-test-descriptor",
+    "version": "0.1",
+    "author": "Peter Twamley, Huawei Technologies Ireland",
+    "description": "\"A simple test descriptor for a demonstration of tests run against a complete vnf deployment running TTCN3 tests \"\n",
+    "test_type": "TTCN3",
+    "test_execution_files": "path/to/binaries",
+    "test_configuration_parameters": [
+      {
+        "parameter_name": "TTCN3_config_file",
+        "parameter_definition": "location of the TTCN3 configuration file",
+        "parameter_value": "simple_VNF_test.ttcn3",
+        "content_type": "text/plain"
+      },
+      {
+        "parameter_name": "TTCN3 docker_instance",
+        "parameter_definition": "Docker instance for TTCN3 runtime engine",
+        "parameter_value": "TTCN3.docker",
+        "content_type": "application/octet-stream"
+      }
+    ],
+    "test_category": [
+      {
+        "category_type": "performance"
+      }
+    ],
+    "test_execution": [
+      {
+        "test_tag": "moongen",
+        "tag_id": "tag_001"
+      },
+      {
+        "test_tag": "io_bandwidth",
+        "tag_id": "tag_002"
+      },
+      {
+        "test_tag": "basic_test_suite",
+        "tag_id": "tag_003"
+      },
+      {
+        "test_tag": "weekly_run",
+        "tag_id": "tag_004"
+      }
+    ]
+  }

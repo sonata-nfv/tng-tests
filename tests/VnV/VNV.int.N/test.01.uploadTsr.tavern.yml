@@ -1,0 +1,89 @@
+#upload test suite result
+test_name: upload trr
+#
+includes:
+  - !include envfile.yml
+
+stages:
+ - name: upload_test
+   request:
+      url: "{vnv_packages:s}"
+      method: POST
+      files:
+        package: "5gtango-test-package-example.tgo"
+   response:
+      status_code: 200
+      save:
+        body:
+          package_process_uuid: package_process_uuid
+   delay_after: 30
+
+ - name: check_test_upload
+   request:
+      url: "{vnv_packages:s}/status/{package_process_uuid:s}"
+      method: GET
+   response:
+      status_code: 200
+      save:
+        body:
+          package_id: package_id
+
+
+stages:
+  - name: upload_package
+    request:
+      url: "{upload_package:s}"
+      method: POST
+      files:
+        package: "5gtango-ns-package-example.tgo"
+    response:
+      status_code: 200
+      save:
+        body:
+          package_process_uuid: package_process_uuid
+    delay_after: 15    
+        
+  - name: check_upload_package_status
+    request:
+      url: "{upload_package:s}/status/{package_process_uuid:s}"
+      method: GET
+    response:
+      status_code: 200
+      save:
+        body:
+          package_id: package_id    
+
+
+
+
+ - name: trigger_test
+   request:
+      url: "{trigger_test:s}"
+      json: 
+        event_name: UPDATED
+        package_id: "{package_id:s}"
+      method: POST
+   response:
+      status_code: 200
+   delay_after: 120 
+
+
+ - name: get_tests_plans
+   request:
+      url: "{trr_host:s}"
+      method: GET
+   response:
+      status_code: 200
+
+ - name: get_tests_suite_results
+   request:
+      url: "{tsr_host:s}"
+      method: GET
+   response:
+      status_code: 200
+
+
+
+
+
+          

@@ -94,6 +94,15 @@ pipeline {
 					}
 				
 				}
+				stage('Test VnV.int.N'){
+					steps{
+						echo'Testing VnV N'
+						dir('tests/VnV/VNV.int.N')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				}
 				stage('Test SDK.int.3'){
 					steps{
 						echo'Testing SDK 3'
