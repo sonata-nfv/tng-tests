@@ -28,8 +28,6 @@ stages:
         body:
           package_id: package_id
 
-
-stages:
   - name: upload_package
     request:
       url: "{upload_package:s}"
