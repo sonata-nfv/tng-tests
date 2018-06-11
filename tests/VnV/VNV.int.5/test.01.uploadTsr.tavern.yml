@@ -1,4 +1,6 @@
-#upload test suite result
+
+
+cd .#upload test suite result
 test_name: upload trr
 #
 includes:
@@ -30,7 +32,7 @@ stages:
 
  - name: upload_package
    request:
-     url: "{upload_package:s}"
+     url: "{vnv_packages:s}"
      method: POST
      files:
        package: "5gtango-ns-package-example.tgo"
@@ -43,7 +45,7 @@ stages:
         
  - name: check_upload_package_status
    request:
-    url: "{upload_package:s}/status/{package_process_uuid:s}"
+     url: "{vnv_packages:s}/status/{package_process_uuid:s}"
      method: GET
    response:
      status_code: 200
