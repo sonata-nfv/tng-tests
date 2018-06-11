@@ -77,7 +77,7 @@ pipeline {
 			parallel{
 				stage('Test SP.int.3'){
 					steps{
-						echo'Testing SP 2'
+						echo'Testing SP 3'
 						dir('tests/SP/SP.int.3')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
