@@ -22,7 +22,7 @@ ENV="envfile.yml"
 
 echo This is the content of the env file:
 cat envfile.yml
-echo
+echo 
 
 #pytest --junitxml=base_tests.xml
 #echo "updating pytest"
@@ -30,7 +30,7 @@ echo
 
 #echo
 echo "running pytest"
-py.test --junitxml=../../results/base_tests/base_tests.xml
+py.test --junitxml=../../results/base_tests.xml --tb=short
 
 #echo
 echo base_tests_script_finished

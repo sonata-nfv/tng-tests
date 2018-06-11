@@ -78,7 +78,7 @@ pipeline {
 				stage('Test SP.int.3'){
 					steps{
 						echo'Testing SP 2'
-						dir('tests/SP/SP.int.2')
+						dir('tests/SP/SP.int.3')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}			
@@ -142,9 +142,8 @@ pipeline {
 	}
 	post {
 		always {
-			archiveArtifacts artifacts: 'results/**/*.xml'
-			sh 'cp results/**/*.xml results'
 			junit 'results/*.xml'
+			archiveArtifacts artifacts: 'results/*.xml'
 		}
 	}
 	

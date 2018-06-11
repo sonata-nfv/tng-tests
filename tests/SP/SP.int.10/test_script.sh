@@ -28,7 +28,7 @@ echo
 #echo
 echo "running pytest"
 ######
-py.test --junitxml=../../../results/sp.10/sp.10.xml --tb=short
+py.test --junitxml=../../../results/sp.10.xml --tb=short
 ######
 #tavern-ci test_00.get_services-functions.tavern.yml --stdout --debug
 ######
