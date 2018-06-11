@@ -5,6 +5,13 @@ includes:
   - !include envfile.yml
 
 stages:
+ - name: delete_packages_vnv
+   request:
+     url: "{delete_vnv:s}"
+     method: DELETE
+   response:
+     status_code: 200
+
  - name: upload_test
    request:
       url: "{vnv_packages:s}"
