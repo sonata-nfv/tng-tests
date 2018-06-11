@@ -31,7 +31,7 @@ echo
 #echo
 echo "running pytest"
 ######
-py.test --junitxml=../../../results/vnv.5/vnv.5.xml
+py.test --junitxml=../../../results/vnv.5/vnv.5.xml --tb=short
 ######
 #tavern-ci test.01.uploadTsr.tavern.yml --stdout --debug
 ######
