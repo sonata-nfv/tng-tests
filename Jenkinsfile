@@ -75,16 +75,6 @@ pipeline {
 
 		stage('test step 3'){
 			parallel{
-				stage('Test SP.int.3'){
-					steps{
-						echo'Testing SP 3'
-						dir('tests/SP/SP.int.3')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
-						}			
-					}
-				
-				}
 				stage('Test VnV.int.2'){
 					steps{
 						echo'Testing VnV 2'
@@ -108,6 +98,31 @@ pipeline {
 		}
 		stage('test step 4'){
 			parallel{
+				stage('Test SP.int.3'){
+					steps{
+						echo'Testing SP 3'
+						dir('tests/SP/SP.int.3')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				
+				}
+			
+				stage('Test SDK.int.4'){
+					steps{
+						echo'Testing SDK 4'
+						dir('tests/SDK/SDK.int.4')
+						{
+						sh"ls"
+						}			
+					}
+				}				
+				
+			}  
+		}
+		stage('test step 5'){
+			parallel{
 				stage('Test SP.int.10'){
 					steps{
 						echo'Testing SP 10'
@@ -126,19 +141,10 @@ pipeline {
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}			
 					}
-				}				
-				stage('Test SDK.int.4'){
-					steps{
-						echo'Testing SDK 4'
-						dir('tests/SDK/SDK.int.4')
-						{
-						sh"ls"
-						}			
-					}
-				}				
+				}							
 				
 			}  
-		}
+		}		
 	}
 	post {
 		always {
