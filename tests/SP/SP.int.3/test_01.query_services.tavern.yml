@@ -44,7 +44,7 @@ stages:
 
   - name: delete_package
     request:
-      url: "{upload_package:s}{package_id:s}"
+      url: "{upload_package:s}/{package_id:s}"
       method: DELETE
     response:
       status_code: 204
