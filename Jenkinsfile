@@ -94,10 +94,10 @@ pipeline {
 					}
 				
 				}
-				stage('Test VnV.int.N'){
+				stage('Test VnV.int.5'){
 					steps{
-						echo'Testing VnV N'
-						dir('tests/VnV/VNV.int.N')
+						echo'Testing VnV 5'
+						dir('tests/VnV/VNV.int.5')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}			
