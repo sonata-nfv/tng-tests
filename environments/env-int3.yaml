@@ -7,7 +7,7 @@ description: Login information for test server
 
 # Variables should just be a mapping of key: value pairs
 variables:
-  delete_sp: http://pre-int-vnv-bcn.5gtango.eu:4011/catalogues/clean
+  delete_sp: http://pre-int-sp-ath.5gtango.eu:4011/catalogues/clean
   delete_vnv: http://pre-int-vnv-bcn.5gtango.eu:4011/catalogues/clean
   login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
   services_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/services
