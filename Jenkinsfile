@@ -27,15 +27,6 @@ pipeline {
 					}
 				
 				}
-				stage('Test VnV.int.1'){
-					steps{
-						echo'Testing VnV 1'
-						dir('tests/VnV/VNV.int.1')
-						{
-						sh"./test_script.sh ${params.ENV_FILE}"
-						}			
-					}
-				}
 				stage('Test SDK.int.1'){
 					steps{
 						echo'Testing SDK 1'
@@ -60,10 +51,10 @@ pipeline {
 					}
 				
 				}
-				stage('Test VnV.int.2'){
+				stage('Test VnV.int.1'){
 					steps{
-						echo'Testing VnV 2'
-						dir('tests/VnV/VNV.int.2')
+						echo'Testing VnV 1'
+						dir('tests/VnV/VNV.int.1')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}			
@@ -94,10 +85,10 @@ pipeline {
 					}
 				
 				}
-				stage('Test VnV.int.5'){
+				stage('Test VnV.int.2'){
 					steps{
-						echo'Testing VnV 5'
-						dir('tests/VnV/VNV.int.5')
+						echo'Testing VnV 2'
+						dir('tests/VnV/VNV.int.2')
 						{
 						sh"./test_script.sh ${params.ENV_FILE}"
 						}			
@@ -127,6 +118,15 @@ pipeline {
 					}
 				
 				}
+				stage('Test VnV.int.5'){
+					steps{
+						echo'Testing VnV 5'
+						dir('tests/VnV/VNV.int.5')
+						{
+						sh"./test_script.sh ${params.ENV_FILE}"
+						}			
+					}
+				}				
 				stage('Test SDK.int.4'){
 					steps{
 						echo'Testing SDK 4'
