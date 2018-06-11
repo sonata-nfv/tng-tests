@@ -42,25 +42,6 @@ stages:
         body:
           package_id: package_id
 
-  - name: check_trio
-    request:
-      url: "{upload_package:s}/{package_id:s}"
-      method: GET
-    response:
-      status_code: 200
-      save:
-        body:
-          name: pd.package_content.id.name
-          vendor: pd.package_content.id.vendor
-          version: pd.package_content.id.version          
-
-  - name: get_services
-    request:
-      url: "{get_services:s}?name=:{name:s}&vendor=:{vendor:s}&version=:{versions:s}"
-      method: GET
-    response:
-      status_code: 200      
-
   - name: delete_package
     request:
       url: "{upload_package:s}{package_id:s}"
