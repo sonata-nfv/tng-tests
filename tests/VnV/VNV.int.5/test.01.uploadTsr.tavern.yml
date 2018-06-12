@@ -33,7 +33,7 @@ stages:
       status_code: 200
       save:
         body:
-          package_id: package_id
+          package_id_1: package_id
 
  - name: upload_package
    request:
@@ -46,8 +46,8 @@ stages:
      save:
        body:
          package_process_uuid: package_process_uuid
-   delay_after: 15    
-        
+   delay_after: 15
+
  - name: check_upload_package_status
    request:
      url: "{vnv_packages:s}/status/{package_process_uuid:s}"
@@ -56,7 +56,7 @@ stages:
      status_code: 200
      save:
        body:
-         package_id: package_id    
+         package_id_2: package_id
 
 
 
@@ -64,13 +64,13 @@ stages:
  - name: trigger_test
    request:
       url: "{trigger_test:s}"
-      json: 
+      json:
         event_name: UPDATED
-        package_id: "{package_id:s}"
+        package_id: "{package_id_1:s}"
       method: POST
    response:
       status_code: 200
-   delay_after: 120 
+   delay_after: 60
 
 
  - name: get_tests_plans
@@ -88,7 +88,16 @@ stages:
       status_code: 200
 
 
+ - name: delete_package
+   request:
+     url: "{vnv_packages:s}/{package_id_1:s}"
+     method: DELETE
+   response:
+     status_code: 204
 
-
-
-          
+ - name: delete_package_2
+   request:
+     url: "{vnv_packages:s}/{package_id_2:s}"
+     method: DELETE
+   response:
+     status_code: 204

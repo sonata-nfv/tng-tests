@@ -39,13 +39,13 @@ stages:
  - name: trigger_test
    request:
       url: "{trigger_test:s}"
-      json: 
+      json:
         event_name: UPDATED
         package_id: "{package_id:s}"
       method: POST
    response:
       status_code: 200
-   delay_after: 120 
+   delay_after: 60
 
  - name: get_tests_plans
    request:
@@ -61,8 +61,9 @@ stages:
    response:
       status_code: 200
 
-
-
-
-
-          
+ - name: delete_package
+   request:
+     url: "{vnv_packages:s}/{package_id:s}"
+     method: DELETE
+   response:
+     status_code: 204
