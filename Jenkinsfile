@@ -5,15 +5,6 @@ pipeline {
 	}
     stages {
 
-		stage('test step 0'){
-			steps {
-				echo'Testing Base Tests'
-				dir('tests/base_tests')
-				{
-				sh"./test_script.sh ${params.ENV_FILE}"
-				}
-			}
-		}
 		stage('Test SP.int.1'){
 			steps{
 				echo'Testing SP 1'
