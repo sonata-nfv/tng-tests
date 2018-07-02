@@ -13,9 +13,7 @@ pipeline {
 				sh"./test_script.sh ${params.ENV_FILE}"
 				}			
 			}
-	
-		
-		
+		}
 
 	}
 	post {
