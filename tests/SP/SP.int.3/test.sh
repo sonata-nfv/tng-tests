@@ -44,7 +44,26 @@ echo "version: " $version
 echo
 
 
+cat_packages=$(awk '/cat_packages/ {print $2}' envfile.yml)
 
+name2=$(curl ""$cat_packages"" -H "content-type: application/json" | jq '.[0].pd.package_content[0].id.name')
+vendor2=$(curl ""$cat_packages"" -H "content-type: application/json" | jq '.[0].pd.package_content[0].id.vendor')
+version2=$(curl ""$cat_packages"" -H "content-type: application/json" | jq '.[0].pd.package_content[0].id.version')
+
+echo "Info from the catalogue:"
+echo "name: " $name2
+echo "vendor: " $vendor2
+echo "version: " $version2
+echo
+
+if [ "$name" = "$name2" ] && [ "$vendor" = "$vendor2" ] && [ "$version" = "$version2" ]
+then
+    echo "The package is in the catalogue"
+    echo
+else
+    echo "The package is not in the catalogue"
+    echo
+fi
 
 
 delete_package=$(curl -X DELETE ""$upload"/""$package_id")
