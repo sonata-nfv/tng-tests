@@ -33,14 +33,14 @@ echo
 echo $package_id
 echo
 
-download_package=$(curl ""$upload"/""$package_id")
+download_package=$(curl ""$upload"/""$package_id""/package-file")
 echo
 echo $download_package
 echo $download_package > test.file.tgo
 echo
 
-echo "Comparing packages"
-diff 5gtango-ns-package-example.tgo test.file.tgo
+COMPARED_FILES=$(diff 5gtango-ns-package-example.tgo test.file.tgo)
+echo $COMPARED_FILES
 
 
 delete_package=$(curl -X DELETE ""$upload"/""$package_id")
