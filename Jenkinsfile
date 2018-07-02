@@ -5,10 +5,19 @@ pipeline {
 	}
     stages {
 
-		stage('Test SP.int.1'){
+		stage('Test SP.int.1 - Valid package is stored'){
 			steps{
-				echo'Testing SP 1'
+				echo'Testing SP 1 - Valid package is stored'
 				dir('tests/SP/SP.int.1/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SP.int.2 - Invalid package is not stored'){
+			steps{
+				echo'Testing SP 2- Invalid package is not stored'
+				dir('tests/SP/SP.int.2')
 				{
 				sh"./test_script.sh ${params.ENV_FILE}"
 				}			

@@ -7,7 +7,7 @@ description: Login information for test server
 
 # Variables should just be a mapping of key: value pairs
 variables:
-  delete_sp: http://pre-int-sp-ath.5gtango.eu:4011/catalogues/clean
+  delete_sp: http://int-sp-ath.5gtango.eu:4011/catalogues/clean
   delete_vnv: http://pre-int-vnv-bcn.5gtango.eu:4011/catalogues/clean
   login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
   services_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/services
@@ -19,7 +19,7 @@ variables:
   file_to_upload: components/commons/package_example.son 
   get_descriptors: https://pre-int-sp-ath.5gtango.eu/api/v3/slices/descriptors
   get_services: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services
-  upload_package: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/packages
+  upload_package: http://int-sp-ath.5gtango.eu:32002/api/v3/packages
   upload_sla_template: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/sla-templates
   upload_policy: http://pre-int-sp-ath.5gtango.eu/api/v3/policies
   trr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-plans
