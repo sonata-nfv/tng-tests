@@ -14,6 +14,7 @@ ls "$composed_env_path"
 #
 
 cp -v "$composed_env_path" envfile.yml
+cp -v envfile.yml ..
 
 #cat envfile.yml
 mkdir ../../../../results/sp.1
