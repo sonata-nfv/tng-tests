@@ -23,6 +23,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.3 - Query available services'){
+			steps{
+				echo'Testing SP 3 - Query available services'
+				dir('tests/SP/SP.int.3/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 
 	}
 	post {
