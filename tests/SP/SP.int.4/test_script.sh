@@ -27,8 +27,8 @@ echo
 
 #echo
 echo "running pytest"
-#py.test --junitxml=../../../results/sp.4/sp.4.xml
-tavern-ci test.01.addSLATemplate.tavern.yml --stdout --debug
+######
+py.test --junitxml=../../../results/sp.4.xml --tb=short
 
 #echo
 echo sp_4_script_finished

@@ -39,6 +39,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.4 - Add an SLA Template to a Service in the Catalogue'){
+			steps{
+				echo'Testing SP 4 - Add an SLA Template to a Service in the Catalogue'
+				dir('tests/SP/SP.int.4')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SP.int.7 - Instantiate a service'){
 			steps{
 				echo'Testing SP 7 - Instantiate a service'
