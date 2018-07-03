@@ -33,6 +33,14 @@ echo
 echo $package_id
 echo
 
+mon=$(awk '/monitoring/ {print $2}' envfile.yml)
+echo
+echo "mon" $mon
+echo
+monitoring=$(curl ""$mon"/""$package_id")
+echo
+echo $monitoring
+echo
 
 delete_package=$(curl -X DELETE ""$upload"/""$package_id")
 echo
