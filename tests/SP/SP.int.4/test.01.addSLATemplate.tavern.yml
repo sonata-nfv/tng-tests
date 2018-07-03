@@ -5,6 +5,7 @@ includes:
   - !include envfile.yml
 
 stages:
+  # 1. Use the REST API to obtain a list of the catalogued services and select the one (the NS UUID) to which we want to associate the SLA Template to 
   - name: get_services
     request:
       url: "{get_services:s}"
@@ -15,13 +16,52 @@ stages:
         package: "ns_descriptor.json"
     response:
       status_code: 200
-#  - name: create_sla_template
-#    request:
-#      url: "{upload_sla_template:s}"
-#      method: POST
-#      headers:
-#        content-type: application/x-www-form-urlencoded 
-#    response:
-#      status_code: 201
-   
-     
+      save:
+        body:
+          uuid: 0.uuid
+  # 2. Submit a valid SLA Template (JSON) and service to the REST endpoint
+  - name: create_sla_template
+    request:
+      url: "{upload_sla_template:s}"
+      method: POST
+      data:
+        nsd_uuid: "{uuid:s}"
+        guaranteeId: "g1"
+        expireDate: "20/12/2020"
+        templateName: "Gold"
+      headers:
+        content-type: application/x-www-form-urlencoded
+    response:
+      status_code: 201
+      headers: 
+         content-type: "application/json"
+      # 3. The return should be a JSON document which includes the SLA Template data as well as the meta-data the Catalogue associates to it.
+#      body:
+#        updated_at: !anything
+#        signature: !anything
+#        created_at: !anything
+#        slad:
+#          vendor: tango-sla-mgmt
+#           author: "Evgenia Kapassa, Marios Touloupou"
+#           name: "Gold"
+#           description: ""
+#           descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml",
+#           version: "0.1"
+#           sla_template:
+#             offered_date: !anything
+#             template_name: "Gold"
+#             valid_until: "2020-12-20T00:00:00Z"
+#             guaranteeTerms: !anything
+#             # ...
+#             ns:
+#               ns_description: "Example NS with one VNF"
+#               ns_uuid: "{uuid:s}"
+#               ns_name: "myns"
+#               ns_vendor: "eu.5gtango"
+#               ns_version: "0.1"
+
+#   published:false,
+#   uuid: "73caaabe-788f-48c5-9c03-0e4d2801e54c"
+#   md5: "d5c302c42a0e78824195b9007b22118f"
+#   status: "active"
+#   username: null
