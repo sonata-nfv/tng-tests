@@ -32,6 +32,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.7 - Instantiate a service'){
+			steps{
+				echo'Testing SP 7 - Instantiate a service'
+				dir('tests/SP/SP.int.7/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SP.int.9 - Gatekeeper read functions and services records'){
 			steps{
 				echo'Testing SP 9- Gatekeeper read functions and services records'
