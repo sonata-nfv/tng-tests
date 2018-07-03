@@ -23,6 +23,24 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.3 - Query available services'){
+			steps{
+				echo'Testing SP 3 - Query available services'
+				dir('tests/SP/SP.int.3/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SP.int.9 - Gatekeeper read functions and services records'){
+			steps{
+				echo'Testing SP 9- Gatekeeper read functions and services records'
+				dir('tests/SP/SP.int.9')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 
 	}
 	post {

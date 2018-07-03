@@ -10,8 +10,8 @@ variables:
   delete_sp: http://int-sp-ath.5gtango.eu:4011/catalogues/clean
   delete_vnv: http://pre-int-vnv-bcn.5gtango.eu:4011/catalogues/clean
   login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
-  services_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/services
-  functions_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/functions
+  services_host: http://int-sp-ath.5gtango.eu:32002/api/v3/services
+  functions_host: http://int-sp-ath.5gtango.eu:32002/api/v3/functions
   api_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/packages
   delete_host: http://sp.int3.sonata-nfv.eu:4002/catalogues/clean
   mqqt_ip_1: 143.233.127.27
@@ -26,5 +26,7 @@ variables:
   vnv_packages: http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/packages
   tsr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-suite-results
   trigger_test: http://pre-int-vnv-bcn.5gtango.eu:6100/tng-vnv-lcm/api/v1/packages/on-change
+  cat_packages: http://int-sp-ath.5gtango.eu:4011/api/v2/packages
+
   
   
