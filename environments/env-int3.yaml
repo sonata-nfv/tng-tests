@@ -27,6 +27,7 @@ variables:
   tsr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-suite-results
   trigger_test: http://pre-int-vnv-bcn.5gtango.eu:6100/tng-vnv-lcm/api/v1/packages/on-change
   cat_packages: http://int-sp-ath.5gtango.eu:4011/api/v2/packages
+  monitoring: http://int-sp-ath.5gtango.eu:8000/api/v1/services
 
   
   

@@ -5,6 +5,13 @@ pipeline {
 	}
     stages {
 
+		stage('Clean WS') {
+		    steps {
+		        step([$class: 'WsCleanup'])
+		        checkout scm
+		    }
+        	}
+
 		stage('Test SP.int.1 - Valid package is stored'){
 			steps{
 				echo'Testing SP 1 - Valid package is stored'
@@ -27,6 +34,15 @@ pipeline {
 			steps{
 				echo'Testing SP 3 - Query available services'
 				dir('tests/SP/SP.int.3/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SP.int.7 - Instantiate a service'){
+			steps{
+				echo'Testing SP 7 - Instantiate a service'
+				dir('tests/SP/SP.int.7/script')
 				{
 				sh"./test_script.sh ${params.ENV_FILE}"
 				}			
