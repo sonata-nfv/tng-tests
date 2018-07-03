@@ -5,23 +5,23 @@ includes:
   - !include envfile.yml
 
 stages:
-  - name: upload_ns_descriptor
+  - name: get_services
     request:
-      url: "{upload_network_service:s}"
-      method: POST
+      url: "{get_services:s}"
+      method: GET
       headers:
         content-type: application/json
       files:
         package: "ns_descriptor.json"
     response:
-      status_code: 201
-  - name: create_sla_template
-    request:
-      url: "{upload_sla_template:s}"
-      method: POST
-      headers:
-        content-type: application/x-www-form-urlencoded 
-    response:
-      status_code: 201
+      status_code: 200
+#  - name: create_sla_template
+#    request:
+#      url: "{upload_sla_template:s}"
+#      method: POST
+#      headers:
+#        content-type: application/x-www-form-urlencoded 
+#    response:
+#      status_code: 201
    
      
