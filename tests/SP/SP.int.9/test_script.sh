@@ -27,7 +27,7 @@ echo
 
 #echo
 echo "running pytest"
-py.test --junitxml=../../../results/sp.9/sp.9.xml
+py.test --junitxml=../../../results/sp.9.xml --tb=short
 
 #echo
 echo sp_9_script_finished
