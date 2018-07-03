@@ -32,6 +32,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.9 - Gatekeeper read functions and services records'){
+			steps{
+				echo'Testing SP 9- Gatekeeper read functions and services records'
+				dir('tests/SP/SP.int.9')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 
 	}
 	post {
