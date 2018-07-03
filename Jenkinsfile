@@ -5,6 +5,13 @@ pipeline {
 	}
     stages {
 
+		stage('Clean WS') {
+		    steps {
+		        step([$class: 'WsCleanup'])
+		        checkout scm
+		    }
+        	}
+
 		stage('Test SP.int.1 - Valid package is stored'){
 			steps{
 				echo'Testing SP 1 - Valid package is stored'
