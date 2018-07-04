@@ -1,5 +1,5 @@
 #upload package
-test_name: upload package
+test_name: upload invalid package
 #
 includes:
   - !include envfile.yml

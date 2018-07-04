@@ -1,5 +1,5 @@
 #get services and functions
-test_name: get_services_and_functions
+test_name: Gatekeeper get services and functions
 #
 includes:
   - !include envfile.yml

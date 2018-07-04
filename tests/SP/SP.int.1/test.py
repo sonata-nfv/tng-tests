@@ -20,7 +20,7 @@ def collect_files(extension = ".sh"):
 
     return file_list
 
-def test_shell_scripts(file_list = collect_files()):
+def Valid_package_is_stored(file_list = collect_files()):
     '''
     Tests all the shell scripts based on its exit code
     :param file_list: contains files that are to be tested
