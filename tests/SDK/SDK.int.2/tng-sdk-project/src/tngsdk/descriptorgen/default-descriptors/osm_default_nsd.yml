@@ -1,0 +1,23 @@
+# same default NSD as in tng-schema, just in OSM format/syntax
+# in contrast to Tango's NSDs, OSM's NSDs do not have connection points to outside "input/output"
+
+nsd-catalog:
+  nsd:
+  - id: default-nsd
+    name: default-nsd
+    description: "A default NSD with one default VNFDs"
+    vendor: etsi.osm
+    version: 1.0
+    
+    constituent-vnfd:
+    - member-vnf-index: 1
+      vnfd-id-ref: default-vnfd
+
+    vld:
+    - id: mgmt
+      name: mgmt
+      mgmt-network: true
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-connection-point-ref: mgmt
+        vnfd-id-ref: default-vnfd

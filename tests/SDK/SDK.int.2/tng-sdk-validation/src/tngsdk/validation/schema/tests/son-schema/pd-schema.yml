@@ -1,0 +1,132 @@
+$schema: http://json-schema.org/draft-04/schema#
+additionalProperties: false
+definitions:
+  credentials:
+    public_private_key:
+      additionalProperties: false
+      description: Authentication based on a public-private key approach.
+      properties:
+        password: {description: An optional password for the private key., type: string}
+        private_key: {description: A private key for authentication., type: string}
+      required: [private_key]
+      type: object
+    username_and_password:
+      additionalProperties: false
+      description: Basic authentication credentials using username and password.
+      properties:
+        password: {description: A password for authentication., type: string}
+        username: {description: A username for authentication., type: string}
+      required: [username, password]
+      type: object
+description: 'The package descriptor schema specifies the structure
+
+  of the package descriptor. It makes sure the relevant
+
+  information is provided to parse the package in a
+
+  meaningful way.
+
+  '
+properties:
+  artifact_dependencies:
+    description: Artifacts, such as VM images, that are not part of this package,
+      but have to be downloaded.
+    items:
+      additionalProperties: false
+      properties:
+        credentials:
+          description: Credentials needed to download the artifact.
+          oneOf:
+          - {$ref: '#/definitions/credentials/username_and_password'}
+          - {$ref: '#/definitions/credentials/public_private_key'}
+          type: object
+        md5: {description: An MD5 hash of the artifact., pattern: '^[A-Fa-f0-9]{32}$',
+          type: string}
+        name: {description: The name of the artifact., pattern: '^[A-Za-z0-9\-_./]+$',
+          type: string}
+        url: {description: The URL where the artifact can be downloaded from., pattern: '^[A-Za-z0-9\-_./:]+$',
+          type: string}
+      required: [name, url]
+      type: object
+    type: array
+    uniqueItems: true
+  descriptor_version: {description: The version of the descriptor schema used., pattern: '^[A-Za-z0-9\-_.]+$',
+    type: string}
+  entry_service_template: {description: The service descriptor that defines THE service
+      of the package., pattern: '^[A-Za-z0-9\-_./]+$', type: string}
+  package_content:
+    description: An array of artifacts contained in the package.
+    items:
+      additionalProperties: false
+      properties:
+        content-type: {description: The type of content of the artifact., pattern: '^[A-Za-z0-9\-_./]+$',
+          type: string}
+        md5: {description: An MD5 hash of the artifact., pattern: '^[A-Fa-f0-9]{32}$',
+          type: string}
+        name: {description: The name of the artifact similar to the absolute path
+            of the artifact in the package., pattern: '^[A-Za-z0-9\-_./]+$', type: string}
+        sealed: {description: Overrides the default 'sealed' status that states whether
+            this artifact is contained or not., type: boolean}
+      required: [name, content-type]
+      type: object
+    type: array
+    uniqueItems: true
+  package_dependencies:
+    description: Other SONATA packages this package depends on.
+    items:
+      additionalProperties: false
+      properties:
+        credentials: {description: Credentials needed to run the other package., type: string}
+        group: {description: The group id that identifies the opther package uniquely
+            across all package., pattern: '^[a-z0-9\-_.]+$', type: string}
+        name: {description: The package name that identifies the other package without
+            its version., pattern: '^[a-z0-9\-_.]+$', type: string}
+        verification_key: {description: A public key used to verify the signature
+            of the other package., type: string}
+        version: {description: The version that allows to distinguish the other package
+            at different times., pattern: '^[0-9\-_.]+$', type: string}
+      required: [group, name, version]
+      type: object
+    type: array
+    uniqueItems: true
+  package_description: {description: An arbitrary description of the package., type: string}
+  package_group: {description: The group id will identify the package uniquely across
+      all package., pattern: '^[a-z0-9\-_.]+$', type: string}
+  package_maintainer: {description: The person or organization that created the package.,
+    type: string}
+  package_md5: {description: "An MD5 hash over the package content, i.e. all files\
+      \ contained in the package \nEXCEPT the package descriptor, i.e. /META-INF/MANIFEST.MF,\
+      \ as this file\ncontains this hash.\n", pattern: '^[A-Fa-f0-9]{32}$', type: string}
+  package_name: {description: The package name identifies the package without its
+      version., pattern: '^[a-z0-9\-_.]+$', type: string}
+  package_resolvers:
+    description: An array of artifacts contained in the package.
+    items:
+      additionalProperties: false
+      description: The different package resolvers, i.e. catatalogs, where packages
+        can be retrieved from.
+      properties:
+        credentials:
+          description: The credentials needed to access the resolver.
+          oneOf:
+          - {$ref: '#/definitions/credentials/username_and_password'}
+          - {$ref: '#/definitions/credentials/public_private_key'}
+          type: object
+        name: {description: The resolver name., pattern: '^[A-Za-z0-9\-_./:]+$', type: string}
+      required: [name]
+      type: object
+    type: array
+    uniqueItems: true
+  package_signature: {description: "A signature over the package content, i.e. all\
+      \ files contained in the package \nEXCEPT the package descriptor, i.e. /META-INF/MANIFEST.MF,\
+      \ as this file\ncontains this hash.\n", type: string}
+  package_version: {description: The version allows to distinguish the same package
+      at different times., pattern: '^[0-9\-_.]+$', type: string}
+  schema: {description: An optional reference to this package descriptor schema.,
+    type: string}
+  sealed: {default: false, description: Sets the default 'sealed' status that states
+      whether the package is self-contained or not., type: boolean}
+required: [descriptor_version, package_group, package_name, package_version]
+title: Package Descriptor Schema
+type: object
+version: 1.0

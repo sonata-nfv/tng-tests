@@ -1,0 +1,46 @@
+# same default VNFD as in tng-schema, just in OSM format/syntax
+
+vnfd-catalog:
+  vnfd:
+    - id: default-vnfd
+      name: default-vnfd
+      short-name: default-vnfd
+      vendor: etsi.osm
+      version: 0.9
+      description: "A VNF based on ubuntu16-04.qcow2"
+
+      vdu:
+        - id: vdu01
+          name: vdu01
+          image: ubuntu16-04.qcow2
+          vm-flavor:
+            vcpu-count: 1
+            memory-mb: 512
+            storage-gb: 10
+          interface:
+            - name: vdu-mgmt
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: mgmt
+            - name: vdu-input
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: input
+            - name: vdu-output
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: output
+          
+      connection-point:
+        - name: mgmt
+          type: VPORT
+        - name: input
+          type: VPORT
+        - name: output
+          type: VPORT
+          
+      mgmt-interface:
+        cp: mgmt

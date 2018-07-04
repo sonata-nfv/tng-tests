@@ -1,0 +1,51 @@
+# Variables can be used in the rules file
+
+MINIMAL_NUMBER_OF_CPUS = 2
+FIRST_PATIENT_CONNECTION_FUP_SUBJECT = 'Email Subject'
+FIRST_PATIENT_CONNECTION_FUP_TEMPLATE = 'first_pat_conntion.html'
+ 
+RULES = [ 
+    # first patient connection follow up 
+    { 
+        "conditions": { 
+            "all": [ 
+                { 
+                    "name": "vdu_resource_requirements_cpu_vcpus", 
+                    "operator": "equal_to_case_insensitive", 
+                    "value": "MINIMAL_NUMBER_OF_CPUS", 
+                }
+            ]
+        },
+ 
+        "actions": [ 
+            { 
+                "name": "error", 
+                "params": { 
+                    "error_message": 'Error in the VFD CPU number, please check it.'
+                } 
+            } 
+        ]
+    }
+    { 
+        "conditions": { 
+            "all": [ 
+                { 
+                    "name": "vdu_resource_requirements_memory_size", 
+                    "operator": "equal_to", 
+                    "value": "2Gb" 
+                } 
+            ]
+        },
+ 
+        "actions": [ 
+            { 
+                "name": "error", 
+                "params": { 
+                    "error_message": 'Error in the VFD RAM memory resources, please check it.' 
+                } 
+            } 
+        ]
+    }
+
+
+]

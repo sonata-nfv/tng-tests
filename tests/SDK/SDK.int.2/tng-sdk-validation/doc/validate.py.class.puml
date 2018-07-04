@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+scale 2
+class Validator{
+    +_workspace
+    +_syntax
+    +_integrity
+    +_topology
+    +_dext
+    +_dpath
+    +_log_level
+    +_pkg_signature
+    +_pkg_pubkey
+    +_storage
+    +_schema_validator
+    +source_id
+    +_fwgraphs
+    -__init__()
+    +errors()
+    +error_count()
+    +warnings()
+    +warning_count()
+    +storage()
+    +dpath()
+    +dpath()
+    +configure()
+    +_assert_configuration()
+    +validate_package()
+    +validate_project()
+    +validate_service()
+    +validate_function()
+    +_validate_package_struct()
+    +validate_package_signature()
+    +_validate_package_syntax()
+    +_validate_service_syntax()
+    +_validate_function_syntax()
+    +_validate_package_integrity()
+    +_validate_service_integrity()
+    +_validate_function_integrity()
+    +_validate_service_topology()
+    +_validate_function_topology()
+    +_load_service_functions()
+    +_load_project_service_file()
+    +_find_graph_cycles()
+    +write_service_graphs()
+}
+@enduml
