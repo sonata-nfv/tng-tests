@@ -1,0 +1,395 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: This is the API of the 5GTANGO TNG-SDK-VALIDATION tool. This is still a work in progress so the API may be modified
+  version: "0.0.1"
+  title: 5GTANGO TNG-SDK-VALIDATION tool API
+  contact:
+    email: anton.roman@quobis.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /report:
+    get:
+      tags:
+        - developers
+      summary: searches validation reports
+      operationId: searchReport
+      description: |
+        (Not yet available) By passing in the appropriate options, you can search for
+        available validation report in the history of validations done
+        with the tool
+      parameters:
+        - in: query
+          name: searchString
+          description: pass an optional search string for looking up inventory
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: skip
+          description: number of records to skip for pagination
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+        - in: query
+          name: limit
+          description: maximum number of records to return
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValidationResult'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - admins
+      summary: adds an inventory item
+      operationId: addInventory
+      description: Adds an item to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationResult'
+        description: Inventory item to add
+  /report/results/{resourceId}:
+    get:
+      tags:
+        - developers
+      summary: searches validation reports
+      operationId: searchReport
+      description: |
+        (Not yet available) By passing in the appropriate options, you can search for
+        available validation report in the history of validations done
+        with the tool
+      parameters:
+        - in: path
+          name: resourceId
+          description: pass an optional search string for looking up inventory
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: skip
+          description: number of records to skip for pagination
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+        - in: query
+          name: limit
+          description: maximum number of records to return
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValidationResult'
+        '400':
+          description: bad input parameter
+  /report/topology/{resourceId}:
+    get:
+      tags:
+        - developers
+      summary: searches validation reports
+      operationId: searchReport
+      description: |
+        (Not yet available) By passing in the appropriate options, you can search for
+        available validation report in the history of validations done
+        with the tool
+      parameters:
+        - in: path
+          name: resourceId
+          description: pass an optional search string for looking up inventory
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TopologyObject'
+        '400':
+          description: bad input parameter        
+  # in the previous version the graph was accesed with path /fwgraphs        
+  /report/fwgraphs/{resourceId}:
+    get:
+      tags:
+        - developers
+      summary: searches validation reports
+      operationId: searchReport
+      description: |
+        (Not yet available) By passing in the appropriate options, you can search for
+        available validation report in the history of validations done
+        with the tool
+      parameters:
+        - in: path
+          name: resourceId
+          description: pass an optional search string for looking up inventory
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FwgraphObject'
+        '400':
+          description: bad input parameter         
+          
+  /validation:
+    post:
+      tags:
+        - developers
+      summary: searches validation reports
+      operationId: validate
+      description: |
+        It instructs the validator to perform the validation of the specified object acoording to the specified parameters
+        available validation report in the history of validations done
+        with the tool
+      parameters:
+        - in: query
+          name: path
+          description: path of the file which contains the object to be validated
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: file
+          description: file name which contains the descriptor of the project, package, service or function to be validated
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: sync
+          description: |
+            parametyer to indicate if the request must be processed in synchronous way
+            returnig the result of the validation within a 200 OK reply to the POST to create 
+            the validation resource, if this param is omitted or False then the request is 
+            replied with a 202 Accepted and the result of the validation must be requested 
+            against the validation resource passed in the validation uuid
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: syntax
+          description: indicates that syntax of the object must be validated
+          schema:
+            type: boolean
+        - in: query
+          name: integrity
+          description: indicates that integrity must be validated
+          schema:
+            type: string
+        - in: query
+          name: boolean
+          description: indicates that topology must be validated
+          schema:
+            type: boolean
+        - in: query
+          name: pkg_signature
+          description: signature of the package to be validated
+          schema:
+            type: string
+        - in: query
+          name: pkg_pubkey
+          description: pubkey of the package to be validated
+          schema:
+            type: string    
+      responses:
+        '200':
+          description: results of the validation process
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ValidationResult'
+        '400':
+          description: bad input parameter
+        '400':
+          description: Not possible to validate service and function in the same request
+          
+  /resources:
+    get:
+      tags:
+        - developers
+      summary: searches validated resources in the cache
+      operationId: getResource
+      description: |
+        Returns a list of the cached resources by the validation tool
+      parameters:
+        - in: query
+          name: searchString
+          description: pass an optional search string for looking up inventory
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+      # fix this
+                items:
+                  $ref: '#/components/schemas/ValidationResult'
+        '400':
+          description: bad input parameter
+  # to complete
+  /watches:
+    get:
+      tags:
+        - developers
+      summary: searches validated resources in the cache
+      operationId: getResource
+      description: |
+       (Not yet available) Returns a list of the cached resources by the validation tool
+      parameters:
+        - in: query
+          name: searchString
+          description: pass an optional search string for looking up inventory
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+      # fix this
+                items:
+                  $ref: '#/components/schemas/WatchObject'
+        '400':
+          description: bad input parameter    
+components:
+  schemas:
+    ValidationSyncResult:
+      type: object
+      properties:
+        error_count: 
+          type: integer
+        errors:
+          type: array
+          item:
+            $ref: '#/components/schemas/errorItem'
+    errorItem:
+      type: object
+      properties:
+        source_id:
+          type: string
+        event_code:
+          type: string
+        level:
+          type: 
+            enum:
+              - "error"
+              - "warning"
+        event_id:
+          type: string
+          header:
+            type: string
+        detail:
+          type: object
+          properties:
+            message:
+              type: string
+            detail_event_id:
+              type: string
+    ValidationResult:
+      type: object
+      properties:
+        vid: 
+          type: string
+        rid:
+          type: string
+    ValidationResource:
+      type: object
+      required:
+        - resource_id
+      properties:
+        resource_id:
+          type: string
+        path:
+          type: string
+        syntax:
+          type: boolean
+        topology:
+          type: boolean
+        integrity:
+          type: boolean
+        type:
+          enum:
+            - "project"
+            - "package"
+            - "service"
+            - "function"
+    TopologyObject:
+      type: object
+      properties:
+        id:
+          type: integer
+    FwgraphObject:
+      type: object
+      properties:
+        id:
+          type: integer
+    WatchObject:
+      type: object
+      properties:
+        type:
+           enum:
+            - "project"
+            - "package"
+            - "service"
+            - "function"
+        syntax:
+          type: string
+        integrity:
+          type: string
+        topology:
+          type: string

@@ -1,0 +1,158 @@
+# Event configuration for tngsdk-validation
+# An event can be reported by a configured level of importance:
+# error: report event as an error
+# warning: report event as a warning
+# none: do not report
+
+
+### PROJECT
+
+# Project - invalid project file descriptor
+evt_project_service_invalid: error
+
+# Project - multiple service descriptors found
+evt_project_service_multiple: error
+
+
+### PACKAGE
+
+# Package - file is not in a zip format
+evt_package_format_invalid: error
+
+# Package - bad internal file structure
+evt_package_struct_invalid: error
+
+# Package - invalid signature
+evt_package_signature_invalid: error
+
+# PD [syntax] - invalid schema syntax
+evt_pd_stx_invalid: error
+
+# PD [integrity] - bad file references
+evt_pd_itg_invalid_reference: error
+
+# PD [integrity] - bad MD5 checksum
+evt_pd_itg_invalid_md5: warning
+
+# PD [integrity] - missing entry service template
+evt_pd_itg_missing_entry_service: error
+
+
+### SERVICE
+
+# Service - invalid descriptor file
+evt_service_invalid_descriptor: error
+
+# NSD [syntax] - invalid schema syntax
+evt_nsd_stx_invalid: error
+
+# NSD [integrity] - referenced function doesn't exist
+evt_nsd_itg_function_unavailable: error
+
+# NSD [integrity] - invalid function
+evt_nsd_itg_function_invalid: error
+
+# NSD [integrity] - bad section 'connection_points'
+evt_nsd_itg_badsection_cpoints: error
+
+# NSD [integrity] - bad section 'virtual_links'
+evt_nsd_itg_badsection_vlinks: error
+
+# NSD [integrity] - use of undeclared connection point
+evt_nsd_itg_undeclared_cpoint: error
+
+# NSD [integrity] - unused connection point
+evt_nsd_itg_unused_cpoint: warning
+
+# NSD [integrity] - undefined connection point
+evt_nsd_itg_undefined_cpoint: error
+
+# NSD [topology] - failed to build topology graph
+evt_nsd_top_topgraph_failed: error
+
+# NSD [topology] - topology graph is disconnected
+evt_nsd_top_topgraph_disconnected: warning
+
+# NSD [topology] - bad section 'forwarding graphs'
+evt_nsd_top_badsection_fwgraph: error
+
+# NSD [topology] - no 'forwarding_graphs' section
+evt_nsd_top_fwgraph_unavailable: none
+
+# NSD [topology] - connection point in forwarding graph not defined
+evt_nsd_top_fwgraph_cpoint_undefined: error
+
+# NSD [topology] - duplicate position index in forwarding graph
+evt_nsd_top_fwgraph_position_duplicate: warning
+
+# NSD [topology] - odd number of connection points in forwarding graph
+evt_nsd_top_fwgraph_cpoints_odd: warning
+
+# NSD [topology] - invalid forwarding path (due to topology)
+evt_nsd_top_fwpath_invalid: error
+
+# NSD [topology] - cycles found in forwarding path
+evt_nsd_top_fwgraph_cycles: warning
+
+# NSD [topology] - forwarding path contains a link between interfaces of the same VNF
+evt_nsd_top_fwpath_inside_vnf: error
+
+# NSD [topology] - forwarding path is disrupted, i.e. doesn't continue from the previous ending point
+evt_nsd_top_fwpath_disrupted: error
+
+
+## FUNCTION
+
+# Function - invalid descriptor file
+evt_function_invalid_descriptor: error
+
+# VNFD [syntax] - invalid schema syntax
+evt_vnfd_stx_invalid: error
+
+# VNFD [integrity] - bad section 'connection_points'
+evt_vnfd_itg_badsection_cpoints: error
+
+# VNFD [integrity] - bad section 'virtual_units'
+evt_vnfd_itg_badsection_vdus: error
+
+# VNFD [integrity] - bad section 'connection_points' in vdu
+evt_vnfd_itg_vdu_badsection_cpoints: error
+
+# VNFD [integrity] - VDU image not found/accessible
+evt_vnfd_itg_vdu_image_not_found: warning
+
+# VNFD [integrity] - bad section 'virtual_links'
+evt_vnfd_itg_badsection_vlinks: error
+
+# VNFD [integrity] - undeclared connection point
+evt_vnfd_itg_undeclared_cpoint: error
+
+# VNFD [integrity] - unused connection point
+evt_vnfd_itg_unused_cpoint: warning
+
+# VNFD [integrity] - undefined connection point
+evt_vnfd_itg_undefined_cpoint: error
+
+# VNFD [topology] - failed to build topology graph
+evt_vnfd_top_topgraph_failed: error
+
+
+### GENERAL
+
+# Duplicate declaration of connection point
+evt_duplicate_cpoint: error
+
+# Invalid format of connection point
+evt_invalid_cpoint: error
+
+# Invalid virtual link (bad ID or number of cp references)
+evt_invalid_vlink: error
+
+# Duplicate virtual link
+evt_duplicate_vlink: error
+
+# Invalid connection point reference format
+evt_invalid_cpoint_ref: error
+
+# Not a 5GTANGO descriptor
+evt_invalid_descriptor: error

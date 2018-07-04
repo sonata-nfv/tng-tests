@@ -1,0 +1,119 @@
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+scale 2
+class DescriptorStorage{
+    +_packages
+    +_services
+    +_functions
+    +_units
+    -__init__()
+    +packages()
+    +services()
+    +functions()
+    +service()
+    +create_package()
+    +create_service()
+    +function()
+    +create_function()
+}
+class Node{
+    +_id
+    +_connection_points
+    -__init__()
+    +id()
+    +connection_points()
+    +connection_points()
+    +add_connection_point()
+}
+class VLink{
+    +_id
+    +_cpr_pair
+    -__init__()
+    -__repr__()
+    -__str__()
+    +id()
+    +connection_point_refs()
+    +cpr_u()
+    +cpr_v()
+}
+class VBridge{
+    +_id
+    +_cp_refs
+    -__init__()
+    -__repr__()
+    -__str__()
+    +id()
+    +connection_point_refs()
+}
+class Descriptor{
+    +_id
+    +_content
+    +_filename
+    +filename
+    +_complete_graph
+    +_graph
+    +_vlinks
+    +_vbridges
+    -__init__()
+    +id()
+    +content()
+    +content()
+    +filename()
+    +filename()
+    +vlinks()
+    +vbridges()
+    +vlink_cp_refs()
+    +vbridge_cp_refs()
+    +graph()
+    +graph()
+    +complete_graph()
+    +complete_graph()
+    +load_connection_points()
+    +add_vbridge()
+    +add_vlink()
+    +load_virtual_links()
+    +unused_connection_points()
+}
+class Package{
+    -__init__()
+    +entry_service_file()
+    +service_descriptors()
+    +function_descriptors()
+    +descriptors()
+    +md5()
+}
+class Service{
+    +_functions
+    +_vnf_id_map
+    +_fw_graphs
+    -__init__()
+    +functions()
+    +fw_graphs()
+    +all_function_connection_points()
+    +mapped_function()
+    +vnf_id()
+    +associate_function()
+    +build_topology_graph()
+    +load_forwarding_graphs()
+    +_cp_in_functions()
+    +trace_path()
+    +trace_path_pairs()
+    +undeclared_connection_points()
+}
+class Function{
+    +_units
+    -__init__()
+    +units()
+    +associate_unit()
+    +load_units()
+    +load_unit_connection_points()
+    +build_topology_graph()
+    +undeclared_connection_points()
+}
+class Unit{
+    +_id
+    -__init__()
+    +id()
+}
+@enduml

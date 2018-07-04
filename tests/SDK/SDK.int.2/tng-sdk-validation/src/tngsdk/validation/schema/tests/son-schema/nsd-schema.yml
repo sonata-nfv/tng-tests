@@ -1,0 +1,200 @@
+$schema: http://json-schema.org/draft-04/schema#
+additionalProperties: false
+definitions:
+  interfaces:
+    enum: [interface]
+description: The core scheme for RECUSRIVE service descriptors (many details left
+  out)
+properties:
+  author: {description: The person or organization that created the NS descriptor.,
+    type: string}
+  auto_scale_policy:
+    properties:
+      action: {type: string}
+      criteria:
+        items:
+        - properties:
+            end-to-end bandwidth: {type: string}
+          type: object
+        type: array
+    type: object
+  connection_points:
+    description: The connection points of the overall NS, that connects the NS to
+      the external world.
+    items:
+      additionalProperties: false
+      properties:
+        id: {description: A VNF-unique id of the connection point. Can be used for
+            references., type: string}
+        type: {$ref: '#/definitions/interfaces', description: 'The type of connection
+            point, such as a virtual port, a virtual NIC address, a physical port,
+            a physcial NIC address, or the endpoint of a VPN tunnel.'}
+        virtual_link_reference: {description: 'A reference to a virtual link, i.e.
+            the virtual_links:id.', type: string}
+      required: [id, type]
+      type: object
+    minItems: 1
+    type: array
+    uniqueItems: true
+  description: {description: A longer description of the network service., type: string}
+  descriptor_version: {description: The version of the description definition used
+      to describe the network descriptor., pattern: '^[A-Za-z0-9\-_.]+$', type: string}
+  forwarding_graphs:
+    description: The forwarding graph.
+    items:
+      oneOf:
+      - additionalProperties: false
+        description: A reference to an external forwarding graph descriptor (VNFFGD).
+        properties:
+          fg_description: {type: string}
+          fg_group: {type: string}
+          fg_name: {type: string}
+          fg_version: {type: string}
+        required: [fg_group, fg_name, fg_version]
+        type: object
+      - description: A full-featured forwarding graph description.
+        properties:
+          constituent_services:
+            items:
+            - {type: string}
+            type: array
+          constituent_vnfs:
+            items:
+            - {type: string}
+            type: array
+          depedent_virtual_links:
+            items:
+            - {type: string}
+            type: array
+          fg_id: {description: A unique identifier of this forwarding graph within
+              the scope of this NS descriptor., type: string}
+          network_forwarding_paths:
+            items:
+              properties:
+                connection_points:
+                  items:
+                    properties:
+                      connection_point_ref: {description: 'A connection point reference,
+                          referenced by a connection point id.', type: string}
+                      position: {description: The possition of the connection point
+                          with the forwarding graph, type: integer}
+                    type: object
+                  type: array
+                fp_id: {type: string}
+                policy: {type: string}
+              type: object
+            type: array
+          number_of_endpoints: {type: integer}
+          number_of_virtual_links: {type: integer}
+        required: [fg_id]
+        type: object
+      type: object
+    type: array
+  lifecycle_events:
+    properties:
+      scale_out:
+        items:
+          properties:
+            vnf_event: {type: string}
+            vnf_id: {type: string}
+          type: object
+        type: array
+      start:
+        items:
+          properties:
+            vnf_event: {type: string}
+            vnf_id: {type: string}
+          type: object
+        type: array
+      stop:
+        items:
+          properties:
+            vnf_event: {type: string}
+            vnf_id: {type: string}
+          type: object
+        type: array
+    type: object
+  monitoring_parameters:
+    items:
+    - properties:
+        desc: {type: string}
+        metric: {type: string}
+        unit: {type: string}
+      type: object
+    type: array
+  name: {description: The name of the network service description., pattern: '^[a-z0-9\-_.]+$',
+    type: string}
+  network_functions:
+    description: The VNFs (their descriptors), that are part of this network service.
+    items:
+      additionalProperties: false
+      properties:
+        description: {description: A longer description of the network function.,
+          type: string}
+        vnf_id: {description: A unique identifier of this network function within
+            the scope of this NS descriptor., type: string}
+        vnf_name: {description: The name of the function description., pattern: '^[a-z0-9\-_.]+$',
+          type: string}
+        vnf_vendor: {description: The vendor id identifies the VNF descriptor uniquely
+            across all function descriptors., pattern: '^[a-z0-9\-_.]+$', type: string}
+        vnf_version: {description: The version of the function descriptor., pattern: '^(==
+            |>= |<= |!= )?[0-9\-_.]+$', type: string}
+      required: [vnf_id, vnf_vendor, vnf_name, vnf_version]
+      type: object
+    minItems: 1
+    type: array
+    uniqueItems: true
+  network_services:
+    description: The recursive NSs (their descriptors), that are part of this network
+      service.
+    items: {type: string}
+    minItems: 0
+    type: array
+    uniqueItems: true
+  services_depedency:
+    items: {type: string}
+    minItems: 0
+    type: array
+    uniqueItems: true
+  vendor: {description: The vendor id allows to identify a VNF descriptor uniquely
+      across all function descriptor vendors., pattern: '^[a-z0-9\-_.]+$', type: string}
+  version: {description: The version of the service descriptor., pattern: '^[0-9\-_.]+$',
+    type: string}
+  virtual_links:
+    items:
+      oneOf:
+      - additionalProperties: false
+        description: A reference to an external virtual link descriptor (VLD).
+        properties:
+          vl_description: {type: string}
+          vl_group: {type: string}
+          vl_name: {type: string}
+          vl_version: {type: string}
+        required: [vl_group, vl_name, vl_version]
+        type: object
+      - additionalProperties: false
+        description: A full-featured virtual link description.
+        properties:
+          access: {type: boolean}
+          connection_points_reference:
+            items: {minItems: 2, type: string, uniqueItems: true}
+            type: array
+          connectivity_type:
+            enum: [E-Line, E-Tree, E-LAN]
+          dhcp: {type: boolean}
+          external_access: {type: boolean}
+          id: {type: string}
+          leaf_requirement: {type: string}
+          qos: {type: string}
+          root_requirement: {type: string}
+        required: [id, connectivity_type, connection_points_reference]
+        type: object
+      type: object
+    type: array
+  vnf_depedency:
+    items: {type: string}
+    minItems: 0
+    type: array
+    uniqueItems: true
+required: [descriptor_version, vendor, name, version]
+type: object

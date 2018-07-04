@@ -1,0 +1,18 @@
+https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml
+/home/anton/src/tng-communications-pilot/project/comm-pilot/sources/vnf/wac/wac.yml
+
+from tngsdk.project.workspace import Workspace, Project
+from schema.validator import SchemaValidator
+from validator import Validator
+
+
+workspace = Workspace('.', log_level='info')
+schema_validator = SchemaValidator(workspace)
+valid=Validator()
+
+schema_validator.load_schema('NSD',True)
+schema_validator.load_schema('PD',True)
+schema_validator.load_schema('VNFD',True)
+
+vnfd_path='/home/anton/src/tng-communications-pilot/project/comm-pilot/sources/vnf/wac/wac.yml'
+valid.validate_function(vnfd_path)
