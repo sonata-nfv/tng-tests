@@ -1,0 +1,12 @@
+[
+  "tests/SP/SP.int.10/test_00.get_services-functions.tavern.yml::get services", 
+  "tests/SP/SP.int.2/test_01.upload_package.tavern.yml::upload package", 
+  "tests/SP/SP.int.4/test.01.addSLATemplate.tavern.yml::upload sla template", 
+  "tests/SP/SP.int.6/test.01.addPolicy.tavern.yml::upload_policy", 
+  "tests/SP/SP.int.9/test.get_services.tavern.yml::get_services_and_functions", 
+  "tests/VnV/VNV.int.1/test_01.upload_package.tavern.yml::upload package", 
+  "tests/VnV/VNV.int.2/test.01.uploadTsr.tavern.yml::upload trr", 
+  "tests/VnV/VNV.int.5/test.01.uploadTsr.tavern.yml::upload trr", 
+  "tests/base_tests/test_01.get_packages.tavern.yml::get_packages", 
+  "tests/base_tests/test_02.get_admin_logs.tavern.yml::get_admin_logs"
+]
