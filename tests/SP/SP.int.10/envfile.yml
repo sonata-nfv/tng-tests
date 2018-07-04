@@ -14,6 +14,7 @@ variables:
   logs_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/admin/logs
   file_to_upload: components/commons/package_example.son 
   get_descriptors: https://pre-int-sp-ath.5gtango.eu/api/v3/slices/descriptors
-  get_services: http://int-sp-ath.5gtango.eu:5998/api/services
+  get_services: http://pre-int-sp-ath.5gtango.eu:5998/api/services
   upload_package: http://pre-int-sp-ath.5gtango.eu/api/v3/packages
+  instantiate_request: http://pre-int-sp-ath.5gtango.eu:5998/api/resquests/instances
   

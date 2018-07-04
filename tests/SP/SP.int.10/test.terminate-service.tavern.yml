@@ -1,0 +1,42 @@
+#get_services
+test_name: get services
+#
+includes:
+  - !include envfile.yml
+
+stages:
+#  0. Get available services
+  - name: get_services
+    request:
+      url: "{get_services:s}"
+      method: GET
+      headers:
+        content-type: application/json
+    response:
+      status_code: 200
+      save:
+        body:
+          uuid: 0.uuid
+#  1. Submit the valid service termination request to the REST API
+  - name: delete_service
+    request:
+      url: "{instantiate_request:s}"
+      method: DELETE
+      headers:
+        content-type: application/json
+      json:
+        instance_uuid: "{uuid:s}"
+        request_type: "TERMINATE_SERVICE"
+    response:
+      status_code: 200
+#  2. Keep checking the status of the request until the response contains a status field with value success (or failed)
+    delay_after: 30
+  - name: get_services
+    request:
+      url: "{instantiate_requests:s}"
+      method: GET
+      headers:
+        content-type: application/json
+    response:
+      status_code: 404
+
