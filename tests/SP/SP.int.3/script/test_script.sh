@@ -29,7 +29,7 @@ echo
 #echo
 echo "running pytest"
 cd ..
-pytest test.py --junitxml=../../../results/sp.3.xml --tb=short
+pytest Query_available_services.py --junitxml=../../../results/sp.3.xml --tb=short
 ######
 #py.test --junitxml=../../../results/sp.3.xml --tb=short
 ######
