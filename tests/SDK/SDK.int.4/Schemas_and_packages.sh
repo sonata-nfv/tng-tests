@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 ###SDK 4
 
 git clone https://github.com/sonata-nfv/tng-schema.git
