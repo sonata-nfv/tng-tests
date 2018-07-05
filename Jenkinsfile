@@ -77,8 +77,17 @@ pipeline {
 		}
 		stage('Test SDK.int.2 - Create and validate project'){
 			steps{
-				echo'Testing SP 1 - Valid package is stored'
+				echo'Testing SDK 2 - Valid package is stored'
 				dir('tests/SDK/SDK.int.2/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SDK.int.3 - Create project and package'){
+			steps{
+				echo'Testing SDK 3 - Create project and package '
+				dir('tests/SDK/SDK.int.3/script')
 				{
 				sh"./test_script.sh ${params.ENV_FILE}"
 				}			
