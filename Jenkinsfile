@@ -93,6 +93,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SDK.int.4 - Schemas and packages'){
+			steps{
+				echo'Testing SDK 4 - Schemas and packages '
+				dir('tests/SDK/SDK.int.4/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 
 	}
 	post {
