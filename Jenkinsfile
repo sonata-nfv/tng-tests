@@ -66,6 +66,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.10 - Terminate a service'){
+			steps{
+				echo'Testing SP 10- Terminate a service'
+				dir('tests/SP/SP.int.10')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SDK.int.2 - Create and validate project'){
 			steps{
 				echo'Testing SP 1 - Valid package is stored'
