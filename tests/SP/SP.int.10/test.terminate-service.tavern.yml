@@ -1,5 +1,5 @@
 #get_services
-test_name: get services
+test_name: Terminate services
 #
 includes:
   - !include envfile.yml
