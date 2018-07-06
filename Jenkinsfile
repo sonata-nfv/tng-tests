@@ -48,6 +48,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.5 - Add a Policy to a Service in the Catalogue'){
+			steps{
+				echo'Testing SP 5 - Add a Policy to a Service in the Catalogue'
+				dir('tests/SP/SP.int.5/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SP.int.7 - Instantiate a service'){
 			steps{
 				echo'Testing SP 7 - Instantiate a service'

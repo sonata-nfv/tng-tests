@@ -21,7 +21,7 @@ variables:
   get_services: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services
   upload_package: http://int-sp-ath.5gtango.eu:32002/api/v3/packages
   upload_sla_template: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/sla-templates
-  upload_policy: http://pre-int-sp-ath.5gtango.eu/api/v3/policies
+  upload_policy: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/policies/
   trr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-plans
   vnv_packages: http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/packages
   tsr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-suite-results
