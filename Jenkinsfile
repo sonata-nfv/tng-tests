@@ -75,6 +75,33 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test VnV.int.1 - VNV Gatekeeper to LCM Package Callback'){
+			steps{
+				echo'Testing VnV- VNV Gatekeeper to LCM Package Callback '
+				dir('tests/VnV/VNV.int.1')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test VnV.int.2 - VNV Test package specification'){
+			steps{
+				echo'Testing VnV- Test package specification '
+				dir('tests/VnV/VNV.int.2')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test VnV.int.5 - VNV end-to-end'){
+			steps{
+				echo'Testing VnV- VNV end-to-end '
+				dir('tests/VnV/VNV.int.5')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SDK.int.2 - Create and validate project'){
 			steps{
 				echo'Testing SDK 2 - Valid package is stored'
@@ -102,6 +129,7 @@ pipeline {
 				}			
 			}
 		}
+
 
 	}
 	post {
