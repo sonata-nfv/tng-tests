@@ -2,8 +2,8 @@
 ---
 
 # Each file should have a name and description
-name: test information for env-int3
-description: Login information for test server
+name: test information for env-int6
+description: Test policy manager lifecycle
 
 # Variables should just be a mapping of key: value pairs
 variables:
@@ -17,4 +17,6 @@ variables:
   get_services: http://int-sp-ath.5gtango.eu:5998/api/services
   upload_package: http://pre-int-sp-ath.5gtango.eu/api/v3/packages
   upload_sla_template: http://sp.int3.sonata-nfv.eu:8080/tng-sla-mgmt/api/slas/v1/templates/
-  upload_policy: http://pre-int-sp-ath.5gtango.eu/api/v3/policies
+  upload_policy: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/policies/
+  
+  
