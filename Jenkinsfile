@@ -1,7 +1,7 @@
 pipeline {
   agent any
 	parameters{
-    	choice(choices: 'env-int3.yaml\nint-sp-ath.yaml\npre-int-sp-ath.yaml', description: 'What enviroment file do you want to use?', name: 'ENV_FILE')
+    	choice(choices: 'multi-env.yaml\nint-sp-ath.yaml\npre-int-sp-ath.yaml', description: 'What enviroment file do you want to use?', name: 'ENV_FILE')
 	}
     stages {
 
