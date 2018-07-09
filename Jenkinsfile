@@ -1,7 +1,7 @@
 pipeline {
   agent any
 	parameters{
-    	choice(choices: 'env-int3.yaml\nint-sp-ath.yaml\npre-int-sp-ath.yaml', description: 'What enviroment file do you want to use?', name: 'ENV_FILE')
+    	choice(choices: 'multi-env.yaml\nint-sp-ath.yaml\npre-int-sp-ath.yaml', description: 'What enviroment file do you want to use?', name: 'ENV_FILE')
 	}
     stages {
 
@@ -48,6 +48,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.5 - Add a Policy to a Service in the Catalogue'){
+			steps{
+				echo'Testing SP 5 - Add a Policy to a Service in the Catalogue'
+				dir('tests/SP/SP.int.5/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SP.int.7 - Instantiate a service'){
 			steps{
 				echo'Testing SP 7 - Instantiate a service'
@@ -66,6 +75,70 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.10 - Terminate a service'){
+			steps{
+				echo'Testing SP 10- Terminate a service'
+				dir('tests/SP/SP.int.10')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test VnV.int.1 - VNV Gatekeeper to LCM Package Callback'){
+			steps{
+				echo'Testing VnV- VNV Gatekeeper to LCM Package Callback '
+				dir('tests/VnV/VNV.int.1')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test VnV.int.2 - VNV Test package specification'){
+			steps{
+				echo'Testing VnV- Test package specification '
+				dir('tests/VnV/VNV.int.2')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test VnV.int.5 - VNV end-to-end'){
+			steps{
+				echo'Testing VnV- VNV end-to-end '
+				dir('tests/VnV/VNV.int.5')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SDK.int.2 - Create and validate project'){
+			steps{
+				echo'Testing SDK 2 - Valid package is stored'
+				dir('tests/SDK/SDK.int.2/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SDK.int.3 - Create project and package'){
+			steps{
+				echo'Testing SDK 3 - Create project and package '
+				dir('tests/SDK/SDK.int.3/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+		stage('Test SDK.int.4 - Schemas and packages'){
+			steps{
+				echo'Testing SDK 4 - Schemas and packages '
+				dir('tests/SDK/SDK.int.4/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
+
 
 	}
 	post {

@@ -12,8 +12,6 @@ stages:
       method: GET
       headers:
         content-type: application/json
-      files:
-        package: "ns_descriptor.json"
     response:
       status_code: 200
       save:
@@ -26,42 +24,29 @@ stages:
       method: POST
       data:
         nsd_uuid: "{uuid:s}"
+        expireDate: "20/12/2022"
         guaranteeId: "g1"
-        expireDate: "20/12/2020"
-        templateName: "Gold"
+        templateName: "Test_Sla"
       headers:
         content-type: application/x-www-form-urlencoded
     response:
       status_code: 201
-      headers: 
-         content-type: "application/json"
-      # 3. The return should be a JSON document which includes the SLA Template data as well as the meta-data the Catalogue associates to it.
-#      body:
-#        updated_at: !anything
-#        signature: !anything
-#        created_at: !anything
-#        slad:
-#          vendor: tango-sla-mgmt
-#           author: "Evgenia Kapassa, Marios Touloupou"
-#           name: "Gold"
-#           description: ""
-#           descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml",
-#           version: "0.1"
-#           sla_template:
-#             offered_date: !anything
-#             template_name: "Gold"
-#             valid_until: "2020-12-20T00:00:00Z"
-#             guaranteeTerms: !anything
-#             # ...
-#             ns:
-#               ns_description: "Example NS with one VNF"
-#               ns_uuid: "{uuid:s}"
-#               ns_name: "myns"
-#               ns_vendor: "eu.5gtango"
-#               ns_version: "0.1"
+  # 3. The return should be a JSON document which includes the SLA Template data as well as the meta-data the Catalogue associates to it.
+      save:
+        body:
+          sla_id: uuid
+      body: 
+        slad:
+           vendor: "tango-sla-mgmt"
+           author: "Evgenia Kapassa, Marios Touloupou"
+           name: "Test_Sla"
+           version: "0.1"
+    #delay_after: 5
+  #4. Cleanup the SLA Template
+  - name: delete_sla_template
+    request:
+      url: "{upload_sla_template:s}/{sla_id:s}/"
+      method: DELETE
+    response:
+      status_code: 200
 
-#   published:false,
-#   uuid: "73caaabe-788f-48c5-9c03-0e4d2801e54c"
-#   md5: "d5c302c42a0e78824195b9007b22118f"
-#   status: "active"
-#   username: null
