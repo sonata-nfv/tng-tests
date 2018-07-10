@@ -35,12 +35,12 @@ stages:
       save:
         body:
           sla_id: uuid
-      body: 
-        slad:
-           vendor: "tango-sla-mgmt"
-           author: "Evgenia Kapassa, Marios Touloupou"
-           name: "Test_Sla"
-           version: "0.1"
+#      body: 
+#        slad:
+#           vendor: "tango-sla-mgmt"
+#           author: "Evgenia Kapassa, Marios Touloupou"
+#           name: "Test_Sla"
+#           version: "0.1"
     #delay_after: 5
   #4. Cleanup the SLA Template
   - name: delete_sla_template
