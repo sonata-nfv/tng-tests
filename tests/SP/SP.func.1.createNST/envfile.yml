@@ -7,16 +7,16 @@ description: Test policy manager lifecycle
 
 # Variables should just be a mapping of key: value pairs
 variables:
-  login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
-  api_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/packages
-  delete_host: http://sp.int3.sonata-nfv.eu:4002/catalogues/clean
-  mqqt_ip_1: 143.233.127.27
-  logs_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/admin/logs
+  #login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
+  api_host: https://int-sp-ath.5gtango.eu/api/v3/packages
+  delete_host: https://int-sp-ath.5gtango.eu/api/v3/packages
+  #mqqt_ip_1: 143.233.127.27
+  #logs_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/admin/logs
   file_to_upload: components/commons/package_example.son 
-  get_descriptors: https://pre-int-sp-ath.5gtango.eu/api/v3/slices/descriptors
-  get_services: http://int-sp-ath.5gtango.eu:5998/api/services
-  upload_package: http://pre-int-sp-ath.5gtango.eu/api/v3/packages
-  upload_sla_template: http://sp.int3.sonata-nfv.eu:8080/tng-sla-mgmt/api/slas/v1/templates/
-  upload_policy: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/policies/
+  get_descriptors: https://int-sp-ath.5gtango.eu/api/v3/slices/descriptors
+  get_services: https://int-sp-ath.5gtango.eu/api/services
+  upload_package: https://int-sp-ath.5gtango.eu/api/v3/packages
+  #upload_sla_template: https://int-sp-ath.5gtango.eu/api/v3/slas/templates/
+  #upload_policy: https://int-sp-ath.5gtango.eu/api/v3/policies/
   
   

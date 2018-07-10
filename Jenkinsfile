@@ -57,6 +57,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.6 - Add Network-slice'){
+			steps{
+				echo'Testing SP 6 - Add Network-slice'
+				dir('tests/SP/SP.int.6/script')
+				{
+				sh"./test_script.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 		stage('Test SP.int.7 - Instantiate a service'){
 			steps{
 				echo'Testing SP 7 - Instantiate a service'
