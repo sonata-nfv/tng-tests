@@ -18,7 +18,6 @@ string_uuid_services=$(printf "$result" | grep -Po 'uuid":"\K[^"]+')
 data=`python NST_json_structure.py $string_uuid_services 2>&1 >/dev/null`
 json=$(curl -i -H "Content-Type: application/json" -d"$data" -X POST https://int-sp-ath.5gtango.eu/api/v3/slices)
 
-
 #STEP 4: Save the returned NST UUID
 prop='uuid'
 json_nst_uuid=`jsonval`
@@ -34,3 +33,8 @@ echo $json
 json=$(curl -X DELETE https://int-sp-ath.5gtango.eu/api/v3/slices/{$nst_uuid})
 echo "-------------------"
 echo $json
+
+delete_package=$(curl -X DELETE ""$upload"/""$package_id")
+echo
+echo $delete_package
+echo

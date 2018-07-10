@@ -5,11 +5,10 @@ echo $delete_sp
 
 Clean=$(curl -X DELETE  ""$delete_sp"")
 
-
 upload=$(awk '/upload_package/ {print $2}' envfile.yml)
 echo $upload
 
-Result=$(curl -v -i -X POST  -F "package=@./5gtango-ns-package-example.tgo" ""$upload"")
+Result=$(curl -v -i -X POST  -F "package=@./eu.5gtango.ns-haproxy.0.1.tgo" ""$upload"")
 
 echo $Result
 
@@ -33,18 +32,17 @@ echo
 echo $package_id
 echo
 
-download_package=$(curl ""$upload"/""$package_id""/package-file")
-echo
-echo $download_package
-echo $download_package > test.file.tgo
-echo
-
-COMPARED_FILES=$(diff 5gtango-ns-package-example.tgo test.file.tgo)
-echo $COMPARED_FILES
-
-
-delete_package=$(curl -X DELETE ""$upload"/""$package_id")
-echo
-echo $delete_package
-echo
-
+#download_package=$(curl ""$upload"/""$package_id""/package-file")
+#echo
+#echo $download_package
+#echo $download_package > test.file.tgo
+#echo
+#
+#COMPARED_FILES=$(diff 5gtango-ns-package-example.tgo test.file.tgo)
+#echo $COMPARED_FILES
+#
+#
+#delete_package=$(curl -X DELETE ""$upload"/""$package_id")
+#echo
+#echo $delete_package
+#echo
