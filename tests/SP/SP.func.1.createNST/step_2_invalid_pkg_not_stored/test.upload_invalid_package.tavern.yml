@@ -1,0 +1,34 @@
+#upload package
+test_name: upload invalid package
+#
+includes:
+  - !include envfile.yml
+
+stages:
+  - name: upload_package
+    request:
+      url: "{upload_package:s}"
+      method: POST
+      files:
+        package: "5gtango-ns-package-example-malformed.tgo"
+    response:
+      status_code: 200
+      save:
+        body:
+          package_process_uuid: package_process_uuid
+    delay_after: 15    
+        
+  - name: check_upload_status
+    request:
+      url: "{upload_package:s}/status/{package_process_uuid:s}"
+      method: GET
+    response:
+      status_code: 200
+      save:
+        body:
+          package_process_status: package_process_status        
+
+
+
+   
+     
