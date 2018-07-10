@@ -4,11 +4,9 @@
 #
 
 function jsonval {
-    #temp=`echo $json | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w $prop` | cut -d":" -f2| sed -e 's/^ *//g' -e 's/ *$//g'
     temp=`echo $json | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w $prop`
     echo ${temp##*|}
 }
-
 
 #STEP 1: Get a list of available services
 result=$(curl -i -X GET http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services)
