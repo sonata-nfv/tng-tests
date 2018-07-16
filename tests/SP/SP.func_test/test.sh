@@ -126,3 +126,10 @@ echo
 echo $policy_metadata
 echo
 
+##instantiating the NS
+instantiate=$(awk '/instantiate_ns/ {print $2}' envfile.yml)
+echo $instantiate
+
+instantiating=$(curl -X POST ""$instantiate""  -H 'content-type: application/json' -d '{"service_uuid":""$ns_uuid""}')
+echo $instantiating
+

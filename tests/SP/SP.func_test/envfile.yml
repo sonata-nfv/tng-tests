@@ -31,6 +31,7 @@ variables:
   upload_network_service: http://pre-int-sp-ath.5gtango.eu:4011/catalogues/api/v2/network-services
   upload_sla_template: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/slas/templates
   instantiate_request: http://pre-int-sp-ath.5gtango.eu:5998/api/resquests/instances
+  instantiate_ns: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/requests
   openstack_tokens: http://172.31.8.15:5000/v3/auth/tokens # need to be changed
   openstack_stacks: http://172.31.8.15:8004/v1/bf7c9bdfb3e645d69237dc1a5f0d1519/stacks # need to be changed
 
