@@ -43,10 +43,5 @@ stages:
 #           version: "0.1"
     #delay_after: 5
   #4. Cleanup the SLA Template
-  - name: delete_sla_template
-    request:
-      url: "{upload_sla_template:s}/{sla_id:s}/"
-      method: DELETE
-    response:
-      status_code: 200
+
 
