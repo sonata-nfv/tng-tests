@@ -120,7 +120,7 @@ echo '-------------------------------------------------'
 echo 'Set a policy as default - bind it with an sla_id'
 echo '-------------------------------------------------'
 
-policy_metadata=$(curl -X PATCH ""$upload"/""$policy_id"  -H 'content-type: application/json' -d '{"slaid":""$slaid"","defaultPolicy":true,"nsrid":""$ns_uuid""}')
+policy_metadata=$(curl -X PATCH ""$upload"/""$policy_id"  -H 'content-type: application/json' -d '{"slaid":""$slaid"","defaultPolicy":true,"nsid":""$ns_uuid""}')
 
 echo
 echo $policy_metadata
