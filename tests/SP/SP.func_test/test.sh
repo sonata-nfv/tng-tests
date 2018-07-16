@@ -57,12 +57,12 @@ echo
 
 tavern-ci addsla.yml --stdout --debug 
 
-ns_uuid=$(curl  http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services | jq '.[0].uuid')
+ns_uuid=$(curl  http://int-sp-ath.5gtango.eu:32002/api/v3/services | jq '.[0].uuid')
 echo
 echo "the ns uuid is: "$ns_uuid
 
 
-slaid=$(curl http://pre-int-sp-ath.5gtango.eu:32002/api/v3/slas/templates | jq '.[0].uuid')
+slaid=$(curl http://int-sp-ath.5gtango.eu:32002/api/v3/slas/templates | jq '.[0].uuid')
 echo
 echo "the sla uuid is: "$slaid
 
@@ -129,6 +129,11 @@ echo
 ##instantiating the NS
 instantiate=$(awk '/instantiate_ns/ {print $2}' envfile.yml)
 echo $instantiate
+
+
+ns_uuid=$(curl  http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services | jq '.[0].uuid')
+echo
+echo "the ns uuid is: "$ns_uuid
 
 instantiating=$(curl -X POST ""$instantiate""  -H 'content-type: application/json' -d '{"service_uuid":""$ns_uuid""}')
 echo $instantiating
