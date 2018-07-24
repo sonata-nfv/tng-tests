@@ -93,6 +93,15 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.12 - Send SLA rules to monitoring'){
+			steps{
+				echo'Testing SP 12-  Send SLA rules to monitoring'
+				dir('tests/SP/SP.int.12')
+				{
+				sh"./SLA_rules_are_sent.sh"
+				}			
+			}
+		}
 		stage('Test VnV.int.1 - VNV Gatekeeper to LCM Package Callback'){
 			steps{
 				echo'Testing VnV- VNV Gatekeeper to LCM Package Callback '
