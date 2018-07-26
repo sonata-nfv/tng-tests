@@ -33,14 +33,6 @@ echo
 echo $package_id
 echo
 
-mon=$(awk '/monitoring/ {print $2}' envfile.yml)
-echo
-echo "mon" $mon
-echo
-monitoring=$(curl ""$mon"/""$package_id")
-echo
-echo $monitoring
-echo
 
 #instantiating the NS
 instantiate=$(awk '/instantiate_ns/ {print $2}' envfile.yml)

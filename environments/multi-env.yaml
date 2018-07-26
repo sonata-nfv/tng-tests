@@ -7,11 +7,11 @@ description: Login information for test server
 
 # Variables should just be a mapping of key: value pairs
 variables:
-  delete_sp: http://int-sp-ath.5gtango.eu:4011/catalogues/clean
+  delete_sp: http://pre-int-sp-ath.5gtango.eu:4011/catalogues/clean
   delete_vnv: http://pre-int-vnv-bcn.5gtango.eu:4011/catalogues/clean
   login_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/sessions
-  services_host: http://int-sp-ath.5gtango.eu:32002/api/v3/services
-  functions_host: http://int-sp-ath.5gtango.eu:32002/api/v3/functions
+  services_host: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services
+  functions_host: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/functions
   api_host: http://sp.int3.sonata-nfv.eu:32001/api/v2/packages
   delete_host: http://sp.int3.sonata-nfv.eu:4002/catalogues/clean
   mqqt_ip_1: 143.233.127.27
@@ -19,20 +19,21 @@ variables:
   file_to_upload: components/commons/package_example.son 
   get_descriptors: https://pre-int-sp-ath.5gtango.eu/api/v3/slices/descriptors
   get_services: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/services
-  upload_package: http://int-sp-ath.5gtango.eu:32002/api/v3/packages
+  upload_package: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/packages
   upload_sla_template: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/sla-templates
   upload_policy: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/policies/
   trr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-plans
   vnv_packages: http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3/packages
   tsr_host: http://pre-int-vnv-bcn.5gtango.eu:4012/trr/test-suite-results
   trigger_test: http://pre-int-vnv-bcn.5gtango.eu:6100/tng-vnv-lcm/api/v1/packages/on-change
-  cat_packages: http://int-sp-ath.5gtango.eu:4011/api/v2/packages
-  monitoring: http://int-sp-ath.5gtango.eu:8000/api/v1/services
+  cat_packages: http://pre-int-sp-ath.5gtango.eu:4011/api/v2/packages
+  monitoring: http://pre-int-sp-ath.5gtango.eu:8000/api/v1/services
   upload_network_service: http://pre-int-sp-ath.5gtango.eu:4011/catalogues/api/v2/network-services
   upload_sla_template: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/slas/templates
   instantiate_request: http://pre-int-sp-ath.5gtango.eu:5998/api/resquests/instances
   openstack_tokens: http://172.31.8.15:5000/v3/auth/tokens # need to be changed
   openstack_stacks: http://172.31.8.15:8004/v1/bf7c9bdfb3e645d69237dc1a5f0d1519/stacks # need to be changed
+  instantiate_ns: http://pre-int-sp-ath.5gtango.eu:32002/api/v3/requests
 
   
   
