@@ -22,8 +22,22 @@ else
 
 
 
-	getPackages "$env" 
-	uploadPackage "$env" "5gtango-ns-package-example.tgo"
+	getPackages "$env"
+	echo $Result
+
+	getServicies "$env"
+	echo $Result	
+
+
+	getPolicies "$env"
+	echo $Result
+
+	getSlas "$env"
+	echo $Result
+
+
+#	uploadPackage "$env" "../commons/5gtango-ns-package-example.tgo"
+#	echo $Result
 
 fi
 

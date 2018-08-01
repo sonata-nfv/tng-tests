@@ -25,9 +25,10 @@ getPackages() {
 		logger "this is the env:  $1"	
 	        packages="http://"$1":32002/api/v3/packages"
 		#echo $packages
-		Result=$(curl -s "$packages" > /dev/null)
+		Result=$(curl -s "$packages")		
 		#echo $Result
 		logger "Get packages finished"
+		
 	fi
 }
 
@@ -53,9 +54,9 @@ uploadPackage() {
 		       #echo $1
 		       #echo $2
 		       upload="http://"$1":32002/api/v3/packages"
-		       Result=$(curl -s -v -i -X POST  -F "package=@./$2" ""$upload"" 2>&1 /dev/null)
+		       Result=$(curl -s -v -i -X POST  -F "package=@./$2" ""$upload"" 2>&1)
 	       	       #echo $Result
-			logger "Upload package finished"	
+		       logger "Upload package finished"	
 	fi
 }
 
@@ -63,30 +64,76 @@ uploadPackage() {
 
 
 getServices() {
-	echo "this is the env: " $1
-	services="http://"$1":32002/api/v3/services"
-	echo $services
-	Result=$(curl ""$services"")
-	echo $Result
+
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for getServices"
+		exit 1
+	fi
+
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getServices Function"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        services="http://"$1":32002/api/v3/services"
+		Result=$(curl ""$services"")		
+		logger "Get Services finished"		
+	fi
 
 
 
 }
 
 getPolicies() {
-	echo "this is the env: " $1
-	policies="http://"$1":32002/api/v3/policies"
-	echo $policies
-	Result=$(curl ""$policies"")
-	echo $Result
+
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for getPolicies"
+		exit 1
+	fi
+
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getPolicies Function"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        policies="http://"$1":32002/api/v3/policies"
+		Result=$(curl ""$policies"")	
+		logger "Get Policies finished"		
+	fi
+
+
 }
 
 getSlas() {
-	echo
-	slas=$(awk '/upload_sla_template/ {print $2}' envfile.yml)
-	echo $slas
-	Result=$(curl ""$slas"")
-	echo $Result
+
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for getSLAs"
+		exit 1
+	fi
+
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getSLAs Function"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        slas="http://"$1":32002/api/v3/slas/templates"
+		Result=$(curl ""$slas"")	
+		logger "Get SLAs finished"		
+	fi
+
+
 }
 
 
