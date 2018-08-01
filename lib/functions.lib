@@ -64,7 +64,6 @@ uploadPackage() {
 
 
 getServices() {
-
 	if [ $# != 1 ]
 	then
 		echo
@@ -83,9 +82,69 @@ getServices() {
 		Result=$(curl ""$services"")		
 		logger "Get Services finished"		
 	fi
+}
 
+getFunctions() {
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for getFunctions"
+		exit 1
+	fi
 
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getFunctions"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        functions="http://"$1":32002/api/v3/functions"
+		Result=$(curl ""$functions"")		
+		logger "Get Functions finished"		
+	fi
+}
 
+getRequests() {
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for getRequests"
+		exit 1
+	fi
+
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getRequests"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        requests="http://"$1":32002/api/v3/requests"
+		Result=$(curl ""$requests"")		
+		logger "Get Functions finished"		
+	fi
+}
+
+getSlices() {
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for getSlices"
+		exit 1
+	fi
+
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getSlices"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        slices="http://"$1":32002/api/v3/slices"
+		Result=$(curl ""$slices"")		
+		logger "Get Slices finished"		
+	fi
 }
 
 getPolicies() {

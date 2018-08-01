@@ -35,6 +35,14 @@ else
 	getSlas "$env"
 	echo $Result
 
+	getFunctions "$env"
+	echo $Result
+
+	getRequests "$env"
+	echo $Result
+
+	getSlices "$env"
+	echo $Result
 
 #	uploadPackage "$env" "../commons/5gtango-ns-package-example.tgo"
 #	echo $Result
