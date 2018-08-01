@@ -7,7 +7,7 @@ echo this is your selected environment:
 echo "" > envfile.yml
 echo
 
-composed_env_path="../../../../environments/$ENV_0"
+composed_env_path="../envfile.yml"
 
 #checking the env file
 ls "$composed_env_path"
@@ -16,7 +16,7 @@ ls "$composed_env_path"
 cp -v "$composed_env_path" envfile.yml
 cp -v envfile.yml ..
 
-#cat envfile.yml
+cat envfile.yml
 mkdir ../../../../results/sp.7
 
 ENV="envfile.yml"
