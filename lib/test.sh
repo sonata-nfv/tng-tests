@@ -20,29 +20,32 @@ then
 	
 else	
 
+getService "$env" "NS-squid-haproxy" "0.1" "eu.5gtango"
+echo $Result
+echo $Service_uuid
+echo $Service_status
+
+#	getPackages "$env"
+#	echo $Result
+
+#	getServicies "$env"
+#	echo $Result	
 
 
-	getPackages "$env"
-	echo $Result
+#	getPolicies "$env"
+#	echo $Result
 
-	getServicies "$env"
-	echo $Result	
+#	getSlas "$env"
+#	echo $Result
 
+#	getFunctions "$env"
+#	echo $Result
 
-	getPolicies "$env"
-	echo $Result
+#	getRequests "$env"
+#	echo $Result
 
-	getSlas "$env"
-	echo $Result
-
-	getFunctions "$env"
-	echo $Result
-
-	getRequests "$env"
-	echo $Result
-
-	getSlices "$env"
-	echo $Result
+#	getSlices "$env"
+#	echo $Result
 
 #	uploadPackage "$env" "../commons/5gtango-ns-package-example.tgo"
 #	echo $Result

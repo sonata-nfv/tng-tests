@@ -32,6 +32,57 @@ getPackages() {
 	fi
 }
 
+
+
+getService() {
+	if [ $# != 4 ]
+	then
+		echo
+		logger "Invalid number of arguments for get service"
+		exit 1
+	fi
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getService"		
+		exit 1		
+	else	
+		logger "this is the env:  $1"	
+	        services=$(curl http://"$1":32002/api/v3/services)
+		#echo $services
+		
+		Result=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+				| select(.nsd.name==$NAME) 
+				| select(.nsd.version==$VERSION)
+				| select(.nsd.vendor==$VENDOR)
+				')
+
+		Service_uuid=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+				| select(.nsd.name==$NAME) 
+				| select(.nsd.version==$VERSION)
+				| select(.nsd.vendor==$VENDOR)
+				| .uuid
+				')
+
+		Service_status=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+				| select(.nsd.name==$NAME) 
+				| select(.nsd.version==$VERSION)
+				| select(.nsd.vendor==$VENDOR)
+				| .status
+				')
+
+
+#projectID=$(cat file.json | jq -r --arg EMAILID "$EMAILID" '.resource[]
+#                               | select(.username==$EMAILID) | .id')
+
+
+#		                                                       | jq '.[] | select(.nsd.name=="NS-squid-haproxy") | select(.nsd.version=="0.1") | select(.nsd.vendor=="eu.5gtango")'
+
+		logger "Get service finished"
+		
+	fi
+}
+
 uploadPackage() {
 	if [ $# != 2 ]
 	then
