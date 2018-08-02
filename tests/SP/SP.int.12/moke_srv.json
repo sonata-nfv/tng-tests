@@ -1,0 +1,71 @@
+{
+	"rules": [{
+		"name": "mon:rule:vm_mem_perc_00",
+		"summary": "",
+		"duration": "10s",
+		"notification_type": 2,
+		"condition": "0035703e-afc5-46fc-acbf-0b57df8019c1:vm_mem_perc > 2",
+		"description": "Trigger events if memory is greater than 2."
+	}],
+	"functions": [{
+		"pop_id": "1111-22222222-33333333-4444",
+		"description": "VNF implementing a vTU (virtual Transcoding Unit)",
+		"metrics": [{
+			"interval": null,
+			"name": "vm_cpu_perc",
+			"cmd": null,
+			"threshold": null,
+			"unit": "Percentage",
+			"description": ""
+		}],
+		"sonata_func_id": "3fabb677-0b1f-4a43-9b3a-87101205994b",
+		"host_id": "3b74a6cb-b002-497d-a843-179a3924bbd8",
+		"name": "vtu-vnf"
+	}, {
+		"pop_id": "1111-22222222-33333333-4444",
+		"description": "VNF implementing a vTC for traffic inspection and classification",
+		"metrics": [{
+			"interval": null,
+			"name": "mbits_packets_all",
+			"cmd": null,
+			"threshold": null,
+			"unit": "bps",
+			"description": ""
+		}, {
+			"interval": null,
+			"name": "mbits_packets_http",
+			"cmd": null,
+			"threshold": null,
+			"unit": "bps",
+			"description": ""
+		}],
+		"sonata_func_id": "0090db97-45b8-49f1-8522-62cd20c9d123",
+		"host_id": "0f0ca91e-91dd-4eb8-b871-d1d18e202958",
+		"name": "vtc-vnf"
+	}, {
+		"pop_id": "1111-22222222-33333333-4444",
+		"description": "VNF implementing a vCacheContent",
+		"metrics": [{
+			"interval": null,
+			"name": "vm_cpu_perc",
+			"cmd": null,
+			"threshold": null,
+			"unit": "Percentage",
+			"description": ""
+		}],
+		"sonata_func_id": "8c7fcbe0-8e61-420f-a44a-1f17e53ae123",
+		"host_id": "9d6ee7ab-7905-43d2-a706-4c5f80ddc302",
+		"name": "vcc-vnf"
+	}],
+	"service": {
+		"pop_id": null,
+		"description": "Content Delivery Network pilot",
+		"sonata_usr": {
+			"phone": null,
+			"email": "sonata.admin@email.com"
+		},
+		"sonata_srv_id": "5baca658-3b70-488c-931b-4001a7ce8e48",
+		"host_id": null,
+		"name": "sonata-vcdn-123"
+	}
+}

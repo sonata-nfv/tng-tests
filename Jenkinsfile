@@ -93,6 +93,24 @@ pipeline {
 				}			
 			}
 		}
+		stage('Test SP.int.12 - Send SLA rules to monitoring'){
+			steps{
+				echo'Testing SP 12-  Send SLA rules to monitoring'
+				dir('tests/SP/SP.int.12')
+				{
+				sh"SLA_mngr_sent_rules_to_monitoring.py --junitxml=report.xml --tb=short"
+				}			
+			}
+		}
+		stage('Test SP.int.13 - Test if SLA manager consumes messages from RabbitMq'){
+			steps{
+				echo'Testing SP 13-  Test if SLA manager consumes messages from RabbitMq'
+				dir('tests/SP/SP.int.13')
+				{
+				sh"SLA_rabbitMq_consumer.py --junitxml=report.xml --tb=short"
+				}			
+			}
+		}
 		stage('Test VnV.int.1 - VNV Gatekeeper to LCM Package Callback'){
 			steps{
 				echo'Testing VnV- VNV Gatekeeper to LCM Package Callback '
