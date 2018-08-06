@@ -7,6 +7,26 @@ logger() {
 }
 
 
+cleanPackages(){
+	if [ $# != 1 ]
+	then
+		echo
+		logger "Invalid number of arguments for clean packages"
+		exit 1
+	fi
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for cleanPackages Function"		
+		exit 1		
+	else		
+	        clean_packages="http://"$1":4011/catalogues/clean"
+		Result=$(curl -s -X DELETE   "$clean_packages")	
+		logger "Clean packages finished"		
+	fi
+
+}
+
 getPackages() {
 
 	if [ $# != 1 ]
@@ -21,12 +41,9 @@ getPackages() {
 		echo
 		logger "Invalid environment for getPackages Function"		
 		exit 1		
-	else	
-		logger "this is the env:  $1"	
+	else		
 	        packages="http://"$1":32002/api/v3/packages"
-		#echo $packages
 		Result=$(curl -s "$packages")		
-		#echo $Result
 		logger "Get packages finished"
 		
 	fi
@@ -47,11 +64,11 @@ getService() {
 		logger "Invalid environment for getService"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
-	        services=$(curl http://"$1":32002/api/v3/services)
+		#logger "this is the env:  $1"	
+	        services=$(curl -s http://"$1":32002/api/v3/services)
 		#echo $services
 		
-		Result=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+		Service=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
 				| select(.nsd.name==$NAME) 
 				| select(.nsd.version==$VERSION)
 				| select(.nsd.vendor==$VENDOR)
@@ -70,18 +87,52 @@ getService() {
 				| select(.nsd.vendor==$VENDOR)
 				| .status
 				')
-
-
-#projectID=$(cat file.json | jq -r --arg EMAILID "$EMAILID" '.resource[]
-#                               | select(.username==$EMAILID) | .id')
-
-
-#		                                                       | jq '.[] | select(.nsd.name=="NS-squid-haproxy") | select(.nsd.version=="0.1") | select(.nsd.vendor=="eu.5gtango")'
-
-		logger "Get service finished"
-		
+		logger "Get service finished"		
 	fi
 }
+
+
+getPackage() {
+	if [ $# != 4 ]
+	then
+		echo
+		logger "Invalid number of arguments for get package"
+		exit 1
+	fi
+	if [ -z "$1" ] 
+	then
+		echo
+		logger "Invalid environment for getPackage"		
+		exit 1		
+	else	
+		#logger "this is the env:  $1"	
+	        packages=$(curl -s http://"$1":32002/api/v3/packages)			
+		
+		Package=$(echo $packages | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+				| select(.pd.name==$NAME) 
+				| select(.pd.version==$VERSION)
+				| select(.pd.vendor==$VENDOR)
+				')		
+
+		Package_uuid=$(echo $packages | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+				| select(.pd.name==$NAME) 
+				| select(.pd.version==$VERSION)
+				| select(.pd.vendor==$VENDOR)
+				| .uuid
+				')
+
+		Package_status=$(echo $packages | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+				| select(.pd.name==$NAME) 
+				| select(.pd.version==$VERSION)
+				| select(.pd.vendor==$VENDOR)
+				| .status
+				')
+		logger "Get package finished"		
+	fi
+}
+
+
+
 
 uploadPackage() {
 	if [ $# != 2 ]
@@ -128,9 +179,8 @@ getServices() {
 		logger "Invalid environment for getServices Function"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
 	        services="http://"$1":32002/api/v3/services"
-		Result=$(curl ""$services"")		
+		Result=$(curl -s ""$services"")		
 		logger "Get Services finished"		
 	fi
 }
@@ -149,9 +199,8 @@ getFunctions() {
 		logger "Invalid environment for getFunctions"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
 	        functions="http://"$1":32002/api/v3/functions"
-		Result=$(curl ""$functions"")		
+		Result=$(curl -s ""$functions"")		
 		logger "Get Functions finished"		
 	fi
 }
@@ -169,10 +218,9 @@ getRequests() {
 		echo
 		logger "Invalid environment for getRequests"		
 		exit 1		
-	else	
-		logger "this is the env:  $1"	
+	else		
 	        requests="http://"$1":32002/api/v3/requests"
-		Result=$(curl ""$requests"")		
+		Result=$(curl -s ""$requests"")		
 		logger "Get Functions finished"		
 	fi
 }
@@ -191,9 +239,8 @@ getSlices() {
 		logger "Invalid environment for getSlices"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
 	        slices="http://"$1":32002/api/v3/slices"
-		Result=$(curl ""$slices"")		
+		Result=$(curl -s ""$slices"")		
 		logger "Get Slices finished"		
 	fi
 }
@@ -213,9 +260,8 @@ getPolicies() {
 		logger "Invalid environment for getPolicies Function"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
 	        policies="http://"$1":32002/api/v3/policies"
-		Result=$(curl ""$policies"")	
+		Result=$(curl -s ""$policies"")	
 		logger "Get Policies finished"		
 	fi
 
@@ -237,9 +283,8 @@ getSlas() {
 		logger "Invalid environment for getSLAs Function"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
 	        slas="http://"$1":32002/api/v3/slas/templates"
-		Result=$(curl ""$slas"")	
+		Result=$(curl -s ""$slas"")	
 		logger "Get SLAs finished"		
 	fi
 
@@ -280,7 +325,7 @@ instantiate_ns (){
 	echo "this is the requesting curl:" 
 	echo $requesting
 	echo
-	#instantiating=$(curl -v -i -H content-type:application/json -X POST ""$instantiate""  -d '{"\"service_uuid"\":""$1""}')
+	#instantiating=$(curl -s -v -i -H content-type:application/json -X POST ""$instantiate""  -d '{"\"service_uuid"\":""$1""}')
 	instantiating=$($requesting)
 	echo $instantiating
 }
