@@ -1,15 +1,23 @@
 #!/bin/bash
 
-unset env
+#unset env
  ## loading environment
-. ./envfile
-logger "This is your selected environment:  $env"
+##. ./envfile
+
 
 ## importing the functions file
 . ./functions.lib
 
 envfile=$1
 #echo $envfile
+
+
+## Setting the environment
+#unset env
+setEnvironment "$1"
+logger "This is your selected environment:  $env"
+
+
 
 
 if [ -z "$1" ] 

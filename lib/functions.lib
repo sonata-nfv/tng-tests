@@ -1,5 +1,26 @@
 ##FUNCTIONS LIBRARY
 
+
+setEnvironment(){
+unset env
+case "$1" in
+        int-sp-ath.5gtango.eu)
+		export env=int-sp-ath.5gtango.eu
+            ;;
+        pre-int-sp-ath.5gtango.eu)
+		export env=pre-int-sp-ath.5gtango.eu
+            ;;
+	 qual-sp-bcn.5gtango.eu)
+		export env=qual-sp-bcn.5gtango.eu
+            ;;
+	*)
+		export env=int-sp-ath.5gtango.eu
+	;;
+
+esac
+
+}
+
 logger() {
   # Print logs to the stdout.
   # message
@@ -294,7 +315,7 @@ getSlas() {
 
 
 
-upload_policy() {
+uploadPolicy() {
 	
 	########policy 
 	upload=$(awk '/upload_policy/ {print $2}' envfile.yml)
@@ -315,7 +336,7 @@ upload_policy() {
 	echo 'Result'
 }
 
-instantiate_ns (){
+instantiateNS (){
 	#instantiating the NS
 	instantiate=$(awk '/instantiate_ns/ {print $2}' envfile.yml)
 	echo $instantiate	
