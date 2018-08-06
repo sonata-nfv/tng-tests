@@ -1,9 +1,9 @@
-FROM python:3
+FROM python:alpine
 
-ADD start.sh start.sh
-RUN chmod +x start.sh
+ADD app.py app.py
+RUN chmod +x app.py
 
-EXPOSE  8000
-ENV SON_EMU_CMD ./start.sh
+ENV SON_EMU_CMD ./app.py
 
 CMD /bin/bash
+

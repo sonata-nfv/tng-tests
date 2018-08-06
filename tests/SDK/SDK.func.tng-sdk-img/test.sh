@@ -1,31 +1,55 @@
-#!/bin/bash
+# !/bin/bash
 
 DIR=$PWD
+
+export OS_AUTH_URL=http://10.100.33.2:5000/v3/
+export OS_PROJECT_ID=e339d2696fbd4b809f303ac5e83e0246
+export OS_PROJECT_NAME="admin"
+export OS_USER_DOMAIN_NAME="Default"
+if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
+unset OS_TENANT_ID
+unset OS_TENANT_NAME
+export OS_USERNAME="tango.qual"
+export OS_PASSWORD="t4ng0.qual"
+export OS_REGION_NAME="RegionOne"
+if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
 
 image_name="functest_tng-sdk-img"
 instance_name="functest_tng-sdk-img"
 key_name="functest_tng-sdk-img"
-private_key=`tempfile`
+private_key=$(tempfile)
+secgroup_name="functest_tng-sdk-img"
+
 flavor_name="test"
-secgroup_name="ssh-secgroup"
-internal_network_name="net1"
-management_network_name="mgmt"
-ssh_config=`tempfile`
+flavor_id=$(openstack flavor show $flavor_name -f value -c id 2>/dev/null)
+
+network_name1="test-network-mgmt"
+network_name2="test-network-int1"
+network_id1=$(openstack network show $network_name1 -f value -c id 2>/dev/null)
+network_id2=$(openstack network show $network_name2 -f value -c id 2>/dev/null)
+
+ssh_config=$(tempfile)
+
 floating_ip=""
-vnf_ifs=("internal", "management")
 
-export OS_PROJECT_DOMAIN_NAME=Default
-export OS_USER_DOMAIN_NAME=Default
-export OS_PROJECT_NAME=admin
-export OS_USERNAME=tango.qual
-export OS_PASSWORD=t4ng0.qual
-export OS_AUTH_URL=http://10.100.33.2:5000/v3
-export OS_IDENTITY_API_VERSION=3
-export OS_IMAGE_API_VERSION=2
+vnf_ifs=("management" "internal")
 
-function build_docker() {
+function create_docker_image() {
   echo "Building Docker image"
   docker build -t simplehttp_vnf .
+  if [[ $? -eq 0 ]]; then
+    echo "Ok"
+  else
+    echo "Failed"
+    exit 1
+  fi
+}
+
+function delete_docker_image() {
+  echo "Deleting Docker image"
+  docker image rm simplehttp_vnf
   if [[ $? -eq 0 ]]; then
     echo "Ok"
   else
@@ -51,7 +75,7 @@ function install_converter() {
 
 function convert() {
   echo "Converting an image"
-  tng-sdk-img convert simplehttp_vnfd.yml
+  tng-sdk-img convert -r simplehttp-vnfd.yml
   if [[ $? -eq 0 ]]; then
     echo "Ok"
   else
@@ -59,10 +83,24 @@ function convert() {
     exit 1
   fi
 }
+
 function upload_image() {
   echo "Uploading an image"
-  
-  glance image-create --name $image_name --disk-format=qcow2 --container-format=bare --file=./simplehttp-vnf_1.qcow2
+
+  openstack image create --disk-format=qcow2 --container-format=bare --file=./simplehttp-vnf_1.qcow2 $image_name
+
+  if [[ $? -eq 0 ]]; then
+    echo "Ok"
+  else
+    echo "Failed"
+    exit 1
+  fi
+}
+
+function delete_image() {
+  echo "Deleting an image"
+
+  openstack image delete $image_name && rm simplehttp-vnf_1.qcow2
 
   if [[ $? -eq 0 ]]; then
     echo "Ok"
@@ -75,12 +113,8 @@ function upload_image() {
 function create_server() {
   echo "Creating a server $instance_name"
 
-  image_id=`openstack image show $image_name -f value -c id 2>/dev/null`
-  flavor_id=`openstack flavor show $flavor_name -f value -c id 2>/dev/null`
-  network_id=`openstack network show $network_name -f value -c id 2>/dev/null`
-
-  
-  openstack server create --flavor $flavor_id --image $image_id --key-name $key_name --security-group $secgroup_name --network $network_id $instance_name
+  image_id=$(openstack image show $image_name -f value -c id 2>/dev/null)
+  openstack server create --flavor $flavor_id --image $image_id --key-name $key_name --security-group $secgroup_name --network $network_id1 --network $network_id2 $instance_name
 
   if [[ $? -eq 0 ]]; then
     echo "Ok"
@@ -125,15 +159,15 @@ function delete_key() {
 }
 
 function wait_server() {
-  echo -n "Waiting until instance ($instance_name) is active" 
-  local instance_status=`openstack server show $instance_name -f value -c status` 
-  while [[ $instance_status != "ACTIVE" ]]; do 
+  echo -n "Waiting until instance $instance_name is active" 
+  local instance_status=`openstack server show $instance_name -f value -c status`
+  while [[ $instance_status != "ACTIVE" ]]; do
     echo -n "." 
-    sleep 1 
-    instance_status=`openstack server show $instance_name -f value -c status` 
-  done 
+    sleep 1
+    instance_status=$(openstack server show $instance_name -f value -c status)
+  done
   echo "OK" 
-} 
+}
 
 function wait_ssh() {
   echo -n "Waiting until instance's ssh comes up"
@@ -145,6 +179,7 @@ function wait_ssh() {
 }
 
 function create_ssh_config() {
+  echo "Creating ssh config in $ssh_config"
   cat << EOF > $ssh_config
 Host $instance_name
   Hostname $floating_ip
@@ -153,21 +188,22 @@ Host $instance_name
   IdentitiesOnly yes
   StrictHostKeyChecking no
 EOF
+  ssh-keygen -R $floating_ip &> /dev/null
+  echo "OK"
 }
 
 function add_floating_ip() {
   echo "Looking for available floating IP"
-  floating_ip=`openstack floating ip list -f value -c Port -c "Floating IP Address" | awk '$2=="None"{print $1; exit}'    `
+  floating_ip=$(openstack floating ip list -f value -c Port -c "Floating IP Address" | awk '$2=="None"{print $1; exit}')
   if [[ -n $floating_ip ]]; then
     echo "Found: $floating_ip"
   else
     echo "Not found, creating one"
-    floating_ip=`openstack floating ip create public -f value -c floating_ip_address`
+    floating_ip=$(openstack floating ip create public -f value -c floating_ip_address)
     echo "Created $floating_ip"
   fi
   echo "Adding floating IP $floating_ip_address"
-  local instance_id=`openstack server show $instance_name -f value -c id`
-  openstack server add floating ip $instance_id $floating_ip
+  openstack server add floating ip $instance_name $floating_ip
   if [[ $? -eq 0 ]]; then
     echo "Ok"
   else
@@ -184,15 +220,11 @@ function c_ssh() {
   ssh -q -F $ssh_config $instance_name $@
 }
 
-function c_scp() {
-  scp -q -F $ssh_config $1 $instance_name:$2
-}
-
 function set_up() {
-  buiid_docker
-  install_converter
-  convert
-  upload_image
+  #install_converter
+  #create_docker_image
+  #convert
+  #upload_image
   create_key
   create_server
   wait_server
@@ -202,9 +234,11 @@ function set_up() {
 }
 
 function tear_down() {
-  delete_key
   delete_server
+  delete_key
   delete_ssh_config
+  delete_docker_image
+  delete_image
 }
 
 function check_ssh() {
@@ -219,15 +253,15 @@ function check_ssh() {
 
 function check_interfaces() {
   echo "Checking interfaces"
-  server_ifs=`c_ssh ifconfig -a | sed 's/[ \t].*//;/^\(lo\|\)$/d'`
-  server_ifs=`echo $server_ifs | xargs -n1 | sort`
-  vnf_ifs=`echo $vnf_ifs | xargs -n1 | sort`
+  server_ifs=$(c_ssh ifconfig -a | sed 's/[ \t].*//;/^\(lo\|\)$/d')
+  server_ifs=$(echo $server_ifs | xargs -n1 | sort)
+  vnf_ifs=$(echo $vnf_ifs | xargs -n1 | sort)
 
   for i in "${vnf_ifs[@]}"; do
     echo "Checking $i"
-    ip=`ifconfig $i | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`
+    nic_ip="$(c_ssh ifconfig $i | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}')"
     if [[ $? -eq 0 ]]; then
-      if [[-n $ip ]]; then
+      if [[ -n $nic_ip ]]; then
         echo "ok"
       else
         echo "Failed"
@@ -241,9 +275,10 @@ function check_interfaces() {
 }
 
 function check_docker() {
-  docker_status=`c_ssh docker ps | grep "vnf-container"`
+  echo "Checking container status"
+  docker_status="$(c_ssh docker ps | grep "vnf-container")"
   if [[ $? -eq 0 ]]; then
-    if [[-n $docker_status ]]; then
+    if [[ -n $docker_status ]]; then
       echo "ok"
     else
       echo "Failed"
@@ -256,9 +291,10 @@ function check_docker() {
 }
 
 function check_service() {
-  response=`curl $floating_ip`
+  echo "Checking VNF"
+  response=`curl $floating_ip:5000`
   if [[ $? -eq 0 ]]; then
-    if [[ $response == "passed" ]]; then
+    if [[ $response == "hello" ]]; then
       echo "ok"
     else
       echo "Failed"
@@ -275,3 +311,4 @@ check_interfaces
 check_docker
 check_service
 tear_down
+

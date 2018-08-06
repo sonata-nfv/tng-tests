@@ -5,17 +5,17 @@
 ## VNF descriptor.
 ##
 descriptor_version: "vnfd-schema-01"
-vendor: "eu.sonata-nfv"
-name: "snort-vnf"
+vendor: "eu.5gtango"
+name: "simplehttp-vnf"
 version: "0.1"
-author: "Manuel Peuster, Paderborn University, manuel.peuster@uni-paderborn.de"
-description: "Snort IDS VNF that monitors traffic on br0 configured as L2 bridge between input/output interface."
+author: "5GTANGO developer"
+description: "Simple http server"
 ##
 ## The virtual deployment unit.
 ##
 virtual_deployment_units:
   - id: "1"
-    vm_image: "snort_vnf"
+    vm_image: "simplehttp_vnf"
     vm_image_format: "docker"
     resource_requirements:
       cpu:
@@ -27,13 +27,10 @@ virtual_deployment_units:
         size: 10
         size_unit: "GB"
     connection_points:
-      - id: "vdu01:cp01"
+      - id: "management"
         interface: "ipv4"
         type: "internal"
-      - id: "vdu01:cp02"
-        interface: "ipv4"
-        type: "internal"
-      - id: "vdu01:cp03"
+      - id: "internal"
         interface: "ipv4"
         type: "internal"
 
@@ -56,7 +53,7 @@ virtual_links:
     connectivity_type: "E-Line"
     connection_points_reference:
       - "vdu01:cp03"
-      - "output   "
+      - "output"
 
 ##
 ## The VNF connection points to the 
@@ -72,3 +69,4 @@ connection_points:
   - id: "output"
     interface: "ipv4"
     type: "external"
+
