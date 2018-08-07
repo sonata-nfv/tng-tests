@@ -8,12 +8,15 @@ unset debug
 case "$1" in
        0)
 		export debug=0
+		logger "Debug level setted to 0. Only basic info in console."
             ;;
         1)
 		export debug=1
+		logger "Debug level setted to 1. Full info in console."
             ;;
 	*)
 		export debug=0
+		logger "Debug level setted to 0. Only basic info in console."
 	;;
 
 esac
@@ -139,6 +142,8 @@ getService() {
 	if [[ "$debug" == 1 ]]
 	then
 		echo $services
+		echo $Service_uuid
+		echo $Service_status
 	fi
 
 
@@ -186,6 +191,8 @@ getPackage() {
 	if [[ "$debug" == 1 ]]
 	then
 		echo $packages
+		echo $Package_uuid
+		echo $Package_status
 	fi
 
 }
