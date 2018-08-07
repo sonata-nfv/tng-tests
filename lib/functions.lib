@@ -1,5 +1,26 @@
 ##FUNCTIONS LIBRARY
 
+## Setting default environment and debug level
+. ./variables.cfg
+
+setDebug(){
+unset debug
+case "$1" in
+       0)
+		export debug=0
+            ;;
+        1)
+		export debug=1
+            ;;
+	*)
+		export debug=0
+	;;
+
+esac
+
+}
+
+
 
 setEnvironment(){
 unset env
@@ -41,11 +62,10 @@ cleanPackages(){
 		logger "Invalid environment for cleanPackages Function"		
 		exit 1		
 	else		
-	        clean_packages="http://"$1":4011/catalogues/clean"
+	        clean_packages="http://"$env":4011/catalogues/clean"
 		Result=$(curl -s -X DELETE   "$clean_packages")	
 		logger "Clean packages finished"		
 	fi
-
 }
 
 getPackages() {
@@ -54,20 +74,25 @@ getPackages() {
 	then
 		echo
 		logger "Invalid number of arguments for get packages"
-		exit 1
+		return 1
 	fi
 
 	if [ -z "$1" ] 
 	then
 		echo
 		logger "Invalid environment for getPackages Function"		
-		exit 1		
+		return 1		
 	else		
-	        packages="http://"$1":32002/api/v3/packages"
+	        packages="http://"$env":32002/api/v3/packages"
 		Result=$(curl -s "$packages")		
-		logger "Get packages finished"
-		
+		logger "Get packages finished"		
 	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
+
 }
 
 
@@ -86,7 +111,7 @@ getService() {
 		exit 1		
 	else	
 		#logger "this is the env:  $1"	
-	        services=$(curl -s http://"$1":32002/api/v3/services)
+	        services=$(curl -s http://"$env":32002/api/v3/services)
 		#echo $services
 		
 		Service=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
@@ -110,6 +135,13 @@ getService() {
 				')
 		logger "Get service finished"		
 	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $services
+	fi
+
+
 }
 
 
@@ -126,8 +158,8 @@ getPackage() {
 		logger "Invalid environment for getPackage"		
 		exit 1		
 	else	
-		#logger "this is the env:  $1"	
-	        packages=$(curl -s http://"$1":32002/api/v3/packages)			
+		#logger "this is the env:  $env"	
+	        packages=$(curl -s http://"$env":32002/api/v3/packages)			
 		
 		Package=$(echo $packages | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
 				| select(.pd.name==$NAME) 
@@ -150,6 +182,12 @@ getPackage() {
 				')
 		logger "Get package finished"		
 	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $packages
+	fi
+
 }
 
 
@@ -176,11 +214,17 @@ uploadPackage() {
 	else				
 		       #echo $1
 		       #echo $2
-		       upload="http://"$1":32002/api/v3/packages"
+		       upload="http://"$env":32002/api/v3/packages"
 		       Result=$(curl -s -v -i -X POST  -F "package=@./$2" ""$upload"" 2>&1)
 	       	       #echo $Result
 		       logger "Upload package finished"	
 	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
+
 }
 
 
@@ -200,10 +244,17 @@ getServices() {
 		logger "Invalid environment for getServices Function"		
 		exit 1		
 	else	
-	        services="http://"$1":32002/api/v3/services"
+	        services="http://"$env":32002/api/v3/services"
 		Result=$(curl -s ""$services"")		
 		logger "Get Services finished"		
 	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
+
+
 }
 
 getFunctions() {
@@ -220,9 +271,14 @@ getFunctions() {
 		logger "Invalid environment for getFunctions"		
 		exit 1		
 	else	
-	        functions="http://"$1":32002/api/v3/functions"
+	        functions="http://"$env":32002/api/v3/functions"
 		Result=$(curl -s ""$functions"")		
 		logger "Get Functions finished"		
+	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
 	fi
 }
 
@@ -240,10 +296,16 @@ getRequests() {
 		logger "Invalid environment for getRequests"		
 		exit 1		
 	else		
-	        requests="http://"$1":32002/api/v3/requests"
+	        requests="http://"$env":32002/api/v3/requests"
 		Result=$(curl -s ""$requests"")		
 		logger "Get Functions finished"		
 	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
+
 }
 
 getSlices() {
@@ -260,9 +322,14 @@ getSlices() {
 		logger "Invalid environment for getSlices"		
 		exit 1		
 	else	
-	        slices="http://"$1":32002/api/v3/slices"
+	        slices="http://"$env":32002/api/v3/slices"
 		Result=$(curl -s ""$slices"")		
 		logger "Get Slices finished"		
+	fi
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
 	fi
 }
 
@@ -281,12 +348,15 @@ getPolicies() {
 		logger "Invalid environment for getPolicies Function"		
 		exit 1		
 	else	
-	        policies="http://"$1":32002/api/v3/policies"
+	        policies="http://"$env":32002/api/v3/policies"
 		Result=$(curl -s ""$policies"")	
 		logger "Get Policies finished"		
 	fi
 
-
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
 }
 
 getSlas() {
@@ -304,11 +374,15 @@ getSlas() {
 		logger "Invalid environment for getSLAs Function"		
 		exit 1		
 	else	
-	        slas="http://"$1":32002/api/v3/slas/templates"
+	        slas="http://"$env":32002/api/v3/slas/templates"
 		Result=$(curl -s ""$slas"")	
 		logger "Get SLAs finished"		
 	fi
 
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
 
 }
 
@@ -333,7 +407,10 @@ uploadPolicy() {
 	  -d '{"descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/policy-descriptor/policy-schema.yml","name": "samplepolicydemo123456","vendor": "tango","version": "0.2","network_service": {"vendor":"tango","name":"default-nsd","version": "0.9"},"policyRules": [{"name": "actionUponAlert1","salience": 1,"inertia":{"value": 30,"duration_unit": "m"},"conditions": {"condition": "AND","rules": [{"id":"vnf1.LogMetric","field":"vnf1.LogMetric","type": "string","input": "text","operator":"equal","value":"mon_rule_vm_cpu_perc"}]},"actions": [{"action_object":"ComponentResourceAllocationAction","action_type": "InfrastructureType","name": "ApplyFlavour","value": "3","target": "vnf1"}]},{"name": "highTranscodingRateRule","salience": 1,"inertia": {"value": 30,"duration_unit":"m"},"duration": {"value": 10,"duration_unit": "m"},"aggregation":"avg","conditions": {"condition":"AND","rules": [{"id": "vnf1.CPULoad","field": "vnf1.CPULoad","type": "double","input": "number","operator": "greater","value": "70"},{"id": "vnf2.RAM","field": "vnf2.RAM","type":"integer","input": "select","operator":"less","value": "8"}]},"actions":[{"action_object":"ComponentResourceAllocationAction","action_type":"InfrastructureType","name":"ApplyFlavour","value":"3","target": "vnf1"}]}]}'
 	)
 	
-	echo 'Result'
+	if [[ "$debug" == 1 ]]
+	then
+		echo $Result
+	fi
 }
 
 instantiateNS (){
@@ -349,6 +426,11 @@ instantiateNS (){
 	#instantiating=$(curl -s -v -i -H content-type:application/json -X POST ""$instantiate""  -d '{"\"service_uuid"\":""$1""}')
 	instantiating=$($requesting)
 	echo $instantiating
+
+	if [[ "$debug" == 1 ]]
+	then
+		echo $instantiating
+	fi
 }
 
 
