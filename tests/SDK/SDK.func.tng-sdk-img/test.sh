@@ -292,6 +292,7 @@ function check_docker() {
 
 function check_service() {
   echo "Checking VNF"
+  sleep 5
   response=`curl $floating_ip:5000`
   if [[ $? -eq 0 ]]; then
     if [[ $response == "hello" ]]; then
