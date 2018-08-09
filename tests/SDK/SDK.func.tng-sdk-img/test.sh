@@ -221,10 +221,10 @@ function c_ssh() {
 }
 
 function set_up() {
-  #install_converter
-  #create_docker_image
-  #convert
-  #upload_image
+  install_converter
+  create_docker_image
+  convert
+  upload_image
   create_key
   create_server
   wait_server
