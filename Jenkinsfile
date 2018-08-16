@@ -165,7 +165,15 @@ pipeline {
 				}			
 			}
 		}
-
+		stage('Test SDK.func.tng-sdk-img'){
+			steps{
+				echo'Testing tng-sdk-img'
+				dir('tests/SDK/SDK.func.tng-sdk-img/')
+				{
+				sh"./test.sh ${params.ENV_FILE}"
+				}			
+			}
+		}
 
 	}
 	post {
