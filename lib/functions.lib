@@ -1,5 +1,50 @@
 ##FUNCTIONS LIBRARY
 
+## Setting default environment and debug level
+. ./variables.cfg
+
+setDebug(){
+unset debug
+case "$1" in
+       0)
+		export debug=0
+		logger "Debug level setted to 0. Only basic info in console."
+            ;;
+        1)
+		export debug=1
+		logger "Debug level setted to 1. Full info in console."
+            ;;
+	*)
+		export debug=0
+		logger "Debug level setted to 0. Only basic info in console."
+	;;
+
+esac
+
+}
+
+
+
+setEnvironment(){
+unset env
+case "$1" in
+        int-sp-ath.5gtango.eu)
+		export env=int-sp-ath.5gtango.eu
+            ;;
+        pre-int-sp-ath.5gtango.eu)
+		export env=pre-int-sp-ath.5gtango.eu
+            ;;
+	 qual-sp-bcn.5gtango.eu)
+		export env=qual-sp-bcn.5gtango.eu
+            ;;
+	*)
+		export env=int-sp-ath.5gtango.eu
+	;;
+
+esac
+
+}
+
 logger() {
   # Print logs to the stdout.
   # message
@@ -7,152 +52,426 @@ logger() {
 }
 
 
-getPackages() {
+cleanPackages(){
+	local option	
+	while getopts ":e:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;	        
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
 
-	if [ $# != 1 ]
+	if [ -z "$env" ]
+	then
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" " " "Example: cleanPackages -e "int-sp-ath.5gtango.eu" "	
+	    OPTIND=1
+    	return 1
+	fi
+
+	if [ -z "$1" ] 
 	then
 		echo
-		logger "Invalid number of arguments for get packages"
-		exit 1
+		logger "Invalid environment for cleanPackages Function"	
+		OPTIND=1
+		return 1		
+	else		
+	    clean_packages="http://"$env":4011/catalogues/clean"
+		Result=$(curl -s -X DELETE   "$clean_packages")	
+		logger "Clean packages finished"
+		OPTIND=1	
 	fi
+	OPTIND=1
+}
+
+getPackages() {
+	local option	
+	while getopts ":e:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;	        
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
+	
+	if [ -z "$env" ]
+	then
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" " " "Example: cleanPackages -e "int-sp-ath.5gtango.eu" "	
+	    OPTIND=1
+    	return 1
+	fi
+
 
 	if [ -z "$1" ] 
 	then
 		echo
 		logger "Invalid environment for getPackages Function"		
-		exit 1		
-	else	
-		logger "this is the env:  $1"	
-	        packages="http://"$1":32002/api/v3/packages"
-		#echo $packages
+		return 1		
+	else		
+	    packages="http://"$env":32002/api/v3/packages"
 		Result=$(curl -s "$packages")		
-		#echo $Result
 		logger "Get packages finished"
-		
+		OPTIND=1
 	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+		OPTIND=1
+	fi
+	OPTIND=1
+
 }
 
 
 
 getService() {
-	if [ $# != 4 ]
+
+	local name
+	local version
+	local vendor
+	local usage
+	local option	
+	while getopts ":e:n:v:d:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;
+	        n) name=${OPTARG};;
+	        v) version=${OPTARG};;
+	        d) vendor=${OPTARG};;
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
+
+	if [ -z "$env" ] || [ -z "$name" ] || [ -z "$version" ] || [ -z "$vendor" ]
 	then
-		echo
-		logger "Invalid number of arguments for get service"
-		exit 1
+#	    echo $usage
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" "  -n: name of the package" "  -v: version of the package" "  -d: vendor of the package" " " "Example: getService -e "int-sp-ath.5gtango.eu" -n "ns-package-example" -v "0.1" -d "eu.5gtango" "	
+	    OPTIND=1
+    	return 1
 	fi
+
 	if [ -z "$1" ] 
 	then
 		echo
-		logger "Invalid environment for getService"		
+		logger "Invalid environment for getService"	
+	    OPTIND=1
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
-	        services=$(curl http://"$1":32002/api/v3/services)
+		#logger "this is the env:  $1"	
+	        services=$(curl -s http://"$env":32002/api/v3/services)
 		#echo $services
 		
-		Result=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+		Service=$(echo $services | jq -r --arg NAME "$name" --arg VERSION "$version" --arg VENDOR "$vendor" '.[] 
 				| select(.nsd.name==$NAME) 
 				| select(.nsd.version==$VERSION)
 				| select(.nsd.vendor==$VENDOR)
 				')
 
-		Service_uuid=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+		Service_uuid=$(echo $services | jq -r --arg NAME "$name" --arg VERSION "$version" --arg VENDOR "$vendor" '.[] 
 				| select(.nsd.name==$NAME) 
 				| select(.nsd.version==$VERSION)
 				| select(.nsd.vendor==$VENDOR)
 				| .uuid
 				')
 
-		Service_status=$(echo $services | jq -r --arg NAME "$2" --arg VERSION "$3" --arg VENDOR "$4" '.[] 
+		Service_status=$(echo $services | jq -r --arg NAME "$name" --arg VERSION "$version" --arg VENDOR "$vendor" '.[] 
 				| select(.nsd.name==$NAME) 
 				| select(.nsd.version==$VERSION)
 				| select(.nsd.vendor==$VENDOR)
 				| .status
 				')
-
-
-#projectID=$(cat file.json | jq -r --arg EMAILID "$EMAILID" '.resource[]
-#                               | select(.username==$EMAILID) | .id')
-
-
-#		                                                       | jq '.[] | select(.nsd.name=="NS-squid-haproxy") | select(.nsd.version=="0.1") | select(.nsd.vendor=="eu.5gtango")'
-
 		logger "Get service finished"
-		
+		OPTIND=1
 	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $services
+		echo $Service_uuid
+		echo $Service_status
+		OPTIND=1
+	fi
+	OPTIND=1
 }
 
-uploadPackage() {
-	if [ $# != 2 ]
+
+getPackage() {
+	
+	local name
+	local version
+	local vendor
+	local usage	
+
+	local option	
+	while getopts ":e:n:v:d:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;
+	        n) name=${OPTARG};;
+	        v) version=${OPTARG};;
+	        d) vendor=${OPTARG};;
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
+
+	if [ -z "$env" ] || [ -z "$name" ] || [ -z "$version" ] || [ -z "$vendor" ]
+	then
+#	    echo $usage
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" "  -n: name of the package" "  -v: version of the package" "  -d: vendor of the package" " " "Example: getPackage -e "int-sp-ath.5gtango.eu" -n "ns-package-example" -v "0.1" -d "eu.5gtango" "	
+	    OPTIND=1
+    	    return 1
+	fi
+
+
+
+	if [ -z "$1" ] 
 	then
 		echo
-		logger "Invalid number of arguments for upload package"
-		exit 1
+		logger "Invalid environment for getPackage"	
+		OPTIND=1	
+		return 1		
+	else	
+		#logger "this is the env:  $env"	
+	        packages=$(curl -s http://"$env":32002/api/v3/packages)			
+		
+		Package=$(echo $packages | jq -r --arg NAME "$name" --arg VERSION "$version" --arg VENDOR "$vendor" '.[] 
+				| select(.pd.name==$NAME) 
+				| select(.pd.version==$VERSION)
+				| select(.pd.vendor==$VENDOR)
+				')		
+
+		Package_uuid=$(echo $packages | jq -r --arg NAME "$name" --arg VERSION "$version" --arg VENDOR "$vendor" '.[] 
+				| select(.pd.name==$NAME) 
+				| select(.pd.version==$VERSION)
+				| select(.pd.vendor==$VENDOR)
+				| .uuid
+				')
+
+		Package_status=$(echo $packages | jq -r --arg NAME "$name" --arg VERSION "$version" --arg VENDOR "$vendor" '.[] 
+				| select(.pd.name==$NAME) 
+				| select(.pd.version==$VERSION)
+				| select(.pd.vendor==$VENDOR)
+				| .status
+				')
+		logger "Get package finished"
+		OPTIND=1		
 	fi
-	if [ -z "$1" ]
+
+	#echo "debug level: " $debug
+	if [ "$debug" = "1" ]
+	then
+		echo "debug level: " $debug
+		echo $packages
+		echo $Package_uuid
+		echo $Package_status
+		OPTIND=1
+	fi
+
+	OPTIND=1
+	
+
+
+}
+
+
+
+
+uploadPackage() {
+
+	local option	
+	while getopts ":e:p:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;
+	        p) pkg=${OPTARG};;
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
+
+	if [ -z "$env" ] || [ -z "$pkg" ]
+	then
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" "  -p: package file" " " "Example: uploadPackage -e "int-sp-ath.5gtango.eu" -p "../commons/5gtango-ns-package-example.tgo" "	
+	    OPTIND=1
+    	return 1
+	fi
+
+
+
+	if [ -z "$env" ]
 	then
 		echo
 		logger "Invalid environment for uploadPackage Function"		
-		exit 1
+		OPTIND=1
+		return 1
 	
-	elif  [ ! -f "$2" ]
+	elif  [ ! -f "$pkg" ]
 		then	
 		echo
 		logger "Cannot find the file for uploadPackage Function"		
-		exit 1
+		OPTIND=1
+		return 1
 	else				
-		       #echo $1
-		       #echo $2
-		       upload="http://"$1":32002/api/v3/packages"
-		       Result=$(curl -s -v -i -X POST  -F "package=@./$2" ""$upload"" 2>&1)
-	       	       #echo $Result
-		       logger "Upload package finished"	
+		upload="http://"$env":32002/api/v3/packages"
+		Result=$(curl -s -v -i -X POST  -F "package=@./$pkg" ""$upload"" 2>&1)
+		logger "Upload package finished"
+		OPTIND=1	
 	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+		OPTIND=1
+	fi
+	OPTIND=1
 }
 
 
 
 
 getServices() {
-	if [ $# != 1 ]
+	local option	
+	while getopts ":e:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;	        
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
+	
+	if [ -z "$env" ]
 	then
-		echo
-		logger "Invalid number of arguments for getServices"
-		exit 1
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" " " "Example: getServices -e "int-sp-ath.5gtango.eu" "	
+	    OPTIND=1
+    	return 1
 	fi
 
 	if [ -z "$1" ] 
 	then
 		echo
 		logger "Invalid environment for getServices Function"		
-		exit 1		
+		OPTIND=1		
+		return 1		
 	else	
-		logger "this is the env:  $1"	
-	        services="http://"$1":32002/api/v3/services"
-		Result=$(curl ""$services"")		
+	    services="http://"$env":32002/api/v3/services"
+		Result=$(curl -s ""$services"")		
 		logger "Get Services finished"		
+		OPTIND=1
 	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+		OPTIND=1
+	fi
+
+
 }
 
 getFunctions() {
-	if [ $# != 1 ]
+	local option	
+	while getopts ":e:" option; do
+	    case "${option}" in
+	        e) env=${OPTARG};;	        
+	        :) logger  "Missing option argument for -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+		*) logger  "Unimplemented option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	   	\?) logger  "Unknown option: -$OPTARG" >&2
+		    OPTIND=1
+		    return 1
+		    ;;
+	    esac
+	done
+	
+	if [ -z "$env" ]
 	then
-		echo
-		logger "Invalid number of arguments for getFunctions"
-		exit 1
+	    printf "%s\n" " " "To use this function you must specify the following options:" "  -e: environment" " " "Example: getFunctions -e "int-sp-ath.5gtango.eu" "	
+	    OPTIND=1
+    	return 1
 	fi
 
 	if [ -z "$1" ] 
 	then
 		echo
 		logger "Invalid environment for getFunctions"		
-		exit 1		
+		OPTIND=1		
+		return 1		
 	else	
-		logger "this is the env:  $1"	
-	        functions="http://"$1":32002/api/v3/functions"
-		Result=$(curl ""$functions"")		
+	    functions="http://"$env":32002/api/v3/functions"
+		Result=$(curl -s ""$functions"")		
 		logger "Get Functions finished"		
+		OPTIND=1
+	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+		OPTIND=1
 	fi
 }
 
@@ -169,12 +488,17 @@ getRequests() {
 		echo
 		logger "Invalid environment for getRequests"		
 		exit 1		
-	else	
-		logger "this is the env:  $1"	
-	        requests="http://"$1":32002/api/v3/requests"
-		Result=$(curl ""$requests"")		
+	else		
+	        requests="http://"$env":32002/api/v3/requests"
+		Result=$(curl -s ""$requests"")		
 		logger "Get Functions finished"		
 	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+	fi
+
 }
 
 getSlices() {
@@ -191,10 +515,14 @@ getSlices() {
 		logger "Invalid environment for getSlices"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
-	        slices="http://"$1":32002/api/v3/slices"
-		Result=$(curl ""$slices"")		
+	        slices="http://"$env":32002/api/v3/slices"
+		Result=$(curl -s ""$slices"")		
 		logger "Get Slices finished"		
+	fi
+
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
 	fi
 }
 
@@ -213,13 +541,15 @@ getPolicies() {
 		logger "Invalid environment for getPolicies Function"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
-	        policies="http://"$1":32002/api/v3/policies"
-		Result=$(curl ""$policies"")	
+	        policies="http://"$env":32002/api/v3/policies"
+		Result=$(curl -s ""$policies"")	
 		logger "Get Policies finished"		
 	fi
 
-
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+	fi
 }
 
 getSlas() {
@@ -237,19 +567,22 @@ getSlas() {
 		logger "Invalid environment for getSLAs Function"		
 		exit 1		
 	else	
-		logger "this is the env:  $1"	
-	        slas="http://"$1":32002/api/v3/slas/templates"
-		Result=$(curl ""$slas"")	
+	        slas="http://"$env":32002/api/v3/slas/templates"
+		Result=$(curl -s ""$slas"")	
 		logger "Get SLAs finished"		
 	fi
 
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+	fi
 
 }
 
 
 
 
-upload_policy() {
+uploadPolicy() {
 	
 	########policy 
 	upload=$(awk '/upload_policy/ {print $2}' envfile.yml)
@@ -267,10 +600,13 @@ upload_policy() {
 	  -d '{"descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/policy-descriptor/policy-schema.yml","name": "samplepolicydemo123456","vendor": "tango","version": "0.2","network_service": {"vendor":"tango","name":"default-nsd","version": "0.9"},"policyRules": [{"name": "actionUponAlert1","salience": 1,"inertia":{"value": 30,"duration_unit": "m"},"conditions": {"condition": "AND","rules": [{"id":"vnf1.LogMetric","field":"vnf1.LogMetric","type": "string","input": "text","operator":"equal","value":"mon_rule_vm_cpu_perc"}]},"actions": [{"action_object":"ComponentResourceAllocationAction","action_type": "InfrastructureType","name": "ApplyFlavour","value": "3","target": "vnf1"}]},{"name": "highTranscodingRateRule","salience": 1,"inertia": {"value": 30,"duration_unit":"m"},"duration": {"value": 10,"duration_unit": "m"},"aggregation":"avg","conditions": {"condition":"AND","rules": [{"id": "vnf1.CPULoad","field": "vnf1.CPULoad","type": "double","input": "number","operator": "greater","value": "70"},{"id": "vnf2.RAM","field": "vnf2.RAM","type":"integer","input": "select","operator":"less","value": "8"}]},"actions":[{"action_object":"ComponentResourceAllocationAction","action_type":"InfrastructureType","name":"ApplyFlavour","value":"3","target": "vnf1"}]}]}'
 	)
 	
-	echo 'Result'
+	if [ "$debug" = "1" ]
+	then
+		echo $Result
+	fi
 }
 
-instantiate_ns (){
+instantiateNS (){
 	#instantiating the NS
 	instantiate=$(awk '/instantiate_ns/ {print $2}' envfile.yml)
 	echo $instantiate	
@@ -280,9 +616,14 @@ instantiate_ns (){
 	echo "this is the requesting curl:" 
 	echo $requesting
 	echo
-	#instantiating=$(curl -v -i -H content-type:application/json -X POST ""$instantiate""  -d '{"\"service_uuid"\":""$1""}')
+	#instantiating=$(curl -s -v -i -H content-type:application/json -X POST ""$instantiate""  -d '{"\"service_uuid"\":""$1""}')
 	instantiating=$($requesting)
 	echo $instantiating
+
+	if [ "$debug" = "1" ]
+	then
+		echo $instantiating
+	fi
 }
 
 

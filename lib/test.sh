@@ -20,31 +20,63 @@ then
 	
 else	
 
-getService "$env" "NS-squid-haproxy" "0.1" "eu.5gtango"
-echo $Result
-echo $Service_uuid
-echo $Service_status
 
-#	getPackages "$env"
+
+#cleanPackages "$env"
+
+#uploadPackage "$env" "../commons/5gtango-ns-package-example.tgo"
+
+
+getPackage "$env" "ns-package-example" "0.1" "eu.5gtango"
+#echo $Package_uuid
+#echo $Package_status
+
+
+getService "$env" "myns" "0.1" "eu.5gtango"
+#echo $Service_uuid
+#echo $Service_status
+
+
+
+
+
+#uploadPackage "$env" "../commons/5gtango-ns-package-example.tgo"
+#echo $Result
+
+#getService "$env" "myns" "0.1" "eu.5gtango"
+#echo $Service
+#echo $Service_uuid
+#echo $Service_status
+
+#getPackage "$env" "ns-package-example" "0.1" "eu.5gtango"
+#echo $packages
+#echo $Package
+#echo $Package_uuid
+#echo $Package_status
+
+
+
+
+	getPackages "$env"
 #	echo $Result
 
-#	getServicies "$env"
+	getServices "$env"
 #	echo $Result	
 
 
-#	getPolicies "$env"
+	getPolicies "$env"
 #	echo $Result
 
-#	getSlas "$env"
+	getSlas "$env"
 #	echo $Result
 
-#	getFunctions "$env"
+	getFunctions "$env"
 #	echo $Result
 
-#	getRequests "$env"
+	getRequests "$env"
 #	echo $Result
 
-#	getSlices "$env"
+	getSlices "$env"
 #	echo $Result
 
 #	uploadPackage "$env" "../commons/5gtango-ns-package-example.tgo"
