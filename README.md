@@ -17,6 +17,9 @@ This repository contains the integration tests as well as artifacts for the 5GTA
 |`slas/`| SLAs used for the tests | Marios, Evgenia?|
 |...|...|...|
 
+## Artifacts
+
+* [5GTANGO packages (`*.tgo`) build by Jenkins](https://jenkins.sonata-nfv.eu/view/PIPELINE/job/tng-tests/job/master/)
 
 ## Jenkins Integration
 
