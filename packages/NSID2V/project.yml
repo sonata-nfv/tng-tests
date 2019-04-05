@@ -3,7 +3,7 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: "eu.5gtango"
-  name: "test-ns-nsid1v"
+  name: "test-ns-nsid2v"
   version: "0.1"
   maintainer: "5GTANGO Test Team"
   description: "This is a integration test artifact."
@@ -13,6 +13,10 @@ files:
     tags:  # (optional)
       - "eu.5gtango"
   - path: "vnfd1.yaml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"
+  - path: "vnfd2.yaml"
     type: "application/vnd.5gtango.vnfd"
     tags:  # (optional)
       - "eu.5gtango"
