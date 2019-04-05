@@ -34,9 +34,9 @@ pipeline {
         }
     }
     post {
-        success {
-            archiveArtifacts artifacts: 'packages/*.tgo'
-        }
+        //success {
+        //    archiveArtifacts artifacts: 'packages/*.tgo'
+        //}
         failure {
                 emailext(from: "jenkins@sonata-nfv.eu", 
                 to: "manuel.peuster@upb.de", 
