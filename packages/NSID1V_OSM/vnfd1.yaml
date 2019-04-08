@@ -1,0 +1,32 @@
+vnfd:vnfd-catalog:
+    vnfd:
+    -   id: hackfest_basic-vnf
+        name: hackfest_basic-vnf
+        short-name: hackfest_basic-vnf
+        version: '1.0'
+        description: A basic VNF descriptor w/ one VDU
+        logo: osm.png
+        connection-point:
+        -   name: vnf-cp0
+            type: VPORT
+        vdu:
+        -   id: hackfest_basic-VM
+            name: hackfest_basic-VM
+            image: ubuntu1604
+            alternative-images:
+            -   vim-type: aws
+                image: ubuntu/images/hvm-ssd/ubuntu-artful-17.10-amd64-server-20180509
+            count: '1'
+            vm-flavor:
+                vcpu-count: '1'
+                memory-mb: '1024'
+                storage-gb: '10'
+            interface:
+            -   name: vdu-eth0
+                type: EXTERNAL
+                virtual-interface:
+                    type: PARAVIRT
+                external-connection-point-ref: vnf-cp0
+        mgmt-interface:
+            cp: vnf-cp0
+
