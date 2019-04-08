@@ -9,8 +9,9 @@ description: "This is a integration test artifact."
 
 virtual_deployment_units:
   - id: "vdu01"
-    vm_image: "TODO"  # TODO define the used disk image
+    vm_image: "http://www.google.com"
     vm_image_format: "qcow2"
+    vm_image_md5: ee1eca47dc88f4879d8a229cc70a07c6
     resource_requirements:
       cpu:
         vcpus: 1
