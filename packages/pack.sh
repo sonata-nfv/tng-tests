@@ -11,3 +11,5 @@ tng-pkg -p NSID1V --skip-validation
 tng-pkg -p NSID2V --skip-validation
 tng-pkg -p NSID1C --skip-validation
 tng-pkg -p NSID2C --skip-validation
+
+tng-pkg -p NSID1V_OSM --skip-validation
