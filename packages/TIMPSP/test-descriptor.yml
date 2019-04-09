@@ -1,0 +1,188 @@
+--- 
+author: "Ignacio Dominguez, Felipe Vicens (ATOS)"
+description: "Performance test for video analysis"
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml"
+name: test-immersive-media
+phases: 
+  - 
+    id: setup
+    steps: 
+      - 
+        action: deploy
+        description: "Deploying a NS"
+        name: deployment
+      - 
+        action: configure
+        description: "Configuration"
+        name: configuration
+        probes: 
+          - 
+            description: "A service initial configuration container"
+            id: initiator
+            image: "ignaciodomin/media-initiator:dev"
+            name: initiator
+            parameters: 
+              - 
+                key: CAMERA
+                value: test
+              - 
+                key: CMS
+                value: "$(vnf-cms/endpoints/id:floating-ip/address)"
+              - 
+                key: MA
+                value: "$(vnf-ma/endpoints/id:floating-ip/address)"
+              - 
+                key: MSE
+                value: "$(vnf-mse/endpoints/id:floating-ip/address)"
+          - 
+            description: Ffprobe
+            id: ffprobe
+            image: "ignaciodomin/media-ffprobe:dev"
+            name: ffprobe
+            parameters: 
+              - 
+                key: STREAMING_ENGINE
+                value: "$(vnf-mse/endpoints/id:floating-ip/address)"
+              - 
+                key: STREAM
+                value: plane
+          - 
+            description: Parser
+            id: parser
+            image: "ignaciodomin/media-parser:dev"
+            name: parser
+            parameters: []
+          - 
+            description: "Content Producer Emulator (CPE) To generate a RTMP flow"
+            id: cpe
+            image: "ignaciodomin/media-cpe:plane"
+            name: cpe
+            parameters: 
+              - 
+                key: AGGREGATOR
+                value: "$(vnf-ma/endpoints/id:floating-ip/address)"
+              - 
+                key: APP
+                value: test
+              - 
+                key: STREAM
+                value: test
+          - 
+            description: "Content Consumer Emulator (CCE) To play HLS flows from Streaming engine"
+            id: cce
+            image: "ignaciodomin/media-cce:dev"
+            name: cce
+            parameters: 
+              - 
+                key: STREAMMING_ENGINE
+                value: "$(vnf-mse/endpoints/id:floating-ip/address)"
+              - 
+                key: STREAM
+                value: test
+  - 
+    id: exercise
+    steps: 
+      - 
+        command: /bin/sh
+        description: "Starting the CPE that simulates the camera"
+        entrypoint: /app/entrypoint.sh
+        index: 1
+        instances: 1
+        name: cpe
+        output: 
+          - 
+            results: logs.txt
+        run: cpe
+      - 
+        description: "Starting the CCE that simulates the consumer"
+        entrypoint: /app/entrypoint.sh
+        index: 2
+        instances: 1
+        name: ffprobe
+        output: 
+          - 
+            results: logs.txt
+        run: ffprobe
+        start_delay: 5
+      - 
+        description: "Starting the CCE that simulates the consumer"
+        entrypoint: /app/entrypoint.sh
+        index: 3
+        instances: 1
+        name: cce
+        output: 
+          - 
+            results: logs.txt
+        run: cce
+        start_delay: 20
+      - 
+        dependencies: 
+          - cpe
+          - ffprobe
+          - cce
+        description: "Starting the CCE that simulates the consumer"
+        entrypoint: /app/entrypoint.sh
+        index: 4
+        instances: 1
+        name: parser
+        output: 
+          - 
+            results: logs.txt
+        run: ffprobe
+  - 
+    id: verification
+    steps: 
+      - 
+        conditions: 
+          - 
+            condition: "not present"
+            file: status.txt
+            find: ERROR
+            name: status
+            verdict: pass
+        description: "Check cpe"
+        name: cpe
+        step: cpe
+      - 
+        conditions: 
+          - 
+            condition: "not present"
+            file: status.txt
+            find: ERROR
+            name: status
+            verdict: pass
+        description: "Check cce"
+        name: cce
+        step: cce
+      - 
+        conditions: 
+          - 
+            condition: "not present"
+            file: status.txt
+            find: ERROR
+            name: status
+            verdict: pass
+        description: "Check ffprobe"
+        name: ffprobe
+        step: ffprobe
+      - 
+        conditions: 
+          - 
+            condition: <
+            file: detail.json
+            find: error_rate
+            name: error_rate
+            type: json
+            value: "0.05"
+            verdict: pass
+        description: "Check obtained results"
+        name: parser
+        step: parser
+service_platforms: 
+  - SONATA
+test_category: 
+  - benchmarking
+test_tags: 
+  - performanceTest
+vendor: eu.5gtango.atos
+version: "0.1"

@@ -8,14 +8,12 @@ This repository contains the integration tests as well as artifacts for the 5GTA
 
 ## Folder Structure
 
-| Folder | Content | Responsible |
-| --- | --- | --- |
+| Folder | Content |
+| --- | --- |
 |`pipeline/`| Jenkins pipeline scripts | - |
-|`packages/`| Test NSDs, VNFDs, TSTDs to be packed to `*.tgo` packages | Manuel |
-|`slice-descriptors/`| Slice descriptors for tests| ?? |
-|`policies/`| Test Policies | Eleni |
-|`slas/`| SLAs used for the tests | Marios, Evgenia?|
-|...|...|...|
+|`packages/`| Test NSDs, VNFDs, TSTDs to be packed to `*.tgo` packages |
+|`tests/`| Integration tests classified by SDK/SP/VnV |
+|...|...|
 
 ## Artifacts
 
