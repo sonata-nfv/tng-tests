@@ -1,0 +1,26 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "test-ns-imp"
+  version: "0.1"
+  maintainer: "5GTANGO Test Team"
+  description: "This is a integration test artifact."
+files:
+  - path: "mediapilot-ns.yml"
+    type: "application/vnd.5gtango.nsd"
+    tags:  # (optional)
+      - "eu.5gtango"
+  - path: "cms-vnfd.yml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"
+  - path: "ma-vnfd.yml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"
+  - path: "mse-vnfd.yml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"
