@@ -12,6 +12,7 @@ This repository contains the integration tests as well as artifacts for the 5GTA
 | --- | --- |
 |`pipeline/`| Jenkins pipeline scripts | - |
 |`packages/`| Test NSDs, VNFDs, TSTDs to be packed to `*.tgo` packages |
+|`slas/`|Examples of SLA Descriptors |
 |`tests/`| Integration tests classified by SDK/SP/VnV |
 |...|...|
 

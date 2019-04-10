@@ -1,0 +1,167 @@
+---
+guaranteeTerms:
+- guaranteeID: g1
+  guarantee_name: Availability
+  guarantee_threshold: '99.95'
+  guarantee_operator: greater
+  guarantee_unit: "%"
+  guarantee_period: Daily
+  guarantee_definition: ''
+  target_slo:
+  - target_kpi: Downtime
+    target_value: 43s
+    target_operator: less
+    target_duration: 10s
+    target_period: 24h
+    target_service_level: Downtime less than 43 seconds
+- guaranteeID: g2
+  guarantee_name: Availability
+  guarantee_threshold: '98'
+  guarantee_operator: greater
+  guarantee_unit: "%"
+  guarantee_period: Daily
+  guarantee_definition: ''
+  target_slo:
+  - target_kpi: Downtime
+    target_value: 1728s
+    target_operator: less
+    target_duration: 10s
+    target_period: 24h
+    target_service_level: Downtime less than 1728 seconds
+- guaranteeID: g3
+  guarantee_name: Availability
+  guarantee_threshold: '95'
+  guarantee_operator: greater
+  guarantee_unit: "%"
+  guarantee_period: Daily
+  guarantee_definition: ''
+  target_slo:
+  - target_kpi: Downtime
+    target_value: 4320s
+    target_operator: less
+    target_duration: 10s
+    target_period: 24h
+    target_service_level: Downtime less than 4320 seconds
+- guaranteeID: g4
+  guarantee_name: High QoE Videoconference
+  guarantee_definition: High QoE Videoconference
+  target_slo:
+  - target_kpi: Bandwidth
+    target_value: 200 Mbps
+    target_operator: greater
+    target_duration: 10s
+    target_service_level: Bandwidth more than 200 Mbps
+  - target_kpi: Latency
+    target_value: 10 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Latency less than 10 ms.
+- guaranteeID: g5
+  guarantee_name: Medium QoE Videoconference
+  guarantee_definition: Medium QoE Videoconference
+  target_slo:
+  - target_kpi: Bandwidth
+    target_value: 150 Mbps
+    target_operator: greater
+    target_duration: 10s
+    target_service_level: Bandwidth more than 150 Mbps
+  - target_kpi: Latency
+    target_value: 20 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Latency less than 20 ms.
+- guaranteeID: g6
+  guarantee_name: Low QoE Videoconference
+  guarantee_definition: Low QoE Videoconference
+  target_slo:
+  - target_kpi: Bandwidth
+    target_value: 100 Mbps
+    target_operator: greater
+    target_duration: 10s
+    target_service_level: Bandwidth more than 100 Mbps
+  - target_kpi: Latency
+    target_value: 30 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Latency less than 30 ms.
+- guaranteeID: g7
+  guarantee_name: High Edge & Interconnection QoE Factory Performance
+  guarantee_definition: High QoE factory performance
+  target_slo:
+  - target_kpi: Latency
+    target_value: 100 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Latency less than 100 ms
+- guaranteeID: g8
+  guarantee_name: Medium Edge & Interconnection  QoE Factory Performance
+  guarantee_definition: Medium QoE factory performance
+  target_slo:
+  - target_kpi: Latency
+    target_value: 500 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Latency less than 500 ms
+- guaranteeID: g9
+  guarantee_name: Low Edge & Interconnection  QoE Factory Performance
+  guarantee_definition: Low QoE factory performance
+  target_slo:
+  - target_kpi: Latency
+    target_value: 1000 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Latency less than 1000 ms
+- guaranteeID: g10
+  guarantee_name: High AR Factory Performance
+  guarantee_definition: High AR Factory Performance
+  target_slo:
+  - target_kpi: Jitter
+    target_value: 20 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Jitter less than 20 ms
+- guaranteeID: g11
+  guarantee_name: Medium AR Factory Performance
+  guarantee_definition: Medium AR Factory Performance
+  target_slo:
+  - target_kpi: Jitter
+    target_value: 35 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Jitter less than 35 ms
+- guaranteeID: g12
+  guarantee_name: Low AR Factory Performance
+  guarantee_definition: Low AR Factory Performance
+  target_slo:
+  - target_kpi: Jitter
+    target_value: 50 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Jitter less than 50 ms
+- guaranteeID: g13
+  guarantee_name: High Quality Live Streaming Service
+  guarantee_definition: High Quality Live Streaming Service
+  target_slo:
+  - target_kpi: Jitter
+    target_value: 20 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Jitter less than 20 ms
+- guaranteeID: g14
+  guarantee_name: Medium Quality Live Streaming Service
+  guarantee_definition: Medium Quality Live Streaming Service
+  target_slo:
+  - target_kpi: Jitter
+    target_value: 35 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Jitter less than 35 ms
+- guaranteeID: g15
+  guarantee_name: Low Quality Live Streaming Service
+  guarantee_definition: Medium Quality Live Streaming Service
+  target_slo:
+  - target_kpi: Jitter
+    target_value: 50 ms
+    target_operator: less
+    target_duration: 10s
+    target_service_level: Jitter less than 50 ms
