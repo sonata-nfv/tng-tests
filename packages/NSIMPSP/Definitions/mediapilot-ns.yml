@@ -34,7 +34,7 @@ connection_points:
     type: "external"
 
 testing_tags: 
-  - performanceTest
+  - streamingPerformance
 
 ##
 ## The virtual links that interconnect

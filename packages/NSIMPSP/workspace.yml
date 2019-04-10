@@ -1,0 +1,29 @@
+version: '0.05'
+name: 5GTANGO Workspace
+log_level: INFO
+catalogues_dir: catalogues
+configuration_dir: configuration
+platforms_dir: platforms
+projects_dir: projects
+projects_config: kubernetes/projects/config.yml
+schemas_local_master: /home/ignacio/.tng-schema
+schemas_remote_master: https://github.com/sonata-nfv/tng-schema
+default_descriptor_extension: yml
+service_platforms:
+  sp1:
+    url: http://sp.int3.sonata-nfv.eu:32001
+    credentials:
+      username: sonata
+      password: s0n@t@
+      token_file: token.txt
+      signature:
+        pub_key: ''
+        prv_key: ''
+        cert: ''
+default_service_platform: sp1
+validate_watchers:
+  kubernetes/projects:
+    type: project
+    syntax: true
+    integrity: true
+    topology: true

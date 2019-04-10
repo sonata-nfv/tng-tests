@@ -3,24 +3,20 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: "eu.5gtango"
-  name: "test-ns-imp"
-  version: "0.1"
-  maintainer: "5GTANGO Test Team"
-  description: "This is a integration test artifact."
+  name: "ns-mediapilot-service-k8s"
+  version: "0.3"
+  maintainer: "Ignacio Dominguez"
+  description: "This is the 5GTANGO network service for the media pilot with k8s"
 files:
-  - path: "mediapilot-ns.yml"
+  - path: "Definitions/mediapilot-ns.yml"
     type: "application/vnd.5gtango.nsd"
-    tags:  # (optional)
-      - "eu.5gtango"
-  - path: "cms-vnfd.yml"
+  - path: "Definitions/ma-vnfd.yml"
     type: "application/vnd.5gtango.vnfd"
-    tags:  # (optional)
-      - "eu.5gtango"
-  - path: "ma-vnfd.yml"
+  - path: "Definitions/mse-vnfd.yml"
     type: "application/vnd.5gtango.vnfd"
-    tags:  # (optional)
-      - "eu.5gtango"
-  - path: "mse-vnfd.yml"
+  - path: "Definitions/cms-vnfd.yml"
     type: "application/vnd.5gtango.vnfd"
-    tags:  # (optional)
-      - "eu.5gtango"
+  - path: "Icons/atos_logo.png"
+    type: "image/png"
+  - path: "Licenses/LICENSE"
+    type: "text/plain"
