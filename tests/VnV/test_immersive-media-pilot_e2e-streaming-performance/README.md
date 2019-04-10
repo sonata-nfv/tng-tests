@@ -1,6 +1,6 @@
 |||||
 | :--- | :--- | :--- | :--- |
-| __Test Case Name__ | | __Immersive Media Pilot Streaming Performance__  <td colspan=2>| |
+| __Test Case Name__ | | __Immersive Media Pilot Streaming Performance__ | |
 | __Test Purpose__ | | Measure the latency between the different NS components and the total latency between the video generation and the end-user player| |
 | __Configuration__ | | A NS composed by three VNFs (CMS, MA, MSE) is deployed on the Service Platform. The defined test plan contains a Test Descriptor (TD) with the configuration of docker images, environment variables, dependencies, etc that will be used in the test.| |
 | __Test Tool__ | | (get this info from probes)| |
@@ -25,36 +25,5 @@
 
 # Test flow
 
-```plantuml
-actor Tester
-
-box "VnV"
-    participant Gatekeeper
-    participant Catalog    
-    participant Planner
-    participant Curator
-    participant Executor
-    participant PlatformAdaptor as PA
-    participant Repository    
-end box
-
-Tester -> Gatekeeper: On-Board Service Package
-Gatekeeper -> Catalog: On-Board Service Package
-Tester -> Gatekeeper: On-Board Test Package
-Gatekeeper -> Catalog: On-Board Service Package
-Gatekeeper -> Planner: Package uuid
-Planner -> Catalog: get NSD-TD pairs
-loop for every NSD-TD pair
-Planner -> Curator: Execute NSD-TD
-Curator -> PA: Instantiate NSD
-PA --> Curator: done
-Curator -> Executor: Execute TD
-Executor -> Executor: Instantiate test probes
-Executor -> Executor: wait until all probes finish
-Executor -> Executor: validate results
-Executor -> Repository: save results
-Executor -> Curator: Test completed
-Curator -> Planner: Test completed
-end 
-```
+![testflow](./images/testFlow.png)
 
