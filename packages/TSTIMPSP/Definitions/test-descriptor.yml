@@ -183,6 +183,6 @@ service_platforms:
 test_category: 
   - benchmarking
 test_tags: 
-  - performanceTest
+  - streamingPerformance
 vendor: eu.5gtango.atos
 version: "0.1"
