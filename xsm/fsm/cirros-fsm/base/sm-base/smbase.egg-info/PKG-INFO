@@ -1,0 +1,13 @@
+Metadata-Version: 1.0
+Name: smbase
+Version: 1.0
+Summary: Specific Manager abstract class
+Home-page: https://github.com/sonata-nfv/tng-sdk-sm
+Author: Thomas Soenen
+Author-email: thomas.soenen@ugent.be
+License: Apache 2.0
+Description: # smbase
+        
+        smbase is the abstract class for any specific manager python object.
+Keywords: NFV orchestrator customisation
+Platform: UNKNOWN
