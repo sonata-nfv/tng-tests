@@ -20,3 +20,13 @@ virtual_links:
     connection_points_reference:
       - "data"
       - "cnf1:data"
+
+service_specific_managers:
+ - id: "config"
+   description: "SSM to do some dummy config on the cirros for testing purposes"
+   image: "tsoenen/config-ssm"
+   options:
+     - key: "type"
+       value: "task"
+     - key: "type"
+       value: "configure"

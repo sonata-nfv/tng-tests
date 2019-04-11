@@ -25,3 +25,13 @@ virtual_links:
     connection_points_reference:
       - "data"
       - "cdu01:data"
+
+function_specific_managers:
+ - id: "ubuntuk8s"
+   description: "FSM to do some dummy config on the ubuntu image for testing purposes"
+   image: "tsoenen/ubuntuk8s-fsm"
+   options:
+     - key: "type"
+       value: "start"
+     - key: "type"
+       value: "configure"
