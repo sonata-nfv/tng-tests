@@ -1,0 +1,22 @@
+nsd:nsd-catalog:
+    nsd:
+    -   id: hackfest_basic-ns
+        name: hackfest_basic-ns
+        short-name: hackfest_basic-ns
+        description: Simple NS with a single VNF and a single VL
+        version: '1.0'
+        logo: osm.png
+        constituent-vnfd:
+        -   vnfd-id-ref: hackfest_basic-vnf
+            member-vnf-index: '1'
+        vld:
+        -   id: mgmtnet
+            name: mgmtnet
+            short-name: mgmtnet
+            type: ELAN
+            mgmt-network: 'true'
+            vnfd-connection-point-ref:
+            -   vnfd-id-ref: hackfest_basic-vnf
+                member-vnf-index-ref: '1'
+                vnfd-connection-point-ref: vnf-cp0
+
