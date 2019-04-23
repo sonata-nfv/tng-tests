@@ -4,6 +4,7 @@ vnfd:vnfd-catalog:
         name: hackfest_basic-vnf
         short-name: hackfest_basic-vnf
         version: '1.0'
+        vendor: upb
         description: A basic VNF descriptor w/ one VDU
         logo: osm.png
         connection-point:
