@@ -5,6 +5,7 @@ nsd:nsd-catalog:
         short-name: hackfest_basic-ns
         description: Simple NS with a single VNF and a single VL
         version: '1.0'
+        vendor: upb
         logo: osm.png
         constituent-vnfd:
         -   vnfd-id-ref: hackfest_basic-vnf
