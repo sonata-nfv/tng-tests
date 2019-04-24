@@ -12,6 +12,8 @@ files:
     type: "application/vnd.5gtango.nsd"
     tags:  # (optional)
       - "eu.5gtango"
+    testing_tags:
+      - "eu.5gtango.testingtag.example"
   - path: "vnfd1.yaml"
     type: "application/vnd.5gtango.vnfd"
     tags:  # (optional)
