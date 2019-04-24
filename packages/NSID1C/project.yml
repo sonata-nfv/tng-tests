@@ -3,6 +3,8 @@ version: '0.5'
 files:
 - path: nsd.yml
   type: application/vnd.5gtango.nsd
+  testing_tags:
+      - "eu.5gtango.testingtag.example"
   tags:
   - eu.5gtango
 - path: vnfd1.yml

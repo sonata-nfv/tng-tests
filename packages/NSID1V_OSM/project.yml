@@ -10,5 +10,7 @@ package:
 files:
   - path: "nsd.yaml"
     type: "application/vnd.etsi.osm.nsd"
+    testing_tags:
+      - "etsi.osm.testingtag.example"
   - path: "vnfd1.yaml"
     type: "application/vnd.etsi.osm.vnfd"
