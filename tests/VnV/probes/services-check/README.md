@@ -1,4 +1,4 @@
-# Telnet Probe
+# Service-Check Probe
 
 This probe executes sshpass commands against an IP checking the services availability. It generates a results.log file in /output that can be accessed via docker volume
 
