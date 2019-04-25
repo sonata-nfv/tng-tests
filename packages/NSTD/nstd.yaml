@@ -1,0 +1,72 @@
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/slice-descriptor/nst-schema.yml"
+
+
+# id: --> a UUID given by the catalogues
+name: "NST_Example"
+description: "This is the description of a NST."
+version: "3.0"
+author: "CTTC"
+vendor: "5GTango"
+
+SNSSAI_identifier:
+  slice-service-type: "eMBB"
+onboardingState: "ENABLED"
+operationalState: "ENABLED"
+usageState: "NOT_IN_USE"
+5qi_value: 3
+
+slice_ns_subnets:
+  - id: "Service_subnet_1"
+    #nsd-ref: ""                                      # Given when the NSTD is uploaded and the slice-mngr validate the existance of the NSD
+    nsd-name: "test-nsid1v"
+    nsd-version: "0.1"
+    nsd-vendor: "eu.5gtango"
+    sla-name: "None"
+    sla-ref: "None"
+    is-shared: False
+  - id: "Service_subnet_2"
+    #nsd-ref: ""                                      # Given when the NSTD is uploaded and the slice-mngr validate the existance of the NSD
+    nsd-name: "test-nsid1v"
+    nsd-version: "0.1"
+    nsd-vendor: "eu.5gtango"
+    sla-name: "None"
+    sla-ref: "None"
+    is-shared: True
+  - id: "Service_subnet_3"
+    #nsd-ref: ""                                      # Given when the NSTD is uploaded and the slice-mngr validate the existance of the NSD
+    nsd-name: "test-nsid1v"
+    nsd-version: "0.1"
+    nsd-vendor: "eu.5gtango"
+    sla-name: "None"
+    sla-ref: "None"
+    is-shared: False
+
+slice_vld:
+  - id: "mgmt"
+    name: "mgmt"
+    mgmt-network: True
+    type: "E-LAN"
+    nsd-connection-point-ref:
+      - subnet-ref: "Service_subnet_1"
+        nsd-cp-ref: "mgmt"
+      - subnet-ref: "Service_subnet_2"
+        nsd-cp-ref: "mgmt"
+      - subnet-ref: "Service_subnet_3"
+        nsd-cp-ref: "mgmt"
+  - id: "data-east"
+    name: "data-east"
+    type: "E-LAN"
+    nsd-connection-point-ref:
+      - subnet-ref: "Service_subnet_1"
+        nsd-cp-ref: "output"
+      - subnet-ref: "Service_subnet_2"
+        nsd-cp-ref: "input"
+  - id: "data_west"
+    name: "data_west"
+    type: "E-LAN"
+    nsd-connection-point-ref:
+      - subnet-ref: "Service_subnet_2"
+        nsd-cp-ref: "output"
+      - subnet-ref: "Service_subnet_3"
+        nsd-cp-ref: "input"
