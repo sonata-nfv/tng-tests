@@ -1,0 +1,3 @@
+[console_scripts]
+smbase = smbase.__main__:main
+

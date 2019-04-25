@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: sonmanobase
+Version: 0.9
+Summary: SONATA MANO framework base
+Home-page: https://github.com/sonata-nfv/son-mano-framework/tree/master/son-mano-base
+Author: Manuel Peuster
+Author-email: manuel.peuster@upb.de
+License: Apache 2.0
+Description: Plugin base classes, helpers, and utilities of the SONATA MANO framework.
+Keywords: NFV orchestrator
+Platform: UNKNOWN
