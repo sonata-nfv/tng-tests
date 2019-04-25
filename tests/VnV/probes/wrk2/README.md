@@ -1,4 +1,4 @@
-# Telnet Probe
+# Wrk2 Probe
 
 This probe executes the wrk2 bechmarking cli tool. It generates results.log and details.json files in /output that can be accessed via docker volume
 
