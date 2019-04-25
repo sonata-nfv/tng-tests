@@ -21,7 +21,7 @@ if not upl_package[0]:
 	print(upl_package[1])
 	exit(1)
 
-print("Package upload succeeded")
+print("Package upload succeeded: " + upl_package[1])
 
 # Obtain service uuid
 obt_serv_uuid = tnglib.map_package_on_service(upl_package[1])
@@ -32,7 +32,9 @@ if not obt_serv_uuid[0]:
 	print(obt_serv_uuid[1])
 	exit(1)
 
-print("Service uuid obtained")
+print("Service uuid obtained: " + obt_serv_uuid[1])
+
+time.sleep(2)
 
 # Instantiate the service
 req_inst = tnglib.service_instantiate(obt_serv_uuid[1])
