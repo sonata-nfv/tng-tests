@@ -8,6 +8,7 @@ description: "This is the description of a NST."
 version: "3.0"
 author: "CTTC"
 vendor: "5GTango"
+
 SNSSAI_identifier:
   slice-service-type: "eMBB"
 onboardingState: "ENABLED"
