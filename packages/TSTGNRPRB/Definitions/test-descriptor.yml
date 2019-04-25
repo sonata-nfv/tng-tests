@@ -1,0 +1,136 @@
+---
+author: "Santiago Rodriguez (Optare Solutions)"
+description: "Generic Probes Test"
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
+name: "test-generic-probes"
+vendor: "eu.5gtango.optare"
+version: '0.1'
+
+service_platforms:
+  - "OSM"
+test_category:
+  - "basic-tests"
+testing_tags:
+  - "generic-probes"
+
+phases:
+  - id: setup
+    steps:
+      - action: deploy
+        description: "Deploying a NS"
+        name: deployment
+      - action: configure
+        description: "Configuration"
+        name: configuration
+        probes:
+          - id: ping
+            description: "Ping probe"
+            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-ping:latest
+            name: ping
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(vnf-cms/endpoints/id:floating_ip/address)'
+          - id: telnet
+            description: "Telnet probe"
+            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-telnet:latest
+            name: telnet
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(vnf-cms/endpoints/id:floating_ip/address)'
+              - key: PORT
+                value: '$()'
+          - id: services-check
+            description: "Services check probe"
+            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-services-check:latest
+            name: services-check
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(vnf-cms/endpoints/id:floating_ip/address)'
+              - key: SERVICES
+                value: cron ssh
+              - key: USER
+                value:
+              - key: PASS
+                value:
+          - id: wrk2
+            description: "Wrk2 check probe"
+            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-wrk2:latest
+            name: services-check
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(vnf-cms/endpoints/id:floating_ip/address)'
+              - key: PROTOCOL
+                value: http
+              - key: PORT
+                value:
+              - key: URL_PATH
+                value:
+              - key: CONNECTIONS
+                value:
+              - key: DURATION
+                value:
+              - key: THREADS
+                value:
+              - key: TIMEOUT
+                value:
+              - key: RATE
+                value:
+  - id: exercise
+    steps:
+      - description: "Executing ping"
+        entrypoint: /app/entrypoint.sh
+        index: 1
+        instances: 1
+        name: ping
+        output:
+          - {results: results.log}
+      - description: "Executing telnet"
+        entrypoint: /app/entrypoint.sh
+        index: 2
+        instances: 1
+        name: telnet
+        output:
+          - {results: results.log}
+      - description: "Executing services check"
+        entrypoint: /app/entrypoint.sh
+        index: 3
+        instances: 1
+        name: services-check
+        output:
+          - {results: results.log}
+      - description: "Executing wrk2 check"
+        entrypoint: /app/entrypoint.sh
+        index: 4
+        instances: 1
+        name: wrk2
+        output:
+          - {results: results.log}
+  - id: verification
+    steps:
+      - step: ping
+        description: "Check ping results"
+        name: ping
+        conditions:
+          - condition: not present
+            file: results.log
+            find: 100% packet loss
+            name: ping-ok
+            verdict: pass
+      - step: telnet
+        description: "Check telnet results"
+        name: telnet
+        conditions:
+          - condition: present
+            file: results.log
+            find: Connected to
+            name: telnet-ok
+            verdict: pass
+      - step: services-check
+        description: "Check services-check results"
+        name: services-check
+        conditions:
+          - condition: not present
+            file: results.log
+            find: Inactive
+            name: services-check-ok
+            verdict: pass
