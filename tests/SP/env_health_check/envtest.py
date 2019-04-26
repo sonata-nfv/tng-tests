@@ -1,10 +1,41 @@
+#!/usr/bin/python3
 import tnglib
 import sys
 import time
 import os
+from datetime import datetime
+import requests
+import json
+import graylog 
+from graylog.rest import ApiException
+from pprint import pprint
+
+configuration = graylog.Configuration()
+configuration.username = "api"
+configuration.password = "apiapi"
+configuration.host = "logs.sonata-nfv.eu:12900"
+api_instance = graylog.SearchuniversalabsoluteApi()
+
+def get_logging(_from, to, query):
+    # query = "source:pre-int-sp-ath AND type:E" # Object | Query (Lucene syntax)
+    # _from = "2019-04-25 17:11:01.201" # Object | Timerange start. See description for date format
+    # to = "2019-04-25 17:26:01.201" # Object | Timerange end. See description for date format
+    try: 
+        # Message search with absolute timerange.
+        api_response = api_instance.search_absolute(query, _from, to)
+        reply = api_response.to_dict()
+    except ApiException as e:
+        print(e)
+
+    for message in reply["messages"]:
+        pprint(message["message"]["container_name"] + ": " + message["message"].get("message"))
+        print("\n")
+
+time_start = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 # Set the environment
 tnglib.set_sp_path(os.environ["SP_PATH"])
+sp_path = os.environ["SP_PATH"].split(".")[0].replace("http://","")
 
 # obtain package path/name
 pkg_loc = sys.argv[1]
@@ -30,6 +61,8 @@ obt_serv_uuid = tnglib.map_package_on_service(upl_package[1])
 if not obt_serv_uuid[0]:
 	print("Couldn't obtain service uuid")
 	print(obt_serv_uuid[1])
+	time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+	get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 	exit(1)
 
 print("Service uuid obtained: " + obt_serv_uuid[1])
@@ -43,6 +76,8 @@ req_inst = tnglib.service_instantiate(obt_serv_uuid[1])
 if not req_inst[0]:
 	print("Couldn't obtain service uuid")
 	print(req_inst[1])
+	time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+	get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 	exit(1)
 
 print("Instantiation request made")
@@ -60,10 +95,16 @@ while counter < 60:
 
 	if request[1]['status'] == 'ERROR':
 		print("instantiation finished in error mode")
+		time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+		get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 		exit(1)
+	
+	counter += 1
 
 if counter == 60:
 	print("instantiation took longer than 10 minutes, aborting")
+	time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+	get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 	exit(1)
 
 service_instance_uuid = request[1]['instance_uuid']
@@ -86,10 +127,16 @@ while counter < 12:
 
 	if request[1]['status'] == 'ERROR':
 		print("termination finished in error mode")
+		time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+		get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))   
 		exit(1)
+	
+	counter += 1
 
-if counter == 10:
+if counter == 12:
 	print("termination took longer than 2 minutes, aborting")
+	time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+	get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 	exit(1)
 
 # clean all packages
