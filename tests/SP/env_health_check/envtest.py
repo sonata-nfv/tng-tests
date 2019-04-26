@@ -56,7 +56,6 @@ print("Package upload succeeded: " + upl_package[1])
 
 # Obtain service uuid
 obt_serv_uuid = tnglib.map_package_on_service(upl_package[1])
-exit(0)
 
 # Evaluate obtaining serv_uuid
 if not obt_serv_uuid[0]:
