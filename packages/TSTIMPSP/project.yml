@@ -10,6 +10,8 @@ package:
 files:
   - path: "Definitions/test-descriptor.yml"
     type: "application/vnd.5gtango.tstd"
+    testing_tags:
+      - "etsi.osm.testingtag.example"
   - path: "Icons/upb_logo.png"
     type: "image/png"
   - path: "Licenses/LICENSE"

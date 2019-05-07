@@ -10,6 +10,10 @@ package:
 files:
   - path: "Definitions/test-descriptor.yml"
     type: "application/vnd.5gtango.tstd"
+    testing_tags:
+      - "http"
+      - "rtmp-media-service"
+
   - path: "Icons/optare_solutions.png"
     type: "image/png"
   - path: "Licenses/LICENSE"
