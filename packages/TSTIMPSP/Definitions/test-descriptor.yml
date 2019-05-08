@@ -8,9 +8,9 @@ version: '0.1'
 
 service_platforms: 
   - "SONATA"
-test_category: 
+testing_category: 
   - "benchmarking"
-test_tags: 
+testing_tags: 
   - "rtmp-media-service"
 
 phases:
