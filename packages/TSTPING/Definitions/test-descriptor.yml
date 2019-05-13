@@ -1,0 +1,50 @@
+---
+author: "Santiago Rodriguez (Optare Solutions)"
+description: "Generic Probes Test"
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
+name: "test-generic-probes"
+vendor: "eu.5gtango.optare"
+version: '0.1'
+
+service_platforms:
+  - "OSM"
+test_category:
+  - "basic-tests"
+
+phases:
+  - id: setup
+    steps:
+      - action: deploy
+        description: "Deploying a NS"
+        name: deployment
+      - action: configure
+        description: "Configuration"
+        name: configuration
+        probes:
+          - id: ping
+            description: "Ping probe"
+            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-ping:latest
+            name: ping
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(functions/endpoints/address)'
+  - id: exercise
+    steps:
+      - description: "Executing ping"
+        entrypoint: /app/entrypoint.sh
+        index: 1
+        instances: 1
+        name: ping
+        output:
+          - {results: results.log}
+  - id: verification
+    steps:
+      - step: ping
+        description: "Check ping results"
+        name: ping
+        conditions:
+          - condition: not present
+            file: results.log
+            find: 100% packet loss
+            name: ping-ok
+            verdict: pass
