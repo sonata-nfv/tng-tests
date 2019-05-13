@@ -24,7 +24,7 @@ nsd:nsd-catalog:
             type: ELAN
             mgmt-network: 'true'
             vnfd-connection-point-ref:
-            -   vnfd-id-ref: hackfest_basic-vnf
+            -   vnfd-id-ref: cirros_vnfd
                 member-vnf-index-ref: '1'
                 vnfd-connection-point-ref: vnf-cp0
             vim-network-name: provider
