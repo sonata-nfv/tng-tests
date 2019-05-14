@@ -27,7 +27,7 @@ phases:
             name: ping
             parameters:
               - key: EXTERNAL_IP
-                value: '$(cirros_vnfd/endpoints/address)'
+                value: '$(cirros_vnfd/endpoints/name:mgmtnet/address)'
   - id: exercise
     steps:
       - description: "Executing ping"
