@@ -23,7 +23,7 @@ phases:
         probes:
           - id: ping
             description: "Ping probe"
-            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-ping:latest
+            image: sonatanfv/tng-vnv-probe-ping:latest
             name: ping
             parameters:
               - key: EXTERNAL_IP
