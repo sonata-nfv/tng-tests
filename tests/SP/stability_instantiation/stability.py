@@ -140,6 +140,7 @@ configuration.username = "api"
 configuration.password = "apiapi"
 configuration.host = "logs.sonata-nfv.eu:12900"
 tnglib.set_sp_path(os.environ["SP_PATH"])
+tnglib.set_timeout(60)
 
 # Prering the timers
 test_start = current_time = int(time.time())
