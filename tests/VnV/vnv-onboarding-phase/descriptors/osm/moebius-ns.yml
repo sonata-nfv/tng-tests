@@ -1,0 +1,40 @@
+nsd:nsd-catalog:
+  nsd:
+  - id: "mobius_onem2m_ns"
+    name: "NS for OneM2M implementation based on Mobius"
+    short-name: "mobius_onem2m_ns"
+    description: "NS for OneM2M implementation based on Mobius"
+    vendor: "Easy Global Market"
+    logo: "mobius-icon.png"
+    version: "1.0"
+    constituent-vnfd:
+    - member-vnf-index: 1
+      vnfd-id-ref: "mobius_vnf"
+      start-by-default: "true"
+    vld:
+    - id: "mgmt_vl"
+      name: "mgmt_vl"
+      short-name: "mgmt_vl"
+      vendor: "Easy Global Market"
+      description: "Management Network"
+      version: "1.0"
+      type: "ELAN"
+      mgmt-network: "true"
+      vim-network-name: "provider"
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: "mobius_vnf"
+        vnfd-connection-point-ref: "mobius_vnfd/cp0"
+    - id: "data_vl"
+      name: "data_vl"
+      short-name: "data_vl"
+      vendor: "Easy Global Market"
+      description: "Data Network"
+      version: "1.0"
+      type: "ELAN"
+      vim-network-name: "provider2"
+      mgmt-network: "false"
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: "mobius_vnf"
+        vnfd-connection-point-ref: "mobius_vnfd/cp1"

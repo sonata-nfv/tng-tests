@@ -1,0 +1,16 @@
+*** Variables ***
+
+${SP}=    http://qual-sp-bcn.5gtango.eu
+${VNV}=    http://pre-int-vnv-bcn.5gtango.eu
+
+${PLANNER_ENDPOINT}=    http://pre-int-vnv-bcn.5gtango.eu:6100/api/v1
+
+${GK_ENDPOINT}=     http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3
+
+${OSM}=    https://10.30.0.170  
+${OSM_USER}=    admin 
+${OSM_PASSWORD}=    admin
+${OSM_PROJECT_ID}=    admin
+
+${ACCEPT}         application/json
+${CONTENT_TYPE}          application/x-www-form-urlencoded

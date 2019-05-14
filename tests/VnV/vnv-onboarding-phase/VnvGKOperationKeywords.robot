@@ -1,0 +1,57 @@
+*** Settings ***
+Library    utility.py
+Resource    environment/variables.txt
+Library    REST    
+Library    JsonValidator
+Library    OperatingSystem
+Library    Collections
+Library         tnglib     
+#Suite Teardown    Terminate All Processes    kill=true
+
+Library    Process
+
+*** Keywords ***
+Do Get Existing Packages
+    log    Trying to get existing packages on SONATA
+    Set Headers    {"Accept":"${ACCEPT}"}  
+    Get  ${GK_ENDPOINT}/packages
+    ${outputResponse}=    Output    response 
+    Set Global Variable    @{response}    ${outputResponse}
+
+Check HTTP Response Status Code Is
+    [Arguments]    ${expected_status}
+    Log    Validate Status code    
+    Should Be Equal as strings   ${response[0]['status']}    ${expected_status}
+    Log    Status code validated
+
+Response Should Be X Than  
+    [Arguments]   ${x}  ${num1}          
+    Log    Validate resp length
+    Should Be X Than   ${response[0]['body']}    ${x}   ${num1} 
+
+Do Upload A Package To Sonata
+    [Arguments]    ${packageName}
+    log    Uploading a package to SONATA
+    ${resp}=  Upload File       ${packageName}     ${GK_ENDPOINT}/packages 
+    log to console       \nOriginal JSON:\n${resp}
+
+Check Correspondance Between Test And Service
+    log     Find correspondance between test and services uploaded in SONATA
+    ${outputResponseTests}=     Get     ${GK_ENDPOINT}/tests/descriptors/ 
+    #log to console       \nOriginal JSON:\n${outputResponseTests['body']}
+    
+    ${outputResponseServices}=     Get     ${GK_ENDPOINT}/services/ 
+    #log to console       \nOriginal JSON:\n${outputResponseServices['body']}
+    Has Match      ${outputResponseTests['body']}      ${outputResponseServices['body']}
+Delete All Packages From Sonata
+    Do Get Existing Packages
+    log to console     Delete all packages
+    Remove all Packages
+    Do Get Existing Packages
+    Response Should Be X Than    =   0
+Delete Package From Sonata
+    [Arguments]    ${uuid}
+    log     delete package from SONATA
+    ${resp}=    Delete  ${GK_ENDPOINT}/packages/${uuid}
+    log to console       \nOriginal JSON:\n${resp}
+

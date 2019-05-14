@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.1 (Python 3.7.3 on win32)" generated="20190514 18:58:57.538" rpa="false">
+<suite id="s1" name="Onboard To Osm" source="C:\Users\asinatra\Desktop\ECLIPSE_WORKSPACE\tng-vnv-e2e\vnv-onboarding-phase\onboard_to_osm.robot">
+<test id="s1-t1" name="testcase1">
+<kw name="Get Token" library="VnvOsmOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Uploading a package to OSM</arg>
+</arguments>
+<msg timestamp="20190514 18:58:58.010" level="INFO">Uploading a package to OSM</msg>
+<status status="PASS" starttime="20190514 18:58:58.010" endtime="20190514 18:58:58.010"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Content-Type": "application/json"}</arg>
+</arguments>
+<status status="PASS" starttime="20190514 18:58:58.010" endtime="20190514 18:58:58.011"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>username=${OSM_USER} password=${OSM_PASSWORD} project_id=${OSM_PROJECT_ID}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20190514 18:58:58.012" level="INFO">${data} = {'username': 'admin password=admin project_id=admin'}</msg>
+<status status="PASS" starttime="20190514 18:58:58.011" endtime="20190514 18:58:58.013"></status>
+</kw>
+<kw name="Dumps" library="json">
+<doc>Serialize ``obj`` to a JSON formatted ``str``.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<assign>
+<var>${string_json}</var>
+</assign>
+<msg timestamp="20190514 18:58:58.013" level="INFO">${string_json} = {"username": "admin password=admin project_id=admin"}</msg>
+<status status="PASS" starttime="20190514 18:58:58.013" endtime="20190514 18:58:58.013"></status>
+</kw>
+<kw name="Post" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a POST request to the endpoint.*</doc>
+<arguments>
+<arg>${OSM}:9999/osm/admin/v1/tokens</arg>
+<arg>data={string_json}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190514 18:58:58.305" level="FAIL">ConnectionError: ('Connection aborted.', ConnectionResetError(10054, 'Une connexion existante a dû être fermée par l’hôte distant', None, 10054, None))</msg>
+<status status="FAIL" starttime="20190514 18:58:58.014" endtime="20190514 18:58:58.305"></status>
+</kw>
+<status status="FAIL" starttime="20190514 18:58:58.009" endtime="20190514 18:58:58.306"></status>
+</kw>
+<status status="FAIL" starttime="20190514 18:58:58.008" endtime="20190514 18:58:58.306" critical="yes">ConnectionError: ('Connection aborted.', ConnectionResetError(10054, 'Une connexion existante a dû être fermée par l’hôte distant', None, 10054, None))</status>
+</test>
+<status status="FAIL" starttime="20190514 18:58:57.539" endtime="20190514 18:58:58.306"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Onboard To Osm">Onboard To Osm</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
