@@ -14,3 +14,5 @@ tng-pkg -p NSID2C --skip-validation
 tng-pkg -p NSID1V_OSM --skip-validation
 tng-pkg -p NSIMPSP --skip-validation
 tng-pkg -p TSTIMPSP --skip-validation
+tng-pkg -p NSID1V_cirros_OSM --skip-validation
+tng-pkg -p TSTPING --skip-validation
