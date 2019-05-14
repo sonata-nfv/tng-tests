@@ -34,6 +34,7 @@ def get_logging(_from, to, query):
 time_start = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 # Set the environment
+tnglib.set_timeout(60)
 tnglib.set_sp_path(os.environ["SP_PATH"])
 sp_path = os.environ["SP_PATH"].split(".")[0].replace("http://","")
 
