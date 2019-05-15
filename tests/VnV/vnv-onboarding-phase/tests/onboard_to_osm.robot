@@ -6,8 +6,7 @@ Library    OperatingSystem
 *** Test Cases ***
 testcase1 
     Get Token 
-    Do Upload A Ns To Osm      packages/eu.5gtango.media-performance-test.0.1.tgo
-    Do Upload A VNF To Osm        packages/eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo
-    #Check Test Plan Created
-    
+    Do Upload A Ns To Osm      descriptors/moebius-ns.yml
+    Do Upload A VNF To Osm        descriptors/moebius.yml
+        
        

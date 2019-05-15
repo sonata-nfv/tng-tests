@@ -10,10 +10,12 @@ COPY tests $INSTALL_PATH/tests
 
 ENV LANG C.UTF-8
 RUN apt-get update \
-  && apt-get install -y python3-pip python3-dev \
+  && apt-get install -y python3-pip python3-dev libcurl4-gnutls-dev librtmp-dev git \
+  
   && cd /usr/local/bin \
   && ln -s /usr/bin/python3 python \
-  && pip3 install --upgrade pip \
-  && pip3 install -r requirements.txt 
+  && pip3 install --upgrade pip
+RUN pip3 install pycurl    
+RUN pip3 install -r requirements.txt 
 
 CMD ["robot","/docker-robot/tests/onboard_to_sonata.robot"]   

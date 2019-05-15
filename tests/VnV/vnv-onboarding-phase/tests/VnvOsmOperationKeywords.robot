@@ -23,15 +23,17 @@ Do Get Existing Packages
 Do Upload A Ns To Osm
     [Arguments]    ${packageName}
     log    Uploading a package to OSM
-    Set Headers    {"Content-Type": "application/yaml", "Authorization": ${token} }  
-    ${resp}=  Post    ${OSM}:9999/osm/vnfpkgm/v1/ns_descriptors_content 
+    Set Headers    {"Content-Type": "application/yaml", "Authorization": ${token} } 
+    ${ns}= | Get file |     ${packageName}
+    ${resp}=  Post    ${OSM}:9999/osm/vnfpkgm/v1/ns_descriptors_content   data={ns}
     log to console       \nOriginal JSON:\n${resp}
 
 Do Upload A VNF To Osm
     [Arguments]    ${packageName}
     log    Uploading a package to OSM
-    Set Headers    {"Content-Type": "application/yaml", "Authorization": ${token} } 
-    ${resp}=  Post     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content  
+    Set Headers    {"Content-Type": "application/yaml", "Authorization": ${token} }
+    ${vnf}= | Get file |     ${packageName}
+    ${resp}=  Post     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content  data={vnf}
     log to console       \nOriginal JSON:\n${resp}
     
 Get Token
