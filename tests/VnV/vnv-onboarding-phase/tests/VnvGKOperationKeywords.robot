@@ -46,6 +46,7 @@ Check Correspondance Between Test And Service
 Delete All Packages From Sonata
     Do Get Existing Packages
     log to console     Delete all packages
+    Set SP Path     ${SP}
     Remove all Packages
     Do Get Existing Packages
     Response Should Be X Than    =   0
