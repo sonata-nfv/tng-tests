@@ -9,9 +9,11 @@ COPY requirements.txt requirements.txt
 COPY tests $INSTALL_PATH/tests
 
 ENV LANG C.UTF-8
-RUN apt-get update && apt-get install -y python python-dev python3.5 python3.5-dev python-pip virtualenv libssl-dev libpq-dev git build-essential libfontconfig1 libfontconfig1-dev
-RUN pip install setuptools pip --upgrade --force-reinstall
-RUN virtualenv /venv/testenv/ -p which python3.5
-RUN pip3 install -r requirements.txt 
+RUN apt-get update \
+  && apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && pip3 install --upgrade pip \
+  && pip3 install -r requirements.txt 
 
 CMD ["robot","/docker-robot/tests/onboard_to_sonata.robot"]   
