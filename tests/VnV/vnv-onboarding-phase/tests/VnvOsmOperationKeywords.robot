@@ -14,8 +14,8 @@ Library    Process
 *** Keywords ***
 Do Get Existing Packages
     log    Trying to get existing packages on OSM
-    Set Headers    {"Accept":"${ACCEPT}"}  
-    Get  ${GK_ENDPOINT}/packages
+    Set Headers    {"Content-Type": "application/yaml", "Authorization": ${token} } 
+    Get  ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages
     ${outputResponse}=    Output    response 
     Set Global Variable    @{response}    ${outputResponse}
 

@@ -8,5 +8,6 @@ testcase1
     Get Token 
     Do Upload A Ns To Osm      descriptors/moebius-ns.yml
     Do Upload A VNF To Osm        descriptors/moebius.yml
+    Do Get Existing Packages
         
        

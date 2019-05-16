@@ -7,7 +7,7 @@ build-nc: ## Build the image without caching
 		docker image build --no-cache -t docker-robot .
 
 run: ## Run container
-		docker container run -i -t --rm --net=host --name docker-robot-container --mount type=bind,src=$(shell pwd)/tests,dst=/docker-robot/tests docker-robot
+		docker container run --rm --net=host --name docker-robot-container --mount type=bind,src=/$(shell pwd)/tests,dst=//docker-robot/tests docker-robot
 
 
 up: build run
