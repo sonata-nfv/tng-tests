@@ -8,5 +8,16 @@ docker exec -i docker-robot-container sh -c "robot /docker-robot/tests/onboard_t
 
 docker exec -i docker-robot-container sh -c "robot /docker-robot/tests/onboard_to_osm.robot"
 
+# Logs
 
+docker exec -i docker-robot-container sh -c "robot /docker-robot/tests/onboard_to_sonata.robot"
+
+docker exec -i docker-robot-container sh -c "robot /docker-robot/tests/onboard_to_osm.robot"
+
+
+
+```
+docker cp docker-robot-container:/docker-robot/report.html /host/path/target
+docker cp docker-robot-container:/docker-robot/log.html /host/path/target
+```
 
