@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.1 (Python 3.7.2 on linux)" generated="20190516 10:47:51.552" rpa="false">
+<suite id="s1" name="Onboard To Sonata" source="/docker-robot/tests/onboard_to_sonata.robot">
+<test id="s1-t1" name="testcase1">
+<kw name="Delete All Packages From Sonata" library="VnvGKOperationKeywords">
+<kw name="Do Get Existing Packages" library="VnvGKOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Trying to get existing packages on SONATA</arg>
+</arguments>
+<msg timestamp="20190516 10:47:51.899" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190516 10:47:51.899" endtime="20190516 10:47:51.899"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Accept":"${ACCEPT}"}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:51.899" endtime="20190516 10:47:51.900"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${GK_ENDPOINT}/packages</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:51.900" endtime="20190516 10:47:52.471"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response</arg>
+</arguments>
+<assign>
+<var>${outputResponse}</var>
+</assign>
+<msg timestamp="20190516 10:47:52.472" level="INFO">
+{
+    "seconds": 0.5289640000000001,
+    "status": 200,
+    "body": [
+        {
+            "created_at": "2019-05-15T17:01:51.698+00:00",
+            "md5": "b3c37f6cac8fcec4d901ef1956aec4e8",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "generic-probes-test-pingonly",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Santiago Rodríguez, OPTARE",
+                "release_date_time": "2019-05-15T17:11:13Z",
+                "package_content": [
+                    {
+                        "source": "Icons/optare_solutions.png",
+                        "algorithm": "SHA-256",
+                        "hash": "07684fa368a29247683a78936cf004e7c01e5ce806f4fbdcdc96827d7568dee5",
+                        "content-type": "image/png",
+                        "testing_tags": [],
+                        "tags": [],
+                        "uuid": "5be8cc59-1979-4b7e-9f1a-d29673b11188",
+                        "id": "Icons/optare_solutions.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "testing_tags": [],
+                        "tags": [],
+                        "uuid": "5e81a5a3-7997-4263-b533-0b643ff4281c",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "testing_tags": [
+                            "etsi.osm.testingtag.example",
+                            "eu.5gtango.testingtag.example"
+                        ],
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "tags": [],
+                        "algorithm": "SHA-256",
+                        "hash": "397803ca6c4e0e4f44449a221a3924a82244bda9df1b935b15cb6966358194de",
+                        "uuid": "88f6c1c4-c614-4f4d-87e6-72ef0192956f",
+                        "id": {
+                            "vendor": "eu.5gtango.optare",
+                            "name": "test-generic-probes",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for test probes",
+                "package_file_uuid": "38d3669e-f0e3-440f-b1df-9f08168060bb",
+                "package_file_name": "eu.5gtango.generic-probes-test-pingonly.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T17:01:51.698+00:00",
+            "username": "",
+            "uuid": "0d274a40-191a-4f6f-b6ef-2a6960c24bc2"
+        },
+        {
+            "created_at": "2019-05-15T17:56:05.038+00:00",
+            "md5": "c3bcc1406ef42ebb28dc7808281d0522",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "test-ns-nsid1v",
+                "version": "0.2",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "5GTANGO Test Team",
+                "release_date_time": "2019-05-15T19:25:16Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/nsd.yaml",
+                        "algorithm": "SHA-256",
+                        "hash": "e1f39eea8b47ef70b7c9a27b6821e1806b60b01bc56cd8e396c6081797acf1e4",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "testing_tags": [
+                            "eu.5gtango.testingtag.example"
+                        ],
+                        "tags": [
+                            "eu.5gtango"
+                        ],
+                        "uuid": "57cebe79-96aa-4f41-af80-93050bfddd9f",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "test-nsid1v",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/vnfd1.yaml",
+                        "algorithm": "SHA-256",
+                        "hash": "e11b65719cf7e0134441de37a76a00690c6a09f77a96957537ec68b22b23157e",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "testing_tags": [],
+                        "tags": [
+                            "eu.5gtango"
+                        ],
+                        "uuid": "0b3caec6-5d15-4020-9f6c-e9132e2b4f6a",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "cirros_vnf",
+                            "version": "0.2"
+                        }
+                    }
+                ],
+                "description": "This is a integration test artifact.",
+                "package_file_uuid": "b3ce3593-2b89-40e4-ac4d-42501be8730f",
+                "package_file_name": "eu.5gtango.test-ns-nsid1v.0.2.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T17:56:05.038+00:00",
+            "username": "",
+            "uuid": "0e802097-29de-4628-ac5b-2f55e9d781e8"
+        }
+    ],
+    "headers": {
+        "content-type": "application/json",
+        "x-content-type-options": "nosniff",
+        "connection": "close",
+        "X-Timing": "0.065764693",
+        "Content-Length": "3178"
+    }
+}</msg>
+<msg timestamp="20190516 10:47:52.507" level="INFO">${outputResponse} = {'seconds': 0.5289640000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
+<status status="PASS" starttime="20190516 10:47:52.472" endtime="20190516 10:47:52.507"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>@{response}</arg>
+<arg>${outputResponse}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:52.510" level="INFO">@{response} = [ {'seconds': 0.5289640000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
+<status status="PASS" starttime="20190516 10:47:52.507" endtime="20190516 10:47:52.510"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:51.898" endtime="20190516 10:47:52.510"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Delete all packages</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:52.510" endtime="20190516 10:47:52.511"></status>
+</kw>
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${SP}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:52.512" endtime="20190516 10:47:52.512"></status>
+</kw>
+<kw name="Remove All Packages" library="tnglib">
+<doc>Removes all packages from the catalogue.</doc>
+<status status="PASS" starttime="20190516 10:47:52.513" endtime="20190516 10:47:53.064"></status>
+</kw>
+<kw name="Do Get Existing Packages" library="VnvGKOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Trying to get existing packages on SONATA</arg>
+</arguments>
+<msg timestamp="20190516 10:47:53.067" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190516 10:47:53.066" endtime="20190516 10:47:53.067"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Accept":"${ACCEPT}"}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:53.068" endtime="20190516 10:47:53.069"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${GK_ENDPOINT}/packages</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:53.070" endtime="20190516 10:47:53.596"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response</arg>
+</arguments>
+<assign>
+<var>${outputResponse}</var>
+</assign>
+<msg timestamp="20190516 10:47:53.598" level="INFO">
+{
+    "seconds": 0.5197780000000001,
+    "status": 200,
+    "body": [
+        {
+            "created_at": "2019-05-15T17:01:51.698+00:00",
+            "md5": "b3c37f6cac8fcec4d901ef1956aec4e8",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "generic-probes-test-pingonly",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Santiago Rodríguez, OPTARE",
+                "release_date_time": "2019-05-15T17:11:13Z",
+                "package_content": [
+                    {
+                        "source": "Icons/optare_solutions.png",
+                        "algorithm": "SHA-256",
+                        "hash": "07684fa368a29247683a78936cf004e7c01e5ce806f4fbdcdc96827d7568dee5",
+                        "content-type": "image/png",
+                        "testing_tags": [],
+                        "tags": [],
+                        "uuid": "5be8cc59-1979-4b7e-9f1a-d29673b11188",
+                        "id": "Icons/optare_solutions.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "testing_tags": [],
+                        "tags": [],
+                        "uuid": "5e81a5a3-7997-4263-b533-0b643ff4281c",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "testing_tags": [
+                            "etsi.osm.testingtag.example",
+                            "eu.5gtango.testingtag.example"
+                        ],
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "tags": [],
+                        "algorithm": "SHA-256",
+                        "hash": "397803ca6c4e0e4f44449a221a3924a82244bda9df1b935b15cb6966358194de",
+                        "uuid": "88f6c1c4-c614-4f4d-87e6-72ef0192956f",
+                        "id": {
+                            "vendor": "eu.5gtango.optare",
+                            "name": "test-generic-probes",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for test probes",
+                "package_file_uuid": "38d3669e-f0e3-440f-b1df-9f08168060bb",
+                "package_file_name": "eu.5gtango.generic-probes-test-pingonly.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T17:01:51.698+00:00",
+            "username": "",
+            "uuid": "0d274a40-191a-4f6f-b6ef-2a6960c24bc2"
+        },
+        {
+            "created_at": "2019-05-15T17:56:05.038+00:00",
+            "md5": "c3bcc1406ef42ebb28dc7808281d0522",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "test-ns-nsid1v",
+                "version": "0.2",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "5GTANGO Test Team",
+                "release_date_time": "2019-05-15T19:25:16Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/nsd.yaml",
+                        "algorithm": "SHA-256",
+                        "hash": "e1f39eea8b47ef70b7c9a27b6821e1806b60b01bc56cd8e396c6081797acf1e4",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "testing_tags": [
+                            "eu.5gtango.testingtag.example"
+                        ],
+                        "tags": [
+                            "eu.5gtango"
+                        ],
+                        "uuid": "57cebe79-96aa-4f41-af80-93050bfddd9f",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "test-nsid1v",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/vnfd1.yaml",
+                        "algorithm": "SHA-256",
+                        "hash": "e11b65719cf7e0134441de37a76a00690c6a09f77a96957537ec68b22b23157e",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "testing_tags": [],
+                        "tags": [
+                            "eu.5gtango"
+                        ],
+                        "uuid": "0b3caec6-5d15-4020-9f6c-e9132e2b4f6a",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "cirros_vnf",
+                            "version": "0.2"
+                        }
+                    }
+                ],
+                "description": "This is a integration test artifact.",
+                "package_file_uuid": "b3ce3593-2b89-40e4-ac4d-42501be8730f",
+                "package_file_name": "eu.5gtango.test-ns-nsid1v.0.2.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T17:56:05.038+00:00",
+            "username": "",
+            "uuid": "0e802097-29de-4628-ac5b-2f55e9d781e8"
+        }
+    ],
+    "headers": {
+        "content-type": "application/json",
+        "x-content-type-options": "nosniff",
+        "connection": "close",
+        "X-Timing": "0.061279892",
+        "Content-Length": "3178"
+    }
+}</msg>
+<msg timestamp="20190516 10:47:53.627" level="INFO">${outputResponse} = {'seconds': 0.5197780000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
+<status status="PASS" starttime="20190516 10:47:53.596" endtime="20190516 10:47:53.627"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>@{response}</arg>
+<arg>${outputResponse}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:53.630" level="INFO">@{response} = [ {'seconds': 0.5197780000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
+<status status="PASS" starttime="20190516 10:47:53.628" endtime="20190516 10:47:53.630"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:53.065" endtime="20190516 10:47:53.630"></status>
+</kw>
+<kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
+<arguments>
+<arg>=</arg>
+<arg>0</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate resp length</arg>
+</arguments>
+<msg timestamp="20190516 10:47:53.632" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 10:47:53.632" endtime="20190516 10:47:53.632"></status>
+</kw>
+<kw name="Should Be X Than" library="utility">
+<arguments>
+<arg>${response[0]['body']}</arg>
+<arg>${x}</arg>
+<arg>${num1}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:53.634" level="INFO">responseBody length: 
+2</msg>
+<status status="PASS" starttime="20190516 10:47:53.633" endtime="20190516 10:47:53.634"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:53.631" endtime="20190516 10:47:53.634"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:51.898" endtime="20190516 10:47:53.634"></status>
+</kw>
+<kw name="Delete All Test Plans From Vnv" library="VnvPlannerOperationKeywords">
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${PLANNER_ENDPOINT}/test-plans</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190516 10:47:54.098" level="INFO">${resp} = {'seconds': 0.456938, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
+<status status="PASS" starttime="20190516 10:47:53.636" endtime="20190516 10:47:54.098"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>\nDelete test plan response:\n${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:54.098" endtime="20190516 10:47:54.101"></status>
+</kw>
+<kw name="${uuid} IN [ @{resp[0]['body']} ]" type="for">
+<msg timestamp="20190516 10:47:54.102" level="FAIL">Resolving variable '@{resp[0]['body']}' failed: KeyError: 0</msg>
+<status status="FAIL" starttime="20190516 10:47:54.102" endtime="20190516 10:47:54.102"></status>
+</kw>
+<status status="FAIL" starttime="20190516 10:47:53.635" endtime="20190516 10:47:54.103"></status>
+</kw>
+<status status="FAIL" starttime="20190516 10:47:51.897" endtime="20190516 10:47:54.104" critical="yes">Resolving variable '@{resp[0]['body']}' failed: KeyError: 0</status>
+</test>
+<test id="s1-t2" name="testcase2">
+<kw name="Do Upload A Package To Sonata" library="VnvGKOperationKeywords">
+<arguments>
+<arg>${EXECDIR}/packages/eu.5gtango.media-performance-test.0.1.tgo</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Uploading a package to SONATA</arg>
+</arguments>
+<msg timestamp="20190516 10:47:54.111" level="INFO">Uploading a package to SONATA</msg>
+<status status="PASS" starttime="20190516 10:47:54.111" endtime="20190516 10:47:54.112"></status>
+</kw>
+<kw name="Upload File" library="utility">
+<arguments>
+<arg>${packageName}</arg>
+<arg>${GK_ENDPOINT}/packages</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190516 10:47:54.853" level="INFO">b'{"package_process_uuid":"a54c27aa-d164-4cfb-aafd-d6a59801b306","status":"running","error_msg":null}'</msg>
+<msg timestamp="20190516 10:47:54.853" level="INFO">${resp} = {"package_process_uuid":"a54c27aa-d164-4cfb-aafd-d6a59801b306","status":"running","error_msg":null}</msg>
+<status status="PASS" starttime="20190516 10:47:54.112" endtime="20190516 10:47:54.854"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>\nOriginal JSON:\n${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:54.854" endtime="20190516 10:47:54.859"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:54.111" endtime="20190516 10:47:54.860"></status>
+</kw>
+<kw name="Do Upload A Package To Sonata" library="VnvGKOperationKeywords">
+<arguments>
+<arg>${EXECDIR}/packages/eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Uploading a package to SONATA</arg>
+</arguments>
+<msg timestamp="20190516 10:47:54.865" level="INFO">Uploading a package to SONATA</msg>
+<status status="PASS" starttime="20190516 10:47:54.864" endtime="20190516 10:47:54.866"></status>
+</kw>
+<kw name="Upload File" library="utility">
+<arguments>
+<arg>${packageName}</arg>
+<arg>${GK_ENDPOINT}/packages</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20190516 10:47:55.746" level="INFO">b'{"package_process_uuid":"dfa0e5d7-9d56-434d-925f-41ca892e25d8","status":"running","error_msg":null}'</msg>
+<msg timestamp="20190516 10:47:55.746" level="INFO">${resp} = {"package_process_uuid":"dfa0e5d7-9d56-434d-925f-41ca892e25d8","status":"running","error_msg":null}</msg>
+<status status="PASS" starttime="20190516 10:47:54.867" endtime="20190516 10:47:55.746"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>\nOriginal JSON:\n${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:55.747" endtime="20190516 10:47:55.752"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:54.862" endtime="20190516 10:47:55.753"></status>
+</kw>
+<kw name="Check Correspondance Between Test And Service" library="VnvGKOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Find correspondance between test and services uploaded in SONATA</arg>
+</arguments>
+<msg timestamp="20190516 10:47:55.758" level="INFO">Find correspondance between test and services uploaded in SONATA</msg>
+<status status="PASS" starttime="20190516 10:47:55.757" endtime="20190516 10:47:55.758"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${GK_ENDPOINT}/tests/descriptors/</arg>
+</arguments>
+<assign>
+<var>${outputResponseTests}</var>
+</assign>
+<msg timestamp="20190516 10:47:56.310" level="INFO">${outputResponseTests} = {'seconds': 0.5455460000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.583+00:00', 'md5': '501e40540ebca868e928093e2ae90109', 'pkg_ref': 1, 'signature': None, 'status': 'active', ...</msg>
+<status status="PASS" starttime="20190516 10:47:55.759" endtime="20190516 10:47:56.310"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${GK_ENDPOINT}/services/</arg>
+</arguments>
+<assign>
+<var>${outputResponseServices}</var>
+</assign>
+<msg timestamp="20190516 10:47:56.870" level="INFO">${outputResponseServices} = {'seconds': 0.553611, 'status': 200, 'body': [{'created_at': '2019-04-30T10:44:50.908+00:00', 'md5': 'c2e36027aa6dea9c77caa4275b17cccf', 'pkg_ref': 1, 'platform': 'osm', 'signature': None, 'status': '...</msg>
+<status status="PASS" starttime="20190516 10:47:56.310" endtime="20190516 10:47:56.870"></status>
+</kw>
+<kw name="Has Match" library="utility">
+<arguments>
+<arg>${outputResponseTests['body']}</arg>
+<arg>${outputResponseServices['body']}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:56.871" level="INFO">content: 
+matches: 
+[]</msg>
+<status status="PASS" starttime="20190516 10:47:56.870" endtime="20190516 10:47:56.871"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:55.756" endtime="20190516 10:47:56.871"></status>
+</kw>
+<kw name="Do Get Existing Plans" library="VnvPlannerOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Trying to get existing plans from VNV</arg>
+</arguments>
+<msg timestamp="20190516 10:47:56.873" level="INFO">Trying to get existing plans from VNV</msg>
+<status status="PASS" starttime="20190516 10:47:56.872" endtime="20190516 10:47:56.873"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Accept":"${ACCEPT}"}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:56.873" endtime="20190516 10:47:56.873"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${PLANNER_ENDPOINT}/test-plans</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:56.874" endtime="20190516 10:47:57.353"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response</arg>
+</arguments>
+<assign>
+<var>${outputResponse}</var>
+</assign>
+<msg timestamp="20190516 10:47:57.354" level="INFO">
+{
+    "seconds": 0.47660800000000003,
+    "status": 200,
+    "body": [
+        {
+            "created_at": "2019-05-15T17:56:05.168+0000",
+            "updated_at": "2019-05-15T17:57:55.643+0000",
+            "uuid": "1c222412-1108-4f5f-a552-f955cab591b4",
+            "test_set_uuid": "4ac7f084-ba2d-4f22-9897-b6839c6d09d8",
+            "service_uuid": "57cebe79-96aa-4f41-af80-93050bfddd9f",
+            "test_uuid": "88f6c1c4-c614-4f4d-87e6-72ef0192956f",
+            "test_status": "ERROR",
+            "confirm_required": false,
+            "description": null
+        }
+    ],
+    "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Date": "Thu, 16 May 2019 10:47:57 GMT"
+    }
+}</msg>
+<msg timestamp="20190516 10:47:57.364" level="INFO">${outputResponse} = {'seconds': 0.47660800000000003, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 't...</msg>
+<status status="PASS" starttime="20190516 10:47:57.353" endtime="20190516 10:47:57.364"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>\nOriginal JSON:\n${outputResponse}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:57.365" endtime="20190516 10:47:57.367"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:56.872" endtime="20190516 10:47:57.367"></status>
+</kw>
+<kw name="Check HTTP Response Status Code Is" library="VnvGKOperationKeywords">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate Status code</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.369" level="INFO">Validate Status code</msg>
+<status status="PASS" starttime="20190516 10:47:57.369" endtime="20190516 10:47:57.370"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response[0]['status']}</arg>
+<arg>${expected_status}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.372" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20190516 10:47:57.370" endtime="20190516 10:47:57.372"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Status code validated</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.373" level="INFO">Status code validated</msg>
+<status status="PASS" starttime="20190516 10:47:57.373" endtime="20190516 10:47:57.373"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.368" endtime="20190516 10:47:57.374"></status>
+</kw>
+<kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
+<arguments>
+<arg>&gt;</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate resp length</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.376" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 10:47:57.375" endtime="20190516 10:47:57.376"></status>
+</kw>
+<kw name="Should Be X Than" library="utility">
+<arguments>
+<arg>${response[0]['body']}</arg>
+<arg>${x}</arg>
+<arg>${num1}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.377" level="INFO">responseBody length: 
+2</msg>
+<status status="PASS" starttime="20190516 10:47:57.376" endtime="20190516 10:47:57.377"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.374" endtime="20190516 10:47:57.378"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:54.109" endtime="20190516 10:47:57.378" critical="yes"></status>
+</test>
+<test id="s1-t3" name="testcase3">
+<kw name="Do Get Existing Packages" library="VnvGKOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Trying to get existing packages on SONATA</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.383" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190516 10:47:57.382" endtime="20190516 10:47:57.383"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Accept":"${ACCEPT}"}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:57.384" endtime="20190516 10:47:57.384"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${GK_ENDPOINT}/packages</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:57.385" endtime="20190516 10:47:57.923"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response</arg>
+</arguments>
+<assign>
+<var>${outputResponse}</var>
+</assign>
+<msg timestamp="20190516 10:47:57.924" level="INFO">
+{
+    "seconds": 0.5350090000000001,
+    "status": 200,
+    "body": [
+        {
+            "created_at": "2019-05-15T17:01:51.698+00:00",
+            "md5": "b3c37f6cac8fcec4d901ef1956aec4e8",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "generic-probes-test-pingonly",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Santiago Rodríguez, OPTARE",
+                "release_date_time": "2019-05-15T17:11:13Z",
+                "package_content": [
+                    {
+                        "source": "Icons/optare_solutions.png",
+                        "algorithm": "SHA-256",
+                        "hash": "07684fa368a29247683a78936cf004e7c01e5ce806f4fbdcdc96827d7568dee5",
+                        "content-type": "image/png",
+                        "testing_tags": [],
+                        "tags": [],
+                        "uuid": "5be8cc59-1979-4b7e-9f1a-d29673b11188",
+                        "id": "Icons/optare_solutions.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "testing_tags": [],
+                        "tags": [],
+                        "uuid": "5e81a5a3-7997-4263-b533-0b643ff4281c",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "testing_tags": [
+                            "etsi.osm.testingtag.example",
+                            "eu.5gtango.testingtag.example"
+                        ],
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "tags": [],
+                        "algorithm": "SHA-256",
+                        "hash": "397803ca6c4e0e4f44449a221a3924a82244bda9df1b935b15cb6966358194de",
+                        "uuid": "88f6c1c4-c614-4f4d-87e6-72ef0192956f",
+                        "id": {
+                            "vendor": "eu.5gtango.optare",
+                            "name": "test-generic-probes",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for test probes",
+                "package_file_uuid": "38d3669e-f0e3-440f-b1df-9f08168060bb",
+                "package_file_name": "eu.5gtango.generic-probes-test-pingonly.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T17:01:51.698+00:00",
+            "username": "",
+            "uuid": "0d274a40-191a-4f6f-b6ef-2a6960c24bc2"
+        },
+        {
+            "created_at": "2019-05-15T17:56:05.038+00:00",
+            "md5": "c3bcc1406ef42ebb28dc7808281d0522",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "test-ns-nsid1v",
+                "version": "0.2",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "5GTANGO Test Team",
+                "release_date_time": "2019-05-15T19:25:16Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/nsd.yaml",
+                        "algorithm": "SHA-256",
+                        "hash": "e1f39eea8b47ef70b7c9a27b6821e1806b60b01bc56cd8e396c6081797acf1e4",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "testing_tags": [
+                            "eu.5gtango.testingtag.example"
+                        ],
+                        "tags": [
+                            "eu.5gtango"
+                        ],
+                        "uuid": "57cebe79-96aa-4f41-af80-93050bfddd9f",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "test-nsid1v",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/vnfd1.yaml",
+                        "algorithm": "SHA-256",
+                        "hash": "e11b65719cf7e0134441de37a76a00690c6a09f77a96957537ec68b22b23157e",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "testing_tags": [],
+                        "tags": [
+                            "eu.5gtango"
+                        ],
+                        "uuid": "0b3caec6-5d15-4020-9f6c-e9132e2b4f6a",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "cirros_vnf",
+                            "version": "0.2"
+                        }
+                    }
+                ],
+                "description": "This is a integration test artifact.",
+                "package_file_uuid": "b3ce3593-2b89-40e4-ac4d-42501be8730f",
+                "package_file_name": "eu.5gtango.test-ns-nsid1v.0.2.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T17:56:05.038+00:00",
+            "username": "",
+            "uuid": "0e802097-29de-4628-ac5b-2f55e9d781e8"
+        }
+    ],
+    "headers": {
+        "content-type": "application/json",
+        "x-content-type-options": "nosniff",
+        "connection": "close",
+        "X-Timing": "0.069575132",
+        "Content-Length": "3178"
+    }
+}</msg>
+<msg timestamp="20190516 10:47:57.946" level="INFO">${outputResponse} = {'seconds': 0.5350090000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
+<status status="PASS" starttime="20190516 10:47:57.923" endtime="20190516 10:47:57.946"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>@{response}</arg>
+<arg>${outputResponse}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.948" level="INFO">@{response} = [ {'seconds': 0.5350090000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
+<status status="PASS" starttime="20190516 10:47:57.946" endtime="20190516 10:47:57.948"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.381" endtime="20190516 10:47:57.948"></status>
+</kw>
+<kw name="Check HTTP Response Status Code Is" library="VnvGKOperationKeywords">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate Status code</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.951" level="INFO">Validate Status code</msg>
+<status status="PASS" starttime="20190516 10:47:57.950" endtime="20190516 10:47:57.951"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response[0]['status']}</arg>
+<arg>${expected_status}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.952" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20190516 10:47:57.951" endtime="20190516 10:47:57.952"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Status code validated</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.953" level="INFO">Status code validated</msg>
+<status status="PASS" starttime="20190516 10:47:57.953" endtime="20190516 10:47:57.953"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.949" endtime="20190516 10:47:57.954"></status>
+</kw>
+<kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
+<arguments>
+<arg>&gt;</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate resp length</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.957" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 10:47:57.956" endtime="20190516 10:47:57.957"></status>
+</kw>
+<kw name="Should Be X Than" library="utility">
+<arguments>
+<arg>${response[0]['body']}</arg>
+<arg>${x}</arg>
+<arg>${num1}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.958" level="INFO">responseBody length: 
+2</msg>
+<status status="PASS" starttime="20190516 10:47:57.957" endtime="20190516 10:47:57.958"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.955" endtime="20190516 10:47:57.958"></status>
+</kw>
+<kw name="Do Get Existing Plans" library="VnvPlannerOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Trying to get existing plans from VNV</arg>
+</arguments>
+<msg timestamp="20190516 10:47:57.961" level="INFO">Trying to get existing plans from VNV</msg>
+<status status="PASS" starttime="20190516 10:47:57.960" endtime="20190516 10:47:57.961"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Accept":"${ACCEPT}"}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:57.962" endtime="20190516 10:47:57.963"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${PLANNER_ENDPOINT}/test-plans</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:57.963" endtime="20190516 10:47:58.436"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response</arg>
+</arguments>
+<assign>
+<var>${outputResponse}</var>
+</assign>
+<msg timestamp="20190516 10:47:58.436" level="INFO">
+{
+    "seconds": 0.468342,
+    "status": 200,
+    "body": [
+        {
+            "created_at": "2019-05-15T17:56:05.168+0000",
+            "updated_at": "2019-05-15T17:57:55.643+0000",
+            "uuid": "1c222412-1108-4f5f-a552-f955cab591b4",
+            "test_set_uuid": "4ac7f084-ba2d-4f22-9897-b6839c6d09d8",
+            "service_uuid": "57cebe79-96aa-4f41-af80-93050bfddd9f",
+            "test_uuid": "88f6c1c4-c614-4f4d-87e6-72ef0192956f",
+            "test_status": "ERROR",
+            "confirm_required": false,
+            "description": null
+        }
+    ],
+    "headers": {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Transfer-Encoding": "chunked",
+        "Date": "Thu, 16 May 2019 10:47:58 GMT"
+    }
+}</msg>
+<msg timestamp="20190516 10:47:58.445" level="INFO">${outputResponse} = {'seconds': 0.468342, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
+<status status="PASS" starttime="20190516 10:47:58.436" endtime="20190516 10:47:58.445"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>\nOriginal JSON:\n${outputResponse}</arg>
+</arguments>
+<status status="PASS" starttime="20190516 10:47:58.445" endtime="20190516 10:47:58.447"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.959" endtime="20190516 10:47:58.448"></status>
+</kw>
+<kw name="Check HTTP Response Status Code Is" library="VnvGKOperationKeywords">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate Status code</arg>
+</arguments>
+<msg timestamp="20190516 10:47:58.450" level="INFO">Validate Status code</msg>
+<status status="PASS" starttime="20190516 10:47:58.450" endtime="20190516 10:47:58.451"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response[0]['status']}</arg>
+<arg>${expected_status}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:58.452" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20190516 10:47:58.451" endtime="20190516 10:47:58.452"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Status code validated</arg>
+</arguments>
+<msg timestamp="20190516 10:47:58.453" level="INFO">Status code validated</msg>
+<status status="PASS" starttime="20190516 10:47:58.452" endtime="20190516 10:47:58.453"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:58.449" endtime="20190516 10:47:58.453"></status>
+</kw>
+<kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
+<arguments>
+<arg>&gt;</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Validate resp length</arg>
+</arguments>
+<msg timestamp="20190516 10:47:58.456" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 10:47:58.456" endtime="20190516 10:47:58.457"></status>
+</kw>
+<kw name="Should Be X Than" library="utility">
+<arguments>
+<arg>${response[0]['body']}</arg>
+<arg>${x}</arg>
+<arg>${num1}</arg>
+</arguments>
+<msg timestamp="20190516 10:47:58.458" level="INFO">responseBody length: 
+2</msg>
+<status status="PASS" starttime="20190516 10:47:58.457" endtime="20190516 10:47:58.458"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:58.454" endtime="20190516 10:47:58.459"></status>
+</kw>
+<status status="PASS" starttime="20190516 10:47:57.380" endtime="20190516 10:47:58.460" critical="yes"></status>
+</test>
+<status status="FAIL" starttime="20190516 10:47:51.554" endtime="20190516 10:47:58.464"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="1">Critical Tests</stat>
+<stat pass="2" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="1" id="s1" name="Onboard To Sonata">Onboard To Sonata</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
