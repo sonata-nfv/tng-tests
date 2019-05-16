@@ -38,10 +38,7 @@ Do Upload A Package To Sonata
 Check Correspondance Between Test And Service
     log     Find correspondance between test and services uploaded in SONATA
     ${outputResponseTests}=     Get     ${GK_ENDPOINT}/tests/descriptors/ 
-    #log to console       \nOriginal JSON:\n${outputResponseTests['body']}
-    
     ${outputResponseServices}=     Get     ${GK_ENDPOINT}/services/ 
-    #log to console       \nOriginal JSON:\n${outputResponseServices['body']}
     Has Match      ${outputResponseTests['body']}      ${outputResponseServices['body']}
 Delete All Packages From Sonata
     Do Get Existing Packages

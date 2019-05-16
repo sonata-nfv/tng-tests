@@ -6,8 +6,9 @@ Library    OperatingSystem
 *** Test Cases ***
 testcase1 
     Get Token 
-    Do Upload A Ns To Osm      descriptors/moebius-ns.yml
-    Do Upload A VNF To Osm        descriptors/moebius.yml
+    Do Get Existing Packages
+    Do Upload A Ns To Osm      ${CURDIR}/descriptors/osm/moebius-ns.yml
+    Do Upload A VNF To Osm        ${CURDIR}/descriptors/osm/moebius.yml
     Do Get Existing Packages
         
        

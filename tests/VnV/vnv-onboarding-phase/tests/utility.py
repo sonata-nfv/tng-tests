@@ -4,6 +4,7 @@ import math
 import os
 import requests
 import json
+import yaml
 
 class utility():
     dictionary = None
@@ -34,7 +35,18 @@ class utility():
         response = requests.post(url=endpoint, data =  {'package':filename},  files =  {'package':f})
         print(response.content) 
         return response.content
-    
+    def upload_descriptor_to_osm(self, path, data, bearer):
+        headers={"Authorization": bearer}
+        response = requests.post(url=path, data = data, verify=False, headers=headers)
+        print('upload_descriptor_to_osm: ')
+        print(response.content) 
+        return response.content
+    def auth_to_osm(self, data, endpoint):
+        response = requests.post(url=endpoint, data =  data, verify = False )
+        print(yaml.load(response.content)) 
+        return yaml.load(response.content)
+    def yaml_to_json(self, y):
+        return yaml.load(y)
     def has_match(self, testResp, serviceResp):
         print('content: ')
         testResp = json.dumps(testResp)
