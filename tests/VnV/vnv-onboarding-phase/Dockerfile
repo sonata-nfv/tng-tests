@@ -6,7 +6,6 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
 COPY requirements.txt requirements.txt
-COPY tests $INSTALL_PATH/tests
 
 ENV LANG C.UTF-8
 RUN apt-get update \
@@ -18,4 +17,4 @@ RUN apt-get update \
 RUN pip3 install pycurl    
 RUN pip3 install -r requirements.txt 
 
-CMD ["robot","/docker-robot/tests/onboard_to_sonata.robot"]   
+CMD /bin/bash
