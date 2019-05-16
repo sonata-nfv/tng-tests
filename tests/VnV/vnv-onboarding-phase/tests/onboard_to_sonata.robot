@@ -15,11 +15,8 @@ testcase1
     Check HTTP Response Status Code Is    200
     Response Should Be X Than   =    0  
 testcase2   
-    #Do Get Existing Packages
-    #Check HTTP Response Status Code Is    200
-    #Response Should Be X Than   =     0    
-    Do Upload A Package To Sonata       ${EXECDIR}/packages/eu.5gtango.media-performance-test.0.1.tgo
-    Do Upload A Package To Sonata       ${EXECDIR}/packages/eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo
+    Do Upload A Package To Sonata       ${CURDIR}/packages/eu.5gtango.media-performance-test.0.1.tgo
+    Do Upload A Package To Sonata       ${CURDIR}/packages/eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo
     Check Correspondance Between Test And Service
     Do Get Existing Plans  
     Check HTTP Response Status Code Is    200

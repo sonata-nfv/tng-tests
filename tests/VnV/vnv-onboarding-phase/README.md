@@ -4,9 +4,9 @@ make build run
 
 # Execution
 
-docker exec -i docker-robot sh -c "robot /docker-robot/tests/onboard_to_sonata.robot"
+docker exec -i docker-robot-container sh -c "robot /docker-robot/tests/onboard_to_sonata.robot"
 
-docker exec -i docker-robot sh -c "robot /docker-robot/tests/onboard_to_osm.robot"
+docker exec -i docker-robot-container sh -c "robot /docker-robot/tests/onboard_to_osm.robot"
 
 
 

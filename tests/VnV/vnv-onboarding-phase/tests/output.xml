@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.1.1 (Python 3.7.2 on linux)" generated="20190516 10:47:51.552" rpa="false">
+<robot generator="Robot 3.1.1 (Python 3.7.2 on linux)" generated="20190516 12:42:36.354" rpa="false">
 <suite id="s1" name="Onboard To Sonata" source="/docker-robot/tests/onboard_to_sonata.robot">
 <test id="s1-t1" name="testcase1">
 <kw name="Delete All Packages From Sonata" library="VnvGKOperationKeywords">
@@ -9,8 +9,8 @@
 <arguments>
 <arg>Trying to get existing packages on SONATA</arg>
 </arguments>
-<msg timestamp="20190516 10:47:51.899" level="INFO">Trying to get existing packages on SONATA</msg>
-<status status="PASS" starttime="20190516 10:47:51.899" endtime="20190516 10:47:51.899"></status>
+<msg timestamp="20190516 12:42:36.711" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190516 12:42:36.711" endtime="20190516 12:42:36.711"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -20,7 +20,7 @@
 <arguments>
 <arg>{"Accept":"${ACCEPT}"}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:51.899" endtime="20190516 10:47:51.900"></status>
+<status status="PASS" starttime="20190516 12:42:36.711" endtime="20190516 12:42:36.712"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -30,7 +30,7 @@
 <arguments>
 <arg>${GK_ENDPOINT}/packages</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:51.900" endtime="20190516 10:47:52.471"></status>
+<status status="PASS" starttime="20190516 12:42:36.712" endtime="20190516 12:42:37.299"></status>
 </kw>
 <kw name="Output" library="REST">
 <tags>
@@ -43,9 +43,9 @@
 <assign>
 <var>${outputResponse}</var>
 </assign>
-<msg timestamp="20190516 10:47:52.472" level="INFO">
+<msg timestamp="20190516 12:42:37.300" level="INFO">
 {
-    "seconds": 0.5289640000000001,
+    "seconds": 0.541233,
     "status": 200,
     "body": [
         {
@@ -166,18 +166,167 @@
             "updated_at": "2019-05-15T17:56:05.038+00:00",
             "username": "",
             "uuid": "0e802097-29de-4628-ac5b-2f55e9d781e8"
+        },
+        {
+            "created_at": "2019-05-16T10:47:59.220+00:00",
+            "md5": "66e019fd9e01490d18dea103b1343c25",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "media-performance-test",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Felipe Vicens, ATOS",
+                "release_date_time": "2019-04-23T11:51:35Z",
+                "package_content": [
+                    {
+                        "source": "Icons/upb_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dd83757e632740f9f390af15eeb8bc25480a0c412c7ea9ac9abbb0e5e025e508",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "uuid": "8d77e1b4-6762-482b-9292-6c796bb4ac4c",
+                        "id": "Icons/upb_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "uuid": "5e81a5a3-7997-4263-b533-0b643ff4281c",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "algorithm": "SHA-256",
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "hash": "b58f99fe9b44e772e69429580e9086b935f2266fbdd14e9437d9a995d7894be6",
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "tags": [],
+                        "uuid": "8ba0fd58-e8d6-4310-ba59-8f13096756c2",
+                        "id": {
+                            "vendor": "eu.5gtango.atos",
+                            "name": "test-immersive-media",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for media perfomance Benchmarking",
+                "package_file_uuid": "60ab36c2-bfca-4d46-800d-7135ce260ab7",
+                "package_file_name": "eu.5gtango.media-performance-test.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-16T10:47:59.220+00:00",
+            "username": "",
+            "uuid": "5097c63b-d432-46bf-82e3-1997c3b7d236"
+        },
+        {
+            "created_at": "2019-05-16T10:47:59.749+00:00",
+            "md5": "bfa016535b8dd1b243f247ad282da194",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "ns-mediapilot-service-k8s",
+                "version": "0.3",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "Ignacio Dominguez",
+                "release_date_time": "2019-04-23T11:52:02Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/Definitions/mediapilot-ns.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b4b7c69658ae6411e66431e9fb071c10f660601cbfb6c5ad4b4fe5ba1080b6d8",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "tags": [],
+                        "uuid": "20e8b5f3-9555-472b-a5c7-487b98e56074",
+                        "id": {
+                            "vendor": "eu.sonata-nfv",
+                            "name": "mediapilot-service",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/ma-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "09b5297cf58d7156445a26c8fef183cca79868decc1cc6df57bcda7ea8d215a0",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "6f218180-f956-4cae-b62a-72389368354b",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-ma",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/mse-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "1f4a659c993ac3226c9efbc7b067130a9ae4f236199c232901ffc2bf5c783bb0",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "24a3d53d-69f0-440a-a166-7dd5fd19b49f",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-mse",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/cms-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b970bf968da5f61a6e4a99fcf881b1406614fc968b16a5ff0740478fea250301",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "f888771a-4920-4805-92b0-4f7452290a8b",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-cms",
+                            "version": "0.1"
+                        }
+                    },
+                    {
+                        "source": "Icons/atos_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dc88c2efe8f12acf4797444b9a1a17e50f37d4222bc4731502d453bfe5921398",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "uuid": "1f319621-3bb4-4908-817e-8f6119587313",
+                        "id": "Icons/atos_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "c92192539dbdbaf679785ac68f84096ec5694cb2326ecdcc0d03f5d50604a1ed",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "uuid": "e5835c84-1687-41f4-9755-46724c39f227",
+                        "id": "Licenses/LICENSE"
+                    }
+                ],
+                "description": "This is the 5GTANGO network service for the media pilot with k8s",
+                "package_file_uuid": "19efe037-28c5-4931-adbb-873d82ef7a4f",
+                "package_file_name": "eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-16T10:47:59.749+00:00",
+            "username": "",
+            "uuid": "2bb6cf27-ad41-438d-90c4-4e559721085e"
         }
     ],
     "headers": {
         "content-type": "application/json",
         "x-content-type-options": "nosniff",
         "connection": "close",
-        "X-Timing": "0.065764693",
-        "Content-Length": "3178"
+        "X-Timing": "0.063441022",
+        "Content-Length": "7313"
     }
 }</msg>
-<msg timestamp="20190516 10:47:52.507" level="INFO">${outputResponse} = {'seconds': 0.5289640000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
-<status status="PASS" starttime="20190516 10:47:52.472" endtime="20190516 10:47:52.507"></status>
+<msg timestamp="20190516 12:42:37.340" level="INFO">${outputResponse} = {'seconds': 0.541233, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https://raw.githu...</msg>
+<status status="PASS" starttime="20190516 12:42:37.299" endtime="20190516 12:42:37.340"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -185,28 +334,28 @@
 <arg>@{response}</arg>
 <arg>${outputResponse}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:52.510" level="INFO">@{response} = [ {'seconds': 0.5289640000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
-<status status="PASS" starttime="20190516 10:47:52.507" endtime="20190516 10:47:52.510"></status>
+<msg timestamp="20190516 12:42:37.343" level="INFO">@{response} = [ {'seconds': 0.541233, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https://raw.git...</msg>
+<status status="PASS" starttime="20190516 12:42:37.341" endtime="20190516 12:42:37.343"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:51.898" endtime="20190516 10:47:52.510"></status>
+<status status="PASS" starttime="20190516 12:42:36.710" endtime="20190516 12:42:37.343"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>Delete all packages</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:52.510" endtime="20190516 10:47:52.511"></status>
+<status status="PASS" starttime="20190516 12:42:37.344" endtime="20190516 12:42:37.346"></status>
 </kw>
 <kw name="Set Sp Path" library="tnglib">
 <doc>Set the path were the SP can be reached.</doc>
 <arguments>
 <arg>${SP}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:52.512" endtime="20190516 10:47:52.512"></status>
+<status status="PASS" starttime="20190516 12:42:37.346" endtime="20190516 12:42:37.347"></status>
 </kw>
 <kw name="Remove All Packages" library="tnglib">
 <doc>Removes all packages from the catalogue.</doc>
-<status status="PASS" starttime="20190516 10:47:52.513" endtime="20190516 10:47:53.064"></status>
+<status status="PASS" starttime="20190516 12:42:37.347" endtime="20190516 12:42:38.495"></status>
 </kw>
 <kw name="Do Get Existing Packages" library="VnvGKOperationKeywords">
 <kw name="Log" library="BuiltIn">
@@ -214,8 +363,8 @@
 <arguments>
 <arg>Trying to get existing packages on SONATA</arg>
 </arguments>
-<msg timestamp="20190516 10:47:53.067" level="INFO">Trying to get existing packages on SONATA</msg>
-<status status="PASS" starttime="20190516 10:47:53.066" endtime="20190516 10:47:53.067"></status>
+<msg timestamp="20190516 12:42:38.496" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190516 12:42:38.496" endtime="20190516 12:42:38.496"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -225,7 +374,7 @@
 <arguments>
 <arg>{"Accept":"${ACCEPT}"}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:53.068" endtime="20190516 10:47:53.069"></status>
+<status status="PASS" starttime="20190516 12:42:38.496" endtime="20190516 12:42:38.497"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -235,7 +384,7 @@
 <arguments>
 <arg>${GK_ENDPOINT}/packages</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:53.070" endtime="20190516 10:47:53.596"></status>
+<status status="PASS" starttime="20190516 12:42:38.497" endtime="20190516 12:42:39.041"></status>
 </kw>
 <kw name="Output" library="REST">
 <tags>
@@ -248,9 +397,9 @@
 <assign>
 <var>${outputResponse}</var>
 </assign>
-<msg timestamp="20190516 10:47:53.598" level="INFO">
+<msg timestamp="20190516 12:42:39.043" level="INFO">
 {
-    "seconds": 0.5197780000000001,
+    "seconds": 0.5377820000000001,
     "status": 200,
     "body": [
         {
@@ -371,18 +520,167 @@
             "updated_at": "2019-05-15T17:56:05.038+00:00",
             "username": "",
             "uuid": "0e802097-29de-4628-ac5b-2f55e9d781e8"
+        },
+        {
+            "created_at": "2019-05-16T10:47:59.220+00:00",
+            "md5": "66e019fd9e01490d18dea103b1343c25",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "media-performance-test",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Felipe Vicens, ATOS",
+                "release_date_time": "2019-04-23T11:51:35Z",
+                "package_content": [
+                    {
+                        "source": "Icons/upb_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dd83757e632740f9f390af15eeb8bc25480a0c412c7ea9ac9abbb0e5e025e508",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "uuid": "8d77e1b4-6762-482b-9292-6c796bb4ac4c",
+                        "id": "Icons/upb_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "uuid": "5e81a5a3-7997-4263-b533-0b643ff4281c",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "algorithm": "SHA-256",
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "hash": "b58f99fe9b44e772e69429580e9086b935f2266fbdd14e9437d9a995d7894be6",
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "tags": [],
+                        "uuid": "8ba0fd58-e8d6-4310-ba59-8f13096756c2",
+                        "id": {
+                            "vendor": "eu.5gtango.atos",
+                            "name": "test-immersive-media",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for media perfomance Benchmarking",
+                "package_file_uuid": "60ab36c2-bfca-4d46-800d-7135ce260ab7",
+                "package_file_name": "eu.5gtango.media-performance-test.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-16T10:47:59.220+00:00",
+            "username": "",
+            "uuid": "5097c63b-d432-46bf-82e3-1997c3b7d236"
+        },
+        {
+            "created_at": "2019-05-16T10:47:59.749+00:00",
+            "md5": "bfa016535b8dd1b243f247ad282da194",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "ns-mediapilot-service-k8s",
+                "version": "0.3",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "Ignacio Dominguez",
+                "release_date_time": "2019-04-23T11:52:02Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/Definitions/mediapilot-ns.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b4b7c69658ae6411e66431e9fb071c10f660601cbfb6c5ad4b4fe5ba1080b6d8",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "tags": [],
+                        "uuid": "20e8b5f3-9555-472b-a5c7-487b98e56074",
+                        "id": {
+                            "vendor": "eu.sonata-nfv",
+                            "name": "mediapilot-service",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/ma-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "09b5297cf58d7156445a26c8fef183cca79868decc1cc6df57bcda7ea8d215a0",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "6f218180-f956-4cae-b62a-72389368354b",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-ma",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/mse-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "1f4a659c993ac3226c9efbc7b067130a9ae4f236199c232901ffc2bf5c783bb0",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "24a3d53d-69f0-440a-a166-7dd5fd19b49f",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-mse",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/cms-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b970bf968da5f61a6e4a99fcf881b1406614fc968b16a5ff0740478fea250301",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "f888771a-4920-4805-92b0-4f7452290a8b",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-cms",
+                            "version": "0.1"
+                        }
+                    },
+                    {
+                        "source": "Icons/atos_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dc88c2efe8f12acf4797444b9a1a17e50f37d4222bc4731502d453bfe5921398",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "uuid": "1f319621-3bb4-4908-817e-8f6119587313",
+                        "id": "Icons/atos_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "c92192539dbdbaf679785ac68f84096ec5694cb2326ecdcc0d03f5d50604a1ed",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "uuid": "e5835c84-1687-41f4-9755-46724c39f227",
+                        "id": "Licenses/LICENSE"
+                    }
+                ],
+                "description": "This is the 5GTANGO network service for the media pilot with k8s",
+                "package_file_uuid": "19efe037-28c5-4931-adbb-873d82ef7a4f",
+                "package_file_name": "eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-16T10:47:59.749+00:00",
+            "username": "",
+            "uuid": "2bb6cf27-ad41-438d-90c4-4e559721085e"
         }
     ],
     "headers": {
         "content-type": "application/json",
         "x-content-type-options": "nosniff",
         "connection": "close",
-        "X-Timing": "0.061279892",
-        "Content-Length": "3178"
+        "X-Timing": "0.064439288",
+        "Content-Length": "7313"
     }
 }</msg>
-<msg timestamp="20190516 10:47:53.627" level="INFO">${outputResponse} = {'seconds': 0.5197780000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
-<status status="PASS" starttime="20190516 10:47:53.596" endtime="20190516 10:47:53.627"></status>
+<msg timestamp="20190516 12:42:39.090" level="INFO">${outputResponse} = {'seconds': 0.5377820000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
+<status status="PASS" starttime="20190516 12:42:39.041" endtime="20190516 12:42:39.090"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -390,10 +688,10 @@
 <arg>@{response}</arg>
 <arg>${outputResponse}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:53.630" level="INFO">@{response} = [ {'seconds': 0.5197780000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
-<status status="PASS" starttime="20190516 10:47:53.628" endtime="20190516 10:47:53.630"></status>
+<msg timestamp="20190516 12:42:39.092" level="INFO">@{response} = [ {'seconds': 0.5377820000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
+<status status="PASS" starttime="20190516 12:42:39.090" endtime="20190516 12:42:39.092"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:53.065" endtime="20190516 10:47:53.630"></status>
+<status status="PASS" starttime="20190516 12:42:38.495" endtime="20190516 12:42:39.092"></status>
 </kw>
 <kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
 <arguments>
@@ -405,8 +703,8 @@
 <arguments>
 <arg>Validate resp length</arg>
 </arguments>
-<msg timestamp="20190516 10:47:53.632" level="INFO">Validate resp length</msg>
-<status status="PASS" starttime="20190516 10:47:53.632" endtime="20190516 10:47:53.632"></status>
+<msg timestamp="20190516 12:42:39.096" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 12:42:39.095" endtime="20190516 12:42:39.096"></status>
 </kw>
 <kw name="Should Be X Than" library="utility">
 <arguments>
@@ -414,13 +712,13 @@
 <arg>${x}</arg>
 <arg>${num1}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:53.634" level="INFO">responseBody length: 
-2</msg>
-<status status="PASS" starttime="20190516 10:47:53.633" endtime="20190516 10:47:53.634"></status>
+<msg timestamp="20190516 12:42:39.097" level="INFO">responseBody length: 
+4</msg>
+<status status="PASS" starttime="20190516 12:42:39.096" endtime="20190516 12:42:39.097"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:53.631" endtime="20190516 10:47:53.634"></status>
+<status status="PASS" starttime="20190516 12:42:39.094" endtime="20190516 12:42:39.098"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:51.898" endtime="20190516 10:47:53.634"></status>
+<status status="PASS" starttime="20190516 12:42:36.709" endtime="20190516 12:42:39.098"></status>
 </kw>
 <kw name="Delete All Test Plans From Vnv" library="VnvPlannerOperationKeywords">
 <kw name="Get" library="REST">
@@ -434,23 +732,29 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20190516 10:47:54.098" level="INFO">${resp} = {'seconds': 0.456938, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
-<status status="PASS" starttime="20190516 10:47:53.636" endtime="20190516 10:47:54.098"></status>
+<msg timestamp="20190516 12:42:39.576" level="INFO">${resp} = {'seconds': 0.470576, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
+<status status="PASS" starttime="20190516 12:42:39.100" endtime="20190516 12:42:39.576"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>\nDelete test plan response:\n${resp}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:54.098" endtime="20190516 10:47:54.101"></status>
+<status status="PASS" starttime="20190516 12:42:39.578" endtime="20190516 12:42:39.583"></status>
 </kw>
-<kw name="${uuid} IN [ @{resp[0]['body']} ]" type="for">
-<msg timestamp="20190516 10:47:54.102" level="FAIL">Resolving variable '@{resp[0]['body']}' failed: KeyError: 0</msg>
-<status status="FAIL" starttime="20190516 10:47:54.102" endtime="20190516 10:47:54.102"></status>
+<kw name="Parse Json">
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20190516 12:42:39.595" level="FAIL">No keyword with name 'Parse Json' found.</msg>
+<status status="FAIL" starttime="20190516 12:42:39.595" endtime="20190516 12:42:39.595"></status>
 </kw>
-<status status="FAIL" starttime="20190516 10:47:53.635" endtime="20190516 10:47:54.103"></status>
+<status status="FAIL" starttime="20190516 12:42:39.099" endtime="20190516 12:42:39.596"></status>
 </kw>
-<status status="FAIL" starttime="20190516 10:47:51.897" endtime="20190516 10:47:54.104" critical="yes">Resolving variable '@{resp[0]['body']}' failed: KeyError: 0</status>
+<status status="FAIL" starttime="20190516 12:42:36.708" endtime="20190516 12:42:39.597" critical="yes">No keyword with name 'Parse Json' found.</status>
 </test>
 <test id="s1-t2" name="testcase2">
 <kw name="Do Upload A Package To Sonata" library="VnvGKOperationKeywords">
@@ -462,8 +766,8 @@
 <arguments>
 <arg>Uploading a package to SONATA</arg>
 </arguments>
-<msg timestamp="20190516 10:47:54.111" level="INFO">Uploading a package to SONATA</msg>
-<status status="PASS" starttime="20190516 10:47:54.111" endtime="20190516 10:47:54.112"></status>
+<msg timestamp="20190516 12:42:39.602" level="INFO">Uploading a package to SONATA</msg>
+<status status="PASS" starttime="20190516 12:42:39.601" endtime="20190516 12:42:39.602"></status>
 </kw>
 <kw name="Upload File" library="utility">
 <arguments>
@@ -473,18 +777,18 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20190516 10:47:54.853" level="INFO">b'{"package_process_uuid":"a54c27aa-d164-4cfb-aafd-d6a59801b306","status":"running","error_msg":null}'</msg>
-<msg timestamp="20190516 10:47:54.853" level="INFO">${resp} = {"package_process_uuid":"a54c27aa-d164-4cfb-aafd-d6a59801b306","status":"running","error_msg":null}</msg>
-<status status="PASS" starttime="20190516 10:47:54.112" endtime="20190516 10:47:54.854"></status>
+<msg timestamp="20190516 12:42:40.348" level="INFO">b'{"package_process_uuid":"4c8ff028-3a5d-4469-b9f7-2e2434b09c72","status":"running","error_msg":null}'</msg>
+<msg timestamp="20190516 12:42:40.348" level="INFO">${resp} = {"package_process_uuid":"4c8ff028-3a5d-4469-b9f7-2e2434b09c72","status":"running","error_msg":null}</msg>
+<status status="PASS" starttime="20190516 12:42:39.602" endtime="20190516 12:42:40.348"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>\nOriginal JSON:\n${resp}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:54.854" endtime="20190516 10:47:54.859"></status>
+<status status="PASS" starttime="20190516 12:42:40.348" endtime="20190516 12:42:40.350"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:54.111" endtime="20190516 10:47:54.860"></status>
+<status status="PASS" starttime="20190516 12:42:39.601" endtime="20190516 12:42:40.350"></status>
 </kw>
 <kw name="Do Upload A Package To Sonata" library="VnvGKOperationKeywords">
 <arguments>
@@ -495,8 +799,8 @@
 <arguments>
 <arg>Uploading a package to SONATA</arg>
 </arguments>
-<msg timestamp="20190516 10:47:54.865" level="INFO">Uploading a package to SONATA</msg>
-<status status="PASS" starttime="20190516 10:47:54.864" endtime="20190516 10:47:54.866"></status>
+<msg timestamp="20190516 12:42:40.352" level="INFO">Uploading a package to SONATA</msg>
+<status status="PASS" starttime="20190516 12:42:40.352" endtime="20190516 12:42:40.352"></status>
 </kw>
 <kw name="Upload File" library="utility">
 <arguments>
@@ -506,18 +810,18 @@
 <assign>
 <var>${resp}</var>
 </assign>
-<msg timestamp="20190516 10:47:55.746" level="INFO">b'{"package_process_uuid":"dfa0e5d7-9d56-434d-925f-41ca892e25d8","status":"running","error_msg":null}'</msg>
-<msg timestamp="20190516 10:47:55.746" level="INFO">${resp} = {"package_process_uuid":"dfa0e5d7-9d56-434d-925f-41ca892e25d8","status":"running","error_msg":null}</msg>
-<status status="PASS" starttime="20190516 10:47:54.867" endtime="20190516 10:47:55.746"></status>
+<msg timestamp="20190516 12:42:41.212" level="INFO">b'{"package_process_uuid":"2739b532-9ec7-4f64-987e-23b0be4ebf08","status":"running","error_msg":null}'</msg>
+<msg timestamp="20190516 12:42:41.212" level="INFO">${resp} = {"package_process_uuid":"2739b532-9ec7-4f64-987e-23b0be4ebf08","status":"running","error_msg":null}</msg>
+<status status="PASS" starttime="20190516 12:42:40.353" endtime="20190516 12:42:41.212"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>\nOriginal JSON:\n${resp}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:55.747" endtime="20190516 10:47:55.752"></status>
+<status status="PASS" starttime="20190516 12:42:41.212" endtime="20190516 12:42:41.216"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:54.862" endtime="20190516 10:47:55.753"></status>
+<status status="PASS" starttime="20190516 12:42:40.351" endtime="20190516 12:42:41.217"></status>
 </kw>
 <kw name="Check Correspondance Between Test And Service" library="VnvGKOperationKeywords">
 <kw name="Log" library="BuiltIn">
@@ -525,8 +829,8 @@
 <arguments>
 <arg>Find correspondance between test and services uploaded in SONATA</arg>
 </arguments>
-<msg timestamp="20190516 10:47:55.758" level="INFO">Find correspondance between test and services uploaded in SONATA</msg>
-<status status="PASS" starttime="20190516 10:47:55.757" endtime="20190516 10:47:55.758"></status>
+<msg timestamp="20190516 12:42:41.221" level="INFO">Find correspondance between test and services uploaded in SONATA</msg>
+<status status="PASS" starttime="20190516 12:42:41.220" endtime="20190516 12:42:41.221"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -539,8 +843,8 @@
 <assign>
 <var>${outputResponseTests}</var>
 </assign>
-<msg timestamp="20190516 10:47:56.310" level="INFO">${outputResponseTests} = {'seconds': 0.5455460000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.583+00:00', 'md5': '501e40540ebca868e928093e2ae90109', 'pkg_ref': 1, 'signature': None, 'status': 'active', ...</msg>
-<status status="PASS" starttime="20190516 10:47:55.759" endtime="20190516 10:47:56.310"></status>
+<msg timestamp="20190516 12:42:41.782" level="INFO">${outputResponseTests} = {'seconds': 0.55391, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.583+00:00', 'md5': '501e40540ebca868e928093e2ae90109', 'pkg_ref': 1, 'signature': None, 'status': 'active', 'testd': {'...</msg>
+<status status="PASS" starttime="20190516 12:42:41.221" endtime="20190516 12:42:41.782"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -553,20 +857,20 @@
 <assign>
 <var>${outputResponseServices}</var>
 </assign>
-<msg timestamp="20190516 10:47:56.870" level="INFO">${outputResponseServices} = {'seconds': 0.553611, 'status': 200, 'body': [{'created_at': '2019-04-30T10:44:50.908+00:00', 'md5': 'c2e36027aa6dea9c77caa4275b17cccf', 'pkg_ref': 1, 'platform': 'osm', 'signature': None, 'status': '...</msg>
-<status status="PASS" starttime="20190516 10:47:56.310" endtime="20190516 10:47:56.870"></status>
+<msg timestamp="20190516 12:42:42.312" level="INFO">${outputResponseServices} = {'seconds': 0.522999, 'status': 200, 'body': [{'created_at': '2019-04-30T10:44:50.908+00:00', 'md5': 'c2e36027aa6dea9c77caa4275b17cccf', 'pkg_ref': 1, 'platform': 'osm', 'signature': None, 'status': '...</msg>
+<status status="PASS" starttime="20190516 12:42:41.783" endtime="20190516 12:42:42.312"></status>
 </kw>
 <kw name="Has Match" library="utility">
 <arguments>
 <arg>${outputResponseTests['body']}</arg>
 <arg>${outputResponseServices['body']}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:56.871" level="INFO">content: 
+<msg timestamp="20190516 12:42:42.314" level="INFO">content: 
 matches: 
-[]</msg>
-<status status="PASS" starttime="20190516 10:47:56.870" endtime="20190516 10:47:56.871"></status>
+['rtmp-media-service']</msg>
+<status status="PASS" starttime="20190516 12:42:42.312" endtime="20190516 12:42:42.314"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:55.756" endtime="20190516 10:47:56.871"></status>
+<status status="PASS" starttime="20190516 12:42:41.218" endtime="20190516 12:42:42.315"></status>
 </kw>
 <kw name="Do Get Existing Plans" library="VnvPlannerOperationKeywords">
 <kw name="Log" library="BuiltIn">
@@ -574,8 +878,8 @@ matches:
 <arguments>
 <arg>Trying to get existing plans from VNV</arg>
 </arguments>
-<msg timestamp="20190516 10:47:56.873" level="INFO">Trying to get existing plans from VNV</msg>
-<status status="PASS" starttime="20190516 10:47:56.872" endtime="20190516 10:47:56.873"></status>
+<msg timestamp="20190516 12:42:42.317" level="INFO">Trying to get existing plans from VNV</msg>
+<status status="PASS" starttime="20190516 12:42:42.316" endtime="20190516 12:42:42.317"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -585,7 +889,7 @@ matches:
 <arguments>
 <arg>{"Accept":"${ACCEPT}"}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:56.873" endtime="20190516 10:47:56.873"></status>
+<status status="PASS" starttime="20190516 12:42:42.317" endtime="20190516 12:42:42.318"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -595,7 +899,7 @@ matches:
 <arguments>
 <arg>${PLANNER_ENDPOINT}/test-plans</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:56.874" endtime="20190516 10:47:57.353"></status>
+<status status="PASS" starttime="20190516 12:42:42.319" endtime="20190516 12:42:42.786"></status>
 </kw>
 <kw name="Output" library="REST">
 <tags>
@@ -608,9 +912,9 @@ matches:
 <assign>
 <var>${outputResponse}</var>
 </assign>
-<msg timestamp="20190516 10:47:57.354" level="INFO">
+<msg timestamp="20190516 12:42:42.789" level="INFO">
 {
-    "seconds": 0.47660800000000003,
+    "seconds": 0.460229,
     "status": 200,
     "body": [
         {
@@ -628,20 +932,20 @@ matches:
     "headers": {
         "Content-Type": "application/json;charset=UTF-8",
         "Transfer-Encoding": "chunked",
-        "Date": "Thu, 16 May 2019 10:47:57 GMT"
+        "Date": "Thu, 16 May 2019 12:42:41 GMT"
     }
 }</msg>
-<msg timestamp="20190516 10:47:57.364" level="INFO">${outputResponse} = {'seconds': 0.47660800000000003, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 't...</msg>
-<status status="PASS" starttime="20190516 10:47:57.353" endtime="20190516 10:47:57.364"></status>
+<msg timestamp="20190516 12:42:42.803" level="INFO">${outputResponse} = {'seconds': 0.460229, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
+<status status="PASS" starttime="20190516 12:42:42.787" endtime="20190516 12:42:42.803"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>\nOriginal JSON:\n${outputResponse}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:57.365" endtime="20190516 10:47:57.367"></status>
+<status status="PASS" starttime="20190516 12:42:42.804" endtime="20190516 12:42:42.806"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:56.872" endtime="20190516 10:47:57.367"></status>
+<status status="PASS" starttime="20190516 12:42:42.316" endtime="20190516 12:42:42.807"></status>
 </kw>
 <kw name="Check HTTP Response Status Code Is" library="VnvGKOperationKeywords">
 <arguments>
@@ -652,8 +956,8 @@ matches:
 <arguments>
 <arg>Validate Status code</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.369" level="INFO">Validate Status code</msg>
-<status status="PASS" starttime="20190516 10:47:57.369" endtime="20190516 10:47:57.370"></status>
+<msg timestamp="20190516 12:42:42.810" level="INFO">Validate Status code</msg>
+<status status="PASS" starttime="20190516 12:42:42.809" endtime="20190516 12:42:42.810"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -661,20 +965,20 @@ matches:
 <arg>${response[0]['status']}</arg>
 <arg>${expected_status}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.372" level="INFO">Argument types are:
+<msg timestamp="20190516 12:42:42.812" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20190516 10:47:57.370" endtime="20190516 10:47:57.372"></status>
+<status status="PASS" starttime="20190516 12:42:42.811" endtime="20190516 12:42:42.813"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>Status code validated</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.373" level="INFO">Status code validated</msg>
-<status status="PASS" starttime="20190516 10:47:57.373" endtime="20190516 10:47:57.373"></status>
+<msg timestamp="20190516 12:42:42.813" level="INFO">Status code validated</msg>
+<status status="PASS" starttime="20190516 12:42:42.813" endtime="20190516 12:42:42.813"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.368" endtime="20190516 10:47:57.374"></status>
+<status status="PASS" starttime="20190516 12:42:42.808" endtime="20190516 12:42:42.814"></status>
 </kw>
 <kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
 <arguments>
@@ -686,8 +990,8 @@ matches:
 <arguments>
 <arg>Validate resp length</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.376" level="INFO">Validate resp length</msg>
-<status status="PASS" starttime="20190516 10:47:57.375" endtime="20190516 10:47:57.376"></status>
+<msg timestamp="20190516 12:42:42.815" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 12:42:42.815" endtime="20190516 12:42:42.816"></status>
 </kw>
 <kw name="Should Be X Than" library="utility">
 <arguments>
@@ -695,13 +999,13 @@ matches:
 <arg>${x}</arg>
 <arg>${num1}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.377" level="INFO">responseBody length: 
-2</msg>
-<status status="PASS" starttime="20190516 10:47:57.376" endtime="20190516 10:47:57.377"></status>
+<msg timestamp="20190516 12:42:42.817" level="INFO">responseBody length: 
+4</msg>
+<status status="PASS" starttime="20190516 12:42:42.816" endtime="20190516 12:42:42.817"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.374" endtime="20190516 10:47:57.378"></status>
+<status status="PASS" starttime="20190516 12:42:42.814" endtime="20190516 12:42:42.817"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:54.109" endtime="20190516 10:47:57.378" critical="yes"></status>
+<status status="PASS" starttime="20190516 12:42:39.600" endtime="20190516 12:42:42.818" critical="yes"></status>
 </test>
 <test id="s1-t3" name="testcase3">
 <kw name="Do Get Existing Packages" library="VnvGKOperationKeywords">
@@ -710,8 +1014,8 @@ matches:
 <arguments>
 <arg>Trying to get existing packages on SONATA</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.383" level="INFO">Trying to get existing packages on SONATA</msg>
-<status status="PASS" starttime="20190516 10:47:57.382" endtime="20190516 10:47:57.383"></status>
+<msg timestamp="20190516 12:42:42.823" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190516 12:42:42.823" endtime="20190516 12:42:42.823"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -721,7 +1025,7 @@ matches:
 <arguments>
 <arg>{"Accept":"${ACCEPT}"}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:57.384" endtime="20190516 10:47:57.384"></status>
+<status status="PASS" starttime="20190516 12:42:42.823" endtime="20190516 12:42:42.824"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -731,7 +1035,7 @@ matches:
 <arguments>
 <arg>${GK_ENDPOINT}/packages</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:57.385" endtime="20190516 10:47:57.923"></status>
+<status status="PASS" starttime="20190516 12:42:42.825" endtime="20190516 12:42:43.376"></status>
 </kw>
 <kw name="Output" library="REST">
 <tags>
@@ -744,9 +1048,9 @@ matches:
 <assign>
 <var>${outputResponse}</var>
 </assign>
-<msg timestamp="20190516 10:47:57.924" level="INFO">
+<msg timestamp="20190516 12:42:43.378" level="INFO">
 {
-    "seconds": 0.5350090000000001,
+    "seconds": 0.5441710000000001,
     "status": 200,
     "body": [
         {
@@ -867,18 +1171,167 @@ matches:
             "updated_at": "2019-05-15T17:56:05.038+00:00",
             "username": "",
             "uuid": "0e802097-29de-4628-ac5b-2f55e9d781e8"
+        },
+        {
+            "created_at": "2019-05-16T10:47:59.220+00:00",
+            "md5": "66e019fd9e01490d18dea103b1343c25",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "media-performance-test",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Felipe Vicens, ATOS",
+                "release_date_time": "2019-04-23T11:51:35Z",
+                "package_content": [
+                    {
+                        "source": "Icons/upb_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dd83757e632740f9f390af15eeb8bc25480a0c412c7ea9ac9abbb0e5e025e508",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "uuid": "8d77e1b4-6762-482b-9292-6c796bb4ac4c",
+                        "id": "Icons/upb_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "uuid": "5e81a5a3-7997-4263-b533-0b643ff4281c",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "algorithm": "SHA-256",
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "hash": "b58f99fe9b44e772e69429580e9086b935f2266fbdd14e9437d9a995d7894be6",
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "tags": [],
+                        "uuid": "8ba0fd58-e8d6-4310-ba59-8f13096756c2",
+                        "id": {
+                            "vendor": "eu.5gtango.atos",
+                            "name": "test-immersive-media",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for media perfomance Benchmarking",
+                "package_file_uuid": "60ab36c2-bfca-4d46-800d-7135ce260ab7",
+                "package_file_name": "eu.5gtango.media-performance-test.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-16T10:47:59.220+00:00",
+            "username": "",
+            "uuid": "5097c63b-d432-46bf-82e3-1997c3b7d236"
+        },
+        {
+            "created_at": "2019-05-16T10:47:59.749+00:00",
+            "md5": "bfa016535b8dd1b243f247ad282da194",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "ns-mediapilot-service-k8s",
+                "version": "0.3",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "Ignacio Dominguez",
+                "release_date_time": "2019-04-23T11:52:02Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/Definitions/mediapilot-ns.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b4b7c69658ae6411e66431e9fb071c10f660601cbfb6c5ad4b4fe5ba1080b6d8",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "tags": [],
+                        "uuid": "20e8b5f3-9555-472b-a5c7-487b98e56074",
+                        "id": {
+                            "vendor": "eu.sonata-nfv",
+                            "name": "mediapilot-service",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/ma-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "09b5297cf58d7156445a26c8fef183cca79868decc1cc6df57bcda7ea8d215a0",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "6f218180-f956-4cae-b62a-72389368354b",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-ma",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/mse-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "1f4a659c993ac3226c9efbc7b067130a9ae4f236199c232901ffc2bf5c783bb0",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "24a3d53d-69f0-440a-a166-7dd5fd19b49f",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-mse",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/cms-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b970bf968da5f61a6e4a99fcf881b1406614fc968b16a5ff0740478fea250301",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "uuid": "f888771a-4920-4805-92b0-4f7452290a8b",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-cms",
+                            "version": "0.1"
+                        }
+                    },
+                    {
+                        "source": "Icons/atos_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dc88c2efe8f12acf4797444b9a1a17e50f37d4222bc4731502d453bfe5921398",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "uuid": "1f319621-3bb4-4908-817e-8f6119587313",
+                        "id": "Icons/atos_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "c92192539dbdbaf679785ac68f84096ec5694cb2326ecdcc0d03f5d50604a1ed",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "uuid": "e5835c84-1687-41f4-9755-46724c39f227",
+                        "id": "Licenses/LICENSE"
+                    }
+                ],
+                "description": "This is the 5GTANGO network service for the media pilot with k8s",
+                "package_file_uuid": "19efe037-28c5-4931-adbb-873d82ef7a4f",
+                "package_file_name": "eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-16T10:47:59.749+00:00",
+            "username": "",
+            "uuid": "2bb6cf27-ad41-438d-90c4-4e559721085e"
         }
     ],
     "headers": {
         "content-type": "application/json",
         "x-content-type-options": "nosniff",
         "connection": "close",
-        "X-Timing": "0.069575132",
-        "Content-Length": "3178"
+        "X-Timing": "0.083058385",
+        "Content-Length": "7313"
     }
 }</msg>
-<msg timestamp="20190516 10:47:57.946" level="INFO">${outputResponse} = {'seconds': 0.5350090000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
-<status status="PASS" starttime="20190516 10:47:57.923" endtime="20190516 10:47:57.946"></status>
+<msg timestamp="20190516 12:42:43.412" level="INFO">${outputResponse} = {'seconds': 0.5441710000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https:/...</msg>
+<status status="PASS" starttime="20190516 12:42:43.377" endtime="20190516 12:42:43.412"></status>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <doc>Makes a variable available globally in all tests and suites.</doc>
@@ -886,10 +1339,10 @@ matches:
 <arg>@{response}</arg>
 <arg>${outputResponse}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.948" level="INFO">@{response} = [ {'seconds': 0.5350090000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
-<status status="PASS" starttime="20190516 10:47:57.946" endtime="20190516 10:47:57.948"></status>
+<msg timestamp="20190516 12:42:43.415" level="INFO">@{response} = [ {'seconds': 0.5441710000000001, 'status': 200, 'body': [{'created_at': '2019-05-15T17:01:51.698+00:00', 'md5': 'b3c37f6cac8fcec4d901ef1956aec4e8', 'pd': {'warning': None, 'descriptor_schema': 'https...</msg>
+<status status="PASS" starttime="20190516 12:42:43.413" endtime="20190516 12:42:43.415"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.381" endtime="20190516 10:47:57.948"></status>
+<status status="PASS" starttime="20190516 12:42:42.822" endtime="20190516 12:42:43.416"></status>
 </kw>
 <kw name="Check HTTP Response Status Code Is" library="VnvGKOperationKeywords">
 <arguments>
@@ -900,8 +1353,8 @@ matches:
 <arguments>
 <arg>Validate Status code</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.951" level="INFO">Validate Status code</msg>
-<status status="PASS" starttime="20190516 10:47:57.950" endtime="20190516 10:47:57.951"></status>
+<msg timestamp="20190516 12:42:43.418" level="INFO">Validate Status code</msg>
+<status status="PASS" starttime="20190516 12:42:43.418" endtime="20190516 12:42:43.418"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -909,20 +1362,20 @@ matches:
 <arg>${response[0]['status']}</arg>
 <arg>${expected_status}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.952" level="INFO">Argument types are:
+<msg timestamp="20190516 12:42:43.420" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20190516 10:47:57.951" endtime="20190516 10:47:57.952"></status>
+<status status="PASS" starttime="20190516 12:42:43.419" endtime="20190516 12:42:43.420"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>Status code validated</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.953" level="INFO">Status code validated</msg>
-<status status="PASS" starttime="20190516 10:47:57.953" endtime="20190516 10:47:57.953"></status>
+<msg timestamp="20190516 12:42:43.421" level="INFO">Status code validated</msg>
+<status status="PASS" starttime="20190516 12:42:43.421" endtime="20190516 12:42:43.421"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.949" endtime="20190516 10:47:57.954"></status>
+<status status="PASS" starttime="20190516 12:42:43.417" endtime="20190516 12:42:43.422"></status>
 </kw>
 <kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
 <arguments>
@@ -934,8 +1387,8 @@ matches:
 <arguments>
 <arg>Validate resp length</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.957" level="INFO">Validate resp length</msg>
-<status status="PASS" starttime="20190516 10:47:57.956" endtime="20190516 10:47:57.957"></status>
+<msg timestamp="20190516 12:42:43.425" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 12:42:43.424" endtime="20190516 12:42:43.425"></status>
 </kw>
 <kw name="Should Be X Than" library="utility">
 <arguments>
@@ -943,11 +1396,11 @@ matches:
 <arg>${x}</arg>
 <arg>${num1}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.958" level="INFO">responseBody length: 
-2</msg>
-<status status="PASS" starttime="20190516 10:47:57.957" endtime="20190516 10:47:57.958"></status>
+<msg timestamp="20190516 12:42:43.426" level="INFO">responseBody length: 
+4</msg>
+<status status="PASS" starttime="20190516 12:42:43.425" endtime="20190516 12:42:43.426"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.955" endtime="20190516 10:47:57.958"></status>
+<status status="PASS" starttime="20190516 12:42:43.423" endtime="20190516 12:42:43.427"></status>
 </kw>
 <kw name="Do Get Existing Plans" library="VnvPlannerOperationKeywords">
 <kw name="Log" library="BuiltIn">
@@ -955,8 +1408,8 @@ matches:
 <arguments>
 <arg>Trying to get existing plans from VNV</arg>
 </arguments>
-<msg timestamp="20190516 10:47:57.961" level="INFO">Trying to get existing plans from VNV</msg>
-<status status="PASS" starttime="20190516 10:47:57.960" endtime="20190516 10:47:57.961"></status>
+<msg timestamp="20190516 12:42:43.429" level="INFO">Trying to get existing plans from VNV</msg>
+<status status="PASS" starttime="20190516 12:42:43.429" endtime="20190516 12:42:43.429"></status>
 </kw>
 <kw name="Set Headers" library="REST">
 <tags>
@@ -966,7 +1419,7 @@ matches:
 <arguments>
 <arg>{"Accept":"${ACCEPT}"}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:57.962" endtime="20190516 10:47:57.963"></status>
+<status status="PASS" starttime="20190516 12:42:43.429" endtime="20190516 12:42:43.430"></status>
 </kw>
 <kw name="Get" library="REST">
 <tags>
@@ -976,7 +1429,7 @@ matches:
 <arguments>
 <arg>${PLANNER_ENDPOINT}/test-plans</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:57.963" endtime="20190516 10:47:58.436"></status>
+<status status="PASS" starttime="20190516 12:42:43.430" endtime="20190516 12:42:43.921"></status>
 </kw>
 <kw name="Output" library="REST">
 <tags>
@@ -989,9 +1442,9 @@ matches:
 <assign>
 <var>${outputResponse}</var>
 </assign>
-<msg timestamp="20190516 10:47:58.436" level="INFO">
+<msg timestamp="20190516 12:42:43.922" level="INFO">
 {
-    "seconds": 0.468342,
+    "seconds": 0.488545,
     "status": 200,
     "body": [
         {
@@ -1009,20 +1462,20 @@ matches:
     "headers": {
         "Content-Type": "application/json;charset=UTF-8",
         "Transfer-Encoding": "chunked",
-        "Date": "Thu, 16 May 2019 10:47:58 GMT"
+        "Date": "Thu, 16 May 2019 12:42:42 GMT"
     }
 }</msg>
-<msg timestamp="20190516 10:47:58.445" level="INFO">${outputResponse} = {'seconds': 0.468342, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
-<status status="PASS" starttime="20190516 10:47:58.436" endtime="20190516 10:47:58.445"></status>
+<msg timestamp="20190516 12:42:43.933" level="INFO">${outputResponse} = {'seconds': 0.488545, 'status': 200, 'body': [{'created_at': '2019-05-15T17:56:05.168+0000', 'updated_at': '2019-05-15T17:57:55.643+0000', 'uuid': '1c222412-1108-4f5f-a552-f955cab591b4', 'test_set_uui...</msg>
+<status status="PASS" starttime="20190516 12:42:43.922" endtime="20190516 12:42:43.933"></status>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <doc>Logs the given message to the console.</doc>
 <arguments>
 <arg>\nOriginal JSON:\n${outputResponse}</arg>
 </arguments>
-<status status="PASS" starttime="20190516 10:47:58.445" endtime="20190516 10:47:58.447"></status>
+<status status="PASS" starttime="20190516 12:42:43.934" endtime="20190516 12:42:43.936"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.959" endtime="20190516 10:47:58.448"></status>
+<status status="PASS" starttime="20190516 12:42:43.428" endtime="20190516 12:42:43.936"></status>
 </kw>
 <kw name="Check HTTP Response Status Code Is" library="VnvGKOperationKeywords">
 <arguments>
@@ -1033,8 +1486,8 @@ matches:
 <arguments>
 <arg>Validate Status code</arg>
 </arguments>
-<msg timestamp="20190516 10:47:58.450" level="INFO">Validate Status code</msg>
-<status status="PASS" starttime="20190516 10:47:58.450" endtime="20190516 10:47:58.451"></status>
+<msg timestamp="20190516 12:42:43.938" level="INFO">Validate Status code</msg>
+<status status="PASS" starttime="20190516 12:42:43.938" endtime="20190516 12:42:43.938"></status>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <doc>Fails if objects are unequal after converting them to strings.</doc>
@@ -1042,20 +1495,20 @@ matches:
 <arg>${response[0]['status']}</arg>
 <arg>${expected_status}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:58.452" level="INFO">Argument types are:
+<msg timestamp="20190516 12:42:43.939" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;type 'unicode'&gt;</msg>
-<status status="PASS" starttime="20190516 10:47:58.451" endtime="20190516 10:47:58.452"></status>
+<status status="PASS" starttime="20190516 12:42:43.938" endtime="20190516 12:42:43.939"></status>
 </kw>
 <kw name="Log" library="BuiltIn">
 <doc>Logs the given message with the given level.</doc>
 <arguments>
 <arg>Status code validated</arg>
 </arguments>
-<msg timestamp="20190516 10:47:58.453" level="INFO">Status code validated</msg>
-<status status="PASS" starttime="20190516 10:47:58.452" endtime="20190516 10:47:58.453"></status>
+<msg timestamp="20190516 12:42:43.940" level="INFO">Status code validated</msg>
+<status status="PASS" starttime="20190516 12:42:43.939" endtime="20190516 12:42:43.940"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:58.449" endtime="20190516 10:47:58.453"></status>
+<status status="PASS" starttime="20190516 12:42:43.937" endtime="20190516 12:42:43.940"></status>
 </kw>
 <kw name="Response Should Be X Than" library="VnvGKOperationKeywords">
 <arguments>
@@ -1067,8 +1520,8 @@ matches:
 <arguments>
 <arg>Validate resp length</arg>
 </arguments>
-<msg timestamp="20190516 10:47:58.456" level="INFO">Validate resp length</msg>
-<status status="PASS" starttime="20190516 10:47:58.456" endtime="20190516 10:47:58.457"></status>
+<msg timestamp="20190516 12:42:43.942" level="INFO">Validate resp length</msg>
+<status status="PASS" starttime="20190516 12:42:43.942" endtime="20190516 12:42:43.942"></status>
 </kw>
 <kw name="Should Be X Than" library="utility">
 <arguments>
@@ -1076,15 +1529,15 @@ matches:
 <arg>${x}</arg>
 <arg>${num1}</arg>
 </arguments>
-<msg timestamp="20190516 10:47:58.458" level="INFO">responseBody length: 
-2</msg>
-<status status="PASS" starttime="20190516 10:47:58.457" endtime="20190516 10:47:58.458"></status>
+<msg timestamp="20190516 12:42:43.944" level="INFO">responseBody length: 
+4</msg>
+<status status="PASS" starttime="20190516 12:42:43.943" endtime="20190516 12:42:43.944"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:58.454" endtime="20190516 10:47:58.459"></status>
+<status status="PASS" starttime="20190516 12:42:43.941" endtime="20190516 12:42:43.945"></status>
 </kw>
-<status status="PASS" starttime="20190516 10:47:57.380" endtime="20190516 10:47:58.460" critical="yes"></status>
+<status status="PASS" starttime="20190516 12:42:42.821" endtime="20190516 12:42:43.947" critical="yes"></status>
 </test>
-<status status="FAIL" starttime="20190516 10:47:51.554" endtime="20190516 10:47:58.464"></status>
+<status status="FAIL" starttime="20190516 12:42:36.356" endtime="20190516 12:42:43.951"></status>
 </suite>
 <statistics>
 <total>
@@ -1098,5 +1551,14 @@ matches:
 </suite>
 </statistics>
 <errors>
+<msg timestamp="20190516 12:42:36.700" level="ERROR">Error in file '/docker-robot/tests/VnvPlannerOperationKeywords.robot': Importing test library 'HttpLibrary.HTTP' failed: ModuleNotFoundError: No module named 'HttpLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /usr/local/bin
+  /usr/local/lib/python37.zip
+  /usr/local/lib/python3.7
+  /usr/local/lib/python3.7/lib-dynload
+  /usr/local/lib/python3.7/site-packages</msg>
 </errors>
 </robot>

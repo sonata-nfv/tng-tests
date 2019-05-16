@@ -3,7 +3,6 @@ Resource    environment/variables.txt
 Library    REST   
 Library    OperatingSystem
 #Suite Teardown    Terminate All Processes    kill=true
-
 Library    Process
 
 *** Keywords ***
@@ -17,10 +16,9 @@ Do Get Existing Plans
 Delete All Test Plans From Vnv
      ${resp}=    Get     ${PLANNER_ENDPOINT}/test-plans
      log to console       \nDelete test plan response:\n${resp}
-     :FOR    ${uuid}    IN    @{resp[0]['body']}
-    \    log to console       \nTEST PLAN UUID:\n${uuid}
-    \    Delete Test Plan   ${uuid} 
-     log to console       \nOriginal JSON:\n${resp}
+     :FOR    ${item}    IN    @{resp['body']}
+    \    log to console       \nDELETING TEST PLAN UUID:\n${item['uuid']}
+    \    Delete Test Plan   ${item['uuid']}
             
 Delete Test Plan 
     [Arguments]    ${uuid}
