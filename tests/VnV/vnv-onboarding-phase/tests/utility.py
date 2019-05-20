@@ -36,8 +36,9 @@ class utility():
         print(response.content) 
         return response.content
     def upload_descriptor_to_osm(self, path, data, bearer):
-        headers={"Authorization": bearer}
-        response = requests.post(url=path, data = data, verify=False, headers=headers)
+        bytes = open(data, 'rb').read()
+        headers={'Authorization': bearer, 'Content-Type': 'application/octet-stream'}
+        response = requests.post(url=path, data = {'name':'test'},files =  {'file':bytes}, verify=False, headers=headers)
         print('upload_descriptor_to_osm: ')
         print(response.content) 
         return response.content

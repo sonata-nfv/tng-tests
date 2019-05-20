@@ -20,17 +20,17 @@ Do Get Existing Packages
 Do Upload A Ns To Osm
     [Arguments]    ${packageName}
     log    Uploading a package to OSM  
-    Set Headers    {"Content-type" : "application/octet-stream", "Accept" : "application/octet-stream", "Authorization" : "${bearer}" } 
-    ${ns}=     Get Binary File       ${packageName}
-    ${resp}=    Post    ${OSM}:9999/osm/vnfpkgm/v1/ns_descriptors_content  data=${ns}   
+    #Set Headers    {"Content-type" : "application/yaml", "Accept" : "application/yaml", "Authorization" : "${bearer}" } 
+    ${ns}=     Get File       ${packageName}
+    ${resp}=     Upload Descriptor To Osm      ${OSM}:9999/osm/nsd/v1/ns_descriptors_content  ${ns}      ${bearer}
     log to console       \nOriginal JSON:\n${resp}
 
 Do Upload A VNF To Osm
     [Arguments]    ${packageName}
     log    Uploading a package to OSM
-    Set Headers    {"Content-type" : "application/octet-stream", "Accept" : "application/octet-stream", "Authorization" : "${bearer}" } 
-    ${vnf}=    Get Binary File        ${packageName}
-    ${resp}=    Post     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content  data=${vnf}      
+    #Set Headers    {"Content-type" : "application/yaml", "Accept" : "application/yaml", "Authorization" : "${bearer}" } 
+    ${vnf}=    Get File        ${packageName}
+    ${resp}=    Upload Descriptor To Osm     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content  ${vnf}      ${bearer}
     log to console       \nOriginal JSON:\n${resp}
     
 Get Token
