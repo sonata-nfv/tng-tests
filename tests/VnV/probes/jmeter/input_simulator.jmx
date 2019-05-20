@@ -27,10 +27,10 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">100</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">20</stringProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">5</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -86,7 +86,7 @@
         <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">100</stringProp>
         <stringProp name="ThreadGroup.ramp_time">60</stringProp>
@@ -137,13 +137,13 @@
           <stringProp name="mqtt.password"></stringProp>
           <stringProp name="mqtt.client_id_prefix">JMeter_HubTest_</stringProp>
           <boolProp name="mqtt.client_id_suffix">true</boolProp>
-          <stringProp name="mqtt.conn_keep_alive">60</stringProp>
+          <stringProp name="mqtt.conn_keep_alive">10</stringProp>
           <stringProp name="mqtt.conn_attampt_max">2</stringProp>
           <stringProp name="mqtt.reconn_attampt_max">2</stringProp>
         </net.xmeter.samplers.ConnectSampler>
         <hashTree/>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Send MQTT SENML Messages" enabled="true">
-          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">10</stringProp>
         </LoopController>
         <hashTree>
@@ -157,8 +157,8 @@
           </RandomVariableConfig>
           <hashTree/>
           <net.xmeter.samplers.PubSampler guiclass="net.xmeter.gui.PubSamplerUI" testclass="net.xmeter.samplers.PubSampler" testname="BandwithSensor_${sensorNumberValue}" enabled="true">
-            <stringProp name="mqtt.topic_name">BandwithSensor_${sensorNumberValue}</stringProp>
             <stringProp name="mqtt.qos_level">0</stringProp>
+            <stringProp name="mqtt.topic_name">test_topic_egm</stringProp>
             <boolProp name="mqtt.add_timestamp">false</boolProp>
             <stringProp name="mqtt.message_type">String</stringProp>
             <stringProp name="mqtt.message_type_fixed_length">1024</stringProp>

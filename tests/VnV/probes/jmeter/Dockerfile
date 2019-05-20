@@ -38,6 +38,8 @@ RUN mkdir /app/
 ADD entrypoint.sh /app/
 ADD config.cfg /app/
 ADD input_simulator.jmx /app/
+ADD input_simulator2.jmx /app/
+RUN touch /app/results.jtl
 RUN chmod +x /app/entrypoint.sh
 #9
 WORKDIR ${JMETER_HOME}
