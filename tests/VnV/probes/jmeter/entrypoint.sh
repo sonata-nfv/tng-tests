@@ -2,5 +2,5 @@
 
 source /app/config.cfg
 
-jmeter -n -Jip=$IP -Jport=$PORT -t /app/input_simulator.jmx -l /app/results.jtl -j /app/jmeter.log
+jmeter -n -Jip=$IP -Jport=$PORT -t /app/input_simulator.jmx -o /app/results -l results.jtl 
 

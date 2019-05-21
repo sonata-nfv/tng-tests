@@ -35,6 +35,7 @@ ENV PATH $PATH:$JMETER_BIN
 
 # 8
 RUN mkdir /app/
+RUN mkdir /app/results/
 ADD entrypoint.sh /app/
 ADD config.cfg /app/
 ADD input_simulator.jmx /app/
