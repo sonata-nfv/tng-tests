@@ -8,5 +8,6 @@ This probe executes a mqtt stress test against an IP:port. It generates a result
 |EXTERNAL_IP| Yes|
 
 ## Docker execution example
+	 docker build -t probes/stress .
 	 docker run -it --entrypoint /bin/bash probes/stress (debug)
-	 docker container run -d --rm --name probes-stress    (dev phase)
+	 docker container run --rm --name probes-stress  probes/stress  (dev phase)
