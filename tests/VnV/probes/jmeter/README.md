@@ -9,5 +9,6 @@ This probe executes a mqtt stress test against an IP:port. It generates a result
 
 ## Docker execution example
 	 docker build -t probes/stress .
-	 docker run -it --entrypoint /bin/bash probes/stress (debug)
-	 docker container run --rm --name probes-stress  probes/stress  (dev phase)
+	 docker container run -e "IP=192.168.1.184" -e "PORT=1883" --rm --name probes-stress  probes/stress  (dev)
+	 
+	 docker run -it --entrypoint /bin/bash probes/stress (optional)

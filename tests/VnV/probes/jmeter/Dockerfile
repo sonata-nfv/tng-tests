@@ -2,6 +2,8 @@
 FROM alpine:3.6
 # 2
 LABEL maintainer="Aureliano Sinatra <aureliano.sinatra@eglobalmark.com>"
+ENV IP ""
+ENV PORT ""
 # 3 
 ARG JMETER_VERSION="3.3"
 # 4
