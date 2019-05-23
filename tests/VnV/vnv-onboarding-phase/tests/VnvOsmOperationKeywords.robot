@@ -12,25 +12,60 @@ Library    yaml
 Library    Process
 
 *** Keywords ***
-Do Get Existing Packages
-    log    Trying to get existing packages on OSM
+Do Get Existing VNFs
+    log    Trying to get existing vnfs on OSM
     Set Headers    {"Content-Type": "application/json", "Accept":"application/json", "Authorization": "${bearer}" } 
-    Get  ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages
-
+    ${resp}=     Get  ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages
+    #log to console       \nexisting VNFs:\n${resp}
+    Set Global Variable    @{response}    ${resp}
+Do Get Existing NSs
+    log    Trying to get existing ns on OSM
+    Set Headers    {"Content-Type": "application/json", "Accept":"application/json", "Authorization": "${bearer}" } 
+    ${resp}=     Get  ${OSM}:9999/osm/nsd/v1/ns_descriptors_content
+    #log to console       \nexisting NSs:\n${resp}
+    Set Global Variable    @{response}    ${resp}
+    
+Do Delete All NS
+     Do Get Existing NSs
+     ${nss}=   Output    response
+    :FOR    ${item}    IN    @{nss['body']}
+    \    log to console       \nDELETING NS id:\n${item['id']}
+    \    Do Delete NS   ${item['id']}    
+Do Delete All VNF
+     Do Get Existing VNFs
+     ${vnfs}=      Output    response 
+    :FOR    ${item}    IN    @{vnfs['body']}
+    \    log to console       \nDELETING VNFS id:\n${item['id']}
+    \    Do Delete NS   ${item['id']}    
+    
+Do Delete NS
+    [Arguments]    ${ns}
+    log    Trying to delete existing NS on OSM
+    Set Headers    {"Content-Type": "application/json", "Accept":"application/json", "Authorization": "${bearer}" } 
+    ${resp}=   Delete  ${OSM}:9999/osm/nsd/v1/ns_descriptors/${ns}
+    log to console       \ndeleting NS:\n${resp}
+Do Delete VNF
+    [Arguments]    ${vnf}
+    log    Trying to delete existing VNF on OSM
+    Set Headers    {"Content-Type": "application/json", "Accept":"application/json", "Authorization": "${bearer}" } 
+    ${resp}=    Delete  ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content/${vnf}
+    log to console       \ndeleting NS:\n${resp}
 Do Upload A Ns To Osm
     [Arguments]    ${packageName}
     log    Uploading a package to OSM  
-    #Set Headers    {"Content-type" : "application/yaml", "Accept" : "application/yaml", "Authorization" : "${bearer}" } 
-    ${ns}=     Get File       ${packageName}
-    ${resp}=     Upload Descriptor To Osm      ${OSM}:9999/osm/nsd/v1/ns_descriptors_content  ${ns}      ${bearer}
+    Set Headers    {"Content-Type": "application/json", "Authorization" : "${bearer}"}  # "Content-type" : "application/yaml",  "Accept" : "application/yaml",
+    ${yaml}=    Get Binary File    ${packageName}
+    ${body}=   Yaml To Json    ${yaml}
+    ${resp}=     POST     ${OSM}:9999/osm/nsd/v1/ns_descriptors_content  ${body}   
     log to console       \nOriginal JSON:\n${resp}
 
 Do Upload A VNF To Osm
     [Arguments]    ${packageName}
     log    Uploading a package to OSM
-    #Set Headers    {"Content-type" : "application/yaml", "Accept" : "application/yaml", "Authorization" : "${bearer}" } 
-    ${vnf}=    Get File        ${packageName}
-    ${resp}=    Upload Descriptor To Osm     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content  ${vnf}      ${bearer}
+    Set Headers    {"Content-Type": "application/json", "Authorization" : "${bearer}" } 
+    ${yaml}=    Get Binary File    ${packageName}
+    ${body}=   Yaml To Json    ${yaml}
+    ${resp}=     POST     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content   ${body}  
     log to console       \nOriginal JSON:\n${resp}
     
 Get Token
