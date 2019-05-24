@@ -18,11 +18,11 @@ This repository contains the integration tests as well as artifacts for the 5GTA
 
 ## Artifacts
 
-* [5GTANGO packages (`*.tgo`) build by Jenkins](https://jenkins.sonata-nfv.eu/view/PIPELINE/job/tng-tests/job/master/)
+* [5GTANGO packages (`*.tgo`) build by Jenkins](https://jenkins.sonata-nfv.eu/job/tng-tests-freestyle/)
 
 ## Jenkins Integration
 
-There is a Jenkins job to automatically build some of the artifacts stored in this repositry. For example, the Jenkins job automatically packages the SDK projects available in the `packages/` folder. The resulting `*.tgo` files are then available as [artifacts within Jenkins](https://jenkins.sonata-nfv.eu/view/PIPELINE/job/tng-tests/job/master/).
+There is a Jenkins job to automatically build some of the artifacts stored in this repositry. For example, the Jenkins job automatically packages the SDK projects available in the `packages/` folder. The resulting `*.tgo` files are then available as [artifacts within Jenkins](https://jenkins.sonata-nfv.eu/job/tng-tests-freestyle/).
 
 ## Licensing
 
