@@ -1,5 +1,9 @@
 #!groovy
-
+//
+// Attention: This is deprecated.
+// We use a FreeStyle Jenkins job to build this project.
+// More info: Felipe and Manuel
+//
 pipeline {
     agent any
     stages {
