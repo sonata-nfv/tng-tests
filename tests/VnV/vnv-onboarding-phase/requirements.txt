@@ -9,7 +9,6 @@ PyYAML==3.13
 
 # Tnglib
 git+https://github.com/sonata-nfv/tng-cli
-
 # OSM cli
 git+https://osm.etsi.org/gerrit/osm/osmclient@v5.0.2
 
