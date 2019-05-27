@@ -19,10 +19,10 @@ Setting the VnV Path
 Clean the Packages
     Remove all Packages
 Upload the NS Package
-    ${result}=      Upload Package      ${NS_PACKAGE_NAME}
+    ${result}=      Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
 Upload the TST Package
-    ${result}=      Upload Package      ${TST_PACKAGE_NAME}
+    ${result}=      Upload Package      ${FILE_SOURCE_DIR}/${TST_PACKAGE_NAME}
     Log  ${result[1]}
     Should Be True     ${result[0]}
 Wait For Service Instance Ready
@@ -30,8 +30,8 @@ Wait For Service Instance Ready
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-    ${request} = Get Requests
-    Log     ${requests[1][1]['request_uuid']}
+    ${request} =     Get Requests
+    Log     ${request[1][1]['request_uuid']}
     Set Suite Variable  ${REQUEST}  ${request[1][1]['request_uuid']}
     Set Suite Variable  ${INSTANCE_UUID}    ${request[1][1]['instance_uuid']}
     Wait until Keyword Succeeds     3 min   5 sec   Check Request Status
