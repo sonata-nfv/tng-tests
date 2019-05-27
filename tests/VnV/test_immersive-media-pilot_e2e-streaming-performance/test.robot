@@ -30,17 +30,17 @@ Wait For Service Instance Ready
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-    ${request} =     Get Requests
-    Log     ${request[1][1]['request_uuid']}
-    Set Suite Variable  ${REQUEST}  ${request[1][1]['request_uuid']}
-    Set Suite Variable  ${INSTANCE_UUID}    ${request[1][1]['instance_uuid']}
+    ${request_list} =     Get Requests
+    Log     ${request_list[1][1]['request_uuid']}
+    Set Suite Variable  ${REQUEST}  ${request_list[1][1]['request_uuid']}
+    Set Suite Variable  ${INSTANCE_UUID}    ${request_list[1][1]['instance_uuid']}
     Wait until Keyword Succeeds     3 min   5 sec   Check Request Status
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
     ${test_uuid} = Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
     Log     ${test_uuid[1]['test_uuid']}
     Set Suite Variable  ${UUID}  ${test_uuid[1]['uuid']}
-    Wait until Keyword Succeeds     3 min   5 sec   Check Test Result Status
+    Wait until Keyword Succeeds     10 min   5 sec   Check Test Result Status
 Check No Running Instances
 #Setting the SP Path
     sleep 60
