@@ -23,6 +23,7 @@ Upload the NS Package
     Should Be True     ${result[0]}
 Upload the TST Package
     ${result}=      Upload Package      ${TST_PACKAGE_NAME}
+    Log  ${result[1]}
     Should Be True     ${result[0]}
 Wait For Service Instance Ready
     #Setting the SP Path
