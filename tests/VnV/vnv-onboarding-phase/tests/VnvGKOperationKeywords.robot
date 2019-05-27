@@ -31,9 +31,9 @@ Response Should Be X Than
 
 Do Upload A Package To Sonata
     [Arguments]    ${packageName}
-    log    Uploading a package to SONATA
+    log    Uploading a package to SONATA: ${packageName}
     ${resp}=  Upload File       ${packageName}     ${GK_ENDPOINT}/packages 
-    log to console       \nOriginal JSON:\n${resp}
+    log to console       \nUpload response:\n${resp}
 
 Check Correspondance Between Test And Service
     log     Find correspondance between test and services uploaded in SONATA

@@ -14,3 +14,9 @@ ${OSM_PROJECT_ID}=    admin
 
 ${ACCEPT}         application/json
 ${CONTENT_TYPE}          application/x-www-form-urlencoded
+
+${INDUSTRIAL_PILOT_NS}     packages/eu.5gtango.industrial-pilot-test.0.1.tgo
+${INDUSTRIAL_PILOT_T}      packages/eu.5gtango.tng-smpilot-ns1-k8s.0.1.tgo
+
+${MEDIA_PILOT_NS}     packages/eu.5gtango.industrial-pilot-test.0.1.tgo
+${MEDIA_PILOT_T}      packages/eu.5gtango.tng-smpilot-ns1-k8s.0.1.tgo

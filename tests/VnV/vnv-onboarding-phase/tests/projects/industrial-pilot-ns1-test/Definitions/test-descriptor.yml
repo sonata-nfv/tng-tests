@@ -31,7 +31,7 @@ phases:
         - key: IP
           value: '$(vnf-cc-broker/endpoints/id:floating_ip/address)'
         - key: PORT
-          value: 1883
+          value: "1883"
   - id: exercise
     steps:
     - command: /bin/sh
@@ -50,10 +50,8 @@ phases:
       description: "Check obtained results"
       name: parser
       conditions:
-      - condition: <
-        file: result.json
-        find: lost-frames
-        name: lost-frames
-        type: json
-        value: '90'
-        verdict: pass
+          - condition: present
+            file: results.log
+            find: (0.00%)
+            name: no-error
+            verdict: pass

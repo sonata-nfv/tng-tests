@@ -15,10 +15,16 @@ testcase1
     Response Should Be X Than   =    0
 testcase2 
     Get Token 
-    Do Upload A Ns To Osm      ${CURDIR}/descriptors/osm/moebius-ns.yml
+    
     #Check HTTP Response Status Code Is    200
-    Response Status Code Should Equal   201
-    Do Upload A VNF To Osm        ${CURDIR}/descriptors/osm/moebius.yml
-    Response Status Code Should Equal   201
+    
+    Do Upload A VNF To Osm        ${CURDIR}/descriptors/osm/mobius_vnfd.yaml
+    #Response Status Code Should Equal   201
+    Do Upload A VNF To Osm        ${CURDIR}/descriptors/osm/mosquitto_vnfd.yaml
+    #Response Status Code Should Equal   201
+    Do Upload A VNF To Osm        ${CURDIR}/descriptors/osm/mysql_vnfd.yaml
+    #Response Status Code Should Equal   201
+    Do Upload A Ns To Osm      ${CURDIR}/descriptors/osm/iot_mobius_nsd.yaml
+    #Response Status Code Should Equal   201
     #Check HTTP Response Status Code Is    200
    

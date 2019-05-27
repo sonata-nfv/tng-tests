@@ -1,43 +1,46 @@
 vnfd:vnfd-catalog:
     vnfd:
-     -  id: mobius_vnf
-        name: mobius_onem2m_implementation_vnf
-        short-name: mobius_vnf
+    -   id: mobius_vnf
+        name: Mobius_VNF
+        short-name: Mobius_VNF
         logo: mobius-icon.png
         vendor: "Easy Global Market"
         version: '1.0'
-        description: "VNF for OneM2M implementation based on Open Source projet Mobius"
+        description: VNF for OneM2M implementation based on Open Source projet Mobius
 
         connection-point:
-        -   name: mobius_vnfd/cp0
+        -   name: mobius_mgmt
             type: VPORT
-        -   name: mobius_vnfd/cp1
+        -   name: mobius_data
             type: VPORT
 
         mgmt-interface:
-            cp: mobius_vnfd/cp0
+            cp: mobius_mgmt
 
         vdu:
         -   id: mobius_vdu
             name: mobius_vdu
             count: 1
+            image: ubuntu_bionic_mobius.qcow2
+            cloud-init-file: mobius_cloud_init.cfg
 
             interface:
-            -   name: eth0
+            -   name: iface10
+                type: EXTERNAL
                 virtual-interface:
-                    type: VIRTIO
-                external-connection-point-ref: mobius_vnfd/cp0
-            -   name: eth1
+                    type: PARAVIRT
+                external-connection-point-ref: mobius_mgmt
+            -   name: iface11
+                type: EXTERNAL
                 virtual-interface:
-                    type: VIRTIO
-                external-connection-point-ref: mobius_vnfd/cp1
-
-            image: Ubuntu_Mobius.qcow2
+                    type: PARAVIRT
+                external-connection-point-ref: mobius_data
 
             vm-flavor:
-                memory-mb: 8192
-                storage-gb: 5
-                vcpu-count: 8
+                memory-mb: 2048
+                storage-gb: 2
+                vcpu-count: 2
+
         vnf-configuration:
             config-primitive:
             -   name: config
@@ -56,9 +59,10 @@ vnfd:vnfd-catalog:
             -   name: start-mobius
                 parameter:
                 -   data-type: STRING
-                    name: stream-ip
-                -   data-type: INTEGER
-                    name: output-port
+                    name: mysql-ip
+                -   data-type: STRING
+                    name: mosquitto-ip
+
             initial-config-primitive:
             -   name: config
                 parameter:
@@ -69,5 +73,6 @@ vnfd:vnfd-catalog:
                 -   name: ssh-password
                     value: 5ginfire
                 seq: '1'
+
             juju:
                 charm: mobius
