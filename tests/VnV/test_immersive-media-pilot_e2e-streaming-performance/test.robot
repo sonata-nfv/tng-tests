@@ -5,7 +5,7 @@ Library         tnglib
 *** Variables ***
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
 ${SP_HOST}      http://pre-int-sp-ath.5gtango.eu
-${FILE_SOURCE_DIR}  ./
+${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo
 ${TST_PACKAGE_NAME} eu.5gtango.media-performance-test.0.1.tgo
 ${READY}       READY
@@ -35,7 +35,6 @@ Wait For Service Instance Ready
     Set Suite Variable  ${INSTANCE_UUID}    ${request[1][1]['instance_uuid']}
     Wait until Keyword Succeeds     3 min   5 sec   Check Request Status
 Wait For Test Execution
-Check Stored Result
     Set SP Path     ${VNV_HOST}
     ${test_uuid} = Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
     Log     ${test_uuid[1]['test_uuid']}
