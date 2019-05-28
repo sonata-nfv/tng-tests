@@ -1,7 +1,7 @@
 |||||
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __Network Service NSID1C__ | |
-| __Test Purpose__ | | | Package on-boarding, instantiation and termination of Network Service|
+| __Test Purpose__ | | Package on-boarding, instantiation and termination of Network Service| |
 | __Configuration__ | | A NS composed by one CNF is deployed on the Service Platform| |
 | __Test Tool__ | | | |
 | __Metric__ | | | |
