@@ -19,11 +19,3 @@
 | __Test Verdict__ | | The ... (get benchmark condition from TD) ...| |
 | __Additional resources__ | | | |
 
-# Scenario
-
-![mediatest](./images/mediatest.png)
-
-# Test flow
-
-![testflow](./images/testFlow.png)
-
