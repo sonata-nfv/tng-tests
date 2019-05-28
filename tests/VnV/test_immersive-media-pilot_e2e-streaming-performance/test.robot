@@ -34,26 +34,23 @@ Wait For Service Instance Ready
     Log     ${request_list[1][1]['request_uuid']}
     Set Suite Variable  ${REQUEST}  ${request_list[1][1]['request_uuid']}
     Set Suite Variable  ${INSTANCE_UUID}    ${request_list[1][1]['instance_uuid']}
-    Wait until Keyword Succeeds     3 min   5 sec   Check Request Status
+    Wait until Keyword Succeeds     5 min   Check Request Status
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
-    ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
-    Log     ${test_uuid[1]['test_uuid']}
-    Set Suite Variable  ${UUID}  ${test_uuid[1]['uuid']}
     Wait until Keyword Succeeds     10 min   5 sec   Check Test Result Status
 Check No Running Instances
 #Setting the SP Path
-    sleep 60
+    Sleep 60s
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-    ${instances} =     Get Service Instances
-    Should Be Empty     ${instances}
+    ${instance} =     Get Service Instance      ${INSTANCE_UUID}
+    Should Be Empty     ${instance}
 
 *** Keywords ***
 Check Request Status
     ${requests} =     Get Request     ${REQUEST}
     Should Be Equal    ${READY}  ${requests[1]['status']}
 Check Test Result Status
-    ${results} =     Get Test Result    ${UUID}
+    ${results} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
     Should Be Equal     ${PASSED}   ${results[1][1]['status']}
