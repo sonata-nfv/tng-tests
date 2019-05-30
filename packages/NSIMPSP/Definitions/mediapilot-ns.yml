@@ -1,7 +1,7 @@
 #descriptor_version: "1.0"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml
 vendor: "eu.sonata-nfv"
-name: "mediapilot-service"
+name: "ns-mediapilot-service"
 version: "0.3"
 author: "Ignacio Dominguez @: atos"
 description: "This NS provides the video streaming service for the immersive media pilot."
