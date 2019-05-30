@@ -34,7 +34,8 @@ connection_points:
     type: "external"
 
 testing_tags: 
-  - http
+  - "http"
+  - "rtmp-media-service"
 
 ##
 ## The virtual links that interconnect
