@@ -3,12 +3,12 @@ descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/mast
 
 vendor: "eu.5gtango"
 name: "vnf-ma"
-version: "0.2"
+version: "0.3"
 author: "Ignacio Dominguez"
-description: "Media-aggregator VNF descriptor."
+description: "Media-aggregator and monitoring probe VNF descriptor."
 
 cloudnative_deployment_units:
-  - id: "cndu01"
+  - id: "cdu01"
     image: ignaciodomin/media-aggregator:dev
     connection_points:
       - id: "int-rtmp"
@@ -33,9 +33,10 @@ virtual_links:
     connectivity_type: "E-Tree"
     connection_points_reference:
       - "rtmp"
-      - "cndu01:int-rtmp"
+      - "cdu01:int-rtmp"
   - id: "api-link"
     connectivity_type: "E-Tree"
     connection_points_reference:
       - "api"
-      - "cndu01:int-api"
+      - "cdu01:int-api"
+
