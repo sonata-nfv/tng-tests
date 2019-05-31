@@ -17,10 +17,7 @@ testcase1
 testcase2   
     Do Upload A Package To Sonata       ${CURDIR}/${INDUSTRIAL_PILOT_NS}
     Do Upload A Package To Sonata       ${CURDIR}/${INDUSTRIAL_PILOT_T}
-    Check Correspondance Between Test And Service
-    Do Get Existing Plans  
-    Check HTTP Response Status Code Is    200
-    Response Should Be X Than   >    1  
+    Check Correspondance Between Test And Service 
 testcase3
     Do Get Existing Packages
     Check HTTP Response Status Code Is    200
