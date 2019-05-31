@@ -22,8 +22,7 @@ Check HTTP Response Status Code Is
     [Arguments]    ${expected_status}
     Log    Validate Status code    
     Should Be Equal as strings   ${response[0]['status']}    ${expected_status}
-    Log    Status code validated
-
+    log to console       \nresponse status check:\n${response[0]['status']}
 Response Should Be X Than  
     [Arguments]   ${x}  ${num1}          
     Log    Validate resp length
