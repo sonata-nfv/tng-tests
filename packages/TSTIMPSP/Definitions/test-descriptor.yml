@@ -32,10 +32,6 @@ phases:
         value: test
       - key: CMS
         value: '$(vnf-cms/endpoints/id:floating_ip/address)'
-      - key: MA
-        value: '$(vnf-ma/endpoints/id:floating_ip/address)'
-      - key: MSE
-        value: '$(vnf-mse/endpoints/id:floating_ip/address)'
     - id: ffprobe
       description: "Ffprobe"
       image: "ignaciodomin/media-ffprobe:dev"
