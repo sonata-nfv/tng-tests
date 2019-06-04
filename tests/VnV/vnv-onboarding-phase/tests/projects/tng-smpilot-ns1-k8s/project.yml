@@ -12,7 +12,7 @@ files:
   tags:
   - eu.5gtango
   testing_tags:
-  - "industrial-pilot-broker"
+  - industrial-pilot-broker
 - path: Definitions/vnfd/vnfd_eae.yml
   type: application/vnd.5gtango.vnfd
   tags:
