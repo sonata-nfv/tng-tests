@@ -54,9 +54,6 @@ connection_points:
     interface: ipv4
     type: "external"
 
-testing_tags:
-  - "industrial-pilot-broker"
-    
 virtual_links:
   - id: "mqtt-link"
     connectivity_type: "E-LAN"
