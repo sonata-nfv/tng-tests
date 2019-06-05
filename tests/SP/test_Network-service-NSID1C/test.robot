@@ -15,7 +15,7 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True   ${result}
 Upload the Package
-    ${result} =     Upload Package      ${FILE_NAME}
+    ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${FILE_NAME}
     Should Be True     ${result[0]}
     ${service} =     Map Package On Service      ${result[1]}
     Should Be True     ${service[0]}
