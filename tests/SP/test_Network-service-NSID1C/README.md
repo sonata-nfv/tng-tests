@@ -3,8 +3,8 @@
 | __Test Case Name__ | | __Network Service NSID1C__ | |
 | __Test Purpose__ | | Package on-boarding, instantiation and termination of Network Service| |
 | __Configuration__ | | A NS composed by one CNF is deployed on the Service Platform| |
-| __Test Tool__ | | | |
-| __Metric__ | | | |
+| __Test Tool__ | | Robot Framework, using Tnglib | |
+| __Metric__ | | Boolean (success or not), execution time | |
 | __References__ | |  | |
 | __Applicability__ | | Variations of this test case can be performed to test other NS or be a first step towards testing NS functionalities | |
 | __Pre-test conditions__ | | The packages that contain the NS will be created before the test execution| |
