@@ -21,3 +21,13 @@
 
 | __Test Verdict__ | | If no error appeared in all actions the test is succesfully past.|
 | __Additional resources__ | | | |
+
+
+
+# Scenario
+
+![sla_test_scenario](./images/sla_testing_scenario.png)
+
+# Test flow
+
+![test_sla_flow](./images/test_flow_sequence.png)
