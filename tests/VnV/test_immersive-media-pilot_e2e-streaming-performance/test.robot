@@ -44,7 +44,7 @@ Wait For Service Instance Ready
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
-    Wait until Keyword Succeeds     10 min   5 sec   Check Test Result Status
+    Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Check No Running Instances
 #Setting the SP Path
     Set SP Path     ${SP_HOST}
