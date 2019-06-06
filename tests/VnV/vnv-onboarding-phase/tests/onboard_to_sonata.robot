@@ -7,7 +7,7 @@ Library    OperatingSystem
 *** Test Cases ***
 testcase1   
     Delete All Packages From Sonata
-    Delete All Test Plans From Vnv
+    #Delete All Test Plans From Vnv
     Do Get Existing Packages  
     Check HTTP Response Status Code Is    200
     Response Should Be X Than   =    0

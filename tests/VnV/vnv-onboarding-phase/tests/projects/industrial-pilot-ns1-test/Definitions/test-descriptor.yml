@@ -29,9 +29,9 @@ phases:
         name: mqttprobe
         parameters:
         - key: IP
-          value: '$(vnf-cc-broker/endpoints/id:floating_ip/address)'
+          value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
         - key: PORT
-          value: "1883"
+          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
   - id: exercise
     steps:
     - command: /bin/sh

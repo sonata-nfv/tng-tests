@@ -9,8 +9,7 @@ Library    Process
 Do Get Existing Plans
     log    Trying to get existing plans from VNV
     Set Headers    {"Accept":"${ACCEPT}"}  
-    Get  ${PLANNER_ENDPOINT}/test-plans
-    ${outputResponse}=    Output    response 
+    ${outputResponse}=   Get  ${PLANNER_ENDPOINT}/test-plans
     Set Global Variable    @{response}    ${outputResponse}
     log to console       \ntest plans:\n${outputResponse}   
      
