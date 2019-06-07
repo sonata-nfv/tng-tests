@@ -51,7 +51,7 @@ phases:
       name: parser
       conditions:
           - condition: present
-            file: results.log
-            find: (0.00%)
+            file: results.out
+            find: '"failures": 0'
             name: no-error
             verdict: pass

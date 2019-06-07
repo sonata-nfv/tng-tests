@@ -8,5 +8,5 @@ echo "messages per client = $COUNT"
 echo "clients = $CLIENTS"
 
 
-mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $CLIENTS --qos 2 --format json --username $USERNAME --password $PASSWORD
+mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $CLIENTS --qos 2 --format json --username $USERNAME --password $PASSWORD > $RESULTS_FILE
 

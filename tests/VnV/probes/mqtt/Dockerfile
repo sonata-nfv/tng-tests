@@ -12,4 +12,6 @@ RUN git config --global http.sslVerify false
 RUN go get github.com/krylovsk/mqtt-benchmark
 
 ADD entrypoint.sh $INSTALL_PATH
+ADD config.cfg $INSTALL_PATH
+
 ENTRYPOINT [ "/mqtt-test/entrypoint.sh" ]
