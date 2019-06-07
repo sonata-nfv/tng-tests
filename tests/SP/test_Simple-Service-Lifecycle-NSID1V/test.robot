@@ -12,6 +12,7 @@ ${FILE_NAME}           eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be 
 *** Test Cases ***
 Setting the SP Path
     Set SP Path     ${HOST}
+    LOG   ${HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
 Upload the Package
