@@ -1,6 +1,6 @@
 |||||
 | :--- | :--- | :--- | :--- |
-| __Test Case Name__ | | __VNFSCALE__ | |
+| __Test Case Name__ | | __CNFSCALE__ | |
 | __Test Purpose__ | | Manual scale-out and scale-in of a Network Service's CNF| |
 | __Configuration__ | | A NS composed by one CNF is deployed on the Service Platform| |
 | __Test Tool__ | | Robot Framework, using Tnglib | |
