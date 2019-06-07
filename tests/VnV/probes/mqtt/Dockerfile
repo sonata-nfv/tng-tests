@@ -1,16 +1,15 @@
-FROM python:3.7.2-slim
+FROM golang:1.11
+
+LABEL maintainer="Aureliano Sinatra <sinaure@gmail.com>"
 
 ENV INSTALL_PATH /mqtt-test
 RUN mkdir -p $INSTALL_PATH
 
 WORKDIR $INSTALL_PATH
 
-COPY requirements.txt requirements.txt
-RUN apt update
-RUN apt install -y python3-pip python3-dev libcurl4-gnutls-dev librtmp-dev git 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
-COPY . .
+RUN git config --global http.sslVerify false
+RUN go get github.com/krylovsk/mqtt-benchmark
 
-ENTRYPOINT [ "/app/entrypoint.sh" ]
+ADD entrypoint.sh $INSTALL_PATH
+ENTRYPOINT [ "/mqtt-test/entrypoint.sh" ]
