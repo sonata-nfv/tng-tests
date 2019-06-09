@@ -1,6 +1,6 @@
 # Build
 
-make build run
+make build run-dev
 
 # Execution
 

@@ -16,7 +16,7 @@ Do Get Existing Packages
     Set Headers    {"Accept":"${ACCEPT}"}  
     Get  ${GK_ENDPOINT}/packages
     ${outputResponse}=    Output    response 
-    log to console     \nexisting pkgs response:\n ${outputResponse}
+    log      \nexisting pkgs response:\n ${outputResponse}
     Set Global Variable    @{response}    ${outputResponse}
 
 Check HTTP Response Status Code Is
@@ -46,13 +46,14 @@ Delete All Packages From Sonata
     Set SP Path     ${SP}
      :FOR    ${item}    IN    @{response[0]['body']}
      \    log to console       \nDELETING PKG UUID:\n${item['uuid']}
-     \    Delete Package From Sonata   ${item['uuid']}
+     \    Remove Package          ${item['uuid']}
+     \    log     delete package from SONATA
+     \    ${resp}=    Delete  ${GK_ENDPOINT}/packages/${item['uuid']}
+     \    log to console       \nResp deleting pkg:\n${resp}
+     
      Sleep     10s
     Do Get Existing Packages
     Response Should Be X Than    =   0
-Delete Package From Sonata
-    [Arguments]    ${uuid}
-    log     delete package from SONATA
-    Remove Package    ${uuid}
+    
 
 
