@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.6.8 on linux)" generated="20190610 12:48:36.393" rpa="false">
+<suite id="s1" name="Test" source="/home/luis/pruebas-tng-tests/tests/SP/test_Simple-Service-Lifecycle-NSID1V/test.robot">
+<test id="s1-t1" name="Setting the SP Path">
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:36.629" endtime="20190610 12:48:36.630"></status>
+</kw>
+<kw name="Sp Health Check" library="tnglib">
+<doc>Check if SP is reachable.</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20190610 12:48:37.038" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20190610 12:48:36.630" endtime="20190610 12:48:37.038"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:37.038" endtime="20190610 12:48:37.039"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:36.628" endtime="20190610 12:48:37.039" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Clean the Packages">
+<kw name="Get Packages" library="tnglib">
+<doc>Returns info on all available packages.</doc>
+<assign>
+<var>@{PACKAGES}</var>
+</assign>
+<msg timestamp="20190610 12:48:37.463" level="INFO">@{PACKAGES} = [ True | [{'package_uuid': 'e2943c0b-3a34-4fea-8247-b54f88d115e3', 'name': 'test-ns-nsid1v', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.588+00:00'}, {'package_uuid': '7441d214-57d6-4ab0-be5a...</msg>
+<status status="PASS" starttime="20190610 12:48:37.041" endtime="20190610 12:48:37.463"></status>
+</kw>
+<kw name="${PACKAGE} IN [ @{PACKAGES[1]} ]" type="for">
+<kw name="${PACKAGE} = {'package_uuid': 'e2943c0b-3a34-4fea-8247-b54f88d115e3', 'name': 'test-ns-nsid1v', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.588+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:37.464" endtime="20190610 12:48:37.465"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:37.463" endtime="20190610 12:48:37.465"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '7441d214-57d6-4ab0-be5a-5b16aee3ecc6', 'name': '5gtango-project-sample', 'version': '0.1', 'created_at': '2019-06-10T10:47:53.869+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<kw name="Remove Package" library="tnglib">
+<doc>Removes one package from the catalogue.</doc>
+<arguments>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:37.466" endtime="20190610 12:48:37.889"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:37.465" endtime="20190610 12:48:37.890"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:37.465" endtime="20190610 12:48:37.890"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:37.463" endtime="20190610 12:48:37.890"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:37.040" endtime="20190610 12:48:37.890" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Upload the Package">
+<kw name="Upload Package" library="tnglib">
+<doc>Uploads a package from file.</doc>
+<arguments>
+<arg>${FILE_SOURCE_DIR}/${FILE_NAME}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20190610 12:48:43.002" level="INFO">${result} = (True, 'b37dd277-d8c0-4464-9251-ed3dc0e87d9d')</msg>
+<status status="PASS" starttime="20190610 12:48:37.891" endtime="20190610 12:48:43.002"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:43.002" endtime="20190610 12:48:43.003"></status>
+</kw>
+<kw name="Map Package On Service" library="tnglib">
+<doc>Return the uuid of a network service based on a package uuid.</doc>
+<arguments>
+<arg>${result[1]}</arg>
+</arguments>
+<assign>
+<var>${service}</var>
+</assign>
+<msg timestamp="20190610 12:48:43.810" level="INFO">${service} = (True, '8cab1090-e8cf-4563-8691-4395192c1ced')</msg>
+<status status="PASS" starttime="20190610 12:48:43.003" endtime="20190610 12:48:43.810"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${service[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:43.811" endtime="20190610 12:48:43.811"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>${service[1]}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:43.814" level="INFO">${SERVICE_UUID} = 8cab1090-e8cf-4563-8691-4395192c1ced</msg>
+<status status="PASS" starttime="20190610 12:48:43.812" endtime="20190610 12:48:43.815"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:43.816" level="INFO">8cab1090-e8cf-4563-8691-4395192c1ced</msg>
+<status status="PASS" starttime="20190610 12:48:43.815" endtime="20190610 12:48:43.816"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:37.890" endtime="20190610 12:48:43.816" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Get function descriptor">
+<kw name="Get Function Descriptors" library="tnglib">
+<doc>Returns info on all available function descriptors.</doc>
+<assign>
+<var>@{FUNCTIONS}</var>
+</assign>
+<msg timestamp="20190610 12:48:44.239" level="INFO">@{FUNCTIONS} = [ True | [{'descriptor_uuid': 'cc9a99a2-ad9f-4a1d-964e-afc3e8e1287c', 'name': 'testvnf', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.454+00:00'}, {'descriptor_uuid': '834c489f-e3aa-42b5-b99d-...</msg>
+<status status="PASS" starttime="20190610 12:48:43.818" endtime="20190610 12:48:44.240"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${FUNCTIONS}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:44.241" level="INFO">[True, [{'descriptor_uuid': 'cc9a99a2-ad9f-4a1d-964e-afc3e8e1287c', 'name': 'testvnf', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.454+00:00'}, {'descriptor_uuid': '834c489f-e3aa-42b5-b99d-4be85ef95d22', 'name': 'default-vnf0', 'version': '0.9', 'created_at': '2019-06-10T10:48:44.618+00:00'}]]</msg>
+<status status="PASS" starttime="20190610 12:48:44.240" endtime="20190610 12:48:44.241"></status>
+</kw>
+<kw name="${FUNCTION} IN [ @{FUNCTIONS[1]} ]" type="for">
+<kw name="${FUNCTION} = {'descriptor_uuid': 'cc9a99a2-ad9f-4a1d-964e-afc3e8e1287c', 'name': 'testvnf', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.454+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 12:48:44.242" endtime="20190610 12:48:44.243"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:44.242" endtime="20190610 12:48:44.243"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '834c489f-e3aa-42b5-b99d-4be85ef95d22', 'name': 'default-vnf0', 'version': '0.9', 'created_at': '2019-06-10T10:48:44.618+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:44.246" level="INFO">${FUNCTION_UUID} = 834c489f-e3aa-42b5-b99d-4be85ef95d22</msg>
+<status status="PASS" starttime="20190610 12:48:44.244" endtime="20190610 12:48:44.246"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:44.244" endtime="20190610 12:48:44.246"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:44.243" endtime="20190610 12:48:44.246"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:44.241" endtime="20190610 12:48:44.246"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${FUNCTION_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:44.247" level="INFO">834c489f-e3aa-42b5-b99d-4be85ef95d22</msg>
+<status status="PASS" starttime="20190610 12:48:44.247" endtime="20190610 12:48:44.247"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:43.817" endtime="20190610 12:48:44.247" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Get Requests test">
+<kw name="Get Requests" library="tnglib">
+<doc>Returns info on all requests.</doc>
+<assign>
+<var>${rr}</var>
+</assign>
+<msg timestamp="20190610 12:48:45.147" level="INFO">${rr} = (True, [{'request_uuid': 'dfea79db-5d11-45e5-92dc-1685266c58d6', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T09:53:49.930Z', 'instance_uuid': '7bce142b-bc7a-4c14-...</msg>
+<status status="PASS" starttime="20190610 12:48:44.248" endtime="20190610 12:48:45.147"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${rr}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:45.148" level="INFO">(True, [{'request_uuid': 'dfea79db-5d11-45e5-92dc-1685266c58d6', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T09:53:49.930Z', 'instance_uuid': '7bce142b-bc7a-4c14-b683-a01748a42388'}, {'request_uuid': '9c12768d-2d36-4075-a67c-5bcae52c0bf6', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T09:52:22.012Z', 'instance_uuid': '7bce142b-bc7a-4c14-b683-a01748a42388'}, {'request_uuid': 'd8e1079b-8c3d-403c-a3fc-1855e535aefb', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T09:47:51.213Z', 'instance_uuid': 'd50289b2-4224-4746-bf11-0e349606f7d8'}, {'request_uuid': '4e473c3e-7de8-4206-a6f5-da6e92f180e2', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T09:46:23.209Z', 'instance_uuid': 'd50289b2-4224-4746-bf11-0e349606f7d8'}, {'request_uuid': '2dad0c35-9c84-469f-be14-d18dbc05fe44', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-10T08:10:08.219Z', 'instance_uuid': ''}, {'request_uuid': '5ad55c3b-3824-4498-9f81-dce458210dbf', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-10T07:54:09.456Z', 'instance_uuid': ''}, {'request_uuid': 'bc724647-f219-4370-a20b-e0839368c9a8', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-10T07:49:44.711Z', 'instance_uuid': ''}, {'request_uuid': '61e24fae-580f-4209-98d9-d54d6287a79a', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-10T07:44:41.567Z', 'instance_uuid': ''}, {'request_uuid': '8d9c937d-dedf-4a01-b9ac-63c4de0c7b0c', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-10T07:39:54.095Z', 'instance_uuid': ''}, {'request_uuid': '9282d93f-104b-4582-954a-d26735543e6a', 'request_type': 'SCALE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-10T07:03:56.706Z', 'instance_uuid': '2c5b030e-854c-4c87-a6cb-e35af844af5b'}, {'request_uuid': 'dda3a368-ebf2-4cf3-9296-1b5e0ddc6661', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T06:49:53.322Z', 'instance_uuid': '2c5b030e-854c-4c87-a6cb-e35af844af5b'}, {'request_uuid': 'aa57109a-328c-4a4e-a8cf-d2878de4903c', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T05:18:55.421Z', 'instance_uuid': 'a2072733-c84a-4498-ae06-73c0c60c085f'}, {'request_uuid': 'efb0f65d-b3f1-492e-8c84-846b2199908c', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-10T05:17:47.848Z', 'instance_uuid': 'a2072733-c84a-4498-ae06-73c0c60c085f'}, {'request_uuid': 'f2b0bbac-170e-4945-88bc-f4c5553054f8', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-09T19:40:01.027Z', 'instance_uuid': '991fe5ed-f90e-4156-a6b4-56f768f2a569'}, {'request_uuid': 'cd879d83-dc6a-446d-a417-e62d196d4a11', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-09T19:28:11.875Z', 'instance_uuid': '8833669b-b0d7-44c9-ad14-cfc184557dbd'}, {'request_uuid': '2cc124f5-8310-45fc-b5b2-b6e1742de0ca', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-09T19:27:43.066Z', 'instance_uuid': 'a6b635e0-a8b4-4586-96e3-ac9356919ba5'}, {'request_uuid': '6bc3490d-3f05-46a8-a874-2fc39a41fd7b', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-09T19:24:04.523Z', 'instance_uuid': '06bb941f-f783-4c17-8050-ca25de5b78f5'}, {'request_uuid': '7de76fef-ae84-42c6-8e44-eccfcad335ac', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-09T19:15:34.374Z', 'instance_uuid': '60995aec-eaa8-4b72-8102-22e57ebf0509'}, {'request_uuid': '3f940aa5-3c0f-4386-a3e0-93004ddcdabe', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T10:53:12.443Z', 'instance_uuid': 'df06394b-96cc-4bf0-a37e-3820ee032f11'}, {'request_uuid': '02c3f4b2-45c2-4f37-aa59-a59e3ab7529a', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T10:47:58.573Z', 'instance_uuid': 'df06394b-96cc-4bf0-a37e-3820ee032f11'}, {'request_uuid': '260d9288-80c3-4430-a77b-609fb58d8eac', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T10:11:13.507Z', 'instance_uuid': '2bd09360-c8d5-4839-98e3-5a65b067ec33'}, {'request_uuid': 'd98bb36b-ce4b-4b1d-8210-95881d26dca7', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T10:05:58.994Z', 'instance_uuid': '2bd09360-c8d5-4839-98e3-5a65b067ec33'}, {'request_uuid': '0f438967-036d-4e29-8d1b-bac9e178e7a7', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T09:19:12.341Z', 'instance_uuid': 'aea48cd2-189d-445e-9767-26a07a12e22a'}, {'request_uuid': '7954a94c-e20c-4e45-81d8-cc036fe43a39', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T09:14:03.350Z', 'instance_uuid': 'aea48cd2-189d-445e-9767-26a07a12e22a'}, {'request_uuid': '8cef8ea5-c580-4788-8c01-21908602faf9', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T08:44:54.817Z', 'instance_uuid': '3c1714e6-7b1d-4c8b-9889-4c4760e277bc'}, {'request_uuid': '8a858d61-2e85-4903-a167-05deeb683c75', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T08:39:37.534Z', 'instance_uuid': '3c1714e6-7b1d-4c8b-9889-4c4760e277bc'}, {'request_uuid': 'e9573b4f-524a-4bdf-aaec-2c6772c52738', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T08:19:43.933Z', 'instance_uuid': '1e1e6964-8a82-4b59-b77e-da695a6a5937'}, {'request_uuid': 'b74b28d9-def3-4e95-a303-90bb07604b32', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-07T08:17:39.718Z', 'instance_uuid': '1e1e6964-8a82-4b59-b77e-da695a6a5937'}, {'request_uuid': 'aeeac5c3-0e76-481d-8021-4c99fe769a6a', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T10:40:33.380Z', 'instance_uuid': '22d0b3dd-c70b-4cc3-9e95-e57a1820e38a'}, {'request_uuid': 'c68ec542-7505-4609-b41a-303d356540aa', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T10:16:41.889Z', 'instance_uuid': '8363c499-5935-444f-b931-6c8689ddce33'}, {'request_uuid': '4f5b7a71-4f27-4626-b605-5bd2136bf8db', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T10:11:28.329Z', 'instance_uuid': '8363c499-5935-444f-b931-6c8689ddce33'}, {'request_uuid': 'be387e49-4235-4901-ad7a-06bd4ac27557', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T09:55:06.489Z', 'instance_uuid': 'cbc49080-db24-4e8b-b506-2b0a1a066b00'}, {'request_uuid': '2ca9f7ba-6acb-493b-867c-eb1945fb4559', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T09:49:52.444Z', 'instance_uuid': 'cbc49080-db24-4e8b-b506-2b0a1a066b00'}, {'request_uuid': '1ac15479-75c6-4335-a243-cee7690029db', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T09:18:36.310Z', 'instance_uuid': 'b1102f53-2fb0-442a-aabf-4f0ad1e17756'}, {'request_uuid': 'a96c734a-7c42-4cd1-91a9-991c38b4bdb4', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T09:13:52.031Z', 'instance_uuid': '5290e182-7067-4bbf-bb1e-6318031e40a4'}, {'request_uuid': '6bd6dbe1-78c2-4e02-af52-4a0c19a68be4', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T09:13:22.246Z', 'instance_uuid': 'b1102f53-2fb0-442a-aabf-4f0ad1e17756'}, {'request_uuid': '52f2ca5b-8b31-4568-b321-d019f875a5b2', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T08:38:48.922Z', 'instance_uuid': 'b83ad300-86df-44e8-b3fc-a17f7bbbf802'}, {'request_uuid': '71e7d06c-921a-4343-be5a-38eee9df6c97', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T08:26:42.377Z', 'instance_uuid': 'b83ad300-86df-44e8-b3fc-a17f7bbbf802'}, {'request_uuid': 'ceecba0c-0341-4d97-9954-cd49e5bbcfea', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T08:08:27.435Z', 'instance_uuid': '918fd555-501f-49e8-af47-1494c4e5d008'}, {'request_uuid': '076b05ab-51b8-46f9-904c-7630e3a850b1', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T07:45:38.152Z', 'instance_uuid': 'ba116f4c-609c-486a-800d-9222bd892a7d'}, {'request_uuid': 'b2e9e523-9aac-4bdd-a32e-f1ec24108c82', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T07:21:57.084Z', 'instance_uuid': 'ba116f4c-609c-486a-800d-9222bd892a7d'}, {'request_uuid': 'afd08132-7412-49e9-8063-a2553a31758e', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T07:16:06.113Z', 'instance_uuid': 'dc094046-5ca5-44cd-9cba-0afede9841c9'}, {'request_uuid': '933a89e2-25f5-491b-91f2-e876e98f9511', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T06:22:11.137Z', 'instance_uuid': 'dc094046-5ca5-44cd-9cba-0afede9841c9'}, {'request_uuid': '1023143f-bad2-4eae-b389-caed3b029296', 'request_type': 'TERMINATE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-06T06:18:36.712Z', 'instance_uuid': 'f2fad6d4-c8da-44cf-8b20-898e15f0d77d'}, {'request_uuid': '4fb2ce44-023b-4ae3-ba19-090252fd1b56', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T05:29:04.017Z', 'instance_uuid': '064d5d20-44a4-4712-a066-2690071a4d15'}, {'request_uuid': 'c9deec77-ea75-4574-8b7f-7cdc8ec3630e', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T05:26:37.157Z', 'instance_uuid': '064d5d20-44a4-4712-a066-2690071a4d15'}, {'request_uuid': 'ccee1b9f-7e92-47d5-8415-6b6dc179e945', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-06T05:25:52.996Z', 'instance_uuid': '6b126488-931f-406a-9fe5-823dfaa0206e'}, {'request_uuid': 'd2af6c7b-a742-4332-b533-d456dfa078ba', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:52:35.703Z', 'instance_uuid': 'b340ced8-70ba-4781-9a15-006a66173696'}, {'request_uuid': '2321baa6-c5c0-4e80-a85f-15f29f6b79b0', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:40:00.707Z', 'instance_uuid': '1f72e0af-f987-4935-9819-660e7a36c852'}, {'request_uuid': 'df978443-c342-47bb-973b-7c736b29750f', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:23:03.337Z', 'instance_uuid': 'd7c90cb7-be6c-49fd-8f86-1ffa0f74175a'}, {'request_uuid': 'd22a4212-a910-4d9d-8d35-793de42d8157', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:16:13.220Z', 'instance_uuid': '3aa05351-f2d7-48aa-ae4e-33eb10d2e551'}, {'request_uuid': '5548d89d-f054-41cc-954b-9fdf4d8c08ef', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:14:58.081Z', 'instance_uuid': '3aa05351-f2d7-48aa-ae4e-33eb10d2e551'}, {'request_uuid': 'd6ea19ba-f781-4925-b170-1fd6df16c56b', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:08:51.138Z', 'instance_uuid': 'f2fad6d4-c8da-44cf-8b20-898e15f0d77d'}, {'request_uuid': '2240d8d2-1072-432d-b714-2d83a7ad812d', 'request_type': 'TERMINATE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-05T13:06:33.810Z', 'instance_uuid': '8eac7c32-bf15-4844-a6b1-c5d0dcb9e240'}, {'request_uuid': '9049b027-bf9e-49f4-990f-2a0af816cff9', 'request_type': 'TERMINATE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-05T13:05:55.832Z', 'instance_uuid': '21702a56-44dd-4a40-89d5-d77988ed50bd'}, {'request_uuid': '26db4d2e-9bdf-4786-98eb-19b9899b3a5c', 'request_type': 'TERMINATE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-05T13:05:39.071Z', 'instance_uuid': '86052285-ece2-4adc-8968-ffebcc379bea'}, {'request_uuid': '6c4f3ded-f933-4764-b35d-60af11b1b759', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:05:23.462Z', 'instance_uuid': '9659f077-9ae4-48ea-8c01-6320e11681df'}, {'request_uuid': '605c8a6f-41a6-413a-b596-2a55442f0b22', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:05:05.714Z', 'instance_uuid': 'e332f49c-81e4-4021-bae3-2ff8b0eadcd0'}, {'request_uuid': 'c68f9e30-3f26-46e2-a6e5-553e78309bf0', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T13:04:28.760Z', 'instance_uuid': '6813bbea-742a-4373-9dda-c616a6e51f76'}, {'request_uuid': '50534020-176d-44ce-9b70-cceb629685eb', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T12:07:48.357Z', 'instance_uuid': '6813bbea-742a-4373-9dda-c616a6e51f76'}, {'request_uuid': 'd1aff625-d6e6-47c2-af64-5f2b28c1873c', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T11:41:33.347Z', 'instance_uuid': 'e332f49c-81e4-4021-bae3-2ff8b0eadcd0'}, {'request_uuid': '65a4eb37-7f7a-491d-a659-1c96ddc5cbbc', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T10:22:21.026Z', 'instance_uuid': '9659f077-9ae4-48ea-8c01-6320e11681df'}, {'request_uuid': 'b1ecb85a-7ec3-4f11-897a-25f9a5d11f14', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T09:42:47.884Z', 'instance_uuid': '4b8c6925-1dc0-44cb-ae97-8daf36018198'}, {'request_uuid': '66d64658-a0c7-4324-9fbe-22e3d7ad9e25', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T05:34:06.797Z', 'instance_uuid': '225a5a9c-8a56-4712-99a0-9f02deb06af4'}, {'request_uuid': '343d39b1-206d-4520-bc5c-4ecc8d037136', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-05T05:31:22.963Z', 'instance_uuid': '225a5a9c-8a56-4712-99a0-9f02deb06af4'}, {'request_uuid': '23c57f06-4b67-46f9-a41f-652434e0685d', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T14:04:51.299Z', 'instance_uuid': 'be15f175-6773-453e-aac6-d18812894742'}, {'request_uuid': '3836a55d-a25a-48e2-95e5-41dc7e45ea76', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T13:30:21.766Z', 'instance_uuid': '172ac6a9-57ee-4697-bb61-1c16d07fcced'}, {'request_uuid': '632553e2-f373-4bea-80b0-b9fd26958637', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T13:18:40.372Z', 'instance_uuid': '86052285-ece2-4adc-8968-ffebcc379bea'}, {'request_uuid': '1c9bc155-89fb-4b60-98ed-f9cf492580b0', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T07:18:13.256Z', 'instance_uuid': 'eda92f1c-6d14-445f-b699-457f730f919f'}, {'request_uuid': '15d6692a-ab14-4578-9618-11cf7ce4d65b', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T07:16:51.203Z', 'instance_uuid': 'eda92f1c-6d14-445f-b699-457f730f919f'}, {'request_uuid': 'd6178f2a-5f5c-4fae-aeaa-ce8af09d9fa4', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T07:12:18.907Z', 'instance_uuid': '21702a56-44dd-4a40-89d5-d77988ed50bd'}, {'request_uuid': '6bd64d6f-edd8-437e-961b-b623f1c2db3f', 'request_type': 'TERMINATE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-04T06:55:26.678Z', 'instance_uuid': '8eac7c32-bf15-4844-a6b1-c5d0dcb9e240'}, {'request_uuid': 'e44df488-fbe6-4930-8e67-d69e77043365', 'request_type': 'TERMINATE_SERVICE', 'status': 'NEW', 'created_at': '2019-06-04T06:54:25.810Z', 'instance_uuid': '8eac7c32-bf15-4844-a6b1-c5d0dcb9e240'}, {'request_uuid': '56899037-80f8-48b3-82d8-c2ef2e6dff7e', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T05:22:40.247Z', 'instance_uuid': '24369efc-6b91-477e-94dc-72214fa5fa4b'}, {'request_uuid': '77eacbbf-d4fa-420c-83ff-d1ba46b7e236', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-04T05:20:26.328Z', 'instance_uuid': '24369efc-6b91-477e-94dc-72214fa5fa4b'}, {'request_uuid': '73280388-907e-4844-b184-53e7f2d4738a', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T15:00:59.034Z', 'instance_uuid': '0c6739d0-ea20-4a16-b172-e7b012e252d9'}, {'request_uuid': 'ac03085d-f8cd-4012-b55c-bf5aa403af8e', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T14:59:33.431Z', 'instance_uuid': '0c6739d0-ea20-4a16-b172-e7b012e252d9'}, {'request_uuid': 'fffaa7fd-93dc-48dd-8cf3-b92f951c53ae', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T12:19:01.106Z', 'instance_uuid': '6def854d-2a6e-42e4-9c2e-4eb9a69a05e2'}, {'request_uuid': 'e66e493a-1e10-4252-8965-f69e0a16cfb8', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T12:16:48.245Z', 'instance_uuid': '6def854d-2a6e-42e4-9c2e-4eb9a69a05e2'}, {'request_uuid': '79f6e897-83ba-4136-925d-69a00a89e656', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:34:14.655Z', 'instance_uuid': '8eac7c32-bf15-4844-a6b1-c5d0dcb9e240'}, {'request_uuid': 'd843c6b1-d2d5-4d48-ae16-4ba8e0307fa5', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:31:43.020Z', 'instance_uuid': 'bb4b2da8-79b7-4da7-9a1f-22ca0d0d74be'}, {'request_uuid': '75471748-77d0-4ad3-b1bc-59894cb4d1e7', 'request_type': 'TERMINATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-03T11:28:58.044Z', 'instance_uuid': 'ee2949b2-7ef6-45c6-9328-a32b212badfb'}, {'request_uuid': '65235990-5ef2-4204-809d-b7845d9feac8', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:18:37.735Z', 'instance_uuid': 'bb4b2da8-79b7-4da7-9a1f-22ca0d0d74be'}, {'request_uuid': 'd069e8a8-6c9c-488c-b178-7a80dc30d998', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:16:48.187Z', 'instance_uuid': 'ee2949b2-7ef6-45c6-9328-a32b212badfb'}, {'request_uuid': 'aff87297-f802-4919-96b4-e467d8e3559c', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:05:29.007Z', 'instance_uuid': 'ee2949b2-7ef6-45c6-9328-a32b212badfb'}, {'request_uuid': '47ad7bfe-2f95-41c1-a18b-747769dd211f', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:03:18.023Z', 'instance_uuid': 'f73703c7-5272-4ac0-93fb-c5aa549db59d'}, {'request_uuid': '93e20835-de7a-45a6-996f-a186434f197f', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T11:03:08.422Z', 'instance_uuid': 'e4fc9894-ab07-4fa5-9375-890e80fe9f34'}, {'request_uuid': 'f152a686-74c2-4138-9b41-00c313c39655', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T10:48:37.523Z', 'instance_uuid': 'e4fc9894-ab07-4fa5-9375-890e80fe9f34'}, {'request_uuid': '2b462664-78b0-499a-a3c0-ad3b8aae94ef', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T10:20:25.684Z', 'instance_uuid': 'f73703c7-5272-4ac0-93fb-c5aa549db59d'}, {'request_uuid': 'e0533da6-6c20-4964-9f18-a6f003afe22d', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T10:17:03.901Z', 'instance_uuid': '3099c2bb-5a2b-44ca-b263-0d1a66b7d244'}, {'request_uuid': '62d55ab9-1afd-4fd9-a566-3ea7c4bbd69a', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T10:16:53.323Z', 'instance_uuid': '3d693fed-a53f-4432-b095-788e5ca58c56'}, {'request_uuid': '0e99674a-6e7b-4323-8c93-5ea978fe0edb', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T10:11:08.022Z', 'instance_uuid': '3099c2bb-5a2b-44ca-b263-0d1a66b7d244'}, {'request_uuid': 'c42bf500-c225-4c4b-b3ef-24573456414e', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T09:47:51.377Z', 'instance_uuid': '3d693fed-a53f-4432-b095-788e5ca58c56'}, {'request_uuid': 'b8ca3aca-ed1b-411a-9540-04403708f86b', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-03T07:26:00.849Z', 'instance_uuid': ''}, {'request_uuid': '23a9b9e8-1f1c-4024-96e0-4f6b62abae8f', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T07:25:41.773Z', 'instance_uuid': 'fa1dab11-195c-4929-94ef-7e29b3dc812e'}, {'request_uuid': '9aba9f7d-34fe-450c-a031-1d15f51ca692', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T07:25:20.819Z', 'instance_uuid': 'fa1dab11-195c-4929-94ef-7e29b3dc812e'}, {'request_uuid': '4ae9cd7a-81d7-4501-a438-086a1262a03c', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-03T07:19:29.026Z', 'instance_uuid': ''}, {'request_uuid': '668070df-d11d-4161-b0e3-03703b4dc500', 'request_type': 'TERMINATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T07:19:11.762Z', 'instance_uuid': '5833ad1a-0b6b-4f68-8ab0-3f8088cb562a'}, {'request_uuid': 'ab03cdd6-6b41-40d6-9d26-8238d1220242', 'request_type': 'CREATE_SERVICE', 'status': 'READY', 'created_at': '2019-06-03T07:18:50.905Z', 'instance_uuid': '5833ad1a-0b6b-4f68-8ab0-3f8088cb562a'}, {'request_uuid': '470c0b78-f0df-4fc0-b207-1fb854cb2416', 'request_type': 'CREATE_SERVICE', 'status': 'ERROR', 'created_at': '2019-06-03T07:10:43.252Z', 'instance_uuid': ''}])</msg>
+<status status="PASS" starttime="20190610 12:48:45.147" endtime="20190610 12:48:45.149"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:44.248" endtime="20190610 12:48:45.149" critical="yes"></status>
+</test>
+<test id="s1-t6" name="Scaling Out">
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>2c5b030e-854c-4c87-a6cb-e35af844af5b</arg>
+</arguments>
+<msg timestamp="20190610 12:48:45.151" level="INFO">${SERVICE_UUID} = 2c5b030e-854c-4c87-a6cb-e35af844af5b</msg>
+<status status="PASS" starttime="20190610 12:48:45.150" endtime="20190610 12:48:45.151"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:45.152" level="INFO">2c5b030e-854c-4c87-a6cb-e35af844af5b</msg>
+<status status="PASS" starttime="20190610 12:48:45.151" endtime="20190610 12:48:45.152"></status>
+</kw>
+<kw name="Service Scale Out" library="tnglib">
+<doc>Makes a request to scale out a service.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>${FUNCTION_UUID}</arg>
+</arguments>
+<assign>
+<var>${SCALE_OUT}</var>
+</assign>
+<msg timestamp="20190610 12:48:45.595" level="INFO">${SCALE_OUT} = (False, {'error': 'Error saving request: The VIM UUID must be valid'})</msg>
+<status status="PASS" starttime="20190610 12:48:45.152" endtime="20190610 12:48:45.596"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SCALE_OUT}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:45.596" level="INFO">(False, {'error': 'Error saving request: The VIM UUID must be valid'})</msg>
+<status status="PASS" starttime="20190610 12:48:45.596" endtime="20190610 12:48:45.596"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+<arg>${SCALE_OUT}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:45.598" level="INFO">${REQUEST} = (False, {'error': 'Error saving request: The VIM UUID must be valid'})</msg>
+<status status="PASS" starttime="20190610 12:48:45.597" endtime="20190610 12:48:45.598"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<msg timestamp="20190610 12:48:45.599" level="INFO">(False, {'error': 'Error saving request: The VIM UUID must be valid'})</msg>
+<status status="PASS" starttime="20190610 12:48:45.598" endtime="20190610 12:48:45.599"></status>
+</kw>
+<status status="PASS" starttime="20190610 12:48:45.150" endtime="20190610 12:48:45.599" critical="yes"></status>
+</test>
+<doc>Test suite for uploading a package to the SP platform</doc>
+<status status="PASS" starttime="20190610 12:48:36.395" endtime="20190610 12:48:45.601"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="6" fail="0">Critical Tests</stat>
+<stat pass="6" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="6" fail="0" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
