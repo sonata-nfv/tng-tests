@@ -43,19 +43,27 @@ Get function descriptor
     #${rr} =     Get Requests
     #Log     ${rr}
 
+ 
+Deploying Service
+    ${init} =   Service Instantiate     ${SERVICE_UUID}
+    Log     ${init}
+    Set Suite Variable     ${REQUEST}  ${init[1]}
+    Log     ${REQUEST}
+
+Wait For Ready
+    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Set SIU      
+
 Scaling Out
-    Set Suite Variable     ${SERVICE_UUID}  2c5b030e-854c-4c87-a6cb-e35af844af5b
+    #Set Suite Variable     ${SERVICE_UUID}  2c5b030e-854c-4c87-a6cb-e35af844af5b
     Log     ${SERVICE_UUID}
     ${SCALE_OUT} =  service_scale_out    ${SERVICE_UUID}     ${FUNCTION_UUID}
     Log     ${SCALE_OUT}
     Set Suite Variable     ${REQUEST}  ${SCALE_OUT[1]}
-    Log     ${REQUEST}    
-#Deploying Service
-    #${init} =   Service Instantiate     ${SERVICE_UUID}
-    #Log     ${init}
-    #Set Suite Variable     ${REQUEST}  ${init[1]}
-    #Log     ${REQUEST}
-Wait For Ready
+    Log     ${REQUEST}   
+
+
+Wait For Ready Scaling Out
     Wait until Keyword Succeeds     3 min   5 sec   Check Status
     Set SIU
 
@@ -66,6 +74,10 @@ Scaling In
     Log     ${SCALE_OUT}
     Set Suite Variable     ${REQUEST}  ${SCALE_OUT[1]}
     Log     ${REQUEST}  
+
+Wait For Ready Scaling In
+    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Set SIU    
 
 Terminate Service
     ${ter} =    Service Terminate   ${TERMINATE}
