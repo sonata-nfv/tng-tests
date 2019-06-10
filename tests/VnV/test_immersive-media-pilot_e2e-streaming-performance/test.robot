@@ -7,7 +7,7 @@ Library         Collections
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
 ${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
-${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service-k8s.0.5.tgo
+${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service.0.5.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.media-performance-test.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service-k8s
 ${TST_PACKAGE_SHORT_NAME}  media-performance-test
