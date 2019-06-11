@@ -4,7 +4,7 @@ description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
 name: "test-industrial-pilot-ns1"
 vendor: "eu.5gtango.egm"
-version: '0.1'
+version: '0.5'
 
 service_platforms:
   - "SONATA"
@@ -23,27 +23,25 @@ phases:
       description: "Configuration"
       name: configuration
       probes:
-      - id: mqttprobe
+      - id: pingprobe
         description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-probe"
-        name: mqttprobe
+        image: "sonatanfv/tng-probe-ping:latest"
+        name: pingprobe
         parameters:
-        - key: IP
+        - key: EXTERNAL_IP
           value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
-        - key: PORT
-          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
   - id: exercise
     steps:
     - command: /bin/sh
       dependencies: []
-      description: "Starting the mqtt probe"
+      description: "Starting the ping probe"
       entrypoint: /app/entrypoint.sh
       index: 1
       instances: 1
-      name: mqttprobe
+      name: pingprobe
       output:
       - {results: logs.txt}
-      run: mqttprobe
+      run: pingprobe
   - id: verification
     steps:
     - step: parser

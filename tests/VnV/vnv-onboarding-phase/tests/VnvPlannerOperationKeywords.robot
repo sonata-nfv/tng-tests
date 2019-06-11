@@ -11,7 +11,7 @@ Do Get Existing Plans
     Set Headers    {"Accept":"${ACCEPT}"}  
     ${outputResponse}=   Get  ${PLANNER_ENDPOINT}/test-plans
     Set Global Variable    @{response}    ${outputResponse}
-    log to console       \ntest plans:\n${outputResponse}   
+    log       \ntest plans:\n${outputResponse}   
      
 Delete All Test Plans From Vnv
      ${resp}=    Get     ${PLANNER_ENDPOINT}/test-plans

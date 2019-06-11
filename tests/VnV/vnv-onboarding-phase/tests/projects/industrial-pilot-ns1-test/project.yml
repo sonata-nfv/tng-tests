@@ -2,8 +2,8 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: eu.5gtango
-  name: industrial-pilot-test-egm1
-  version: '0.1'
+  name: industrial-pilot-test-egm
+  version: '0.5'
   maintainer: Aureliano Sinatra, EGM
   description: This is a 5GTANGO test package for mqtt Benchmarking
 files:

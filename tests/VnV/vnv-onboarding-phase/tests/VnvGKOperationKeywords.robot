@@ -45,15 +45,16 @@ Delete All Packages From Sonata
     log to console     Delete all packages
     Set SP Path     ${SP}
      :FOR    ${item}    IN    @{response[0]['body']}
-     \    log to console       \nDELETING PKG UUID:\n${item['uuid']}
-     \    Remove Package          ${item['uuid']}
-     \    log     delete package from SONATA
-     \    ${resp}=    Delete  ${GK_ENDPOINT}/packages/${item['uuid']}
-     \    log to console       \nResp deleting pkg:\n${resp}
-     
-     Sleep     10s
+     \    ${egm_pkg}=  Evaluate   "egm" in """${item['pd']['name']}"""
+     \    Run Keyword If    '${egm_pkg}' == 'True'     Delete Pkg    ${item} 
+    Sleep     10s
     Do Get Existing Packages
     Response Should Be X Than    =   0
     
-
+Delete Pkg
+     [Arguments]    ${item}
+     log to console       \nDELETING from SONATA:\n${item['uuid']}-${item['pd']['name']}
+     Remove Package          ${item['uuid']}
+     ${resp}=    Delete  ${GK_ENDPOINT}/packages/${item['uuid']}
+     log to console       \nResp deleting pkg:\n${resp}
 
