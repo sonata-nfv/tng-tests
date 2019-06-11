@@ -6,7 +6,7 @@ Library         tnglib
 ${SP_HOST}                http://sta-sp-ath-v4-0.5gtango.eu  #  the name of SP we want to use
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ./packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}           eu.5gtango.ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
+${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
 
 *** Test Cases ***
 Setting the SP Path
