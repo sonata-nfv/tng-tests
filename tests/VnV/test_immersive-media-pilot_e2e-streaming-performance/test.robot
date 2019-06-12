@@ -7,9 +7,9 @@ Library         Collections
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
 ${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
-${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo
+${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service.0.5.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.media-performance-test.0.1.tgo
-${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service-k8s
+${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service
 ${TST_PACKAGE_SHORT_NAME}  media-performance-test
 ${READY}       READY
 ${PASSED}      PASSED
@@ -44,7 +44,7 @@ Wait For Service Instance Ready
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
-    Wait until Keyword Succeeds     10 min   5 sec   Check Test Result Status
+    Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Check No Running Instances
 #Setting the SP Path
     Set SP Path     ${SP_HOST}
@@ -55,8 +55,8 @@ Check No Running Instances
         Run Keyword If  '${ELEMENT['instance_uuid']}'== '${INSTANCE_UUID}' and '${ELEMENT['request_type']}'== 'TERMINATE_SERVICE'   Set Suite Variable   ${REQUEST}  ${ELEMENT['request_uuid']}
     END
     Wait until Keyword Succeeds     6 min   4 sec   Check Request Status
-    ${instance} =     Get Service Instance      ${INSTANCE_UUID}
-    Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
+#    ${instance} =     Get Service Instance      ${INSTANCE_UUID}
+#    Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
 
 *** Keywords ***
 Check Request Status

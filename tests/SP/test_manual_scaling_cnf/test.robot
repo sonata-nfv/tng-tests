@@ -29,6 +29,16 @@ Deploying Service
 Wait For Ready
     Wait until Keyword Succeeds     3 min   5 sec   Check Status
     Set SIU
+Scaling out VNF
+###Scaling OUT code will go here once ready
+Wait For Ready
+    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Set SIU
+Scaling in VNF
+###Scaling IN code will go here once ready
+Wait For Ready
+    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Set SIU        
 Terminate Service
     ${ter} =    Service Terminate   ${TERMINATE}
     Log     ${ter}
