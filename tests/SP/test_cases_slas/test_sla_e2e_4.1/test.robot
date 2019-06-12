@@ -10,7 +10,7 @@ ${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package 
 
 *** Test Cases ***
 Setting the SP Path
-    Set SP Path     http://int-sp-ath.5gtango.eu
+    Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
