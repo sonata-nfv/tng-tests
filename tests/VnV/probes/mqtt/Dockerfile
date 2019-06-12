@@ -2,17 +2,12 @@ FROM golang:1.11
 
 LABEL maintainer="Aureliano Sinatra <sinaure@gmail.com>"
 
-ENV INSTALL_PATH /mqtt-test
-ENV PROBE mqttprobe
-RUN mkdir -p $INSTALL_PATH
-
-WORKDIR $INSTALL_PATH
-
+ENV PROBE "mqttprobe"
 
 RUN git config --global http.sslVerify false
 RUN go get github.com/krylovsk/mqtt-benchmark
 
-ADD entrypoint.sh $INSTALL_PATH
-ADD config.cfg $INSTALL_PATH
+ADD entrypoint.sh /app/
+ADD config.cfg /app/
 
-ENTRYPOINT [ "/mqtt-test/entrypoint.sh" ]
+ENTRYPOINT [ "/app/entrypoint.sh" ]
