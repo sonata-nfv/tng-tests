@@ -3,6 +3,7 @@ FROM golang:1.11
 LABEL maintainer="Aureliano Sinatra <sinaure@gmail.com>"
 
 ENV INSTALL_PATH /mqtt-test
+ENV PROBE mqttprobe
 RUN mkdir -p $INSTALL_PATH
 
 WORKDIR $INSTALL_PATH

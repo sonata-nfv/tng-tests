@@ -25,4 +25,4 @@ Delete Test Plan
     [Arguments]    ${uuid}
     log     delete test Plan
     ${resp}=    Delete  ${PLANNER_ENDPOINT}/test-plans/${uuid}
-    log to console       \ndelete testplan response:\n${resp}           
+    log to console       \ndelete testplan response:\n${resp}          

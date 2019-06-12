@@ -23,25 +23,46 @@ phases:
       description: "Configuration"
       name: configuration
       probes:
-      - id: pingprobe
+      - id: telnetprobe
         description: "A service initial configuration container"
-        image: "sonatanfv/tng-probe-ping:latest"
-        name: pingprobe
+        image: "sonatanfv/tng-vnv-probe-telnet:latest"
+        name: telnetprobe
         parameters:
         - key: EXTERNAL_IP
           value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
+        - key: PORT
+          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
+      - id: mqttprobe
+        description: "A service initial configuration container"
+        image: "easyglobalmarket/mqtt-probe:latest"
+        name: mqttprobe
+        parameters:
+        - key: IP
+          value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
+        - key: PORT
+          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'    
   - id: exercise
     steps:
     - command: /bin/sh
       dependencies: []
-      description: "Starting the ping probe"
+      description: "Starting the telnet probe"
       entrypoint: /app/entrypoint.sh
       index: 1
       instances: 1
-      name: pingprobe
+      name: telnetprobe
       output:
       - {results: logs.txt}
-      run: pingprobe
+      run: telnetprobe
+    - command: /bin/sh
+      dependencies: []
+      description: "Starting the mqtt probe"
+      entrypoint: /app/entrypoint.sh
+      index: 1
+      instances: 1
+      name: mqttprobe
+      output:
+      - {results: logs.txt}
+      run: mqttprobe  
   - id: verification
     steps:
     - step: parser
