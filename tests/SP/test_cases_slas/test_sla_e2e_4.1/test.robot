@@ -3,14 +3,14 @@ Documentation   Test the SLAs E2E test
 Library         tnglib
 
 *** Variables ***
-${SP_HOST}                http://sta-sp-ath-v4-0.5gtango.eu  #  the name of SP we want to use
+${SP_HOST}                http://pre-int-sp-ath.5gtango.eu  #  the name of SP we want to use
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
 
 *** Test Cases ***
 Setting the SP Path
-    Set SP Path     ${SP_HOST}
+    Set SP Path     http://int-sp-ath.5gtango.eu
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
