@@ -3,7 +3,7 @@ Documentation   Test the SLAs E2E test
 Library         tnglib
 
 *** Variables ***
-${SP_HOST}                http://int-sp-ath.5gtango.eu  #  the name of SP we want to use
+${SP_HOST}                http://pre-int-sp-ath.5gtango.eu  #  the name of SP we want to use
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
@@ -26,7 +26,7 @@ Upload the Package
     Log     ${SERVICE_UUID}
 
 Generate the SLA Template
-    ${result}=      Create Sla Template         templateName=int_test_2   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin   provider_name=admin   service_licence_type=trial   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
+    ${result}=      Create Sla Template         templateName=int_test_2   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin    provider_name=admin   service_licence_type=trial   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
     Set Suite Variable     ${SLA_UUID}   ${result[1]}
     Should be True      ${result[0]}
 
