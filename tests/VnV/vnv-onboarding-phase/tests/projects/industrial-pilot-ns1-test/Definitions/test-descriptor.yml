@@ -40,7 +40,17 @@ phases:
         - key: IP
           value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
         - key: PORT
-          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'    
+          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
+        - key: CLIENTS
+          value: 100
+        - key: COUNT
+          value: 100
+        - key: SIZE
+          value: 100  
+        - key: USERNAME
+          value: hub-iot
+        - key: PASSWORD
+          value: hub-iot                 
   - id: exercise
     steps:
     - command: /bin/sh
