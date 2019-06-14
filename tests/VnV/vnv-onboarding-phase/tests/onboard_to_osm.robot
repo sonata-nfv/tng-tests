@@ -27,4 +27,6 @@ testcase2
     Do Upload A Ns To Osm      ${CURDIR}/descriptors/osm/iot_mobius_nsd.yaml
     #Response Status Code Should Equal   201
     #Check HTTP Response Status Code Is    200
-   
+testcase3
+    Do Upload A Package To Sonata       ${CURDIR}/${MOBIUS_NS}   
+    Do Upload A TGO To Osm     
