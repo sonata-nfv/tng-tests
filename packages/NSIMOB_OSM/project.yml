@@ -3,8 +3,8 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: "eu.5gtango"
-  name: "ns-nsid1v_mobius_osm-egm"
-  version: "0.1"
+  name: "ns-nsimob-egm"
+  version: "0.2"
   maintainer: "Aureliano Sinatra (EGM)"
   description: "This is a integration test artifact."
 files:

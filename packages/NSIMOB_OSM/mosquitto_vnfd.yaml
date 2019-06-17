@@ -5,7 +5,7 @@ vnfd:vnfd-catalog:
         short-name: Mosquitto_VNF
         logo: mosquitto-icon.png
         vendor: "Easy Global Market"
-        version: '1.0'
+        version: '2.0'
         description: VNF for the Mosquitto bus used by the Mobius server
 
         connection-point:
