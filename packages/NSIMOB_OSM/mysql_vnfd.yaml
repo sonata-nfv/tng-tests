@@ -21,7 +21,7 @@ vnfd:vnfd-catalog:
         -   id: mysql_vdu
             name: mysql_vdu
             count: 1
-            image: ubuntu_bionic_mysql.qcow2
+            image: egm.mysql
             cloud-init-file: mysql_cloud_init.cfg
 
             interface:
