@@ -80,7 +80,7 @@ Get Token
     log to console       \nBearer:\n${bearer}
     Set Global Variable    ${bearer}
 
-Do Upload A TGO To Osm
+Upload A TGO To Osm
     log    Uploading a package to OSM via VNV
     ${data}=     Create Dictionary      service_name=IoT_Mobius_NS    service_vendor=Easy Global Market       service_version=1.0      service_platform=osm-athenas      instance_name=egm-test         callback=http://localhost:5001/callback_tests
     ${body}=     json.Dumps      ${data}

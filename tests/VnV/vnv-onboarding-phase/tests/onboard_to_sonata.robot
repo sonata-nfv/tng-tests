@@ -1,6 +1,7 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    VnvGKOperationKeywords.robot 
+Resource    VnvOsmOperationKeywords.robot
 Resource    VnvPlannerOperationKeywords.robot 
 Library    OperatingSystem
 
@@ -27,4 +28,4 @@ testcase3
     Response Should Be X Than   >    1  
 testcase4
     Do Upload A Package To Sonata       ${CURDIR}/${MOBIUS_NS}   
-    Do Upload A TGO To Osm      
+    Upload A TGO To Osm     
