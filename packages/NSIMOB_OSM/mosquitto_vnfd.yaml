@@ -21,7 +21,7 @@ vnfd:vnfd-catalog:
         -   id: mosquitto_vdu
             name: mosquitto_vdu
             count: 1
-            image: ubuntu_bionic_mosquitto.qcow2
+            image: egm.mosquitto
             cloud-init-file: mosquitto_cloud_init.cfg
 
             interface:
