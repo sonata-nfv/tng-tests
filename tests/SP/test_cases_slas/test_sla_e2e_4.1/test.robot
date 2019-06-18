@@ -37,7 +37,7 @@ Wait For Ready
     Set SIU
 
 Get Agreements
-    ${result}=      Get Agreements
+    ${result}=      Get Agreements      nsi_uuid=${TERMINATE}
     Should be True      ${result[0]}
 
 Terminate Service
