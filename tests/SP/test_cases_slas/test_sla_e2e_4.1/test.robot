@@ -17,6 +17,7 @@ Setting the SP Path
 Upload the Package
     ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
+	Set Suite Variable     ${PACKAGE_UUID}  ${result[1]}
     ${service} =     Map Package On Service      ${result[1]}
     Should Be True     ${service[0]}
     Set Suite Variable     ${SERVICE_UUID}  ${service[1]}
@@ -49,6 +50,9 @@ Terminate Service
 Delete SLA
     ${result}=      Delete SlaTemplate    ${SLA_UUID}
     Should be True      ${result[0]}
+	
+Delete Package
+	${result}=   Remove Package    package_uuid=${PACKAGE_UUID}
 
 *** Keywords ***
 Check Status
