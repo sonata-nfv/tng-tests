@@ -1,0 +1,2085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.6.8 on linux)" generated="20190610 15:25:04.144" rpa="false">
+<suite id="s1" name="Test" source="/home/luis/pruebas-tng-tests/tests/SP/test_Simple-Service-Lifecycle-NSID1V/test.robot">
+<test id="s1-t1" name="Setting the SP Path">
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:04.407" endtime="20190610 15:25:04.408"></status>
+</kw>
+<kw name="Sp Health Check" library="tnglib">
+<doc>Check if SP is reachable.</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20190610 15:25:04.813" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20190610 15:25:04.408" endtime="20190610 15:25:04.813"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:04.813" endtime="20190610 15:25:04.814"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:04.407" endtime="20190610 15:25:04.814" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Clean the Packages">
+<kw name="Get Packages" library="tnglib">
+<doc>Returns info on all available packages.</doc>
+<assign>
+<var>@{PACKAGES}</var>
+</assign>
+<msg timestamp="20190610 15:25:05.216" level="INFO">@{PACKAGES} = [ True | [{'package_uuid': 'e2943c0b-3a34-4fea-8247-b54f88d115e3', 'name': 'test-ns-nsid1v', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.588+00:00'}, {'package_uuid': '87b28eba-dc15-406b-924e...</msg>
+<status status="PASS" starttime="20190610 15:25:04.815" endtime="20190610 15:25:05.216"></status>
+</kw>
+<kw name="${PACKAGE} IN [ @{PACKAGES[1]} ]" type="for">
+<kw name="${PACKAGE} = {'package_uuid': 'e2943c0b-3a34-4fea-8247-b54f88d115e3', 'name': 'test-ns-nsid1v', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.588+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:05.218" endtime="20190610 15:25:05.219"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.217" endtime="20190610 15:25:05.219"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '87b28eba-dc15-406b-924e-40994f1361d3', 'name': 'ns-mediapilot-service-k8s', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.929+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:05.219" endtime="20190610 15:25:05.220"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.219" endtime="20190610 15:25:05.220"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '942992fd-a34f-4e60-849b-525cc0ffc807', 'name': 'tng-smpilot-ns1-k8s-egm1', 'version': '0.1', 'created_at': '2019-06-10T12:47:41.296+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:05.221" endtime="20190610 15:25:05.222"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.220" endtime="20190610 15:25:05.222"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '6a21f410-43d0-42f1-a612-f406494fc28e', 'name': '5gtango-project-sample', 'version': '0.1', 'created_at': '2019-06-10T13:23:04.166+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<kw name="Remove Package" library="tnglib">
+<doc>Removes one package from the catalogue.</doc>
+<arguments>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:05.223" endtime="20190610 15:25:05.640"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.222" endtime="20190610 15:25:05.641"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.222" endtime="20190610 15:25:05.641"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.217" endtime="20190610 15:25:05.641"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:04.814" endtime="20190610 15:25:05.641" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Upload the Package">
+<kw name="Upload Package" library="tnglib">
+<doc>Uploads a package from file.</doc>
+<arguments>
+<arg>${FILE_SOURCE_DIR}/${FILE_NAME}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20190610 15:25:09.301" level="INFO">${result} = (True, 'f6f2b30e-410f-40f2-b169-338d31011a4a')</msg>
+<status status="PASS" starttime="20190610 15:25:05.643" endtime="20190610 15:25:09.301"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:09.302" endtime="20190610 15:25:09.302"></status>
+</kw>
+<kw name="Map Package On Service" library="tnglib">
+<doc>Return the uuid of a network service based on a package uuid.</doc>
+<arguments>
+<arg>${result[1]}</arg>
+</arguments>
+<assign>
+<var>${service}</var>
+</assign>
+<msg timestamp="20190610 15:25:10.109" level="INFO">${service} = (True, 'f4233f98-c10c-43b4-b316-6f296caeb2b7')</msg>
+<status status="PASS" starttime="20190610 15:25:09.303" endtime="20190610 15:25:10.109"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${service[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.109" endtime="20190610 15:25:10.110"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>${service[1]}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:10.112" level="INFO">${SERVICE_UUID} = f4233f98-c10c-43b4-b316-6f296caeb2b7</msg>
+<status status="PASS" starttime="20190610 15:25:10.110" endtime="20190610 15:25:10.112"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:10.113" level="INFO">f4233f98-c10c-43b4-b316-6f296caeb2b7</msg>
+<status status="PASS" starttime="20190610 15:25:10.112" endtime="20190610 15:25:10.113"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:05.642" endtime="20190610 15:25:10.113" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Get function descriptor">
+<kw name="Get Function Descriptors" library="tnglib">
+<doc>Returns info on all available function descriptors.</doc>
+<assign>
+<var>@{FUNCTIONS}</var>
+</assign>
+<msg timestamp="20190610 15:25:10.546" level="INFO">@{FUNCTIONS} = [ True | [{'descriptor_uuid': 'cc9a99a2-ad9f-4a1d-964e-afc3e8e1287c', 'name': 'testvnf', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.454+00:00'}, {'descriptor_uuid': '6d77f2df-24c7-41be-b7c0-...</msg>
+<status status="PASS" starttime="20190610 15:25:10.114" endtime="20190610 15:25:10.546"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${FUNCTIONS}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:10.547" level="INFO">[True, [{'descriptor_uuid': 'cc9a99a2-ad9f-4a1d-964e-afc3e8e1287c', 'name': 'testvnf', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.454+00:00'}, {'descriptor_uuid': '6d77f2df-24c7-41be-b7c0-37adfc6e0d9d', 'name': 'vnf-ma', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.733+00:00'}, {'descriptor_uuid': '0b954cd6-1511-49d4-be1f-f7559c666aee', 'name': 'vnf-mse', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.759+00:00'}, {'descriptor_uuid': '1ca3ba60-2bca-4e1d-a736-005305ad8cea', 'name': 'vnf-cms', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.787+00:00'}, {'descriptor_uuid': '2be85766-c6aa-4d39-8862-24d57715bf25', 'name': 'smpilot-cc', 'version': '0.1', 'created_at': '2019-06-10T12:47:41.141+00:00'}, {'descriptor_uuid': '09a7dac0-e628-40f8-8955-5f118604dc15', 'name': 'smpilot-eae', 'version': '0.1', 'created_at': '2019-06-10T12:47:41.174+00:00'}, {'descriptor_uuid': '6d386f85-6476-4c99-8177-ab03fb2a5afd', 'name': 'default-vnf0', 'version': '0.9', 'created_at': '2019-06-10T13:25:09.347+00:00'}]]</msg>
+<status status="PASS" starttime="20190610 15:25:10.546" endtime="20190610 15:25:10.547"></status>
+</kw>
+<kw name="${FUNCTION} IN [ @{FUNCTIONS[1]} ]" type="for">
+<kw name="${FUNCTION} = {'descriptor_uuid': 'cc9a99a2-ad9f-4a1d-964e-afc3e8e1287c', 'name': 'testvnf', 'version': '0.1', 'created_at': '2019-06-10T07:49:42.454+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.548" endtime="20190610 15:25:10.548"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.547" endtime="20190610 15:25:10.548"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '6d77f2df-24c7-41be-b7c0-37adfc6e0d9d', 'name': 'vnf-ma', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.733+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.549" endtime="20190610 15:25:10.550"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.549" endtime="20190610 15:25:10.550"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '0b954cd6-1511-49d4-be1f-f7559c666aee', 'name': 'vnf-mse', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.759+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.550" endtime="20190610 15:25:10.551"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.550" endtime="20190610 15:25:10.551"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '1ca3ba60-2bca-4e1d-a736-005305ad8cea', 'name': 'vnf-cms', 'version': '0.3', 'created_at': '2019-06-10T10:56:42.787+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.552" endtime="20190610 15:25:10.553"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.551" endtime="20190610 15:25:10.553"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '2be85766-c6aa-4d39-8862-24d57715bf25', 'name': 'smpilot-cc', 'version': '0.1', 'created_at': '2019-06-10T12:47:41.141+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.553" endtime="20190610 15:25:10.554"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.553" endtime="20190610 15:25:10.554"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '09a7dac0-e628-40f8-8955-5f118604dc15', 'name': 'smpilot-eae', 'version': '0.1', 'created_at': '2019-06-10T12:47:41.174+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:25:10.555" endtime="20190610 15:25:10.555"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.554" endtime="20190610 15:25:10.555"></status>
+</kw>
+<kw name="${FUNCTION} = {'descriptor_uuid': '6d386f85-6476-4c99-8177-ab03fb2a5afd', 'name': 'default-vnf0', 'version': '0.9', 'created_at': '2019-06-10T13:25:09.347+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${FUNCTION['name']}'== '${FUNCTION_NAME}'</arg>
+<arg>Set Suite Variable</arg>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${FUNCTION_UUID}</arg>
+<arg>${FUNCTION['descriptor_uuid']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:10.562" level="INFO">${FUNCTION_UUID} = 6d386f85-6476-4c99-8177-ab03fb2a5afd</msg>
+<status status="PASS" starttime="20190610 15:25:10.557" endtime="20190610 15:25:10.562"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.556" endtime="20190610 15:25:10.562"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.555" endtime="20190610 15:25:10.562"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.547" endtime="20190610 15:25:10.562"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${FUNCTION_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:10.563" level="INFO">6d386f85-6476-4c99-8177-ab03fb2a5afd</msg>
+<status status="PASS" starttime="20190610 15:25:10.562" endtime="20190610 15:25:10.563"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.114" endtime="20190610 15:25:10.563" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Deploying Service">
+<kw name="Service Instantiate" library="tnglib">
+<doc>Makes a request to instantiate a service.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+</arguments>
+<assign>
+<var>${init}</var>
+</assign>
+<msg timestamp="20190610 15:25:11.073" level="INFO">${init} = (True, '975dfbd8-69af-4f2b-b46a-b42e8ab16a59')</msg>
+<status status="PASS" starttime="20190610 15:25:10.564" endtime="20190610 15:25:11.073"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${init}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:11.074" level="INFO">(True, '975dfbd8-69af-4f2b-b46a-b42e8ab16a59')</msg>
+<status status="PASS" starttime="20190610 15:25:11.073" endtime="20190610 15:25:11.074"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+<arg>${init[1]}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:11.076" level="INFO">${REQUEST} = 975dfbd8-69af-4f2b-b46a-b42e8ab16a59</msg>
+<status status="PASS" starttime="20190610 15:25:11.074" endtime="20190610 15:25:11.076"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:11.077" level="INFO">975dfbd8-69af-4f2b-b46a-b42e8ab16a59</msg>
+<status status="PASS" starttime="20190610 15:25:11.076" endtime="20190610 15:25:11.077"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:10.564" endtime="20190610 15:25:11.077" critical="yes"></status>
+</test>
+<test id="s1-t6" name="Wait For Ready">
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>3 min</arg>
+<arg>5 sec</arg>
+<arg>Check Status</arg>
+</arguments>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:11.462" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:11.080" endtime="20190610 15:25:11.462"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:11.463" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:11.462" endtime="20190610 15:25:11.464"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:11.079" endtime="20190610 15:25:11.464"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:16.877" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:16.466" endtime="20190610 15:25:16.877"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:16.879" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:16.878" endtime="20190610 15:25:16.879"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:16.465" endtime="20190610 15:25:16.879"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:22.293" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:21.884" endtime="20190610 15:25:22.293"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:22.294" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:22.294" endtime="20190610 15:25:22.295"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:21.883" endtime="20190610 15:25:22.295"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:27.741" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:27.296" endtime="20190610 15:25:27.741"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:27.745" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:27.742" endtime="20190610 15:25:27.745"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:27.296" endtime="20190610 15:25:27.746"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:33.153" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:32.748" endtime="20190610 15:25:33.153"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:33.154" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:33.153" endtime="20190610 15:25:33.154"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:32.747" endtime="20190610 15:25:33.154"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:38.570" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:38.156" endtime="20190610 15:25:38.571"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:38.572" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:38.571" endtime="20190610 15:25:38.572"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:38.155" endtime="20190610 15:25:38.572"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:43.993" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:43.573" endtime="20190610 15:25:43.993"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:43.994" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:43.993" endtime="20190610 15:25:43.994"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:43.572" endtime="20190610 15:25:43.994"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:49.409" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:48.996" endtime="20190610 15:25:49.409"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:49.410" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:49.410" endtime="20190610 15:25:49.411"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:48.995" endtime="20190610 15:25:49.411"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:25:54.848" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:54.412" endtime="20190610 15:25:54.849"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:25:54.850" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:25:54.849" endtime="20190610 15:25:54.850"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:54.411" endtime="20190610 15:25:54.850"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:00.255" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:25:59.851" endtime="20190610 15:26:00.255"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:00.256" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:26:00.255" endtime="20190610 15:26:00.256"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:25:59.850" endtime="20190610 15:26:00.256"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:05.661" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:26:05.257" endtime="20190610 15:26:05.661"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:05.662" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:26:05.661" endtime="20190610 15:26:05.662"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:05.257" endtime="20190610 15:26:05.663"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:11.063" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:26:10.665" endtime="20190610 15:26:11.063"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:11.065" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:26:11.063" endtime="20190610 15:26:11.065"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:10.663" endtime="20190610 15:26:11.066"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:16.482" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:26:16.067" endtime="20190610 15:26:16.482"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:16.484" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:26:16.483" endtime="20190610 15:26:16.485"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:16.067" endtime="20190610 15:26:16.485"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:21.901" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:26:21.489" endtime="20190610 15:26:21.901"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:21.902" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20190610 15:26:21.901" endtime="20190610 15:26:21.902"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:21.489" endtime="20190610 15:26:21.903"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:27.312" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:26:26.904" endtime="20190610 15:26:27.312"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:26:27.312" endtime="20190610 15:26:27.313"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:26:26.903" endtime="20190610 15:26:27.314"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:11.079" endtime="20190610 15:26:27.314"></status>
+</kw>
+<kw name="Set SIU">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:27.736" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:25:11.643Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:26:27.315" endtime="20190610 15:26:27.737"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${TERMINATE}</arg>
+<arg>${status[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:27.739" level="INFO">${TERMINATE} = db068865-da87-4a2f-8261-68fdc5b77112</msg>
+<status status="PASS" starttime="20190610 15:26:27.737" endtime="20190610 15:26:27.739"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:26:27.314" endtime="20190610 15:26:27.740"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:25:11.078" endtime="20190610 15:26:27.740" critical="yes"></status>
+</test>
+<test id="s1-t7" name="Scaling Out">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:27.742" level="INFO">f4233f98-c10c-43b4-b316-6f296caeb2b7</msg>
+<status status="PASS" starttime="20190610 15:26:27.742" endtime="20190610 15:26:27.742"></status>
+</kw>
+<kw name="Service Scale Out" library="tnglib">
+<doc>Makes a request to scale out a service.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>${FUNCTION_UUID}</arg>
+</arguments>
+<assign>
+<var>${SCALE_OUT}</var>
+</assign>
+<msg timestamp="20190610 15:26:28.126" level="INFO">${SCALE_OUT} = (False, {'error': 'Error saving request: The VIM UUID must be valid'})</msg>
+<status status="PASS" starttime="20190610 15:26:27.742" endtime="20190610 15:26:28.126"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SCALE_OUT}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:28.127" level="INFO">(False, {'error': 'Error saving request: The VIM UUID must be valid'})</msg>
+<status status="PASS" starttime="20190610 15:26:28.126" endtime="20190610 15:26:28.127"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+<arg>${SCALE_OUT[1]}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:28.128" level="INFO">${REQUEST} = {'error': 'Error saving request: The VIM UUID must be valid'}</msg>
+<status status="PASS" starttime="20190610 15:26:28.127" endtime="20190610 15:26:28.128"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<msg timestamp="20190610 15:26:28.130" level="INFO">{'error': 'Error saving request: The VIM UUID must be valid'}</msg>
+<status status="PASS" starttime="20190610 15:26:28.129" endtime="20190610 15:26:28.130"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:26:27.741" endtime="20190610 15:26:28.130" critical="yes"></status>
+</test>
+<test id="s1-t8" name="Wait For Ready Scaling Out">
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>3 min</arg>
+<arg>5 sec</arg>
+<arg>Check Status</arg>
+</arguments>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:28.134" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:28.133" endtime="20190610 15:26:28.135"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:28.133" endtime="20190610 15:26:28.135"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:33.137" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:33.136" endtime="20190610 15:26:33.137"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:33.136" endtime="20190610 15:26:33.137"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:38.142" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:38.142" endtime="20190610 15:26:38.142"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:38.141" endtime="20190610 15:26:38.143"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:43.153" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:43.153" endtime="20190610 15:26:43.153"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:43.152" endtime="20190610 15:26:43.154"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:48.157" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:48.156" endtime="20190610 15:26:48.157"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:48.156" endtime="20190610 15:26:48.158"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:53.159" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:53.159" endtime="20190610 15:26:53.159"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:53.158" endtime="20190610 15:26:53.159"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:26:58.162" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:58.161" endtime="20190610 15:26:58.162"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:58.160" endtime="20190610 15:26:58.162"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:03.165" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:03.164" endtime="20190610 15:27:03.165"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:03.163" endtime="20190610 15:27:03.165"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:08.168" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:08.168" endtime="20190610 15:27:08.168"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:08.167" endtime="20190610 15:27:08.168"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:13.170" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:13.170" endtime="20190610 15:27:13.170"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:13.169" endtime="20190610 15:27:13.170"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:18.172" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:18.172" endtime="20190610 15:27:18.173"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:18.171" endtime="20190610 15:27:18.173"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:23.175" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:23.175" endtime="20190610 15:27:23.175"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:23.174" endtime="20190610 15:27:23.176"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:28.178" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:28.177" endtime="20190610 15:27:28.178"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:28.176" endtime="20190610 15:27:28.179"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:33.189" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:33.180" endtime="20190610 15:27:33.189"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:33.179" endtime="20190610 15:27:33.189"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:38.191" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:38.190" endtime="20190610 15:27:38.191"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:38.190" endtime="20190610 15:27:38.191"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:43.193" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:43.192" endtime="20190610 15:27:43.193"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:43.192" endtime="20190610 15:27:43.193"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:48.195" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:48.195" endtime="20190610 15:27:48.195"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:48.194" endtime="20190610 15:27:48.196"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:53.199" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:53.199" endtime="20190610 15:27:53.199"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:53.198" endtime="20190610 15:27:53.200"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:27:58.202" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:27:58.201" endtime="20190610 15:27:58.202"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:27:58.200" endtime="20190610 15:27:58.202"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:03.204" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:03.204" endtime="20190610 15:28:03.205"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:03.203" endtime="20190610 15:28:03.205"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:08.208" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:08.208" endtime="20190610 15:28:08.209"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:08.207" endtime="20190610 15:28:08.209"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:13.210" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:13.210" endtime="20190610 15:28:13.210"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:13.209" endtime="20190610 15:28:13.211"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:18.213" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:18.212" endtime="20190610 15:28:18.213"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:18.211" endtime="20190610 15:28:18.213"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:23.216" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:23.215" endtime="20190610 15:28:23.216"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:23.215" endtime="20190610 15:28:23.216"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:28.218" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:28.217" endtime="20190610 15:28:28.218"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:28.217" endtime="20190610 15:28:28.219"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:33.221" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:33.220" endtime="20190610 15:28:33.221"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:33.219" endtime="20190610 15:28:33.221"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:38.224" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:38.223" endtime="20190610 15:28:38.224"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:38.222" endtime="20190610 15:28:38.225"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:43.231" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:43.230" endtime="20190610 15:28:43.231"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:43.230" endtime="20190610 15:28:43.231"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:48.233" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:48.233" endtime="20190610 15:28:48.234"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:48.232" endtime="20190610 15:28:48.234"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:53.235" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:53.235" endtime="20190610 15:28:53.236"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:53.234" endtime="20190610 15:28:53.236"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:28:58.238" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:28:58.237" endtime="20190610 15:28:58.239"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:28:58.236" endtime="20190610 15:28:58.239"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:03.242" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:03.242" endtime="20190610 15:29:03.242"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:03.241" endtime="20190610 15:29:03.243"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:08.254" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:08.253" endtime="20190610 15:29:08.254"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:08.252" endtime="20190610 15:29:08.254"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:13.256" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:13.255" endtime="20190610 15:29:13.256"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:13.255" endtime="20190610 15:29:13.256"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:18.258" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:18.258" endtime="20190610 15:29:18.259"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:18.257" endtime="20190610 15:29:18.259"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:23.264" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:23.264" endtime="20190610 15:29:23.264"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:23.263" endtime="20190610 15:29:23.265"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:28.267" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:28.266" endtime="20190610 15:29:28.267"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:28.265" endtime="20190610 15:29:28.267"></status>
+</kw>
+<msg timestamp="20190610 15:29:28.267" level="FAIL">Keyword 'Check Status' failed after retrying for 3 minutes. The last error was: TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:26:28.132" endtime="20190610 15:29:28.267"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:26:28.131" endtime="20190610 15:29:28.268" critical="yes">Keyword 'Check Status' failed after retrying for 3 minutes. The last error was: TypeError: must be str, not dict</status>
+</test>
+<test id="s1-t9" name="Scaling In">
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>2c5b030e-854c-4c87-a6cb-e35af844af5b</arg>
+</arguments>
+<msg timestamp="20190610 15:29:28.269" level="INFO">${SERVICE_UUID} = 2c5b030e-854c-4c87-a6cb-e35af844af5b</msg>
+<status status="PASS" starttime="20190610 15:29:28.269" endtime="20190610 15:29:28.270"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+</arguments>
+<msg timestamp="20190610 15:29:28.270" level="INFO">2c5b030e-854c-4c87-a6cb-e35af844af5b</msg>
+<status status="PASS" starttime="20190610 15:29:28.270" endtime="20190610 15:29:28.270"></status>
+</kw>
+<kw name="Service Scale In" library="tnglib">
+<doc>Makes a request to scale in a service.</doc>
+<arguments>
+<arg>${SERVICE_UUID}</arg>
+<arg>${FUNCTION_UUID}</arg>
+</arguments>
+<assign>
+<var>${SCALE_OUT}</var>
+</assign>
+<msg timestamp="20190610 15:29:28.655" level="INFO">${SCALE_OUT} = (False, {'error': 'Error saving request: The VNFD UUID must be present'})</msg>
+<status status="PASS" starttime="20190610 15:29:28.271" endtime="20190610 15:29:28.655"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${SCALE_OUT}</arg>
+</arguments>
+<msg timestamp="20190610 15:29:28.656" level="INFO">(False, {'error': 'Error saving request: The VNFD UUID must be present'})</msg>
+<status status="PASS" starttime="20190610 15:29:28.655" endtime="20190610 15:29:28.656"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+<arg>${SCALE_OUT[1]}</arg>
+</arguments>
+<msg timestamp="20190610 15:29:28.657" level="INFO">${REQUEST} = {'error': 'Error saving request: The VNFD UUID must be present'}</msg>
+<status status="PASS" starttime="20190610 15:29:28.656" endtime="20190610 15:29:28.657"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<msg timestamp="20190610 15:29:28.658" level="INFO">{'error': 'Error saving request: The VNFD UUID must be present'}</msg>
+<status status="PASS" starttime="20190610 15:29:28.657" endtime="20190610 15:29:28.658"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:29:28.268" endtime="20190610 15:29:28.658" critical="yes"></status>
+</test>
+<test id="s1-t10" name="Wait For Ready Scaling In">
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>3 min</arg>
+<arg>5 sec</arg>
+<arg>Check Status</arg>
+</arguments>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:28.661" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:28.660" endtime="20190610 15:29:28.661"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:28.660" endtime="20190610 15:29:28.661"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:33.663" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:33.662" endtime="20190610 15:29:33.663"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:33.661" endtime="20190610 15:29:33.663"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:38.669" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:38.668" endtime="20190610 15:29:38.669"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:38.667" endtime="20190610 15:29:38.669"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:43.670" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:43.670" endtime="20190610 15:29:43.670"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:43.669" endtime="20190610 15:29:43.671"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:48.706" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:48.705" endtime="20190610 15:29:48.706"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:48.705" endtime="20190610 15:29:48.706"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:53.708" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:53.708" endtime="20190610 15:29:53.708"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:53.707" endtime="20190610 15:29:53.709"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:29:58.711" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:58.711" endtime="20190610 15:29:58.711"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:58.710" endtime="20190610 15:29:58.711"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:03.713" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:03.713" endtime="20190610 15:30:03.713"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:03.712" endtime="20190610 15:30:03.714"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:08.715" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:08.715" endtime="20190610 15:30:08.715"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:08.714" endtime="20190610 15:30:08.716"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:13.718" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:13.717" endtime="20190610 15:30:13.718"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:13.716" endtime="20190610 15:30:13.719"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:18.721" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:18.720" endtime="20190610 15:30:18.721"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:18.720" endtime="20190610 15:30:18.722"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:23.724" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:23.723" endtime="20190610 15:30:23.724"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:23.722" endtime="20190610 15:30:23.724"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:28.726" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:28.725" endtime="20190610 15:30:28.726"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:28.724" endtime="20190610 15:30:28.726"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:33.732" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:33.731" endtime="20190610 15:30:33.732"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:33.731" endtime="20190610 15:30:33.732"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:38.736" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:38.735" endtime="20190610 15:30:38.736"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:38.735" endtime="20190610 15:30:38.736"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:43.738" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:43.737" endtime="20190610 15:30:43.738"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:43.737" endtime="20190610 15:30:43.739"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:48.740" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:48.739" endtime="20190610 15:30:48.740"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:48.739" endtime="20190610 15:30:48.740"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:53.752" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:53.751" endtime="20190610 15:30:53.752"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:53.750" endtime="20190610 15:30:53.752"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:30:58.821" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:30:58.821" endtime="20190610 15:30:58.821"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:30:58.820" endtime="20190610 15:30:58.821"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:03.824" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:03.823" endtime="20190610 15:31:03.824"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:03.822" endtime="20190610 15:31:03.824"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:08.826" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:08.825" endtime="20190610 15:31:08.826"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:08.824" endtime="20190610 15:31:08.826"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:13.828" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:13.827" endtime="20190610 15:31:13.828"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:13.826" endtime="20190610 15:31:13.828"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:18.830" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:18.829" endtime="20190610 15:31:18.830"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:18.829" endtime="20190610 15:31:18.830"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:23.837" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:23.836" endtime="20190610 15:31:23.837"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:23.836" endtime="20190610 15:31:23.837"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:28.840" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:28.839" endtime="20190610 15:31:28.840"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:28.839" endtime="20190610 15:31:28.840"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:33.843" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:33.842" endtime="20190610 15:31:33.843"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:33.841" endtime="20190610 15:31:33.843"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:38.845" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:38.845" endtime="20190610 15:31:38.845"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:38.844" endtime="20190610 15:31:38.845"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:43.847" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:43.846" endtime="20190610 15:31:43.847"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:43.846" endtime="20190610 15:31:43.848"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:48.850" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:48.849" endtime="20190610 15:31:48.850"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:48.848" endtime="20190610 15:31:48.850"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:53.861" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:53.860" endtime="20190610 15:31:53.861"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:53.860" endtime="20190610 15:31:53.861"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:31:58.876" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:31:58.875" endtime="20190610 15:31:58.876"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:31:58.875" endtime="20190610 15:31:58.876"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:03.878" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:32:03.877" endtime="20190610 15:32:03.878"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:03.877" endtime="20190610 15:32:03.878"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:08.883" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:32:08.881" endtime="20190610 15:32:08.883"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:08.879" endtime="20190610 15:32:08.884"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:13.890" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:32:13.889" endtime="20190610 15:32:13.890"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:13.885" endtime="20190610 15:32:13.890"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:18.892" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:32:18.892" endtime="20190610 15:32:18.893"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:18.891" endtime="20190610 15:32:18.893"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:23.896" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:32:23.894" endtime="20190610 15:32:23.896"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:23.894" endtime="20190610 15:32:23.896"></status>
+</kw>
+<kw name="Check Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:28.899" level="FAIL">TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:32:28.897" endtime="20190610 15:32:28.899"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:28.897" endtime="20190610 15:32:28.900"></status>
+</kw>
+<msg timestamp="20190610 15:32:28.900" level="FAIL">Keyword 'Check Status' failed after retrying for 3 minutes. The last error was: TypeError: must be str, not dict</msg>
+<status status="FAIL" starttime="20190610 15:29:28.659" endtime="20190610 15:32:28.900"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:29:28.659" endtime="20190610 15:32:28.901" critical="yes">Keyword 'Check Status' failed after retrying for 3 minutes. The last error was: TypeError: must be str, not dict</status>
+</test>
+<test id="s1-t11" name="Terminate Service">
+<kw name="Service Terminate" library="tnglib">
+<doc>Makes a request to terminate a service.</doc>
+<arguments>
+<arg>${TERMINATE}</arg>
+</arguments>
+<assign>
+<var>${ter}</var>
+</assign>
+<msg timestamp="20190610 15:32:29.411" level="INFO">${ter} = (True, '67e7ff91-c6ea-4c24-8ab2-32318748e57f')</msg>
+<status status="PASS" starttime="20190610 15:32:28.902" endtime="20190610 15:32:29.412"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${ter}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:29.412" level="INFO">(True, '67e7ff91-c6ea-4c24-8ab2-32318748e57f')</msg>
+<status status="PASS" starttime="20190610 15:32:29.412" endtime="20190610 15:32:29.413"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+<arg>${ter[1]}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:29.414" level="INFO">${TERM_REQ} = 67e7ff91-c6ea-4c24-8ab2-32318748e57f</msg>
+<status status="PASS" starttime="20190610 15:32:29.413" endtime="20190610 15:32:29.415"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>2 min</arg>
+<arg>5 sec</arg>
+<arg>Check Terminate</arg>
+</arguments>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:29.830" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:32:29.416" endtime="20190610 15:32:29.830"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:29.831" level="FAIL">READY != TERMINATING</msg>
+<status status="FAIL" starttime="20190610 15:32:29.830" endtime="20190610 15:32:29.831"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:29.415" endtime="20190610 15:32:29.831"></status>
+</kw>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:35.250" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:32:34.833" endtime="20190610 15:32:35.250"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:35.251" level="FAIL">READY != TERMINATING</msg>
+<status status="FAIL" starttime="20190610 15:32:35.250" endtime="20190610 15:32:35.251"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:34.832" endtime="20190610 15:32:35.251"></status>
+</kw>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:40.660" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:32:40.253" endtime="20190610 15:32:40.660"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:40.661" level="FAIL">READY != TERMINATING</msg>
+<status status="FAIL" starttime="20190610 15:32:40.660" endtime="20190610 15:32:40.661"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:40.252" endtime="20190610 15:32:40.662"></status>
+</kw>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:46.140" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:32:45.721" endtime="20190610 15:32:46.140"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:46.142" level="FAIL">READY != TERMINATING</msg>
+<status status="FAIL" starttime="20190610 15:32:46.141" endtime="20190610 15:32:46.142"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:45.721" endtime="20190610 15:32:46.143"></status>
+</kw>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:51.563" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:32:51.149" endtime="20190610 15:32:51.563"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:51.564" level="FAIL">READY != TERMINATING</msg>
+<status status="FAIL" starttime="20190610 15:32:51.563" endtime="20190610 15:32:51.564"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:51.149" endtime="20190610 15:32:51.564"></status>
+</kw>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:32:56.985" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:32:56.566" endtime="20190610 15:32:56.985"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<msg timestamp="20190610 15:32:56.986" level="FAIL">READY != TERMINATING</msg>
+<status status="FAIL" starttime="20190610 15:32:56.986" endtime="20190610 15:32:56.986"></status>
+</kw>
+<status status="FAIL" starttime="20190610 15:32:56.565" endtime="20190610 15:32:56.987"></status>
+</kw>
+<kw name="Check Terminate">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${TERM_REQ}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<msg timestamp="20190610 15:33:02.400" level="INFO">${status} = (True, {'blacklist': [], 'callback': '', 'created_at': '2019-06-10T13:32:29.998Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.0, 'egresses': [], 'error...</msg>
+<status status="PASS" starttime="20190610 15:33:01.990" endtime="20190610 15:33:02.400"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${status[1]['status']}</arg>
+</arguments>
+<status status="PASS" starttime="20190610 15:33:02.400" endtime="20190610 15:33:02.401"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:33:01.989" endtime="20190610 15:33:02.401"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:32:29.415" endtime="20190610 15:33:02.401"></status>
+</kw>
+<status status="PASS" starttime="20190610 15:32:28.901" endtime="20190610 15:33:02.401" critical="yes"></status>
+</test>
+<doc>Test suite for scaling-out and scaling-in an VNF</doc>
+<status status="FAIL" starttime="20190610 15:25:04.146" endtime="20190610 15:33:02.403"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="2">Critical Tests</stat>
+<stat pass="9" fail="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="9" fail="2" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
