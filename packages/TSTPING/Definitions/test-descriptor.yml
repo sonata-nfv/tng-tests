@@ -8,6 +8,7 @@ version: '0.1'
 
 service_platforms:
   - "OSM"
+  - "SONATA"
 test_category:
   - "basic-tests"
 
@@ -23,24 +24,27 @@ phases:
         probes:
           - id: ping
             description: "Ping probe"
-            image: registry.sonata-nfv.eu:5000/tng-vnv-probe-ping:latest
+            image: "sonatanfv/tng-vnv-probe-ping:latest"
             name: ping
             parameters:
               - key: EXTERNAL_IP
-                value: '$(cirros_vnfd/endpoints/address)'
+                value: '$(cirros_vnfd/endpoints/name:mgmtnet/address)'
   - id: exercise
     steps:
-      - description: "Executing ping"
+      - command: /bin/sh
+        dependencies: []
+        description: "Starting the initiator"
         entrypoint: /app/entrypoint.sh
         index: 1
         instances: 1
         name: ping
         output:
           - {results: results.log}
+        run: ping
   - id: verification
     steps:
       - step: ping
-        description: "Check ping results"
+        description: "Check obtained results"
         name: ping
         conditions:
           - condition: not present
