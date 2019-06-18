@@ -14,19 +14,17 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
-Clean the Packages
-    Remove All Packages
-
 Upload the Package
     ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
+	Set Suite Variable     ${PACKAGE_UUID}  ${result[1]}
     ${service} =     Map Package On Service      ${result[1]}
     Should Be True     ${service[0]}
     Set Suite Variable     ${SERVICE_UUID}  ${service[1]}
     Log     ${SERVICE_UUID}
 
 Generate the SLA Template
-    ${result}=      Create Sla Template         templateName=int_test_3   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin   provider_name=admin   service_licence_type=private   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
+    ${result}=      Create Sla Template         templateName=int_test_1   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin    provider_name=admin   service_licence_type=private   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
     Set Suite Variable     ${SLA_UUID}   ${result[1]}
     Should be True      ${result[0]}
 
@@ -40,7 +38,7 @@ Wait For Ready
     Set SIU
 
 Get Agreements
-    ${result}=      Get Agreements
+    ${result}=      Get Agreements      nsi_uuid=${TERMINATE}
     Should be True      ${result[0]}
 
 Terminate Service
@@ -52,9 +50,9 @@ Terminate Service
 Delete SLA
     ${result}=      Delete SlaTemplate    ${SLA_UUID}
     Should be True      ${result[0]}
-
-Clean the Packages
-    Remove all Packages
+	
+Delete Package
+	${result}=   Remove Package    package_uuid=${PACKAGE_UUID}
 
 *** Keywords ***
 Check Status
