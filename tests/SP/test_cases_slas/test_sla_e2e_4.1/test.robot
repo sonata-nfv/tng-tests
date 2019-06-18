@@ -14,9 +14,6 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
-Clean the Packages
-    Remove All Packages
-
 Upload the Package
     ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
@@ -52,9 +49,6 @@ Terminate Service
 Delete SLA
     ${result}=      Delete SlaTemplate    ${SLA_UUID}
     Should be True      ${result[0]}
-
-Clean the Packages
-    Remove all Packages
 
 *** Keywords ***
 Check Status
