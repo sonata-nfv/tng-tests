@@ -7,6 +7,7 @@ tng-validate --project NSID1C -t
 tng-validate --project NSID2C -t
 tng-validate --project NSINDP1C -t
 tng-validate --project NSIMOB_OSM -t
+tng-validate --project TSTINDP -t
 
 
 # package all projects
@@ -20,5 +21,5 @@ tng-pkg -p NSINDP1C --skip-validation
 tng-pkg -p TSTIMPSP --skip-validation
 tng-pkg -p NSID1V_cirros_OSM --skip-validation
 tng-pkg -p TSTPING --skip-validation
-tng-pkg -p TSTMQTT --skip-validation
+tng-pkg -p TSTINDP --skip-validation
 tng-pkg -p NSIMOB_OSM --skip-validation

@@ -9,7 +9,7 @@ ${GK_ENDPOINT}=     http://pre-int-vnv-bcn.5gtango.eu:32002/api/v3
 
 ${ADAPTER_ENDPOINT}=     http://pre-int-vnv-bcn.5gtango.eu:5001/adapters
 
-${OSM}=    https://10.30.0.170  
+${OSM}=    https://10.30.0.224
 ${OSM_USER}=    admin 
 ${OSM_PASSWORD}=    admin
 ${OSM_PROJECT_ID}=    admin
