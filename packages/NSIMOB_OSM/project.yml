@@ -4,7 +4,7 @@ version: '0.5'
 package:
   vendor: "eu.5gtango"
   name: "ns-nsimob-egm"
-  version: "0.2"
+  version: "0.3"
   maintainer: "Aureliano Sinatra (EGM)"
   description: "This is a integration test artifact."
 files:
