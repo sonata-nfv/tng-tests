@@ -1,6 +1,6 @@
 vnfd:vnfd-catalog:
     vnfd:
-    -   id: cirros_vnfd
+    -   id: cirros_vnf
         name: cirros_vnf
         short-name: cirros_vnf
         description: Simple VNF example with a cirros 
