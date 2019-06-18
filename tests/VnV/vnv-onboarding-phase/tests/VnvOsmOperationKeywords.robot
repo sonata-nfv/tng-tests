@@ -61,7 +61,7 @@ Do Upload A Ns To Osm
 
 Do Upload A VNF To Osm
     [Arguments]    ${packageName}
-    log    Uploading a package to OSM
+    log    Uploading a package to OSM   
     Set Headers    {"Content-Type": "application/json", "Authorization" : "${bearer}" } 
     ${yaml}=    Get Binary File    ${packageName}
     ${body}=   Yaml To Json    ${yaml}

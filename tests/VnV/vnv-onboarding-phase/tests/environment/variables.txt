@@ -24,9 +24,9 @@ ${MOBIUS_NS}      packages/eu.5gtango.ns-nsimob-egm.0.4.tgo
 
 ${DESCRIPTORS}     tests/descriptors/NSIMOB_OSM
 ${MOBIUS_NSD}     iot_mobius_nsd.yaml
-${MOBIUS_VNF_MYSQL}     mysql_vnfd.yaml
-${MOBIUS_VNF_MOBIUS}     iot_mobius_vnfd.yaml
-${MOBIUS_VNF_MOSQUITTO}     mosquitto_vnfd.yaml
+${MOBIUS_VNF_MYSQL}     mysql-vnfd/mysql_vnfd.yaml
+${MOBIUS_VNF_MOBIUS}     mobius-vnfd/iot_mobius_vnfd.yaml
+${MOBIUS_VNF_MOSQUITTO}     mosquitto-vnfd/mosquitto_vnfd.yaml
 
 
 ${MEDIA_PILOT_NS}     packages/eu.5gtango.industrial-pilot-test.0.1.tgo
