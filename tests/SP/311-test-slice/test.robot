@@ -6,7 +6,7 @@ Library           tnglib
 ${HOST}                 http://pre-int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${READY}                READY
 ${FILE_SOURCE_DIR}      ./packages   # to be modified and added accordingly if package is not on the same folder as test
-${FILE_SERVICE_NAME}    eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
+${FILE_SERVICE_NAME}    eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${FILE_TEMPLATE_PATH}   NSTD/3nsid1v_nstd.yaml
 ${NSI_NAME}             slice_test_311
 
@@ -21,6 +21,7 @@ Upload the Package
     ${result} =    Upload Package      ${FILE_SOURCE_DIR}/${FILE_SERVICE_NAME}
     Should Be True     ${result[0]}
     ${service} =    Map Package On Service    ${result[1]}
+    Log     ${service}
     Should Be True    ${service[0]}
     Set Suite Variable    ${PACKAGE_UUID}    ${service[1]}
     Log     ${PACKAGE_UUID}
