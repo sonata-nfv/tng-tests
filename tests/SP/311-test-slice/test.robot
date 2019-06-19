@@ -43,7 +43,7 @@ Deploy a Slice instance_uuid
     Log     ${nsi_uuid}
 
 Wait For Instantiated
-    Wait until Keyword Succeeds     20 min    Check Slice Instance Status
+    Wait until Keyword Succeeds     20 min    5 sec    Check Slice Instance Status
     #Set SIU
 
 Terminate the Slice Instance
@@ -52,7 +52,7 @@ Terminate the Slice Instance
     Should Be True    ${nsi_result[0]}
 
 Wait For Terminated
-    Wait until Keyword Succeeds     5 min    Check Slice Terminate Status
+    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Terminate Status
     #Set SIU
 
 Remove Slice Template
@@ -62,7 +62,6 @@ Remove Slice Template
 
 Clean the Package
     ${result}=    Remove Package    package_uuid=${PACKAGE_UUID}
-
 
 *** Keywords ***
 Check Slice Instance Status
