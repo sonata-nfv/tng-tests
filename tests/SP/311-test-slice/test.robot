@@ -31,7 +31,7 @@ Upload the Slice Template
     ${nst_result} =    Create Slice Template     ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}
     Log     ${nst_result}
     Should Be True     ${nst_result[0]}
-    Set Suite Variable     ${nst_uuid}    ${nsi_result[1]}
+    Set Suite Variable     ${nst_uuid}    ${nst_result[1]}
     Log     ${nst_uuid}
 
 Deploy a Slice instance_uuid
