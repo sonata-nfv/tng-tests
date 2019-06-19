@@ -19,7 +19,7 @@ files:
   - eu.5gtango
 package:
   name: tng-smpilot-ns1-k8s-egm
-  version: '0.8'
+  version: '0.9'
   maintainer: Manuel Peuster (Paderborn University)
   vendor: eu.5gtango
   description: 'Smart manufacturing pilot: Factory edge service (NS1) for vim-emu.'

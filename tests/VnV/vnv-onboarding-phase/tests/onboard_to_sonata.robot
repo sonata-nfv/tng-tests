@@ -26,6 +26,6 @@ testcase3
     Do Get Existing Plans  
     Check HTTP Response Status Code Is    200
     Response Should Be X Than   >    1  
-testcase4
-    Do Upload A Package To Sonata       ${CURDIR}/${MOBIUS_NS}   
-    Upload A TGO To Osm     
+#testcase4
+    #Do Upload A Package To Sonata       ${CURDIR}/${MOBIUS_NS}   
+    #Upload A TGO To Osm     
