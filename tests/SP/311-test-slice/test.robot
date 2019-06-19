@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Test suite for uploading a package to the SP platform
+Documentation     Network Slice Test 3.1.1 - Create a NST (upload NSs), instantiate/terminate a NSI based on the NST and remove the NST (and NSs).
 Library           tnglib
 Library           DateTime
 
@@ -70,11 +70,11 @@ Clean the Package
 *** Keywords ***
 Check Slice Instance Request Status
     ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
-    Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status]}
+    Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
 
 Check Slice Terminate Request Status
     ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
-    Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status]}
+    Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}
 
 
 
