@@ -3,8 +3,9 @@ Documentation     Test suite for uploading a package to the SP platform
 Library           tnglib
 
 *** Variables ***
-${HOST}                 http://pre-int-sp-ath.5gtango.eu   #  the name of SP we want to use
-${READY}                READY
+${HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
+${INSTANTIATED}         INSTANTIATED
+${TERMINATED}           TERMINATED
 ${FILE_SOURCE_DIR}      ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_SERVICE_NAME}    eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${FILE_TEMPLATE_PATH}   NSTD/3nsid1v_nstd.yaml
@@ -41,18 +42,18 @@ Deploy a Slice instance_uuid
     Set Suite Variable     ${nsi_uuid}    ${nsi_result[1]}
     Log     ${nsi_uuid}
 
-Wait For Ready
-    Wait until Keyword Succeeds     15 min   30 sec   Check Request Status
-    Set SIU
+Wait For Instantiated
+    Wait until Keyword Succeeds     20 min    Check Slice Instance Status
+    #Set SIU
 
 Terminate the Slice Instance
     ${nsi_result} =    Slice Terminate     ${nsi_uuid}
     Log    ${nsi_result}
     Should Be True    ${nsi_result[0]}
 
-Wait For Ready
-    Wait until Keyword Succeeds     5 min   30 sec   Check Request Status
-    Set SIU
+Wait For Terminated
+    Wait until Keyword Succeeds     5 min    Check Slice Terminate Status
+    #Set SIU
 
 Remove Slice Template
     ${nst_result} =   Delete Slice Template     ${nst_result[1]}
@@ -64,14 +65,15 @@ Clean the Package
 
 
 *** Keywords ***
-Check Request Status
-    ${status} =     Get Request    ${REQUEST}
-    Should Be Equal    ${READY}    ${status[1]['status']}
+Check Slice Instance Status
+    ${nsi_dict} =     GET SLICE INSTANCE    ${nsi_uuid}
+    Should Be Equal    ${INSTANTIATED}    ${nsi_dict[1]['nsi-status']}
+
+Check Slice Terminate Status
+    ${nsi_dict} =     GET SLICE INSTANCE    ${nsi_uuid}
+    Should Be Equal    ${TERMINATED}    ${nsi_dict[1]['nsi-status']}
 
 Set SIU
-    ${status} =     Get Request    ${REQUEST}
+    ${status} =     Get Request    ${nsi_dict[1]}
     Set Suite Variable    ${INSTANCE_ID}    ${status[1]['instance_uuid']}
 
-Check Terminate
-    ${status} =     Get Request    ${TERM_REQ}
-    Should Be Equal    ${READY}    ${status[1]['status']}
