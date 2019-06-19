@@ -65,7 +65,7 @@ Remove Slice Template
     Should Be True     ${nst_result[0]}
 
 Clean the Package
-    ${result}=    Remove Package    package_uuid=${PACKAGE_UUID}
+    ${result}=    Remove Package    ${PACKAGE_UUID}
 
 *** Keywords ***
 Check Slice Instance Request Status
