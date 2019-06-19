@@ -9,6 +9,7 @@ ${FILE_SOURCE_DIR}      ./packages   # to be modified and added accordingly if p
 ${FILE_SERVICE_NAME}    eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${FILE_TEMPLATE_PATH}   NSTD/3nsid1v_nstd.yaml
 ${NSI_NAME}             slice_test_311
+${NSI_DESCRIPTION}       Testing_slice_test_case_3.1.1
 
 
 *** Test Cases ***
@@ -30,20 +31,22 @@ Upload the Slice Template
     ${nst_result} =    Create Slice Template     ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}
     Log     ${nst_result}
     Should Be True     ${nst_result[0]}
+    Set Suite Variable     ${nst_uuid}    ${nsi_result[1]}
+    Log     ${nst_uuid}
 
 Deploy a Slice instance_uuid
-    ${nsi_result} =    Slice Instantiate     ${nst_result[1]}    ${NSI_NAME}
+    ${nsi_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}    description=${NSI_DESCRIPTION}
     Log     ${nsi_result}
     Should Be True     ${nsi_result[0]}
-    Set Suite Variable     ${REQUEST}    ${nsi_result[1]}
-    Log     ${REQUEST}
+    Set Suite Variable     ${nsi_uuid}    ${nsi_result[1]}
+    Log     ${nsi_uuid}
 
 Wait For Ready
     Wait until Keyword Succeeds     15 min   30 sec   Check Request Status
     Set SIU
 
 Terminate the Slice Instance
-    ${nsi_result} =    Slice Terminate     ${nsi_result[1]}
+    ${nsi_result} =    Slice Terminate     ${nsi_uuid}
     Log    ${nsi_result}
     Should Be True    ${nsi_result[0]}
 
