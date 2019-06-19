@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation     Test suite for uploading a package to the SP platform
 Library           tnglib
+Library           DateTime
 
 *** Variables ***
 ${HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
@@ -9,7 +10,7 @@ ${TERMINATED}           TERMINATED
 ${FILE_SOURCE_DIR}      ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_SERVICE_NAME}    eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${FILE_TEMPLATE_PATH}   NSTD/3nsid1v_nstd.yaml
-${NSI_NAME}             slice_test_311
+${NSI_NAME}             sliceTest_311-
 ${NSI_DESCRIPTION}       Testing_slice_test_case_3.1.1
 
 
@@ -36,7 +37,8 @@ Upload the Slice Template
     Log     ${nst_uuid}
 
 Deploy a Slice instance_uuid
-    ${nsi_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}    description=${NSI_DESCRIPTION}
+    ${date} = 	Get Current Date
+    ${nsi_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_result}
     Should Be True     ${nsi_result[0]}
     Set Suite Variable     ${nsi_uuid}    ${nsi_result[1]}
