@@ -5,12 +5,13 @@ Library           DateTime
 
 *** Variables ***
 ${HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
-${READY}                READY
+${INSTANTIATED}         INSTANTIATED
+${TERMINATED}           TERMINATED
 ${FILE_SOURCE_DIR}      ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_SERVICE_NAME}    eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${FILE_TEMPLATE_PATH}   NSTD/3nsid1v_nstd.yaml
 ${NSI_NAME}             sliceTest_311-
-${NSI_DESCRIPTION}       Testing_slice_test_case_3.1.1
+${NSI_DESCRIPTION}      Testing_slice_test_case_3.1.1
 
 
 *** Test Cases ***
@@ -44,7 +45,7 @@ Deploy a Slice instance_uuid
     Log     ${nsi_inst_req_uuid}
 
 Wait For Instantiated
-    Wait until Keyword Succeeds     20 min    5 sec    Check Slice Instance Request Status
+    Wait until Keyword Succeeds     15 min    30 sec    Check Slice Instance Request Status
     ${status} =     Get Request    ${nsi_inst_req_uuid}
     Set Suite Variable    ${slice_id}    ${status[1]['instance_uuid']}
 
@@ -56,7 +57,7 @@ Terminate the Slice Instance
     Log     ${nsi_term_req_uuid}
 
 Wait For Terminated
-    Wait until Keyword Succeeds     20 min    5 sec    Check Slice Terminate Request Status
+    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Terminate Request Status
 
 Remove Slice Template
     ${nst_result} =   Delete Slice Template     ${nst_uuid}
@@ -69,11 +70,11 @@ Clean the Package
 *** Keywords ***
 Check Slice Instance Request Status
     ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
-    Should Be Equal    ${READY}    ${REQUEST_instance_dict[1]['status]}
+    Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status]}
 
 Check Slice Terminate Request Status
     ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
-    Should Be Equal    ${READY}    ${REQUEST_terminate_dict[1]['status]}
+    Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status]}
 
 
 
