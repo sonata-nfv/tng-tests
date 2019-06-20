@@ -4,5 +4,5 @@
 
 This SLA test case is supposed to check the **Public** license as a SLO.
 
-**Public License:  **  
+**Public License:**  
 No restrictions affect the NS instantiation
