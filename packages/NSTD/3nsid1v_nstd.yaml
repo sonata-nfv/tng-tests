@@ -23,7 +23,7 @@ slice_ns_subnets:
     nsd-name: "test-nsid1v"
     nsd-version: "0.1"
     nsd-vendor: "eu.5gtango"
-    is-shared: False
+    is-shared: True
   - id: "Subnet_3"
     #nsd-ref: ""                              # Given by the SP when NSTD is uploaded
     nsd-name: "test-nsid1v"
