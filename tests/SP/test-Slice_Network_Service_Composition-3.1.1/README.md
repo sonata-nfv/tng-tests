@@ -2,25 +2,25 @@
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __slice__ | |
 | __Test Purpose__ | | Validate the process to instantiate & terminate a Network Slice composed by multiple Network Services.| |
-| __Configuration__ | | A Network Slice contains 3 Network Services interconnected among them by 2 Virtual Links (networks). The test uses a Network Slice Templated descriptor (NSTd) wichi defines the Network Slice to instantiate and terminate.| |
+| __Configuration__ | | A Network Slice contains 3 Network Services interconnected among them by 5 Virtual Links. The test uses a Network Slice Templated descriptor (NSTd) wich defines the Network Slice to instantiate and terminate.| |
 | __Test Tool__ | | | |
 | __Metric__ | | | |
 | __References__ | | https://github.com/sonata-nfv/tng-slice-mngr | |
 | __Applicability__ | | | |
-| __Pre-test conditions__ | | The NSTd.yaml file and the packages that contain the NSs, VNFs will be uploadedto the SP before the test execution.| |
+| __Pre-test conditions__ | | |
 | __Test sequence__ | Step | Description | Result |
-| | 1 | NSs and VNFs Packages On-Boarding | NSs and VNFs packages are on-boarded in SP catalog.|
-| | 2 | NSTd On-Boarding | Network Slice Template descriptor is on-boarded in SP catalog.|
-| | 3 | Requests Network Slice Instantiation | A request from the portal reaches the Network Slice Manager throught the GTK and creates the NSI record (NSIr). |
-| | 4 | Slice VLD (VIM networks) Creation | Networks defined in the NSTd are created by the IA in the right VIM. |
-| | 5 | Slice subnets (NS instances) Creation | Instantiation of the NSs composing the slice are completed in the right VIM. |
-| | 6 | Check Instantiation Stored Results | Check if the NSIr & NS instances status are all "Instantiated" and the networks created. |
-| | 7 | Slice subnets (NS instances) Removal | Termination of the NSs composing the slice is done, meaning the removal of the VMs created in the VIM. |
-| | 8 | Slice VLD (VIM networks) Removal | All previously created networks must be deleted from the VIM. |
-| | 9 | Check Termination Stored Results | Check if the NSIr & NS instances status are all "Terminated" and the networks deleted. |
+| | 1 | Setting Up Test Environment | Prepares the environemtn information to be used during the test. |
+| | 2 | Service Package On-Boarding | Service (NSs and VNFs) package is on-boarded in SP catalog. |
+| | 3 | On-Boarding Network Slice Template | Network Slice Template descriptor is on-boarded in SP catalog. |
+| | 4 | Requests Network Slice Instantiation | An instantiation request reaches the Network Slice Manager throught the GTK and starts the intra-process requests: creates the NSIr, slice-vld creation, NSs instances. |
+| | 5 | Validates Instantiation Process | Validates if all the process is well-done by checking the status (INSTANTIATED) of the slice instantiation request. |
+| | 6 | Requests Network Slice Termination | A termination request reaches the Network Slice Manager throught the GTK and starts all the intra-process requests: terminate all NSs and remove slice-VLDs. |
+| | 7 | Validate Termination Process | Validates if all the process is well-done by checking the status (TERMINATED) of the slice termination request. |
+| | 8 | Remove Network Slice Template | Deletes the NST descriptor previously on-boarded in order to leave the environment clean for other tests. |
+| | 9 | Remove Service Package | Deletes the service package previously on-boarded in order to leave the environment clean for other tests. |
 | __Test Verdict__ | | If no error appeared in all actions and the NSIr finishes with its status and those of the NS instances as "Terminated".|
 | __Additional resources__ | | | |
 # Scenario
-![Network Slice Architecture](./images/test_06_01.PNG)
+![Network Slice Architecture](./images/slice_3NS_architecture.PNG)
 # Test flow
-![Instantiation Testflow](./images/slice_instantiation.png)
+![Instantiation Testflow](./images/slice_instantiation_flow.png)
