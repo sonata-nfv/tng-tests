@@ -37,7 +37,6 @@ slad:
   licences:
     service_based:
       service_licence_type: public
-      service_licence_period: '100'
       service_licence_expiration_date: 10/04/2020
       allowed_service_instances: '10'
 status: active
