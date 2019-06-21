@@ -2,6 +2,7 @@
 Documentation   Test suite for the VnV E2E test
 Library         tnglib
 Library         Collections
+Library         DateTime
 
 *** Variables ***
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
@@ -17,6 +18,9 @@ ${TERMINATED}   terminated
 
 *** Test Cases ***
 Setting the VnV Path
+    #From date to obtain GrayLogs
+    ${from_date} =   Get Current Date
+    Set Global Variable  ${from_date}
     Set SP Path     ${VNV_HOST}
     ${result} =     Sp Health Check
     Should Be True  ${result}
@@ -55,6 +59,10 @@ Check No Running Instances
         Run Keyword If  '${ELEMENT['instance_uuid']}'== '${INSTANCE_UUID}' and '${ELEMENT['request_type']}'== 'TERMINATE_SERVICE'   Set Suite Variable   ${REQUEST}  ${ELEMENT['request_uuid']}
     END
     Wait until Keyword Succeeds     6 min   4 sec   Check Request Status
+    #Obtain GrayLogs
+    ${to_date} =  Get Current Date
+    Set Suite Variable  ${param_file}   True
+    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
     ${instance} =     Get Service Instance      ${INSTANCE_UUID}
     Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
 
