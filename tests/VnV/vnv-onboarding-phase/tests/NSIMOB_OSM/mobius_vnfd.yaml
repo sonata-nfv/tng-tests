@@ -1,0 +1,77 @@
+vnfd:vnfd-catalog:
+    vnfd:
+    -   id: mobius_vnf
+        name: Mobius_VNF
+        short-name: Mobius_VNF
+        logo: mobius-icon.png
+        vendor: "Easy Global Market"
+        version: '2.0'
+        description: VNF for OneM2M implementation based on Open Source projet Mobius
+
+        connection-point:
+        -   name: mobius_mgmt
+            type: VPORT
+        -   name: mobius_data
+            type: VPORT
+
+        mgmt-interface:
+            cp: mobius_mgmt
+
+        vdu:
+        -   id: mobius_vdu
+            name: mobius_vdu
+            count: 1
+            image: egm.mobius
+
+            interface:
+            -   name: iface10
+                type: EXTERNAL
+                virtual-interface:
+                    type: PARAVIRT
+                external-connection-point-ref: mobius_mgmt
+            -   name: iface11
+                type: EXTERNAL
+                virtual-interface:
+                    type: PARAVIRT
+                external-connection-point-ref: mobius_data
+
+            vm-flavor:
+                memory-mb: 2048
+                storage-gb: 2
+                vcpu-count: 2
+
+        vnf-configuration:
+            config-primitive:
+            -   name: config
+                parameter:
+                -   data-type: STRING
+                    default-value: <rw_mgmt_ip>
+                    name: ssh-hostname
+                -   data-type: STRING
+                    default-value: ubuntu
+                    name: ssh-username
+                -   data-type: STRING
+                    default-value: 5ginfire
+                    name: ssh-password
+                -   data-type: STRING
+                    name: ssh-private-key
+            -   name: start-mobius
+                parameter:
+                -   data-type: STRING
+                    name: mysql-ip
+                -   data-type: STRING
+                    name: mosquitto-ip
+
+            initial-config-primitive:
+            -   name: config
+                parameter:
+                -   name: ssh-hostname
+                    value: <rw_mgmt_ip>
+                -   name: ssh-username
+                    value: ubuntu
+                -   name: ssh-password
+                    value: 5ginfire
+                seq: '1'
+
+            juju:
+                charm: mobius

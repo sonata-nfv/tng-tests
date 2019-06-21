@@ -1,0 +1,20 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "ns-nsimob-egm"
+  version: "0.3"
+  maintainer: "Aureliano Sinatra (EGM)"
+  description: "This is a integration test artifact."
+files:
+  - path: "iot_mobius_nsd.yaml"
+    type: "application/vnd.etsi.osm.nsd"
+    testing_tags:
+      - "etsi.osm.egm"
+  - path: "mobius_vnfd.yaml"
+    type: "application/vnd.etsi.osm.vnfd"
+  - path: "mysql_vnfd.yaml"
+    type: "application/vnd.etsi.osm.vnfd"
+  - path: "mosquitto_vnfd.yaml"
+    type: "application/vnd.etsi.osm.vnfd"    

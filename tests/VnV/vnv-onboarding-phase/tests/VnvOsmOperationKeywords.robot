@@ -8,7 +8,6 @@ Library    Collections
 Library    tnglib 
 Library    json 
 Library    yaml   
-
 Library    Process
 
 *** Keywords ***
@@ -67,6 +66,12 @@ Do Upload A VNF To Osm
     ${body}=   Yaml To Json    ${yaml}
     ${resp}=     POST     ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages_content   ${body}  
     log to console       \nOriginal JSON:\n${resp}
+
+Do Upload A Package To Osm
+    [Arguments]    ${packageName}
+    log to console    Uploading a package to OSM    ${packageName}  
+    Run Process       curl -X POST -H "Content-Type: application/x-gzip" -H "Authorization : ${bearer}" -F "package=@${packageName}"    ${OSM}:9999/osm/vnfpkgm/v1/vnf_packages  shell=True  alias=Upload  
+    log to console       ${Upload.stdout}
     
 Get Token
     log    Uploading a package to OSM

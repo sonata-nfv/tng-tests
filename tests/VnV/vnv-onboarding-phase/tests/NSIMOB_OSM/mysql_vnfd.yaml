@@ -1,0 +1,45 @@
+vnfd:vnfd-catalog:
+    vnfd:
+    -   id: mysql_vnf
+        name: MySQL_VNF
+        short-name: MySQL_VNF
+        logo: mysql-icon.png
+        vendor: "Easy Global Market"
+        version: '2.0'
+        description: VNF for the MySQL database used by the Mobius server
+
+        connection-point:
+        -   name: mysql_mgmt
+            type: VPORT
+        -   name: mysql_data
+            type: VPORT
+
+        mgmt-interface:
+            cp: mysql_mgmt
+
+        vdu:
+        -   id: mysql_vdu
+            name: mysql_vdu
+            count: 1
+            image: egm.mysql
+
+            interface:
+            -   name: iface20
+                type: EXTERNAL
+                virtual-interface:
+                    type: PARAVIRT
+                external-connection-point-ref: mysql_mgmt
+            -   name: iface21
+                type: EXTERNAL
+                virtual-interface:
+                    type: PARAVIRT
+                external-connection-point-ref: mysql_data
+
+            vm-flavor:
+                memory-mb: 2048
+                storage-gb: 10
+                vcpu-count: 2
+
+        vnf-configuration:
+            juju:
+                charm: mysql

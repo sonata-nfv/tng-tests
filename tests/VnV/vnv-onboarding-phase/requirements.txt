@@ -3,6 +3,7 @@ Click==6.4
 
 # requests (for HTTP)
 requests
+curl-http
 
 # yaml
 PyYAML==3.13
@@ -19,3 +20,4 @@ RESTinstance
 robotframework-dependencylibrary
 robotframework-jsonvalidator
 robotframework-jsonschemalibrary
+robotframework-requests
