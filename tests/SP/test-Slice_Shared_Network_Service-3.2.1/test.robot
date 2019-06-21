@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation     Network Slice Test 3.2.1 - Creates a NST (upload NSs), instantiates/terminate two NSIs sharing one NSs.
 Library           tnglib
+Library           DateTime
 
 *** Variables ***
 ${HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
@@ -38,7 +39,7 @@ Upload the Slice Template
 
 Deploy a Slice instance_uuid
     ${date} = 	Get Current Date
-    ${nsi_1_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_1_NAME}   description=${NSI_DESCRIPTION}
+    ${nsi_1_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_1_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_1_result}
     Should Be True     ${nsi_1_result[0]}
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_1_result[1]}
@@ -51,7 +52,7 @@ Wait For Instantiated
 
 Deploy a Slice instance_uuid
     ${date} = 	Get Current Date
-    ${nsi_2_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_2_NAME}   description=${NSI_DESCRIPTION}
+    ${nsi_2_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_2_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_2_result}
     Should Be True     ${nsi_2_result[0]}
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_2_result[1]}
