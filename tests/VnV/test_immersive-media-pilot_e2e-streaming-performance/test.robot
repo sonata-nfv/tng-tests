@@ -64,7 +64,7 @@ Check No Running Instances
 Obtain GrayLogs
     ${to_date} =  Get Current Date
     Set Suite Variable  ${param_file}   True
-    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
+    Get Logs  ${from_date}  ${to_date}  ${VNV_HOST}  ${param_file}
 
 *** Keywords ***
 Check Request Status
