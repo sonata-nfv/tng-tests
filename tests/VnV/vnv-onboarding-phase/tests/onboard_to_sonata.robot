@@ -1,7 +1,6 @@
 *** Settings ***
 Resource    environment/variables.txt
 Resource    VnvGKOperationKeywords.robot 
-Resource    VnvOsmOperationKeywords.robot
 Resource    VnvPlannerOperationKeywords.robot 
 Library    OperatingSystem
 

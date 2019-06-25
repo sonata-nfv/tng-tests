@@ -19,3 +19,4 @@ echo "******* mqttprobe: executing benchmark *******"
 mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $CLIENTS --qos 2 --format json --username $USERNAME --password $PASSWORD > $RESULTS_FILE
 
 echo "output redirect to: $RESULTS_FILE"
+cat $RESULTS_FILE

@@ -8,6 +8,8 @@ curl-http
 # yaml
 PyYAML==3.13
 
+#GrayLog
+git+https://github.com/yumimobi/graylog.py.git
 # Tnglib
 git+https://github.com/sonata-nfv/tng-cli
 # OSM cli
