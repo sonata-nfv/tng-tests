@@ -55,12 +55,12 @@ Check No Running Instances
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-    Sleep   60
     @{REQUESTS_LIST} =  Get Requests
     FOR    ${ELEMENT}  IN  @{REQUESTS_LIST[1]}
         Run Keyword If  '${ELEMENT['instance_uuid']}'== '${INSTANCE_UUID}' and '${ELEMENT['request_type']}'== 'TERMINATE_SERVICE'   Set Suite Variable   ${REQUEST}  ${ELEMENT['request_uuid']}
     END
     Wait until Keyword Succeeds     6 min   4 sec   Check Request Status
+    Sleep   60
     ${instance} =     Get Service Instance      ${INSTANCE_UUID}
     Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
 Obtain GrayLogs
