@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.1 (Python 3.7.3 on win32)" generated="20190515 10:10:46.399" rpa="false">
+<suite id="s1" name="Onboard To Sonata" source="C:\Users\asinatra\Desktop\ECLIPSE_WORKSPACE\tng-tests\tests\VnV\vnv-onboarding-phase\onboard_to_sonata.robot">
+<test id="s1-t1" name="testcase2">
+<kw name="Delete All Packages From Sonata" library="VnvGKOperationKeywords">
+<kw name="Do Get Existing Packages" library="VnvGKOperationKeywords">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Trying to get existing packages on SONATA</arg>
+</arguments>
+<msg timestamp="20190515 10:10:46.891" level="INFO">Trying to get existing packages on SONATA</msg>
+<status status="PASS" starttime="20190515 10:10:46.891" endtime="20190515 10:10:46.891"></status>
+</kw>
+<kw name="Set Headers" library="REST">
+<tags>
+<tag>settings</tag>
+</tags>
+<doc>*Sets new request headers or updates the existing.*</doc>
+<arguments>
+<arg>{"Accept":"${ACCEPT}"}</arg>
+</arguments>
+<status status="PASS" starttime="20190515 10:10:46.891" endtime="20190515 10:10:46.891"></status>
+</kw>
+<kw name="Get" library="REST">
+<tags>
+<tag>http</tag>
+</tags>
+<doc>*Sends a GET request to the endpoint.*</doc>
+<arguments>
+<arg>${GK_ENDPOINT}/packages</arg>
+</arguments>
+<status status="PASS" starttime="20190515 10:10:46.891" endtime="20190515 10:10:47.670"></status>
+</kw>
+<kw name="Output" library="REST">
+<tags>
+<tag>I/O</tag>
+</tags>
+<doc>*Outputs JSON to terminal or a file.*</doc>
+<arguments>
+<arg>response</arg>
+</arguments>
+<assign>
+<var>${outputResponse}</var>
+</assign>
+<msg timestamp="20190515 10:10:47.671" level="INFO">
+{
+    "seconds": 0.690012,
+    "status": 200,
+    "body": [
+        {
+            "created_at": "2019-05-15T08:06:05.224+00:00",
+            "md5": "17dbb9a9109600b301407ffa96edc114",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "media-performance-test",
+                "version": "0.1",
+                "package_type": "application/vnd.5gtango.package.tdp",
+                "maintainer": "Felipe Vicens, ATOS",
+                "release_date_time": "2019-05-08T14:43:21Z",
+                "package_content": [
+                    {
+                        "source": "Icons/upb_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dd83757e632740f9f390af15eeb8bc25480a0c412c7ea9ac9abbb0e5e025e508",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "c914760d-6b23-45a3-8350-b4134dc782d8",
+                        "id": "Icons/upb_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "3cd74acbebc0a41414f342d27edbda0284ef4640ee6c077fdf00cd5a69ce181b",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "cd816a49-5ab5-4786-973e-2237e8a9ac76",
+                        "id": "Licenses/LICENSE"
+                    },
+                    {
+                        "algorithm": "SHA-256",
+                        "content-type": "application/vnd.5gtango.tstd",
+                        "hash": "95f3247f49dbfc009ebad04bab29b5f68e513df77a03ccf7ee70cbb7b0fa0edc",
+                        "source": "Definitions/Definitions/test-descriptor.yml",
+                        "tags": [],
+                        "testing_tags": [
+                            "etsi.osm.testingtag.example"
+                        ],
+                        "uuid": "99751c0b-e7ee-41f8-9b9a-c3017c31468b",
+                        "id": {
+                            "vendor": "eu.5gtango.atos",
+                            "name": "test-immersive-media",
+                            "version": "0.1"
+                        }
+                    }
+                ],
+                "description": "This is a 5GTANGO test package for media perfomance Benchmarking",
+                "package_file_uuid": "abca00e0-114a-458d-8af1-bbbecb75d15f",
+                "package_file_name": "eu.5gtango.media-performance-test.0.1.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T08:06:05.224+00:00",
+            "username": "",
+            "uuid": "beab62cc-6a04-4f0b-b001-d5b80ad5e235"
+        },
+        {
+            "created_at": "2019-05-15T08:07:15.033+00:00",
+            "md5": "8cdd8f5d378ea301e2a6c66bc91b5dd4",
+            "pd": {
+                "warning": null,
+                "descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml",
+                "vendor": "eu.5gtango",
+                "name": "ns-mediapilot-service-k8s",
+                "version": "0.3",
+                "package_type": "application/vnd.5gtango.package.nsp",
+                "maintainer": "Ignacio Dominguez",
+                "release_date_time": "2019-05-08T14:43:20Z",
+                "package_content": [
+                    {
+                        "source": "Definitions/Definitions/mediapilot-ns.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "2364912b6cf0e918ce571af171a71b289c7d480d2933506b5169903dbe4c4e84",
+                        "content-type": "application/vnd.5gtango.nsd",
+                        "tags": [],
+                        "testing_tags": [
+                            "rtmp-media-service",
+                            "etsi.osm.testingtag.example"
+                        ],
+                        "uuid": "ae42d330-9b20-454f-b483-cfc1c27d3900",
+                        "id": {
+                            "vendor": "eu.sonata-nfv",
+                            "name": "mediapilot-service",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/ma-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "c5788d99e7fe472029d2656cfbedc62d9b7674065b7000fbcf5fa9f53eeb2ba3",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "e555575c-4c05-434d-95ad-ae6596d13245",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-ma",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/mse-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "43bbb545487edef1d46491e543b29f5c848c718a75e2fc318b996783ac92228c",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "f3e9bc4e-406e-4a68-a248-0d98503c8413",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-mse",
+                            "version": "0.2"
+                        }
+                    },
+                    {
+                        "source": "Definitions/Definitions/cms-vnfd.yml",
+                        "algorithm": "SHA-256",
+                        "hash": "b970bf968da5f61a6e4a99fcf881b1406614fc968b16a5ff0740478fea250301",
+                        "content-type": "application/vnd.5gtango.vnfd",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "c0dfa862-a779-45ed-9c76-8f311a144d1a",
+                        "id": {
+                            "vendor": "eu.5gtango",
+                            "name": "vnf-cms",
+                            "version": "0.1"
+                        }
+                    },
+                    {
+                        "source": "Icons/atos_logo.png",
+                        "algorithm": "SHA-256",
+                        "hash": "dc88c2efe8f12acf4797444b9a1a17e50f37d4222bc4731502d453bfe5921398",
+                        "content-type": "image/png",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "f193bd7a-ffcf-4157-adb6-36c1eb641ad1",
+                        "id": "Icons/atos_logo.png"
+                    },
+                    {
+                        "source": "Licenses/LICENSE",
+                        "algorithm": "SHA-256",
+                        "hash": "c92192539dbdbaf679785ac68f84096ec5694cb2326ecdcc0d03f5d50604a1ed",
+                        "content-type": "text/plain",
+                        "tags": [],
+                        "testing_tags": [],
+                        "uuid": "b8c23dfc-1ecd-4fbf-acf6-b3ad4de30f94",
+                        "id": "Licenses/LICENSE"
+                    }
+                ],
+                "description": "This is the 5GTANGO network service for the media pilot with k8s",
+                "package_file_uuid": "ae029a4d-07bd-4bad-b851-35eaae865b24",
+                "package_file_name": "eu.5gtango.ns-mediapilot-service-k8s.0.3.tgo"
+            },
+            "signature": null,
+            "status": "active",
+            "updated_at": "2019-05-15T08:07:15.033+00:00",
+            "username": "",
+            "uuid": "40cd3860-7661-416e-a871-78bca4953eb0"
+        }
+    ],
+    "headers": {
+        "content-type": "application/json",
+        "x-content-type-options": "nosniff",
+        "connection": "close",
+        "X-Timing": "0.211183619",
+        "Content-Length": "4377"
+    }
+}</msg>
+<msg timestamp="20190515 10:10:47.687" level="INFO">${outputResponse} = {'seconds': 0.690012, 'status': 200, 'body': [{'created_at': '2019-05-15T08:06:05.224+00:00', 'md5': '17dbb9a9109600b301407ffa96edc114', 'pd': {'warning': None, 'descriptor_schema': 'https://raw.githu...</msg>
+<status status="PASS" starttime="20190515 10:10:47.671" endtime="20190515 10:10:47.687"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>@{response}</arg>
+<arg>${outputResponse}</arg>
+</arguments>
+<msg timestamp="20190515 10:10:47.688" level="INFO">@{response} = [ {'seconds': 0.690012, 'status': 200, 'body': [{'created_at': '2019-05-15T08:06:05.224+00:00', 'md5': '17dbb9a9109600b301407ffa96edc114', 'pd': {'warning': None, 'descriptor_schema': 'https://raw.git...</msg>
+<status status="PASS" starttime="20190515 10:10:47.687" endtime="20190515 10:10:47.688"></status>
+</kw>
+<status status="PASS" starttime="20190515 10:10:46.890" endtime="20190515 10:10:47.688"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Delete all packages</arg>
+</arguments>
+<status status="PASS" starttime="20190515 10:10:47.688" endtime="20190515 10:10:47.688"></status>
+</kw>
+<kw name="Remove All Packages" library="tnglib">
+<doc>Removes all packages from the catalogue.</doc>
+<msg timestamp="20190515 10:10:47.690" level="FAIL">InvalidSchema: No connection adapters were found for 'localhost:32002/api/v3/packages'</msg>
+<status status="FAIL" starttime="20190515 10:10:47.688" endtime="20190515 10:10:47.691"></status>
+</kw>
+<status status="FAIL" starttime="20190515 10:10:46.890" endtime="20190515 10:10:47.691"></status>
+</kw>
+<status status="FAIL" starttime="20190515 10:10:46.890" endtime="20190515 10:10:47.691" critical="yes">InvalidSchema: No connection adapters were found for 'localhost:32002/api/v3/packages'</status>
+</test>
+<status status="FAIL" starttime="20190515 10:10:46.400" endtime="20190515 10:10:47.692"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Onboard To Sonata">Onboard To Sonata</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
