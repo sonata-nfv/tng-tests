@@ -44,8 +44,11 @@ Wait For Service Instance Ready
     Sleep   120
     ${request_list} =   Get Requests
     Set Suite Variable  ${REQUEST}  ${request_list[1][0]['request_uuid']}
-    Set Global Variable  ${INSTANCE_UUID}    ${request_list[1][0]['instance_uuid']}
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
+    @{request_list} =   Get Requests
+    FOR     ${ELEMENT}  IN  @{request_list[1]}
+        Run Keyword If  '${ELEMENT['request_uuid']}'== '${REQUEST}' Set Global Variable  ${INSTANCE_UUID}    ${ELEMENT['instance_uuid']}
+    END
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
