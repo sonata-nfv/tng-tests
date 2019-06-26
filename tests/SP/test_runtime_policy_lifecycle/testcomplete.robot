@@ -30,13 +30,17 @@ Create Runtime Policy
     Should Be True     ${result[0]}
     Set Suite Variable     ${POLICY_UUID}  ${result[1]}
     Sleep   30
-Define Runtime Policy as default
-###Define Runtime Policy as default code will go here once ready
+Define Runtime Policy as Default
+    ${result} =     Define Policy As Default      ${POLICY_UUID}   service_uuid=${SERVICE_UUID}
+    Should Be True     ${result[0]}
 Deploying Service
     ${init} =   Service Instantiate     ${SERVICE_UUID}
     Log     ${init}
     Set Suite Variable     ${REQUEST}  ${init[1]}
-    Log     ${REQUEST}
+    Log     ${REQUEST}    
+Wait For Ready
+    Wait until Keyword Succeeds     2 min   5 sec   Check Status
+    Set SIU  
 Check monitoring rules
 ###Check monitoring rules code will go here once ready
 Deactivate Runtime Policy
@@ -44,10 +48,12 @@ Deactivate Runtime Policy
 Re-activate Runtime Policy
 ###Re-activate Runtime Policy code will go here once ready
 Terminate Service
+    Log     ${TERMINATE}
     ${ter} =    Service Terminate   ${TERMINATE}
     Log     ${ter}
     Set Suite Variable     ${TERM_REQ}  ${ter[1]}
-    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate
+Wait For Terminate Ready    
+    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate 
 Delete Runtime Policy
     ${result} =     Delete Policy      ${POLICY_UUID}
     Should Be True     ${result[0]}
