@@ -55,6 +55,7 @@ Check No Running Instances
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
+    Sleep   60
     @{REQUESTS_LIST} =  Get Requests
     FOR    ${ELEMENT}  IN  @{REQUESTS_LIST[1]}
         Run Keyword If  '${ELEMENT['instance_uuid']}'== '${INSTANCE_UUID}' and '${ELEMENT['request_type']}'== 'TERMINATE_SERVICE'   Set Suite Variable   ${REQUEST}  ${ELEMENT['request_uuid']}
@@ -69,8 +70,8 @@ Obtain GrayLogs
 
 *** Keywords ***
 Check Create Service Request
-    ${requests} =     Get Request     ${REQUEST}
-    Should Be Equal     ${CREATE_SERVICE}   ${requests[1]['request_type']}
+    ${requests} =     Get Requests
+    Should Be Equal     ${CREATE_SERVICE}   ${requests[1][0]['request_type']}
 Check Request Status
     ${requests} =     Get Request     ${REQUEST}
     Set Global Variable   ${INSTANCE_UUID}      ${requests[1]['instance_uuid']}
