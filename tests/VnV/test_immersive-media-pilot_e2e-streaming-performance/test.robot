@@ -47,7 +47,7 @@ Wait For Service Instance Ready
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
     @{request_list} =   Get Requests
     FOR     ${ELEMENT}  IN  @{request_list[1]}
-        Run Keyword If  '${ELEMENT['request_uuid']}'== '${REQUEST}' Set Global Variable  ${INSTANCE_UUID}    ${ELEMENT['instance_uuid']}
+        Run Keyword If  '${ELEMENT['request_uuid']}'== '${REQUEST}'   Set Global Variable   ${INSTANCE_UUID}    ${ELEMENT['instance_uuid']}
     END
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
