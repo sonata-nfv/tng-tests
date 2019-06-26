@@ -15,6 +15,7 @@ ${TST_PACKAGE_SHORT_NAME}  media-performance-test
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated
+${CREATE_SERVICE}       CREATE_SERVICE
 
 *** Test Cases ***
 Setting the VnV Path
@@ -42,13 +43,10 @@ Wait For Service Instance Ready
     ${result} =     Sp Health Check
     Should Be True   ${result}
     Sleep   120
+    Wait until Keyword Succeeds     3 min   1 sec   Check Create Service Request
     ${request_list} =   Get Requests
     Set Suite Variable  ${REQUEST}  ${request_list[1][0]['request_uuid']}
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
-    @{request_list} =   Get Requests
-    FOR     ${ELEMENT}  IN  @{request_list[1]}
-        Run Keyword If  '${ELEMENT['request_uuid']}'== '${REQUEST}'   Set Global Variable   ${INSTANCE_UUID}    ${ELEMENT['instance_uuid']}
-    END
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
@@ -70,8 +68,12 @@ Obtain GrayLogs
     Get Logs  ${from_date}  ${to_date}  ${VNV_HOST}  ${param_file}
 
 *** Keywords ***
+Check Create Service Request
+    ${requests} =     Get Request     ${REQUEST}
+    Should Be Equal     ${CREATE_SERVICE}   ${requests[1]['request_type']}
 Check Request Status
     ${requests} =     Get Request     ${REQUEST}
+    Set Global Variable   ${INSTANCE_UUID}      ${requests[1]['instance_uuid']}
     Should Be Equal    ${READY}  ${requests[1]['status']}
 Check Test Result Status
     ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
