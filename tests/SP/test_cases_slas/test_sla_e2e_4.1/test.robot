@@ -1,6 +1,8 @@
 *** Settings ***
 Documentation   Test the SLAs E2E test
 Library         tnglib
+Library         Collections
+Library         DateTime
 
 *** Variables ***
 ${SP_HOST}                http://pre-int-sp-ath.5gtango.eu  #  the name of SP we want to use
