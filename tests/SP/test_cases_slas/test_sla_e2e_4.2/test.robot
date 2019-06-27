@@ -10,6 +10,10 @@ ${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package 
 
 *** Test Cases ***
 Setting the SP Path
+	#From date to obtain GrayLogs
+    ${from_date} =   Get Current Date
+    Set Global Variable  ${from_date}
+	
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True  ${result}
@@ -53,6 +57,11 @@ Delete SLA
 	
 Delete Package
 	${result}=   Remove Package    package_uuid=${PACKAGE_UUID}
+
+Obtain GrayLogs
+    ${to_date} =  Get Current Date
+    Set Suite Variable  ${param_file}   True
+    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
 
 *** Keywords ***
 Check Status
