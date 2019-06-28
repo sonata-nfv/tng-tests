@@ -5,7 +5,7 @@ vnfd:vnfd-catalog:
         short-name: Mosquitto_VNF
         logo: mosquitto-icon.png
         vendor: "Easy Global Market"
-        version: '1.0'
+        version: '2.0'
         description: VNF for the Mosquitto bus used by the Mobius server
 
         connection-point:
@@ -21,7 +21,7 @@ vnfd:vnfd-catalog:
         -   id: mosquitto_vdu
             name: mosquitto_vdu
             count: 1
-            image: ubuntu_bionic_mosquitto.qcow2
+            image: egm.mosquitto
             cloud-init-file: mosquitto_cloud_init.cfg
 
             interface:

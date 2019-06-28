@@ -6,7 +6,7 @@ nsd:nsd-catalog:
     description: VNF for OneM2M implementation based on Open Source projet Mobius
     vendor: "Easy Global Market"
     logo: "mobius-icon.png"
-    version: "1.0"
+    version: "2.0"
 
     constituent-vnfd:
     - member-vnf-index: 1
@@ -25,7 +25,7 @@ nsd:nsd-catalog:
       short-name: MGMT_VL
       vendor: "Easy Global Market"
       description: "Management Network"
-      version: "1.0"
+      version: "2.0"
       type: "ELAN"
       mgmt-network: "true"
       vnfd-connection-point-ref:
@@ -44,7 +44,7 @@ nsd:nsd-catalog:
       short-name: DATA_VL1
       vendor: "Easy Global Market"
       description: "Data Network"
-      version: "1.0"
+      version: "2.0"
       type: "ELAN"
       mgmt-network: "false"
       vnfd-connection-point-ref:
@@ -60,7 +60,7 @@ nsd:nsd-catalog:
       short-name: DATA_VL2
       vendor: "Easy Global Market"
       description: "Data Network"
-      version: "1.0"
+      version: "2.0"
       type: "ELAN"
       mgmt-network: "false"
       vnfd-connection-point-ref:
