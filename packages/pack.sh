@@ -15,7 +15,6 @@ tng-pkg -p NSID2C --skip-validation
 tng-pkg -p NSID2V --skip-validation
 tng-pkg -p NSIMPSP --skip-validation
 tng-pkg -p NSINDP1C --skip-validation
-tng-pkg -p NSIPSP --skip-validation
 tng-pkg -p NSTD --skip-validation
 tng-pkg -p TSTGNRPRB --skip-validation
 tng-pkg -p TSTIMPSP --skip-validation
