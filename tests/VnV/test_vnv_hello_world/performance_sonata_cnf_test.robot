@@ -15,6 +15,7 @@ ${TST_PACKAGE_SHORT_NAME}  industrial-pilot-test-egm
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated
+${CREATE_SERVICE}       CREATE_SERVICE
 
 *** Test Cases ***
 Setting the VnV Path
@@ -42,9 +43,9 @@ Wait For Service Instance Ready
     ${result} =     Sp Health Check
     Should Be True   ${result}
     Sleep   120
+    Wait until Keyword Succeeds     3 min   1 sec   Check Create Service Request
     ${request_list} =   Get Requests
     Set Suite Variable  ${REQUEST}  ${request_list[1][0]['request_uuid']}
-    Set Global Variable  ${INSTANCE_UUID}    ${request_list[1][0]['instance_uuid']}
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
@@ -59,16 +60,21 @@ Check No Running Instances
         Run Keyword If  '${ELEMENT['instance_uuid']}'== '${INSTANCE_UUID}' and '${ELEMENT['request_type']}'== 'TERMINATE_SERVICE'   Set Suite Variable   ${REQUEST}  ${ELEMENT['request_uuid']}
     END
     Wait until Keyword Succeeds     6 min   4 sec   Check Request Status
-    ${instance} =     Get Service Instance      ${INSTANCE_UUID}
-    Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
+    #Sleep   60
+    #${instance} =     Get Service Instance      ${INSTANCE_UUID}
+    #Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
 Obtain GrayLogs
     ${to_date} =  Get Current Date
     Set Suite Variable  ${param_file}   True
     Get Logs  ${from_date}  ${to_date}  ${VNV_HOST}  ${param_file}
 
 *** Keywords ***
+Check Create Service Request
+    ${requests} =     Get Requests
+    Should Be Equal     ${CREATE_SERVICE}   ${requests[1][0]['request_type']}
 Check Request Status
     ${requests} =     Get Request     ${REQUEST}
+    Set Global Variable   ${INSTANCE_UUID}      ${requests[1]['instance_uuid']}
     Should Be Equal    ${READY}  ${requests[1]['status']}
 Check Test Result Status
     ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
