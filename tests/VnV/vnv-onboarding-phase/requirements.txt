@@ -3,10 +3,13 @@ Click==6.4
 
 # requests (for HTTP)
 requests
+curl-http
 
 # yaml
 PyYAML==3.13
 
+#GrayLog
+git+https://github.com/yumimobi/graylog.py.git
 # Tnglib
 git+https://github.com/sonata-nfv/tng-cli
 # OSM cli
@@ -19,3 +22,4 @@ RESTinstance
 robotframework-dependencylibrary
 robotframework-jsonvalidator
 robotframework-jsonschemalibrary
+robotframework-requests
