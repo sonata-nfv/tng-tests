@@ -26,12 +26,11 @@ Setting the VnV Path
     Should Be True  ${result}
 Fetch Results of latest Test succesfull execution
 ###Fetch Results of latest Test succesfull execution code will go here once ready
-Select a set of healthy test monitoring metrics	
-###Select healthy metrics code will go here once ready
 Invoke a test analytic process
 ###Invoke a test analytic process code will go here once ready
-Invoke a correlogram analytic process	
-###Invoke a correlogram analytic process code will go here once ready
+Select a set of healthy test monitoring metrics	
+###Select healthy metrics code will go here once ready
+
 
 *** Keywords ***
 Check Request Status
