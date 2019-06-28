@@ -8,7 +8,8 @@ package:
   maintainer: "5GTANGO Test Team"
   description: "This is a integration test artifact."
 files:
-  - path: "nstd.yaml"
+  - path: "3nsid1v_nstd.yaml"
+    type: "application/vnd.5gtango.nstd"
   - path: "nsd.yaml"
     type: "application/vnd.5gtango.nsd"
     tags:  # (optional)
