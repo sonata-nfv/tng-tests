@@ -16,15 +16,15 @@ Setting the SP Path
     Set SP Path     ${HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-#Upload the Package
-#    ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${FILE_NAME}
-#    Should Be True     ${result[0]}
-#    Set Suite Variable     ${PACKAGE_UUID}  ${result[1]}
-#    Log     ${PACKAGE_UUID}
-#Create Runtime Policy
-#    ${result} =     Create Policy      ${POLICIES_SOURCE_DIR}/${POLICY_NAME}
-#    Should Be True     ${result[0]}
-#    Set Suite Variable     ${POLICY_UUID}  ${result[1]}
+Upload the Package
+    ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${FILE_NAME}
+    Should Be True     ${result[0]}
+    Set Suite Variable     ${PACKAGE_UUID}  ${result[1]}
+    Log     ${PACKAGE_UUID}
+Create Runtime Policy
+    ${result} =     Create Policy      ${POLICIES_SOURCE_DIR}/${POLICY_NAME}
+    Should Be True     ${result[0]}
+    Set Suite Variable     ${POLICY_UUID}  ${result[1]}
 #Remove the Package
 #    ${result} =     Remove Package      ${PACKAGE_UUID}
 #    Should Be True     ${result[0]}

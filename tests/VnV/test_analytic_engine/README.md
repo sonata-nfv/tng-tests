@@ -9,9 +9,8 @@
 | __Pre-test conditions__ | | A sucsesfull VnV test has to executed prior to the the analytics engine invocation| |
 | __Test sequence__ | Step | Description | Result |
 | | 1 | Fetch Results of latest Test succesfull execution | Fetch Results of latest Test succesfull execution from test results repository|
-| | 2 | Select a set of healthy test monitoring metrics | Select only metrics that have a significant rate fluctuation|
-| | 3 | Invoke a test analytic process | Check connection with monitoring engine and prometheus instance |
-| | 4 | Invoke a correlogram analytic process | Get all statistical significant correlations |
+| | 2 | Invoke a test analytic process | Check connection with monitoring engine and prometheus instance |
+| | 3 | Select a set of healthy test monitoring metrics | Select only metrics that have a significant rate fluctuation. Report basic statistics|
 | __Additional resources__ | | | |
 
 # Test flow
