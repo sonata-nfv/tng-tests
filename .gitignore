@@ -1,8 +1,0 @@
-*.tgo
-.project
-.pydevproject
-*.pyc
-tests\VnV\vnv-onboarding-phase\tests\log.html
-tests\VnV\vnv-onboarding-phase\tests\report.html
-tests\VnV\vnv-onboarding-phase\tests\output.xml
-tests\VnV\probes\jmeter\results.out
