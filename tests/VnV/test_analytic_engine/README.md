@@ -2,10 +2,10 @@
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __Analyze Immersive Media Pilot Streaming Monitoring Metrics__ | |
 | __Test Purpose__ | | Check that analytics engine is correctly integrated at VnV environment.| |
-| __Configuration__ | | A NS composed by three VNFs (CMS, MA, MSE) is deployed on the Service Platform. The defined test plan contains a Test Descriptor (TD) with the configuration of docker images, environment variables, dependencies, etc that will be used in the test.| |
+| __Configuration__ | | A NS composed by three VNFs (CMS, MA, MSE) is deployed on the Service Platform. A defined test plan has been executed prior to this test and is completed succesfully| |
 | __Test Tool__ | | robot framework| |
 | __References__ | | https://github.com/sonata-nfv/tng-analytics-engine/ | |
-| __Applicability__ | | Variations of this test case can be performed modifying the requested Analytic Service| |
+| __Applicability__ | | Variations of this test case can be performed by modifying the requested Analytic Service| |
 | __Pre-test conditions__ | | A sucsesfull VnV test has to executed prior to the the analytics engine invocation| |
 | __Test sequence__ | Step | Description | Result |
 | | 1 | Fetch Results of latest Test succesfull execution | Fetch Results of latest Test succesfull execution from test results repository|

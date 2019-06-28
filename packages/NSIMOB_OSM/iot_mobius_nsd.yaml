@@ -1,0 +1,72 @@
+nsd:nsd-catalog:
+  nsd:
+  - id: iot_mobius_ns
+    name: IoT_Mobius_NS
+    short-name: IoT_Mobius_NS
+    description: VNF for OneM2M implementation based on Open Source projet Mobius
+    vendor: "Easy Global Market"
+    logo: "mobius-icon.png"
+    version: "2.0"
+
+    constituent-vnfd:
+    - member-vnf-index: 1
+      vnfd-id-ref: mobius_vnf
+      start-by-default: "true"
+    - member-vnf-index: 2
+      vnfd-id-ref: mysql_vnf
+      start-by-default: "true"
+    - member-vnf-index: 3
+      vnfd-id-ref: mosquitto_vnf
+      start-by-default: "true"
+
+    vld:
+    - id: mgmt_vl
+      name: MGMT_VL
+      short-name: MGMT_VL
+      vendor: "Easy Global Market"
+      description: "Management Network"
+      version: "2.0"
+      type: "ELAN"
+      mgmt-network: "true"
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: mobius_vnf
+        vnfd-connection-point-ref: mobius_mgmt
+      - member-vnf-index-ref: 2
+        vnfd-id-ref: mysql_vnf
+        vnfd-connection-point-ref: mysql_mgmt
+      - member-vnf-index-ref: 3
+        vnfd-id-ref: mosquitto_vnf
+        vnfd-connection-point-ref: mosquitto_mgmt
+
+    - id: data_vl1
+      name: DATA_VL1
+      short-name: DATA_VL1
+      vendor: "Easy Global Market"
+      description: "Data Network"
+      version: "2.0"
+      type: "ELAN"
+      mgmt-network: "false"
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: mobius_vnf
+        vnfd-connection-point-ref: mobius_data
+      - member-vnf-index-ref: 2
+        vnfd-id-ref: mysql_vnf
+        vnfd-connection-point-ref: mysql_data
+
+    - id: data_vl2
+      name: DATA_VL2
+      short-name: DATA_VL2
+      vendor: "Easy Global Market"
+      description: "Data Network"
+      version: "2.0"
+      type: "ELAN"
+      mgmt-network: "false"
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: mobius_vnf
+        vnfd-connection-point-ref: mobius_data
+      - member-vnf-index-ref: 3
+        vnfd-id-ref: mosquitto_vnf
+        vnfd-connection-point-ref: mosquitto_data
