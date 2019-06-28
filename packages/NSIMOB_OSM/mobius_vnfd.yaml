@@ -5,7 +5,7 @@ vnfd:vnfd-catalog:
         short-name: Mobius_VNF
         logo: mobius-icon.png
         vendor: "Easy Global Market"
-        version: '1.0'
+        version: '2.0'
         description: VNF for OneM2M implementation based on Open Source projet Mobius
 
         connection-point:
@@ -21,7 +21,7 @@ vnfd:vnfd-catalog:
         -   id: mobius_vdu
             name: mobius_vdu
             count: 1
-            image: ubuntu_bionic_mobius.qcow2
+            image: egm.mobius
             cloud-init-file: mobius_cloud_init.cfg
 
             interface:
