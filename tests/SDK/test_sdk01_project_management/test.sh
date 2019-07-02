@@ -9,7 +9,9 @@ printf "Running test_sdk01_project_management"
 for i in `seq 1 2`; do
 	cmd="tng-project -p "projects/test_prj${i}" --vnfs $i"
 	printf "${cmd}\n"
+	# record time (s) and max memory (kb)
 	result="$( /usr/bin/time -f '%U,%M' ${cmd} )"
 	printf "${result}\n\n"
 done
 printf "Done"
+# TODO: write results to csv file; increase number to 1000; plot
