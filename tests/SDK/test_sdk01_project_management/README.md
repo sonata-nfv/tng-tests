@@ -10,3 +10,4 @@ Tool: tng-sdk-project
 
 ---
 
+Run under Ubuntu (requires `/usr/bin/time`).
