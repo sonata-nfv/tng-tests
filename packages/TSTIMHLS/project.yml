@@ -1,0 +1,18 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "media-performance-test"
+  version: "0.1"
+  maintainer: "Felipe Vicens, ATOS"
+  description: "This is a 5GTANGO test package for media perfomance Benchmarking"
+files:
+  - path: "Definitions/test-descriptor.yml"
+    type: "application/vnd.5gtango.tstd"
+    testing_tags:
+      - "etsi.osm.testingtag.example"
+  - path: "Icons/upb_logo.png"
+    type: "image/png"
+  - path: "Licenses/LICENSE"
+    type: "text/plain"
