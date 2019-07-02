@@ -15,5 +15,6 @@
 |                      | 5    | Delete the package                                 | package is deleted from the catalogue  |
 |                      | 6    | Get the requests database and substract the time comsumed for instantiation and termination |   Records in a file   |
 |                      | 7    | Repeat from 2 and 6                                | package upload and deleted from the catalogue  |
-| Test Verdict         |      | Package was upload and deleted in all iterations   |         |
-| Additional Resources |      |  Export the time spent file. The information is in the headers X-Timing. Write the time comsumed in a file |         |
+|                      | 8    | Generate the graphs image file from the data generated at 6   |  graph file is created  |
+| Test Verdict         |      | Instantiations and termination finished correctly and package was upload and deleted in all iterations   |         |
+| Additional Resources |      | Export a graph file with time consumed by each creation/deletion cycle. |         |
