@@ -11,7 +11,7 @@ files:
   - path: "Definitions/test-descriptor.yml"
     type: "application/vnd.5gtango.tstd"
     testing_tags:
-      - "etsi.osm.testingtag.example"
+      - "hls-media-service"
   - path: "Icons/upb_logo.png"
     type: "image/png"
   - path: "Licenses/LICENSE"
