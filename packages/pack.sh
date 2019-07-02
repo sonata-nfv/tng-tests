@@ -19,6 +19,7 @@ tng-pkg -p NSINDP1C --skip-validation
 tng-pkg -p NSTD --skip-validation
 tng-pkg -p TSTGNRPRB --skip-validation
 tng-pkg -p TSTIMPSP --skip-validation
-tng-pkg -p TSTINDP --skip-validation
+tng-pkg -p NSID1V_cirros_OSM --skip-validation
 tng-pkg -p TSTPING --skip-validation
-tng-pkg -p TSTPING_SONATA --skip-validation
+tng-pkg -p TSTIMHLS --skip-validation
+
