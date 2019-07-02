@@ -1,0 +1,117 @@
+---
+author: "Ignacio Dominguez (ATOS)"
+description: "HLS playlist test"
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
+name: "test-immersive-media-hls"
+vendor: "eu.5gtango.atos"
+version: '0.1'
+
+service_platforms:
+  - "SONATA"
+testing_category:
+  - "benchmarking"
+testing_tags:
+  - "hls-media-service"
+
+phases:
+- id: setup
+  steps:
+  - action: deploy
+    description: "Deploying a NS"
+    name: deployment
+  - action: configure
+    description: "Configuration"
+    name: configuration
+    probes:
+    - id: initiator
+      description: "A service initial configuration container"
+      image: "ignaciodomin/media-initiator:dev"
+      name: initiator
+      parameters:
+      - key: CAMERA
+        value: test
+      - key: CMS
+        value: '$(vnf-cms/endpoints/id:floating_ip/address)'
+    - id: playlistreader
+      description: "hls playlist reader"
+      image: "ignaciodomin/media-plreader-hls:dev"
+      name: playlistreader
+      parameters:
+      - key: STREAMING_ENGINE
+        value: '$(vnf-mse/endpoints/id:floating_ip/address)'
+      - key: STREAM
+        value: test
+    - id: parser
+      description: "Parser"
+      image: "ignaciodomin/media-parser-hls:dev"
+      name: parser
+      parameters: []
+    - id: cpe
+      description: "Content Producer Emulator (CPE) To generate a RTMP flow"
+      image: "ignaciodomin/media-cpe:test"
+      name: cpe
+      parameters:
+      - key: AGGREGATOR
+        value: '$(vnf-ma/endpoints/id:floating_ip/address)'
+      - key: APP
+        value: test
+      - key: STREAM
+        value: test
+- id: exercise
+  steps:
+    - command: /bin/sh
+      dependencies: []
+      description: "Starting the initiator"
+      entrypoint: /app/entrypoint.sh
+      index: 1
+      instances: 1
+      name: initiator
+      output:
+      - {results: logs.txt}
+      run: initiator
+    - command: /bin/sh
+      description: "Starting the CPE that simulates the camera"
+      entrypoint: /app/entrypoint.sh
+      index: 1
+      instances: 1
+      name: cpe
+      output:
+        - results: logs.txt
+      run: cpe
+      start_delay: 5
+      dependencies: [initiator]
+    - command: /bin/sh
+      dependencies: [initiator]
+      description: "Read the available playlist in the MSE"
+      entrypoint: /app/entrypoint.sh
+      index: 1
+      instances: 1
+      name: playlistreader
+      output:
+        - {results: logs.txt}
+      run: playlistreader
+      start_delay: 25
+    - command: /bin/sh
+      dependencies: [initiator, cpe, playlistreader]
+      description: "Parse the results from the playlistreader"
+      entrypoint: /app/entrypoint.sh
+      index: 1
+      instances: 1
+      name: parser
+      output:
+        - results: logs.txt
+      run: parser
+      start_delay: 30
+- id: verification
+  steps:
+  - step: parser
+    description: "Check obtained results"
+    name: parser
+    conditions:
+    - condition: =
+      file: result.json
+      find: segments
+      name: segments
+      type: json
+      value: 'correct'
+verdict: pass
