@@ -10,7 +10,7 @@ ${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1v_cirros_osm.0.1.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.generic-probes-test-pingonly.0.1.tgo
-${NS_PACKAGE_SHORT_NAME}  cirros_1vnf_ns
+${NS_PACKAGE_SHORT_NAME}  test-ns-nsid1v_cirros_osm
 ${TST_PACKAGE_SHORT_NAME}  generic-probes-test-pingonly
 ${READY}       READY
 ${PASSED}      PASSED
