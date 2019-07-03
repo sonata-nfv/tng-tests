@@ -1,12 +1,15 @@
 *** Settings ***
 Documentation   Test the SLAs E2E test
 Library         tnglib
+Library 		RequestsLibrary
 Library         Collections
 Library         DateTime
 
 *** Variables ***
 ${SP_HOST}                http://pre-int-sp-ath.5gtango.eu  #  the name of SP we want to use
 ${READY}       READY
+${COUNTER} =	${0}
+
 
 *** Test Cases ***
 Setting the SP Path
@@ -19,10 +22,11 @@ Setting the SP Path
     Should Be True  ${result}
 
 For-Loop-In-Range
-	: FOR    ${INDEX}    IN RANGE    1    15
-		Run Keyword IF 	${INDEX} != 11   Make Request 
-						else   Make Request Not Ok
+	LOG 	${COUNTER}
+	: FOR    ${INDEX}   IN RANGE    1 	15
+		Make Request
 	END
+	should be equal 	${COUNTER} 	${10}
 
 Obtain GrayLogs
     ${to_date} =  Get Current Date
@@ -31,11 +35,18 @@ Obtain GrayLogs
 	
 *** Keywords ***
 Make Request
-    ${result}=      Get Agreements 
-	$(status_code) = convert to string ${result.status_code}
-	should be equal $(status_code) 200
+	create session 	FetchData	${SP_HOST}
+	${result} = 	RequestsLibrary.Get Request 	FetchData 	:32002/api/v3/requests
+	${status} = 	Convert to String 	${result.status_code}
+	Run keyword If 	${status} == 200 	Increment Counter
+
+Increment Counter
+	${count} = 	Evaluate 	${COUNTER} + 1
+	Set test variable 	${COUNTER} 	${count}
+
 
 Make Request Not Ok
-    ${result}=      Get Agreements 
-	$(status_code) = convert to string ${result.status_code}
-	should be not equal $(status_code) 200
+	create session	FetchData	${SP_HOST}
+	${result} = 	RequestsLibrary.Get Request 	FetchData 	:32002/api/v3/requests
+	${status} = 	Convert to String 	${result.status_code}
+	should not be equal 	${status} 	200
