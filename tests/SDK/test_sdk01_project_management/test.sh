@@ -8,7 +8,7 @@
 FILE="results/$( date +%Y-%m-%d_%H-%M-%S ).csv"
 printf "Running test_sdk01_project_management\n"
 printf "runtime(s),max memory(kb)\n" >> $FILE
-for i in `seq 1 2`; do
+for i in `seq 1 1000`; do
 	cmd="tng-project -p "projects/test_prj${i}" --vnfs $i"
 	printf "${cmd}\n"
 	# record time (s) and max memory (kb) and save to file (append)
