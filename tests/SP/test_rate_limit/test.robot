@@ -18,8 +18,8 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
-For-Loop-In-Range
-	: FOR    ${INDEX}    IN RANGE    1    15
+
+:FOR    ${INDEX}    IN RANGE    1    15
 	Run Keyword IF ${INDEX} not  11   Make Request 
 					else   Make Request Not Ok
 
