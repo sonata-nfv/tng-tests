@@ -5,13 +5,12 @@
 # - install tng-sdk-project (and activate the venv)
 # - delete all projects in the "projects" folder (not the folder itself)
 
-printf "Running test_sdk01_project_management"
+printf "Running test_sdk01_project_management; writing results to results.csv"
+printf "runtime(s),max memory(kb)\n" >> "results/results.csv"
 for i in `seq 1 2`; do
 	cmd="tng-project -p "projects/test_prj${i}" --vnfs $i"
 	printf "${cmd}\n"
-	# record time (s) and max memory (kb)
-	result="$( /usr/bin/time -f '%U,%M' ${cmd} )"
-	printf "${result}\n\n"
+	# record time (s) and max memory (kb) and save to file (append)
+	/usr/bin/time --output='results/results.csv' -a --format='%U,%M' --quiet ${cmd}
 done
 printf "Done"
-# TODO: write results to csv file; increase number to 1000; plot
