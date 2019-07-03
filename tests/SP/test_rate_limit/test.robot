@@ -32,10 +32,10 @@ Obtain GrayLogs
 *** Keywords ***
 Make Request
     ${result}=      Get Agreements 
-	$(status_code) = convert to string $(result.status_code)
+	$(status_code) = convert to string ${result.status_code}
 	should be equal $(status_code) 200
 
 Make Request Not Ok
     ${result}=      Get Agreements 
-	$(status_code) = convert to string $(result.status_code)
+	$(status_code) = convert to string ${result.status_code}
 	should be not equal $(status_code) 200
