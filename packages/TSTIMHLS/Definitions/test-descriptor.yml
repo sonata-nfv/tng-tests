@@ -99,7 +99,7 @@ phases:
       instances: 1
       name: parser
       output:
-        - results: logs.txt
+        - results: result.json
       run: parser
       start_delay: 30
 - id: verification
