@@ -18,9 +18,9 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
-Create Requests
-	:FOR    ${INDEX}    IN RANGE    1    15
-		Run Keyword IF ${INDEX} not  11   Make Request 
+For-Loop-In-Range
+	: FOR    ${INDEX}    IN RANGE    1    15
+		Run Keyword IF 	${INDEX} != 11   Make Request 
 						else   Make Request Not Ok
 	END
 
