@@ -76,7 +76,7 @@ phases:
       instances: 1
       name: cpe
       output:
-        - results: logs.txt
+      - {results: logs.txt}
       run: cpe
       start_delay: 5
       dependencies: [initiator]
@@ -88,7 +88,7 @@ phases:
       instances: 1
       name: playlistreader
       output:
-        - {results: logs.txt}
+      - {results: logs.txt}
       run: playlistreader
       start_delay: 25
     - command: /bin/sh
@@ -99,7 +99,7 @@ phases:
       instances: 1
       name: parser
       output:
-        - results: result.json
+      - {results: result.json}
       run: parser
       start_delay: 30
 - id: verification
