@@ -5,6 +5,9 @@
 # - install tng-sdk-project (and activate the venv)
 # - delete all projects in the "projects" folder (not the folder itself)
 
+# clean projects folder
+rm -rf projects/test_prj*
+
 FILE="results/$( date +%Y-%m-%d_%H-%M-%S ).csv"
 printf "Running test_sdk01_project_management\n"
 printf "Runtime (s),Max memory (kb)\n" >> $FILE
