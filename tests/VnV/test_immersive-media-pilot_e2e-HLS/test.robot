@@ -11,7 +11,7 @@ ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service.0.5.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.media-hls-test.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service
-${TST_PACKAGE_SHORT_NAME}  media-performance-test
+${TST_PACKAGE_SHORT_NAME}  media-hls-test
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated
