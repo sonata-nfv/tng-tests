@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation   Test the SLAs E2E test
+Documentation   Test the rate limit mechanism by the GTK
 Library         tnglib
-Library 		RequestsLibrary
+Library 	RequestsLibrary
 Library         Collections
 Library         DateTime
 
