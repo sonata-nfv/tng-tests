@@ -16,6 +16,7 @@ ${FUNCTION_NAME}    default-vnf0
 *** Test Cases ***
 Setting the SP Path
     Set SP Path     ${HOST}
+    LOG   ${HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
 Clean the Packages
@@ -92,7 +93,6 @@ Terminate Service
 #    FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
 #        Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'     Remove Package      ${PACKAGE['package_uuid']}
 #    END
-
 
 *** Keywords ***
 Check Status
