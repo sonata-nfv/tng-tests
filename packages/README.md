@@ -11,7 +11,7 @@ Questions? Ask Manuel (@mpeuster).
 ## Service packages
 
 | Name | Description |
-+---+--------+
+|---|---|
 | NSID1C | A generic service package with one CNF |
 | NSID1V | A generic service package with one VNF |
 | NSID2C | A generic service package with two CNFs |
@@ -28,7 +28,7 @@ Questions? Ask Manuel (@mpeuster).
 ## Test packages
 
 | Name | Description |
-+---+--------+
+|---|---|
 | TSTGNRPRB |  |
 | TSTIMHLS |  |
 | TSTIMPSP |  |
