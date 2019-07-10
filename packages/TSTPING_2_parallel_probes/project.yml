@@ -11,6 +11,7 @@ files:
   - path: "Definitions/test-descriptor.yml"
     type: "application/vnd.5gtango.tstd"
     testing_tags:
+      - "no_testing_tags_td"
   - path: "Icons/optare_solutions.png"
     type: "image/png"
   - path: "Licenses/LICENSE"
