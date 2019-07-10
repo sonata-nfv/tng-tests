@@ -1,0 +1,9 @@
+TOSCA-Meta-Version: 1.0
+Entry-Manifest: etsi_manifest.mf
+CSAR-Version: 1.0
+Entry-Definitions: TODO
+Created-By: 5GTANGO Test Team
+
+Content-Type: application/vnd.5gtango.napd
+Name: TOSCA-Metadata/NAPD.yaml
+

@@ -22,4 +22,5 @@ tng-pkg -p TSTIMPSP --skip-validation
 tng-pkg -p NSID1V_cirros_OSM --skip-validation
 tng-pkg -p TSTPING --skip-validation
 tng-pkg -p TSTIMHLS --skip-validation
+tng-pkg -p NSID1V_osm_charms --skip-validation
 
