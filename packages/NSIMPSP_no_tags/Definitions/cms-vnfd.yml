@@ -1,0 +1,31 @@
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/function-descriptor/vnfd-schema.yml"
+
+vendor: "eu.5gtango"
+name: "vnf-cms"
+version: "0.5"
+author: "Ignacio Dominguez"
+description: "Media-cms VNF descriptor."
+
+cloudnative_deployment_units:
+  - id: "cdu01"
+    image: vastor80/5gtango:latest
+    connection_points:
+      - id: "int-api"
+        port: 50000
+      
+# VNF connection points to the outside world
+connection_points:
+  - id: "api"
+    interface: "ipv4"
+    type: "serviceendpoint"
+    port: 50000
+  
+# CNFs only use E-Tree links to map external ports to internal ports
+virtual_links:
+  - id: "api-link"
+    connectivity_type: "E-Tree"
+    connection_points_reference:
+      - "api"
+      - "cdu01:int-api"
+
