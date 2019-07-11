@@ -11,7 +11,7 @@ files:
   - path: "Definitions/mediapilot-ns.yml"
     type: "application/vnd.5gtango.nsd"
     testing_tags:
-      - "no_testing_tags_ns"
+      - "no-testing-tags-ns"
   - path: "Definitions/ma-vnfd.yml"
     type: "application/vnd.5gtango.vnfd"
   - path: "Definitions/mse-vnfd.yml"
