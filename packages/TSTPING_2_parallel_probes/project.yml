@@ -1,0 +1,17 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "generic-probes-test-pingonly_2_parallell_probes"
+  version: "0.1"
+  maintainer: "Santiago Rodríguez, OPTARE"
+  description: "This is a 5GTANGO test package for test probes"
+files:
+  - path: "Definitions/test-descriptor.yml"
+    type: "application/vnd.5gtango.tstd"
+    testing_tags:
+  - path: "Icons/optare_solutions.png"
+    type: "image/png"
+  - path: "Licenses/LICENSE"
+    type: "text/plain"
