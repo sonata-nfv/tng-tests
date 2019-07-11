@@ -1,0 +1,42 @@
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/function-descriptor/vnfd-schema.yml"
+
+vendor: "eu.5gtango"
+name: "vnf-ma"
+version: "0.5"
+author: "Ignacio Dominguez"
+description: "Media-aggregator and monitoring probe VNF descriptor."
+
+cloudnative_deployment_units:
+  - id: "cdu01"
+    image: ignaciodomin/media-aggregator:dev
+    connection_points:
+      - id: "int-rtmp"
+        port: 1935
+      - id: "int-api"
+        port: 5000
+
+# VNF connection points to the outside world
+connection_points:
+  - id: "rtmp"
+    interface: "ipv4"
+    type: "serviceendpoint"
+    port: 1935
+  - id: "api"
+    interface: "ipv4"
+    type: "serviceendpoint"
+    port: 5000
+
+# CNFs only use E-Tree links to map external ports to internal ports
+virtual_links:
+  - id: "rtmp-link"
+    connectivity_type: "E-Tree"
+    connection_points_reference:
+      - "rtmp"
+      - "cdu01:int-rtmp"
+  - id: "api-link"
+    connectivity_type: "E-Tree"
+    connection_points_reference:
+      - "api"
+      - "cdu01:int-api"
+

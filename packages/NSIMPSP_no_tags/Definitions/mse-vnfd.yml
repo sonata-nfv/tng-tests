@@ -1,0 +1,52 @@
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/function-descriptor/vnfd-schema.yml"
+
+vendor: "eu.5gtango"
+name: "vnf-mse"
+version: "0.5"
+author: "Ignacio Dominguez"
+description: "Media-streaming-engine VNF descriptor."
+
+cloudnative_deployment_units:
+  - id: "cdu01"
+    image: ignaciodomin/media-streaming-engine:dev
+    connection_points:
+      - id: "int-rtmp"
+        port: 1935
+      - id: "int-hls"
+        port: 80
+      - id: "int-api"
+        port: 5000
+
+# VNF connection points to the outside world
+connection_points:
+  - id: "rtmp"
+    interface: "ipv4"
+    type: "serviceendpoint"
+    port: 1935
+  - id: "hls"
+    interface: "ipv4"
+    type: "serviceendpoint"
+    port: 80
+  - id: "api"
+    interface: "ipv4"
+    type: "serviceendpoint"
+    port: 5000
+
+# CNFs only use E-Tree links to map external ports to internal ports
+virtual_links:
+  - id: "rtmp-link"
+    connectivity_type: "E-Tree"
+    connection_points_reference:
+      - "rtmp"
+      - "cdu01:int-rtmp"
+  - id: "hls-link"
+    connectivity_type: "E-Tree"
+    connection_points_reference:
+      - "hls"
+      - "cdu01:int-hls"
+  - id: "api-link"
+    connectivity_type: "E-Tree"
+    connection_points_reference:
+      - "api"
+      - "cdu01:int-api"
