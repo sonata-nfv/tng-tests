@@ -1,13 +1,12 @@
 ---
 author: "Santiago Rodriguez (Optare Solutions)"
-description: "Generic Probes Test"
+description: "Ping Test"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
-name: "test-generic-probes-2-parallel"
+name: "test-ping-sonata"
 vendor: "eu.5gtango.optare"
 version: '0.1'
 
 service_platforms:
-  - "OSM"
   - "SONATA"
 test_category:
   - "basic-tests"
@@ -28,7 +27,7 @@ phases:
             name: ping
             parameters:
               - key: EXTERNAL_IP
-                value: '$(cirros_vnf/endpoints/name:mgmt/address)'
+                value: '$(cirros_vnf/endpoints/id:mgmt/address)'
   - id: exercise
     steps:
       - command: /bin/sh
@@ -41,32 +40,11 @@ phases:
         output:
           - {results: results.log}
         run: ping
-        start_delay: 30
-      - command: /bin/sh
-        dependencies: []
-        description: "Starting the initiator"
-        entrypoint: /app/entrypoint.sh
-        index: 1
-        instances: 1
-        name: ping2
-        output:
-          - {results: results.log}
-        run: ping
-        start_delay: 30
   - id: verification
     steps:
       - step: ping
         description: "Check obtained results"
         name: ping
-        conditions:
-          - condition: not present
-            file: results.log
-            find: 100% packet loss
-            name: ping-ok
-            verdict: pass
-      - step: ping2
-        description: "Check obtained results"
-        name: ping2
         conditions:
           - condition: not present
             file: results.log
