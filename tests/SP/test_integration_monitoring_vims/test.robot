@@ -28,7 +28,7 @@ GET monitoting Targets
 	@{TARGETS} =  Get Prometheus Targets
 	FOR     ${TARGET}  IN  @{TARGETS[1]}
         Log     ${TARGET}
-        ${resp} =  Run Process    curl -i http://10.200.16.2:30090/merics 		shell=True    cwd=/usr/bin
+        ${resp} =  Run Process    curl -i http://${TARGET['endpoint']}:30090/merics 		shell=True    cwd=/usr/bin
 #		${resp} =  Run Process 		curl -i -g "http://pre-int-vnv-bcn.5gtango.eu:9090/api/v1/series?match[]={job='pushgateway'}" 	shell=True		cwd=/usr/bin
 		Log     ${resp}
 		Should Contain    ${resp.stdout}    success
