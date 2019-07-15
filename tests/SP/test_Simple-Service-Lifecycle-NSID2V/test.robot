@@ -9,7 +9,7 @@ ${HOST}                http://int-sp-ath.5gtango.eu   #  the name of SP we want 
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_NAME}           eu.5gtango.test-ns-nsid2v.0.1.tgo    # The package to be uploaded and tested
-${NS_PACKAGE_SHORT_NAME}	test-nsid2v 
+${NS_PACKAGE_SHORT_NAME}	test-ns-nsid2v 
 
 *** Test Cases ***
 Setting the SP Path
