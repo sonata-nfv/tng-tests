@@ -2,10 +2,8 @@ import yaml
 import tempfile
 import shutil
 import subprocess
-import time
 import os
 import csv
-import resource
 
 
 class TestProject:
@@ -22,6 +20,7 @@ class TestProject:
 
         self.i = i0
         self.i0 = i0
+        self.number_tests = 10
         self.results = {"t": [], "skip": []}
 
         self.load_project_to_temp(project_path)
@@ -53,8 +52,8 @@ class TestProject:
                self.project_descriptor)
 
     def load_project_to_temp(self, project_path):
-        self.tmp_diretory = tempfile.mkdtemp()
-        #self.tmp_diretory = "first_test"
+        #self.tmp_diretory = tempfile.mkdtemp()
+        self.tmp_diretory = "first_test"
         self.tmp_project_path = os.path.join(self.tmp_diretory,
                                              os.path.basename(project_path))
         shutil.copytree(project_path, self.tmp_project_path)
@@ -108,27 +107,36 @@ class TestProject:
         return ret
 
     def yield_command(self, _format="eu.5gtango"):
-        yield ["tng-sdk-package", "-p", self.tmp_project_path,
+        yield ["tng-sdk-package", "--quiet", "-p", self.tmp_project_path,
                "-o", self.tmp_diretory, "--format", _format,
                "--validation_level", "skip"]
-        yield ["tng-sdk-package", "-p", self.tmp_project_path,
+        yield ["tng-sdk-package", "-q", "-p", self.tmp_project_path,
                "-o", self.tmp_diretory, "--format", _format,
                "--validation_level", "t"]
 
-    def test_one(self, command, i, *args, **kwargs):
-        t = time.time()
-        p = subprocess.Popen(command, *args, **kwargs)
-        p.wait()
-        self.results[command[-1]].append(
-            [i, time.time() - t,
-             resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss])
-        return p
+    def test_one(self, command, i):
+        self.results[command[-1]].append([i])
+        times = []
+        memory = []
+        ps = []
+        for j in range(self.number_tests):
+            print(" ".join(command), " i = ", i, " j = ", j)
+            ret = subprocess.check_output(["python3", "sub_proc.py"]+command,
+                                          shell=False,
+                                          universal_newlines=True)
+            ret = ret.split()
+            process_time = ret[0]
+            memory_usage = ret[1]
+            ps_memory_usage = ret[2]
+            times.append(process_time)
+            memory.append(memory_usage)
+            ps.append(ps_memory_usage)
+        self.results[command[-1]][i-self.i0].extend(times + memory + ps)
 
     def test_in_loop(self, n=100):
         while self.i <= n:
             for command in self.yield_command():
-                print(" ".join(command))
-                self.test_one(command, self.i, shell=False)
+                self.test_one(command, self.i)
             self.increment()
             self.store_descriptors()
 
@@ -139,8 +147,13 @@ class TestProject:
                                                        validation_level)
             with open(filename, "w") as f:
                 writer = csv.writer(f)
-                writer.writerow(
-                    ["number_of_vnfs", "process_time", "memory_usage"])
+                cols = ["process_time"+"_" + str(j)
+                        for j in range(self.number_tests)]
+                cols += ["memory_usage"+"_" + str(j)
+                         for j in range(self.number_tests)]
+                cols += ["memory_usage_ps" + "_" + str(j)
+                         for j in range(self.number_tests)]
+                writer.writerow(["number_of_vnfs"]+cols)
                 for row in rows:
                     writer.writerow(row)
 
@@ -168,14 +181,16 @@ class TestProjectOsm(TestProject):
              "type": "application/vnd.etsi.osm.vnfd"})
 
 
-def main():
+def main(n=100):
     test_project = TestProjectOsm("test_project_osm")
-    test_project.test_in_loop()
+    test_project.test_in_loop(n)
     test_project.store_results()
 
     test_project = TestProject("test_project")
-    test_project.test_in_loop()
+    test_project.test_in_loop(n)
     test_project.store_results()
+
+    print("n = ", n)
 
 
 if __name__ == "__main__":
