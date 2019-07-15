@@ -16,9 +16,11 @@ Questions? Ask Manuel (@mpeuster).
 | NSID1V | A generic service package with one VNF |
 | NSID2C | A generic service package with two CNFs |
 | NSID2V | A generic service package with two VNFs |
-| NSID1V_cirros_OSM |  |
-| NSID1V_cirros_OSM_cloud_init | |
-| NSID1V_cirros_SONATA |  |
+| NSID1V_cirros_OSM | A generic service package with a simple cirros VNF for OSM |
+| NSID1V_cirros_OSM_cloud_init |A generic service package for OSM with one VNF that has cloud-init |
+| NSID1V_cirros_SONATA | A generic service package with a simple cirros VNF for Sonata |
+| NSID1V_osm_charms | A generic service package for OSM with one VNF that has JUJU charms |
+| NSID1V_hybrid | Hybrid package containing a service and a test for Sonata |
 | NSIMPSP |  |
 | NSINDP1C |  |
 | NSTD | A hybrid package with NS and test |
