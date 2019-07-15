@@ -23,7 +23,7 @@ Questions? Ask Manuel (@mpeuster).
 | NSID1V_hybrid | Hybrid package containing a service and a test for Sonata |
 | NSIMPSP |  |
 | NSINDP1C |  |
-| NSTD | A hybrid package with NS and test |
+| NSTD | A generic network slice template composed by 3 NS (all of them are nsid1v) |
 
 
 
