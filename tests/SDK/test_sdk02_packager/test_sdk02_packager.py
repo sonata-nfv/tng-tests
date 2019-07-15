@@ -52,8 +52,8 @@ class TestProject:
                self.project_descriptor)
 
     def load_project_to_temp(self, project_path):
-        #self.tmp_diretory = tempfile.mkdtemp()
-        self.tmp_diretory = "first_test"
+        self.tmp_diretory = tempfile.mkdtemp()
+        # self.tmp_diretory = "first_test"
         self.tmp_project_path = os.path.join(self.tmp_diretory,
                                              os.path.basename(project_path))
         shutil.copytree(project_path, self.tmp_project_path)

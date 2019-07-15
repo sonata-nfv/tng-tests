@@ -16,7 +16,6 @@ def main(command, *args, **kwargs):
         memory_usages = (_p.memory_info().rss
                          if _p.memory_info().rss > memory_usages
                          else memory_usages)
-    p.wait()
     process_time = time.time() - t
     memory_usage = resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss
     return str(process_time), str(memory_usage), str(memory_usages)
