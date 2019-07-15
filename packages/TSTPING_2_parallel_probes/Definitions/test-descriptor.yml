@@ -28,7 +28,7 @@ phases:
             name: ping
             parameters:
               - key: EXTERNAL_IP
-                value: '$(cirros_vnf/endpoints/name:mgmt/address)'
+                value: '$(vnf-ma/endpoints/id:floating_ip/address)'
   - id: exercise
     steps:
       - command: /bin/sh
