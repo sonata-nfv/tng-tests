@@ -1,7 +1,7 @@
 |||||
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __Test Service Lifecycle in k8s with elasticity policies__ | |
-| __Test Purpose__ | | Check the lifecycle of a Network Service with an elasticity policy activated. Check collaboration between MANO, monitoring engine and policy engine| |
+| __Test Purpose__ | | Check the lifecycle of a Network Service with an elasticity policy activated. Check collaboration between MANO, monitoring engine and policy engine components| |
 | __Configuration__ | | ns-mediapilot-service pilot NS is deployed on the Service Platform upon k8s| |
 | __Test Tool__ | | Robot Framework, using Tnglib | |
 | __Metric__ | | Boolean (success or not), execution time | |
@@ -22,7 +22,7 @@
 | | 9 | Terminate Network Service | Delete the NS deployed |
 | | 10 | Delete Runtime Policy | Delete Runtime Policy |
 | | 11 | Remove NS package | Remove NS package | 
-| __Test Verdict__ | | Network services is succesfully deployed and undeployed at an OS VIM environment.Runtime Policies are enforced and deactivated succesfully | |
+| __Test Verdict__ | | Network services is succesfully deployed and undeployed at an k8s VIM environment.Runtime Policies are enforced and deactivated succesfully | |
 | __Additional resources__ | | | |
 
  

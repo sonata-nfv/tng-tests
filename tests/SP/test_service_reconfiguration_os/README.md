@@ -1,13 +1,13 @@
 |||||
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __Test Service Lifecycle in OS with elasticity policies__ | |
-| __Test Purpose__ | | Check the lifecycle of a Network Service with an elasticity policy activated. Check collaboration between MANO, monitoring engine and policy engine| |
+| __Test Purpose__ | | Check the lifecycle of a Network Service with an elasticity policy activated. Check collaboration between MANO, monitoring engine and policy engine components| |
 | __Configuration__ | | A NS composed by one haproxy and one squid VNF are deployed on the Service Platform| |
 | __Test Tool__ | | Robot Framework, using Tnglib | |
 | __Metric__ | | Boolean (success or not), execution time | |
 | __References__ | |  | |
 | __Applicability__ | | Variations of this test case can be performed to test multiple policy actions  | |
-| __Pre-test conditions__ | | The packages that contain the NS will be created before the test execution. The policy descriptor is also defined before the test execution.| |
+| __Pre-test conditions__ | | The packages that contain the NS are created before the test execution. The policy descriptor is also defined before the test execution.| |
 | __Test sequence__ | Step | Description | Result |
 | | 1 | Service Package On-Boarding | Service Package is on-boarded in the SP|
 | | 2 | Runtime Policy Creation | Runtime Policy is created in the SP |
@@ -22,7 +22,7 @@
 | | 9 | Terminate Network Service | Delete the NS deployed |
 | | 10 | Delete Runtime Policy | Delete Runtime Policy |
 | | 11 | Remove NS package | Remove NS package | 
-| __Test Verdict__ | | Network services is succesfully deployed and undeployed at an OS VIM environment.Runtime Policies are enforced and deactivated succesfully | |
+| __Test Verdict__ | | Network service is succesfully deployed and undeployed at an OS VIM environment.Runtime Policies are enforced and deactivated succesfully | |
 | __Additional resources__ | | | |
 
  
