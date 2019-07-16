@@ -28,7 +28,7 @@ phases:
             name: ping
             parameters:
               - key: EXTERNAL_IP
-                value: '$(vnf-ma/endpoints/id:floating_ip/address)'
+                value: '$(cirros_vnf/endpoints/id:mgmt/address)'
   - id: exercise
     steps:
       - command: /bin/sh
@@ -50,7 +50,7 @@ phases:
         instances: 1
         name: ping2
         output:
-          - {results: results.log}
+          - {results: results2.log}
         run: ping
         start_delay: 30
   - id: verification
@@ -69,7 +69,7 @@ phases:
         name: ping2
         conditions:
           - condition: not present
-            file: results.log
+            file: results2.log
             find: 100% packet loss
             name: ping-ok
             verdict: pass
