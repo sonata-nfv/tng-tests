@@ -3,7 +3,7 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: "eu.5gtango"
-  name: "test-ns-nsid1v-sonata-no-tags"
+  name: "test-nsid1v-sonata-no-tags"
   version: "0.2"
   maintainer: "5GTANGO Test Team"
   description: "This is a integration test artifact."
