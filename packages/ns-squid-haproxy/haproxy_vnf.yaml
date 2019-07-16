@@ -1,0 +1,129 @@
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/function-descriptor/vnfd-schema.yml"
+vendor: "eu.5gtango"
+name: "haproxy-vnf"
+version: "0.2"
+author: "Luis Hens :@ Atos"
+description: "HAProxy is free, open source software that provides a high availability load balancer for TCP and HTTP-based applications that spreads requests across multiple servers."
+
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://www.google.es"
+    vm_image_format: "qcow2"
+    vm_image_md5: 514885af3a9e85aeaec2afd27dfb1033
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 4
+        size_unit: "GB"
+      storage:
+        size: 30
+        size_unit: "GB"
+    connection_points:
+      - id: "mgmt"
+        interface: "ipv4"
+        type: "management"
+      - id: "external"
+        interface: "ipv4"
+        type: "external"
+      - id: "internal"
+        interface: "ipv4"
+        type: "internal"
+
+    monitoring_parameters:
+      - name: "cpu_util"
+        unit: "Percentage"
+      - name: "memory_usage"
+        unit: "MB"
+
+    snmp_parameters:
+      version: "v3"
+      auth_protocol: "MD5"
+      security_level: "authnoPriv"
+      username: "authOnlyUser"
+      port: 161
+      interval: 5
+      oids:
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.18.104.97.112.114.111.120.121.45.85.112.116.105.109.101.95.115.101.99"
+          metric_name: "haproxy-Uptime_sec"
+          metric_type: "gauge"
+          unit: "secs"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.21.104.97.112.114.111.120.121.45.102.114.111.110.116.101.110.100.45.115.99.117.114"
+          metric_name: "haproxy-frontend-scur"
+          metric_type: "gauge"
+          unit: "sespsec"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.20.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.115.99.117.114"
+          metric_name: "haproxy-backend-scur"
+          metric_type: "gauge"
+          unit: "bytes"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.20.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.114.97.116.101"
+          metric_name: "haproxy-backend-rate"
+          metric_type: "gauge"
+          unit: "bytes"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.19.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.98.105.110"
+          metric_name: "haproxy-backend-bin"
+          metric_type: "gauge"
+          unit: "bytes"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.20.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.98.111.117.116"
+          metric_name: "haproxy-backend-bout"
+          metric_type: "gauge"
+          unit: "bytes"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.24.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.100.111.119.110.116.105.109.101"
+          metric_name: "haproxy-backend-downtime"
+          metric_type: "gauge"
+          unit: "bytes"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.23.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.97.99.116.115.114.118.115"
+          metric_name: "haproxy-backend-actsrvs"
+          metric_type: "gauge"
+          unit: "servers"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+        - oid: "1.3.6.1.4.1.8072.1.3.2.3.1.2.23.104.97.112.114.111.120.121.45.98.97.99.107.101.110.100.45.115.101.115.112.115.114.118"
+          metric_name: "haproxy-backend-sespsrv"
+          metric_type: "gauge"
+          unit: "sespserv"
+          mib_name: "NET-SNMP-EXTEND-MIB::nsExtendOutputFull"
+
+
+virtual_links:
+  - id: "vlmgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:mgmt"
+      - "cpmgmt"
+  - id: "vlexternal"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:external"
+      - "cpexternal"
+  - id: "vlinternal"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:internal"
+      - "cpinternal"
+
+connection_points:
+  - id: "cpmgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "cpexternal"
+    interface: "ipv4"
+    type: "external"
+  - id: "cpinternal"
+    interface: "ipv4"
+    type: "internal"
+
+function_specific_managers:
+ - id: "sonfsmreview-demohaproxycss1"
+   description: "haproxy FSM"
+   image: "tsoenen/haproxy"
+   options:
+     - key: "type"
+       value: "configure"
