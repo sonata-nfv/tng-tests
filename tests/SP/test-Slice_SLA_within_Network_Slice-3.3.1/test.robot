@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Network Slice Test 3.3.1 - Equal to test 3.1.1 but now NSs have a SLA assigned in order to esnure QoS.
+Documentation     Network Slice Test 3.3.1 - Slice with 3NS and SLA each one of them to ensure QoS.
 Library           tnglib
 Library           Collections
 Library           DateTime
@@ -8,12 +8,12 @@ Library           OperatingSystem
 *** Variables ***
 ${SP_HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${FILE_SOURCE_DIR}         ./packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}         eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
+${NS_PACKAGE_NAME}         ./eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME}   test-nsid1v
 ${FILE_TEMPLATE_PATH}      NSTD
-${FILE_TEMPLATE_NAME}      3nsid1v_nstd.yaml
-${NSI_NAME}                sliceTest_311-
-${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1
+${FILE_TEMPLATE_NAME}      ./3nsid1v_nstd.yaml
+${NSI_NAME}                sliceTest_331-
+${NSI_DESCRIPTION}         Testing_slice_test_case_3.3.1
 ${sla_name}                int_test_1
 ${INSTANTIATED}            INSTANTIATED
 ${TERMINATED}              TERMINATED
@@ -35,20 +35,22 @@ Upload the Package
     ${result} =    Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Log     ${result}
     Should Be True     ${result[0]}
+    Set Suite Variable    ${PACKAGE_UUID}    ${result[1]}
     ${service} =    Map Package On Service    ${result[1]}
     Log     ${service}
     Should Be True    ${service[0]}
-    Set Suite Variable    ${PACKAGE_UUID}    ${service[1]}
-    Log     ${PACKAGE_UUID}
+    Set Suite Variable    ${SERVICE_UUID}    ${service[1]}
+    Log     ${SERVICE_UUID}
 Generate the SLA Template
     ${result}=      Create Sla Template         templateName=${sla_name}   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin    provider_name=admin   service_licence_type=public   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
     Set Suite Variable     ${SLA_UUID}   ${result[1]}
     Should be True      ${result[0]}
 Create Instantiation JSON file
-    ${yaml_file}=    Get File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/${FILE_TEMPLATE_NAME}
-    ${json_nstd}=    Convert to json    ${yaml_file}
-    ${updated_json_nstd}=    Add Sla    ${json_nstd}    ${SLA_UUID}    ${sla_name}    
-    ${json_file}=    Create File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/test_nstd.json    ${updated_json_nstd}
+    ${yaml_file}=    Get File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/${FILE_TEMPLATE_NAME}  
+    ${nstd_dict}=    Add Sla To Nstd Subnets    ${yaml_file}    ${SLA_UUID}    ${sla_name}    
+    Should be True      ${nstd_dict[0]}
+    ${json_string}=    Evaluate    json.dumps(${nstd_dict[1]})    json
+    ${json_file}=    Create File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/test_nstd.json    ${json_string}
 Upload the Slice Template
     log     ${FILE_SOURCE_DIR}
     log     ${FILE_TEMPLATE_PATH}
@@ -80,7 +82,7 @@ Terminate the Slice Instance
     Set Suite Variable     ${nsi_term_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_term_req_uuid}
 Wait For Terminated
-    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Terminate Request Status
+    Wait until Keyword Succeeds     5 min    30 sec    Check Slice Terminate Request Status
 Remove Slice Template
     Log     ${nst_uuid}
     ${nst_result} =   Delete Slice Template     ${nst_uuid}
