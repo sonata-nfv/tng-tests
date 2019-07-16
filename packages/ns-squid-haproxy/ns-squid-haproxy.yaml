@@ -1,0 +1,58 @@
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml"
+
+vendor: "eu.5gtango"
+name: "ns-squid-haproxy"
+version: "0.2"
+author: "Luis Hens"
+description: "This NS provides a flexible and high available proxy service, by combining the opensource HAProxy load balancer with a pool of squid backend servers."
+
+network_functions:
+  - vnf_id: "vnf_squid"
+    vnf_vendor: "eu.5gtango"
+    vnf_name: "squid-vnf"
+    vnf_version: "0.2"
+  - vnf_id: "vnf_haproxy"
+    vnf_vendor: "eu.5gtango"
+    vnf_name: "haproxy-vnf"
+    vnf_version: "0.2"
+
+connection_points:
+  - id: "mgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "external"
+    interface: "ipv4"
+    type: "external"
+
+virtual_links:
+  - id: "mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf_squid:cpmgmt"
+      - "vnf_haproxy:cpmgmt"      
+      - "mgmt"
+  - id: "internal"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_squid:cpinternal"
+      - "vnf_haproxy:cpinternal"
+  - id: "external"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf_haproxy:cpexternal"
+      - "external"
+testing_tags: 
+  - proxy-advanced
+
+service_specific_managers:
+- description: task, config and monitoring SSM.
+  id: sonssmhaproxy-squidtask-config-monitor1
+  image: tsoenen/haproxy-squid
+  options:
+  - key: "type"  
+    value: "task"
+  - key: "type"  
+    value: "configure"
+  - key: "type"  
+    value: "scale"
