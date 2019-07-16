@@ -23,7 +23,7 @@ Questions? Ask Manuel (@mpeuster).
 | NSID1V_hybrid | Hybrid package containing a service and a test for Sonata |
 | NSIMPSP |  |
 | NSINDP1C |  |
-| NSTD | A generic network slice template composed by 3 NSs (all of them are nsid1v) |
+| NSTD | A generic network slice template composed by 3 NSs (all of them are NSID1V) |
 | ns-squid-haproxy | This NS provides a flexible and high available proxy service, by combining the opensource HAProxy load balancer with a pool of squid backend servers.|
 
 
