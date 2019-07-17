@@ -24,8 +24,7 @@ Questions? Ask Manuel (@mpeuster).
 | NSIMPSP |  |
 | NSINDP1C |  |
 | NSTD | A generic network slice template composed by 3 NSs (all of them are NSID1V) |
-| ns-squid-haproxy | This NS provides a flexible and high available proxy service, by combining the opensource HAProxy load balancer with a pool of squid backend servers.|
-
+| NSSQHA | A proxy service, that combines the opensource HAProxy load balancer with a pool of squid backend servers. |
 
 
 
