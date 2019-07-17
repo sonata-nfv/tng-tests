@@ -5,7 +5,7 @@
 | Configuration        |      | SP: Staging-Paderborn. Several sizes of packages small, medium, large size  |         |
 | Test Tool            |      | Robot Framework. Prometheus.                                           |         |
 | Metric               |      | latency                                                                |         |
-| References           |      | [Request time](https://github.com/sonata-nfv/tng-api-gtw/wiki/Request-time)            |         |
+| References           |      | https://github.com/sonata-nfv/tng-api-gtw/wiki/Request-time            |         |
 | Applicability        |      | Gatekeeper, involves (Catalogue, Packager Validator, Rate limit, UM)   |         |
 | Pre-test conditions  |      | Clean packages. Have the number of cycles or execution time defined    |         |
 | Test sequence        | 1    | Clean the packages                                                     | No packages in the catalogue  |
