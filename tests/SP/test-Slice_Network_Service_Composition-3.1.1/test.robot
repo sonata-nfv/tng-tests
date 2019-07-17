@@ -71,12 +71,8 @@ Remove Slice Template
     ${nst_result} =   Delete Slice Template     ${nst_uuid}
     Log     ${nst_result}
     Should Be True     ${nst_result[0]}
-Clean the Package After Termination
-    @{PACKAGES} =   Get Packages
-    FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
-        Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
-    END
-
+Clean the Package
+    ${result}=    Remove Package    ${PACKAGE_UUID}
 
 
 *** Keywords ***
