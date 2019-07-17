@@ -62,13 +62,3 @@ connection_points:
   - id: "output"
     interface: "ipv4"
     type: "external"
-
-function_specific_managers:
- - id: "cirros"
-   description: "FSM to do some dummy config on the cirros for testing purposes"
-   image: "tsoenen/cirros-fsm"
-   options:
-     - key: "type"
-       value: "start"
-     - key: "type"
-       value: "configure"
