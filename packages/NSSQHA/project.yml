@@ -7,34 +7,14 @@ package:
   maintainer: Luis Hens
   description: This is the 5GTANGO network service for year 1 demo
 files:
-- path: Definitions/ns-squid-haproxy.yaml
+- path: ns-squid-haproxy.yaml
   type: application/vnd.5gtango.nsd
   tags:
   - eu.5gtango
-- path: Definitions/haproxy_vnf.yaml
+- path: haproxy_vnf.yaml
   type: application/vnd.5gtango.vnfd
-- path: Definitions/squid_vnf.yaml
+- path: squid_vnf.yaml
   type: application/vnd.5gtango.vnfd
   tags:
   - eu.5gtango
-- path: Icons/upb_logo.png
-  type: image/png
-- path: Images/mycloudimage.ref
-  type: application/vnd.5gtango.ref
-- path: Licenses/LICENSE
-  type: text/plain
-- path: Scripts/cloud.init
-  type: text/x-shellscript
-- path: DefinitionsOSM/osm_ns-squid-haproxy.yml
-  type: application/vnd.etsi.osm.nsd
-  tags:
-  - etsi.osm
-- path: DefinitionsOSM/osm_squid_vnf.yml
-  type: application/vnd.etsi.osm.vnfd
-  tags:
-  - etsi.osm
-- path: DefinitionsOSM/osm_haproxy_vnf.yml
-  type: application/vnd.etsi.osm.vnfd
-  tags:
-  - etsi.osm
 uuid: 085ea49f-d5ba-48b1-81c7-99a253cbde94
