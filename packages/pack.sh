@@ -12,6 +12,7 @@ tng-pkg -p NSID1C --skip-validation
 tng-pkg -p NSID1V --skip-validation
 tng-pkg -p NSID1V_cirros_OSM --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA --skip-validation
+tng-pkg -p NSID1V_cirros_SONATA_no_tags --skip-validation
 tng-pkg -p NSID2C --skip-validation
 tng-pkg -p NSID2V --skip-validation
 tng-pkg -p NSIMPSP --skip-validation
@@ -25,3 +26,4 @@ tng-pkg -p TSTPING --skip-validation
 tng-pkg -p TSTIMHLS --skip-validation
 tng-pkg -p TSTPING_2_parallel_probes --skip-validation
 tng-pkg -p NSID1V_osm_charms --skip-validation
+tng-pkg -p NSSQHA --skip-validation

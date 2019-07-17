@@ -35,6 +35,7 @@ slice_vld:
     name: "mgmt"
     mgmt-network: True
     type: "E-LAN"
+    access_net: false
     nsd-connection-point-ref:
       - subnet-ref: "Subnet_1"
         nsd-cp-ref: "mgmt"
@@ -45,12 +46,14 @@ slice_vld:
   - id: "slice_input"
     name: "slice_input"
     type: "E-LAN"
+    access_net: true
     nsd-connection-point-ref:
       - subnet-ref: "Subnet_1"
         nsd-cp-ref: "input"
   - id: "data_east"
     name: "data_east"
     type: "E-LAN"
+    access_net: false
     nsd-connection-point-ref:
       - subnet-ref: "Subnet_1"
         nsd-cp-ref: "output"
@@ -59,6 +62,7 @@ slice_vld:
   - id: "data_west"
     name: "data_west"
     type: "E-LAN"
+    access_net: false
     nsd-connection-point-ref:
       - subnet-ref: "Subnet_2"
         nsd-cp-ref: "output"
@@ -67,6 +71,7 @@ slice_vld:
   - id: "slice_output"
     name: "slice_output"
     type: "E-LAN"
+    access_net: true
     nsd-connection-point-ref:
       - subnet-ref: "Subnet_3"
         nsd-cp-ref: "output"
