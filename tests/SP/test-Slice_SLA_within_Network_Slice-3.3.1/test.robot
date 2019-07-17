@@ -91,11 +91,8 @@ Remove Slice Template
 Delete SLA
     ${result}=      Delete SlaTemplate    ${SLA_UUID}
     Should be True      ${result[0]}
-Clean the Package After Termination
-    @{PACKAGES} =   Get Packages
-    FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
-        Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
-    END
+Clean the Package
+    ${result}=    Remove Package    ${PACKAGE_UUID}
 Clean the NSTD json file
     ${remove_json_file}=    Remove File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/test_nstd.json
 
