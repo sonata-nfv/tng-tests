@@ -5,7 +5,7 @@ Library           DateTime
 
 *** Variables ***
 ${HOST}                 http://sta-sp-pad.5gtango.eu   #  the name of SP we want to use
-${FILE_SOURCE_DIR}      ./packages   # to be modified and added accordingly if package is not on the same folder as test
+${FILE_SOURCE_DIR}      ../../../packages   # to be modified and added accordingly if package is not on the same folder as test
 ${SMALL_PACKAGE_NAME}   eu.5gtango.test-ns-nsid1v.0.1.tgo
 ${MEDIUM_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1v.0.1.tgo
 ${LARGE_PACKAGE_NAME}   eu.5gtango.test-ns-nsid1v.0.1.tgo
