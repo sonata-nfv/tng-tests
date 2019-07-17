@@ -69,7 +69,11 @@ class cirrosFSM(smbase):
 
         self.sm_id = "cirros"
         self.sm_version = "0.1"
+        self.mgmt_ip = ''
         self.ips = {}
+        self.cirros_username = 'cirros'
+        self.cirros_password = 'cubswin:)'
+
 
         super(self.__class__, self).__init__(sm_id=self.sm_id,
                                              sm_version=self.sm_version,
@@ -122,6 +126,10 @@ class cirrosFSM(smbase):
             LOG.info("Config event received: " + str(request["content"]))
             response = self.configure_event(request["content"])
 
+        if str(request["fsm_type"]) == "state":
+            LOG.info("State event received: " + str(request["content"]))
+            response = self.state_event(request["content"])
+
         # If a response message was generated, send it back to the FLM
         LOG.info("Response to request generated:" + str(response))
         topic = "generic.fsm." + str(self.sfuuid)
@@ -144,21 +152,19 @@ class cirrosFSM(smbase):
 
         LOG.info(yaml.dump(self.ips))
 
-        cirros_username = 'cirros'
-        cirros_password = 'cubswin:)'
-
         # Configure each cirros vdu
         for vdu in self.ips:
             for cp in self.ips[vdu]:
                 if cp['id'] in ['mgmt', 'management', 'eth0']:
                     mgmt_ip = cp['ip']
+                    self.mgmt_ip = mgmt_ip
                     break
 
             LOG.info('management ip: ' + str(mgmt_ip))
 
             ssh_client = ssh.Client(mgmt_ip,
-                                    username=cirros_username,
-                                    password=cirros_password,
+                                    username=self.cirros_username,
+                                    password=self.cirros_password,
                                     logger=LOG,
                                     retries=20)
 
@@ -183,8 +189,6 @@ class cirrosFSM(smbase):
 
         # During the config event, the FSM will write the received input
         # to a file
-        cirros_username = 'cirros'
-        cirros_password = 'cubswin:)'
 
         # Configure each cirros vdu
         for vdu in self.ips:
@@ -196,14 +200,47 @@ class cirrosFSM(smbase):
             LOG.info('management ip: ' + str(mgmt_ip))
 
             ssh_client = ssh.Client(mgmt_ip,
-                                    username=cirros_username,
-                                    password=cirros_password,
+                                    username=self.cirros_username,
+                                    password=self.cirros_password,
                                     logger=LOG,
                                     retries=10)
 
             ssh_client.sendCommand("echo " + str(content['message']) + " > test_configure.txt")
 
         response = {'status': 'COMPLETED'}
+        return response
+
+    def state_event(self, content):
+        """
+        This method handles a configure event.
+        """
+
+        LOG.info("content: " + yaml.dump(content))
+
+        response = {'status': 'COMPLETED'}
+    
+        if content['action'] == 'extract':
+            ssh_client = ssh.Client(self.mgmt_ip,
+                                    username=self.cirros_username,
+                                    password=self.cirros_password,
+                                    logger=LOG,
+                                    retries=10)
+
+            state = ssh_client.sendCommand("cat test_start.txt")
+            LOG.info("Obtained state: " + str(state))
+
+            response['persist'] = state
+        else:
+            ssh_client = ssh.Client(self.mgmt_ip,
+                                    username=self.cirros_username,
+                                    password=self.cirros_password,
+                                    logger=LOG,
+                                    retries=10)
+
+            state = ssh_client.sendCommand("echo " + str(content) + " > test_start.txt")
+            response['persist'] = 'finished'
+
+        LOG.info("response: " + yaml.dump(response))
         return response
 
 def main():
