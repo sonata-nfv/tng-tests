@@ -1,0 +1,22 @@
+version: '4.1'
+package:
+  name: osm-charms
+  vendor: osm
+  version: '0.1'
+  maintainer: Name, Company, Contact
+  description: Some description about this sample
+descriptor_extension: yml
+files:
+- path: cirros_1vnf_nsd.yaml
+  type: application/vnd.etsi.osm.nsd
+  tags:
+  - etsi.osm
+- path: cirros_vnfd.yaml
+  type: application/vnd.etsi.osm.vnfd
+  tags:
+  - file-ref:files/hackfest_simplecharm_vnf.tar.gz
+  - etsi.osm
+- path: files/hackfest_simplecharm_vnf.tar.gz
+  type: application/vnd.etsi.osm.package
+  tags:
+  - etsi.osm

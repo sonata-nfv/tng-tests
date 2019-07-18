@@ -13,6 +13,7 @@ files:
     testing_tags:
       - "http"
       - "rtmp-media-service"
+      - "hls-media-service"
   - path: "Definitions/ma-vnfd.yml"
     type: "application/vnd.5gtango.vnfd"
   - path: "Definitions/mse-vnfd.yml"

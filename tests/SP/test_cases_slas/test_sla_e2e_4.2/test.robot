@@ -1,6 +1,8 @@
 *** Settings ***
 Documentation   Test the SLAs E2E test
 Library         tnglib
+Library         Collections
+Library         DateTime
 
 *** Variables ***
 ${SP_HOST}                http://pre-int-sp-ath.5gtango.eu  #  the name of SP we want to use
@@ -10,23 +12,25 @@ ${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package 
 
 *** Test Cases ***
 Setting the SP Path
+	#From date to obtain GrayLogs
+    ${from_date} =   Get Current Date
+    Set Global Variable  ${from_date}
+	
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
-Clean the Packages
-    Remove All Packages
-
 Upload the Package
     ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
+	Set Suite Variable     ${PACKAGE_UUID}  ${result[1]}
     ${service} =     Map Package On Service      ${result[1]}
     Should Be True     ${service[0]}
     Set Suite Variable     ${SERVICE_UUID}  ${service[1]}
     Log     ${SERVICE_UUID}
 
 Generate the SLA Template
-    ${result}=      Create Sla Template         templateName=int_test_2   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin    provider_name=admin   service_licence_type=trial   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
+    ${result}=      Create Sla Template         templateName=int_test_1   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin    provider_name=admin   service_licence_type=trial   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
     Set Suite Variable     ${SLA_UUID}   ${result[1]}
     Should be True      ${result[0]}
 
@@ -40,7 +44,7 @@ Wait For Ready
     Set SIU
 
 Get Agreements
-    ${result}=      Get Agreements
+    ${result}=      Get Agreements      nsi_uuid=${TERMINATE}
     Should be True      ${result[0]}
 
 Terminate Service
@@ -52,9 +56,14 @@ Terminate Service
 Delete SLA
     ${result}=      Delete SlaTemplate    ${SLA_UUID}
     Should be True      ${result[0]}
+	
+Delete Package
+	${result}=   Remove Package    package_uuid=${PACKAGE_UUID}
 
-Clean the Packages
-    Remove all Packages
+Obtain GrayLogs
+    ${to_date} =  Get Current Date
+    Set Suite Variable  ${param_file}   True
+    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
 
 *** Keywords ***
 Check Status
