@@ -6,7 +6,7 @@ Library           Collections
 *** Variables ***
 ${SP_HOST}                http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${READY}       READY
-${FILE_SOURCE_DIR}     ./packages   # to be modified and added accordingly if package is not on the same folder as test
+${FILE_SOURCE_DIR}     ../../../packages   # to be modified and added accordingly if package is not on the same folder as test
 ${NS_PACKAGE_NAME}           eu.5gtango.ns-squid-haproxy.0.1.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME}  ns-squid-haproxy
 ${POLICIES_SOURCE_DIR}     ./policies   # to be modified and added accordingly if policy is not on the same folder as test
@@ -30,6 +30,8 @@ Upload the NS Package
     ${result} =      Upload Package     ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Log     ${result}
     Should Be True     ${result[0]}
+    Set Suite Variable     ${PACKAGE_UUID}  ${result[1]}
+    Log     ${PACKAGE_UUID}
     ${service} =     Map Package On Service      ${result[1]}
     Should Be True     ${service[0]}
     Set Suite Variable     ${SERVICE_UUID}  ${service[1]}
@@ -48,30 +50,31 @@ Deploying Service
     Set Suite Variable     ${REQUEST}  ${init[1]}
     Log     ${REQUEST}    
 Wait For Ready
-    Wait until Keyword Succeeds     2 min   5 sec   Check Status
-    Set SIU   
+    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Set SIU
 Check monitoring rules
-###Check monitoring rules code will go here once ready
-Deactivate Runtime Policy
-###Deactivate Runtime Policy code will go here once ready
+    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
+    Should Be True     ${result[0]}
+    Should Be Equal    ${result[1]}  3
+Trigger one Monitoring rule
+### fake the custom metric crossing the threshold by placing it on the pushgateway.code will go here once ready
+Check that scaling action has been triggered by the policy manager
+###code will go here once ready.
+Evaluate the outcome of the MANO action
+###code will go here once ready
 Terminate Service
     Log     ${TERMINATE}
     ${ter} =    Service Terminate   ${TERMINATE}
     Log     ${ter}
     Set Suite Variable     ${TERM_REQ}  ${ter[1]}
 Wait For Terminate Ready    
-    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate   
-Clean the Package after terminating
-    @{PACKAGES} =   Get Packages
-    FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
-        Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
-    END   
+    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate  
 Delete Runtime Policy
     ${result} =     Delete Policy      ${POLICY_UUID}
     Should Be True     ${result[0]}
 Remove the Package
     ${result} =     Remove Package      ${PACKAGE_UUID}
-    Should Be True     ${result[0]}
+    Should Be True     ${result[0]} 
 
 
 *** Keywords ***
