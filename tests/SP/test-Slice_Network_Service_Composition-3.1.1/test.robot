@@ -56,11 +56,11 @@ Deploy a Slice Instance
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_inst_req_uuid}
 Wait For Instantiated
-    Wait until Keyword Succeeds     6 min    30 sec    Check Slice Instance Request Status
-    Set SIU
+    Wait until Keyword Succeeds     7 min    30 sec    Check Slice Instance Request Status
 Terminate the Slice Instance
-    Log     ${slice_id}
-    ${nsi_result} =    Slice Terminate     ${slice_id}
+    ${request_dict} =     Get Request    ${nsi_inst_req_uuid}  
+    Log     ${request_dict}
+    ${nsi_result} =    Slice Terminate     ${request_dict[1]['instance_uuid']}
     Log    ${nsi_result}
     Should Be True    ${nsi_result[0]}
     Set Suite Variable     ${nsi_term_req_uuid}    ${nsi_result[1]}
@@ -74,8 +74,6 @@ Remove Slice Template
     Should Be True     ${nst_result[0]}
 Clean the Package
     ${result}=    Remove Package    ${PACKAGE_UUID}
-
-
 *** Keywords ***
 Check Instance Status
     ${instance_dict} =     Get Request    ${nsi_inst_req_uuid}
