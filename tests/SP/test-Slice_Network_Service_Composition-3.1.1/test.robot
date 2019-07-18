@@ -56,9 +56,8 @@ Deploy a Slice Instance
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_inst_req_uuid}
 Wait For Instantiated
-    Wait until Keyword Succeeds     7 min    5 sec    Check Instance Status
-    ${nsi_req} =     Get Request    ${nsi_inst_req_uuid}
-    Set Suite Variable    ${slice_id}    ${nsi_req[1]['instance_uuid']}
+    Wait until Keyword Succeeds     6 min    30 sec    Check Slice Instance Request Status
+    Set SIU
 Terminate the Slice Instance
     Log     ${slice_id}
     ${nsi_result} =    Slice Terminate     ${slice_id}

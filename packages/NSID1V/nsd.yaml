@@ -72,3 +72,5 @@ service_specific_managers:
        value: "task"
      - key: "type"
        value: "configure"
+     - key: "type"
+       value: "state"

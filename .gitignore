@@ -1,1 +1,3 @@
 *.tgo
+.ipynb_checkpoints
+
