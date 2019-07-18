@@ -56,9 +56,8 @@ Deploy a Slice Instance
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_inst_req_uuid}
 Wait For Instantiated
-    Wait until Keyword Succeeds     10 min    5 sec    Check Slice Instance Request Status
-    ${nsi_req} =     Get Request    ${nsi_inst_req_uuid}
-    Set Suite Variable    ${slice_id}    ${nsi_req[1]['instance_uuid']}
+    Wait until Keyword Succeeds     6 min    30 sec    Check Slice Instance Request Status
+    Set SIU
 Terminate the Slice Instance
     Log     ${slice_id}
     ${nsi_result} =    Slice Terminate     ${slice_id}
@@ -79,12 +78,15 @@ Clean the Package
 
 *** Keywords ***
 Check Slice Instance Request Status
-    ${REQUEST_instance_dict} =     Get Request    ${nsi_inst_req_uuid}
-    Set Suite Variable    ${nsir_status}    ${REQUEST_instance_dict[1]['status']}
-    LOG ${nsir_status}
-    Should Be Equal    ${INSTANTIATED}    ${nsir_status}
+    ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
+    ${get_status}=    Get From Dictionary    ${REQUEST_instance_dict[1]}    ${status}
+    LOG ${get_status}
+    Should Be Equal    ${INSTANTIATED}    ${get_status}
 Check Slice Terminate Request Status
-    ${REQUEST_terminate_dict} =     Get Request    ${nsi_term_req_uuid}
-    Set Suite Variable    ${nsir_status}    ${REQUEST_terminate_dict[1]['status']}
-    LOG ${nsir_status}
-    Should Be Equal    ${TERMINATED}    ${nsir_status}
+    ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
+    ${get_status}=    Get From Dictionary    ${REQUEST_terminate_dict[1]}    ${status}
+    LOG ${get_status}
+    Should Be Equal    ${INSTANTIATED}    ${get_status}
+Set SIU
+    ${status} =     Get Request    ${nsi_inst_req_uuid}
+    Set Suite Variable    ${slice_id}    ${status[1]['instance_uuid']}
