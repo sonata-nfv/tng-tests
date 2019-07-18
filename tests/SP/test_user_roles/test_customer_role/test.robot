@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   Test the User Management Admin Role
+Documentation   Test the User Management Customer Role
 Library         tnglib
 Library         Collections
 Library         DateTime
@@ -19,8 +19,7 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
-Register a new user with developer role
-    # if user is admin continue to creation of admin user
+Register a new user with customer role
     Register User
 
 Check if token exists
@@ -77,7 +76,7 @@ Check Status
     Should Be Equal    ${READY}  ${status[1]['status']}
 
 Register User
-    ${result} =      Register         username=tango_cust_test6   password=cust_test   name=tango_cust_test   email=tango@cust.com   role=customer
+    ${result} =      Register         username=tango_cust_test   password=cust_test   name=tango_custr_test   email=tango@cust.com   role=customer
     ${json_resp} = 	Set Variable	${result[1]}
     ${username}=    Get From Dictionary    ${json_resp}    username
     Set Suite Variable     ${username}
@@ -85,7 +84,6 @@ Register User
     Should Be True  ${result[0]}
 
 Check Valid Token
-    Log to console "token already exists"
     ${valid_token}=    Is Token Valid
     # if token is still valid pass it to the headers
     if ${valid_token[0]} == True
@@ -99,8 +97,7 @@ Check Valid Token
         Login
 
 Login
-    Log to console      "login started"
-    ${valid_token}=      Update Token      username=tango_dev_test6   password=dev_test
+    ${valid_token}=      Update Token      username=tango_cust_test   password=cust_test
     Should Be True  ${valid_token[0]}
     Set Suite Variable     ${valid_token[1]}
     Set Global Variable  ${valid_token[1]}
