@@ -45,7 +45,7 @@ Upload the Slice Template
     Should Be True     ${nst_result[0]}
     Set Suite Variable     ${nst_uuid}    ${nst_result[1]}
     Log     ${nst_uuid}
-Deploy a Slice instance_uuid
+Deploy a Slice Instance
     log     ${NSI_NAME}
     log     ${NSI_DESCRIPTION}
     ${date} = 	Get Current Date
@@ -78,12 +78,14 @@ Clean the Package
 *** Keywords ***
 Check Slice Instance Request Status
     ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
-    LOG ${REQUEST_instance_dict[1]['status']}
-    Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
+    ${get_status}=    Get From Dictionary    ${REQUEST_instance_dict[1]}    status
+    LOG ${get_status}
+    Should Be Equal    ${INSTANTIATED}    ${get_status}
 Check Slice Terminate Request Status
     ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
-    LOG ${REQUEST_terminate_dict[1]['status']}
-    Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}
+    ${get_status}=    Get From Dictionary    ${REQUEST_terminate_dict[1]}    status
+    LOG ${get_status}
+    Should Be Equal    ${INSTANTIATED}    ${get_status}
 Set SIU
     ${status} =     Get Request    ${nsi_inst_req_uuid}
     Set Suite Variable    ${slice_id}    ${status[1]['instance_uuid']}
