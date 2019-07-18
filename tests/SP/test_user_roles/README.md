@@ -21,6 +21,5 @@
 | | 8 | Obtain slices | Validate the role permissions trying to obtain the slices |
 | | 9 | Log out the new user | |
 | | 10 | Delete the new user | |
-
 | __Test Verdict__ | | If no error appeared in all actions the test is succesfully past.|
 | __Additional resources__ | | | |
