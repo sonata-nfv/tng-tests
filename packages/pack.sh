@@ -1,7 +1,5 @@
 #!/bin/bash
 set -e
-# install latest version of validator
-pip3 install git+https://github.com/sonata-nfv/tng-sdk-validation.git
 
 # directly call the validator (to make error pasing simple)
 tng-validate --project NSID1V -t
