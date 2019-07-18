@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 # directly call the validator (to make error pasing simple)
 tng-validate --project NSID1V -t
 tng-validate --project NSID2V -t

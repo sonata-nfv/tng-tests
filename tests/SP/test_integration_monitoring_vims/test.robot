@@ -6,11 +6,10 @@ Library           Process
 Suite Teardown    Terminate All Processes    kill=True
 
 *** Variables ***
-${SP_HOST}      http://qual-sp-bcn.5gtango.eu
+${SP_HOST}     http://qual-sp-bcn.5gtango.eu
 ${READY}       READY
 ${PASSED}      PASSED
-${SRV_UUID}	   4e3895ed-2d30-430f-9210-bcfe8cc467cb
-@{TARGETS}
+${MTC_NAME}	   up
 
 *** Test Cases ***
 Setting the SP Path
@@ -18,19 +17,25 @@ Setting the SP Path
     ${result} =    Sp Health Check
     Should Be True   ${result}
 
-GET the Packages
-    @{PACKAGES} =   Get Packages	
-	FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
-        Log     ${PACKAGE['package_uuid']}
+
+
+GET monitoring Targets
+	@{TARGETS} =  Get Prometheus Targets
+	Set Global Variable    @{TARGETS}
+
+CHECK targets Status from Monitoring Framework
+    @{TRGS_STATUS} =  Get Metric    ${MTC_NAME}
+
+	FOR     ${TARGET}  IN  @{TARGETS[1]}
+		Find Record  ${TARGET}   @{TRGS_STATUS} 
+		#Should Contain    ${resp.stdout}    success
+		Log    ${TARGET}
     END
 
-GET monitoting Targets
-	@{TARGETS} =  Get Prometheus Targets
-	FOR     ${TARGET}  IN  @{TARGETS[1]}
-        Log     ${TARGET}
-        ${resp} =  Run Process    curl -i http://${TARGET['endpoint']}:30090/merics 		shell=True    cwd=/usr/bin
-#		${resp} =  Run Process 		curl -i -g "http://pre-int-vnv-bcn.5gtango.eu:9090/api/v1/series?match[]={job='pushgateway'}" 	shell=True		cwd=/usr/bin
-		Log     ${resp}
-		Should Contain    ${resp.stdout}    success
+*** Keywords ***
+Find Record
+    [Arguments]  ${TARGET}    @{TRGS_STATUS} 
+    FOR     ${TRG}  IN  @{TRGS_STATUS[1]}
+        Run Keyword If    '${TRG['instance']}'== '${TARGET['endpoint']}'   Should Contain  ${TRG['value']}    1 
     END
 
