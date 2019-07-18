@@ -14,6 +14,7 @@ ${NSI_NAME}                sliceTest_311-
 ${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1
 ${INSTANTIATED}            INSTANTIATED
 ${TERMINATED}              TERMINATED
+${status}                  status
 
 
 *** Test Cases ***
@@ -55,7 +56,7 @@ Deploy a Slice Instance
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_inst_req_uuid}
 Wait For Instantiated
-    Wait until Keyword Succeeds     15 min    30 sec    Check Slice Instance Request Status
+    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Instance Request Status
     Set SIU
 Terminate the Slice Instance
     Log     ${slice_id}
@@ -78,12 +79,12 @@ Clean the Package
 *** Keywords ***
 Check Slice Instance Request Status
     ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
-    ${get_status}=    Get From Dictionary    ${REQUEST_instance_dict[1]}    status
+    ${get_status}=    Get From Dictionary    ${REQUEST_instance_dict[1]}    ${status}
     LOG ${get_status}
     Should Be Equal    ${INSTANTIATED}    ${get_status}
 Check Slice Terminate Request Status
     ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
-    ${get_status}=    Get From Dictionary    ${REQUEST_terminate_dict[1]}    status
+    ${get_status}=    Get From Dictionary    ${REQUEST_terminate_dict[1]}    ${status}
     LOG ${get_status}
     Should Be Equal    ${INSTANTIATED}    ${get_status}
 Set SIU
