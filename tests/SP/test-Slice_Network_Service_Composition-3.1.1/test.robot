@@ -66,7 +66,7 @@ Terminate the Slice Instance
     Set Suite Variable     ${nsi_term_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_term_req_uuid}
 Wait For Terminated
-    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Terminate Request Status
+    Wait until Keyword Succeeds     5 min    5 sec    Check Terminate Status
 Remove Slice Template
     Log     ${nst_uuid}
     ${nst_result} =   Delete Slice Template     ${nst_uuid}
@@ -77,16 +77,11 @@ Clean the Package
 
 
 *** Keywords ***
-Check Slice Instance Request Status
-    ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
-    ${get_status}=    Get From Dictionary    ${REQUEST_instance_dict[1]}    ${status}
-    LOG ${get_status}
-    Should Be Equal    ${INSTANTIATED}    ${get_status}
-Check Slice Terminate Request Status
-    ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
-    ${get_status}=    Get From Dictionary    ${REQUEST_terminate_dict[1]}    ${status}
-    LOG ${get_status}
-    Should Be Equal    ${INSTANTIATED}    ${get_status}
-Set SIU
-    ${status} =     Get Request    ${nsi_inst_req_uuid}
-    Set Suite Variable    ${slice_id}    ${status[1]['instance_uuid']}
+Check Instance Status
+    ${instance_dict} =     Get Request    ${nsi_inst_req_uuid}
+    LOG ${instance_dict[1]}
+    Should Be Equal    ${INSTANTIATED}    ${instance_dict[1]['status']}
+Check Terminate Status
+    ${terminate_dict} =     Get Request    ${nsi_term_req_uuid}
+    LOG ${terminate_dict[1]}
+    Should Be Equal    ${TERMINATED}    ${terminate_dict[1]['status']}
