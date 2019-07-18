@@ -19,13 +19,25 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
+Initial Admin Login
+    ${initial_admin_token}=      Update Token      username=tango   password=admin
+    Should Be True  ${initial_admin_token[0]}
+    Set Suite Variable     ${initial_admin_token[1]}
+	Set Global Variable  ${initial_admin_token[1]}
+    Should Be True  ${initial_admin_token[0]}
+
 Register a new user with admin role
-    ${result} =      Register         username=tango_test   password=admin_test   name=tango_test   email=tango@tango.com   role=admin
+    # Check if logged in user has admin role
+    ${result} =      User Info         username=tango
     ${json_resp} = 	Set Variable	${result[1]}
-    ${username}=    Get From Dictionary    ${json_resp}    username
-    Set Suite Variable     ${username}
-	Set Global Variable  ${username}
-    Should Be True  ${result[0]}
+    ${role_root}=    Get From Dictionary    ${json_resp}    role
+    ${role}=    Get From Dictionary    ${role_root}    role
+    # if user is admin continue to creation of admin user
+    Run keyword If 	"${role}" == "admin" 	Register User
+
+Logout Initial Admin User
+    ${result}=      Logout User      token=${initial_admin_token[1]}
+    Should be True      ${result[0]}
 
 Check if token exists
     ${token}=      Get Token
@@ -83,8 +95,16 @@ Check Valid Token
     else:
         Login
 Login
-    ${valid_token}=      Update Token      username=tango   password=t@ng0
+    ${valid_token}=      Update Token      username=tango_test   password=admin_test
     Should Be True  ${valid_token[0]}
     Set Suite Variable     ${valid_token[1]}
 	Set Global Variable  ${valid_token[1]}
     Should Be True  ${valid_token[0]}
+
+Register User
+    ${result} =      Register         username=tango_test   password=admin_test   name=tango_test   email=tango@tango.com   role=admin
+    ${json_resp} = 	Set Variable	${result[1]}
+    ${username}=    Get From Dictionary    ${json_resp}    username
+    Set Suite Variable     ${username}
+	Set Global Variable  ${username}
+    Should Be True  ${result[0]}
