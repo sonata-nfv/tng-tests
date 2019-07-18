@@ -30,7 +30,7 @@
 # acknowledge the contributions of their colleagues of the 5GTANGO
 # partner consortium (www.5gtango.eu).
 
-FROM python:3.7-slim
+FROM python:3.4-slim
 MAINTAINER SONATA
 
 RUN apt-get update && apt-get install -y python-pip ssh && \

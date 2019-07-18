@@ -237,7 +237,10 @@ class cirrosFSM(smbase):
                                     logger=LOG,
                                     retries=10)
 
-            state = ssh_client.sendCommand("echo " + str(content) + " > test_start.txt")
+            state_message = "echo \"" + str(content['state']) + "\" > test_start.txt"
+            LOG.info(state_message)
+            reply = ssh_client.sendCommand(state_message)
+            LOG.info(str(reply))
             response['persist'] = 'finished'
 
         LOG.info("response: " + yaml.dump(response))
