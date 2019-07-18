@@ -52,10 +52,10 @@ Deploying Service
 Wait For Ready
     Wait until Keyword Succeeds     3 min   5 sec   Check Status
     Set SIU
-Check monitoring rules
-    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-    Should Be True     ${result[0]}
-    Should Be Equal    ${result[1]}  3
+#Check monitoring rules
+#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
+#    Should Be True     ${result[0]}
+#    Should Be Equal    ${result[1]}  3
 Trigger one Monitoring rule
 ### fake the custom metric crossing the threshold by placing it on the pushgateway.code will go here once ready
 Check that scaling action has been triggered by the policy manager
