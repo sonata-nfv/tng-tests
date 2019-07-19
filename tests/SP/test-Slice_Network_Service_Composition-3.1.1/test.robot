@@ -31,7 +31,6 @@ Upload the Package
     ${result} =    Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Log     ${result}
     Should Be True     ${result[0]}
-Mapping Package to Service
     ${service} =    Map Package On Service    ${result[1]}
     Log     ${service}
     Should Be True    ${service[0]}
@@ -76,11 +75,15 @@ Clean the Package
 *** Keywords ***
 Check Instance Status
     ${instance_dict} =     Get Request    ${nsi_inst_req_uuid}
+    LOG ${instance_dict}
+    LOG ${instance_dict[1]}
     Set Suite Variable     ${inst_nsir}    ${instance_dict[1]}
     LOG ${inst_nsir}
     Should Be Equal    ${INSTANTIATED}    ${inst_nsir['status']}
 Check Terminate Status
     ${terminate_dict} =     Get Request    ${nsi_term_req_uuid}
+    LOG ${terminate_dict}
+    LOG ${terminate_dict[1]}
     Set Suite Variable     ${term_nsir}    ${terminate_dict[1]}
     LOG ${term_nsir}
     Should Be Equal    ${TERMINATED}    ${term_nsir['status']}
