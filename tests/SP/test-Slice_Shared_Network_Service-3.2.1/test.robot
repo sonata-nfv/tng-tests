@@ -92,10 +92,10 @@ Clean the Package
     ${result}=    Remove Package    package_uuid=${PACKAGE_UUID}
     Log    ${result}
 *** Keywords ***
-Check Slice Instance Request Status
+Check Instance Status
     ${REQUEST_instance_dict} =     Get Request    ${nsi_inst_req_uuid}
     Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
 
-Check Slice Terminate Request Status
+Check Terminate Status
     ${REQUEST_terminate_dict} =     Get Request    ${nsi_term_req_uuid}
     Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}
