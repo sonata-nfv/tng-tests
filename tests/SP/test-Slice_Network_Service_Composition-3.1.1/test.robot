@@ -15,7 +15,6 @@ ${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1
 ${INSTANTIATED}            INSTANTIATED
 ${TERMINATED}              TERMINATED
 
-
 *** Test Cases ***
 Setting the SP Path
     Set SP Path     ${SP_HOST}
@@ -32,6 +31,7 @@ Upload the Package
     ${result} =    Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Log     ${result}
     Should Be True     ${result[0]}
+Mapping Package to Service
     ${service} =    Map Package On Service    ${result[1]}
     Log     ${service}
     Should Be True    ${service[0]}
