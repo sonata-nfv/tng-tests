@@ -37,7 +37,7 @@ Upload the Slice Template
     Set Suite Variable     ${nst_uuid}    ${nst_result[1]}
     Log     ${nst_uuid}
 
-Deploy a Slice instance_uuid
+Deploy a Slice Instance
     ${date} = 	Get Current Date
     ${nsi_1_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_1_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_1_result}
@@ -46,11 +46,11 @@ Deploy a Slice instance_uuid
     Log     ${nsi_inst_req_uuid}
 
 Wait For Instantiated
-    Wait until Keyword Succeeds     15 min    30 sec    Check Slice Instance Request Status
+    Wait until Keyword Succeeds     15 min    30 sec    Check Instance Status
     ${request_1} =     Get Request    ${nsi_inst_req_uuid}
     Set Suite Variable    ${slice_1_id}    ${request_1[1]['instance_uuid']}
 
-Deploy a Slice instance_uuid
+Deploy a Slice Instance
     ${date} = 	Get Current Date
     ${nsi_2_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_2_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_2_result}
@@ -59,7 +59,7 @@ Deploy a Slice instance_uuid
     Log     ${nsi_inst_req_uuid}
 
 Wait For Instantiated
-    Wait until Keyword Succeeds     15 min    30 sec    Check Slice Instance Request Status
+    Wait until Keyword Succeeds     15 min    30 sec    Check Instance Status
     ${request_2} =     Get Request    ${nsi_inst_req_uuid}
     Set Suite Variable    ${slice_2_id}    ${request_2[1]['instance_uuid']}
 
@@ -71,7 +71,7 @@ Terminate the Slice Instance
     Log     ${nsi_term_req_uuid}
 
 Wait For Terminated
-    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Terminate Request Status
+    Wait until Keyword Succeeds     5 min    5 sec    Check Terminate Status
 
 Terminate the Slice Instance
     ${nsi_result} =    Slice Terminate     ${slice_2_id}
@@ -81,7 +81,7 @@ Terminate the Slice Instance
     Log     ${nsi_term_req_uuid}
 
 Wait For Terminated
-    Wait until Keyword Succeeds     5 min    5 sec    Check Slice Terminate Request Status
+    Wait until Keyword Succeeds     5 min    5 sec    Check Terminate Status
 
 Remove Slice Template
     ${nst_result} =   Delete Slice Template     ${nst_uuid}
@@ -89,13 +89,13 @@ Remove Slice Template
     Should Be True     ${nst_result[0]}
 
 Clean the Package
-    ${result}=    Remove Package    ${PACKAGE_UUID}
-
+    ${result}=    Remove Package    package_uuid=${PACKAGE_UUID}
+    Log    ${result}
 *** Keywords ***
 Check Slice Instance Request Status
-    ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
+    ${REQUEST_instance_dict} =     Get Request    ${nsi_inst_req_uuid}
     Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
 
 Check Slice Terminate Request Status
-    ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
+    ${REQUEST_terminate_dict} =     Get Request    ${nsi_term_req_uuid}
     Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}

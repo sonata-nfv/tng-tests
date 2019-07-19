@@ -30,8 +30,8 @@ Clean the Package Before Uploading
         Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
     END 
 Upload the Package
-    log     ${FILE_SOURCE_DIR}
-    log     ${NS_PACKAGE_NAME}
+    Log     ${FILE_SOURCE_DIR}
+    Log     ${NS_PACKAGE_NAME}
     ${result} =    Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Log     ${result}
     Should Be True     ${result[0]}
@@ -52,16 +52,16 @@ Create Instantiation JSON file
     ${json_string}=    Evaluate    json.dumps(${nstd_dict[1]})    json
     ${json_file}=    Create File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/test_nstd.json    ${json_string}
 Upload the Slice Template
-    log     ${FILE_SOURCE_DIR}
-    log     ${FILE_TEMPLATE_PATH}
+    Log     ${FILE_SOURCE_DIR}
+    Log     ${FILE_TEMPLATE_PATH}
     ${nst_result} =    Create Slice Template     ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/test_nstd.json
     Log     ${nst_result}
     Should Be True     ${nst_result[0]}
     Set Suite Variable     ${nst_uuid}    ${nst_result[1]}
     Log     ${nst_uuid}
 Deploy a Network Slice Instance
-    log     ${NSI_NAME}
-    log     ${NSI_DESCRIPTION}
+    Log     ${NSI_NAME}
+    Log     ${NSI_DESCRIPTION}
     ${date} = 	Get Current Date
     ${nsi_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_result}
@@ -99,11 +99,11 @@ Clean the NSTD json file
 *** Keywords ***
 Check Slice Instance Request Status
     ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
-    LOG ${REQUEST_instance_dict[1]['status']}
+    LOG     ${REQUEST_instance_dict[1]['status']}
     Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
 Check Slice Terminate Request Status
     ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
-    LOG ${REQUEST_terminate_dict[1]['status']}
+    LOG     ${REQUEST_terminate_dict[1]['status']}
     Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}
 Set SIU
     ${status} =     Get Request    ${nsi_inst_req_uuid}
