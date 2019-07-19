@@ -18,73 +18,73 @@ ${NSI_DESCRIPTION}      Testing_slice_test_case_3.2.1
 *** Test Cases ***
 Setting the SP Path
     Set SP Path     ${HOST}
-    ${result} =    Sp Health Check
+    ${result}=    Sp Health Check
     Should Be True   ${result}
 
 Upload the Package
-    ${result} =    Upload Package      ${FILE_SOURCE_DIR}/${FILE_SERVICE_NAME}
+    ${result}=    Upload Package      ${FILE_SOURCE_DIR}/${FILE_SERVICE_NAME}
     Should Be True     ${result[0]}
-    ${service} =    Map Package On Service    ${result[1]}
+    ${service}=    Map Package On Service    ${result[1]}
     Log     ${service}
     Should Be True    ${service[0]}
     Set Suite Variable    ${PACKAGE_UUID}    ${service[1]}
     Log     ${PACKAGE_UUID}
 
 Upload the Slice Template
-    ${nst_result} =    Create Slice Template     ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}
+    ${nst_result}=    Create Slice Template     ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}
     Log     ${nst_result}
     Should Be True     ${nst_result[0]}
     Set Suite Variable     ${nst_uuid}    ${nst_result[1]}
     Log     ${nst_uuid}
 
-Deploy a Slice Instance
-    ${date} = 	Get Current Date
-    ${nsi_1_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_1_NAME}${date}    description=${NSI_DESCRIPTION}
+Deploy Slice Instance One
+    ${date}= 	Get Current Date
+    ${nsi_1_result}=    Slice Instantiate     ${nst_uuid}    name=${NSI_1_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_1_result}
     Should Be True     ${nsi_1_result[0]}
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_1_result[1]}
     Log     ${nsi_inst_req_uuid}
 
-Wait For Instantiated
+Wait For Instantiation One
     Wait until Keyword Succeeds     15 min    30 sec    Check Instance Status
-    ${request_1} =     Get Request    ${nsi_inst_req_uuid}
+    ${request_1}=     Get Request    ${nsi_inst_req_uuid}
     Set Suite Variable    ${slice_1_id}    ${request_1[1]['instance_uuid']}
 
-Deploy a Slice Instance
-    ${date} = 	Get Current Date
-    ${nsi_2_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_2_NAME}${date}    description=${NSI_DESCRIPTION}
+Deploy Slice Instance Two
+    ${date}= 	Get Current Date
+    ${nsi_2_result}=    Slice Instantiate     ${nst_uuid}    name=${NSI_2_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_2_result}
     Should Be True     ${nsi_2_result[0]}
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_2_result[1]}
     Log     ${nsi_inst_req_uuid}
 
-Wait For Instantiated
+Wait For Instantiantiation Two
     Wait until Keyword Succeeds     15 min    30 sec    Check Instance Status
-    ${request_2} =     Get Request    ${nsi_inst_req_uuid}
+    ${request_2}=     Get Request    ${nsi_inst_req_uuid}
     Set Suite Variable    ${slice_2_id}    ${request_2[1]['instance_uuid']}
 
-Terminate the Slice Instance
-    ${nsi_result} =    Slice Terminate     ${slice_1_id}
+Terminate Slice Instance one
+    ${nsi_result}=    Slice Terminate     ${slice_1_id}
     Log    ${nsi_result}
     Should Be True    ${nsi_result[0]}
     Set Suite Variable     ${nsi_term_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_term_req_uuid}
 
-Wait For Terminated
+Wait For Termination One
     Wait until Keyword Succeeds     5 min    5 sec    Check Terminate Status
 
-Terminate the Slice Instance
-    ${nsi_result} =    Slice Terminate     ${slice_2_id}
+Terminate Slice Instance Two
+    ${nsi_result}=    Slice Terminate     ${slice_2_id}
     Log    ${nsi_result}
     Should Be True    ${nsi_result[0]}
     Set Suite Variable     ${nsi_term_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_term_req_uuid}
 
-Wait For Terminated
+Wait For Termination Two
     Wait until Keyword Succeeds     5 min    5 sec    Check Terminate Status
 
 Remove Slice Template
-    ${nst_result} =   Delete Slice Template     ${nst_uuid}
+    ${nst_result}=   Delete Slice Template     ${nst_uuid}
     Log     ${nst_result}
     Should Be True     ${nst_result[0]}
 
@@ -93,9 +93,9 @@ Clean the Package
     Log    ${result}
 *** Keywords ***
 Check Instance Status
-    ${REQUEST_instance_dict} =     Get Request    ${nsi_inst_req_uuid}
+    ${REQUEST_instance_dict}=     Get Request    ${nsi_inst_req_uuid}
     Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
 
 Check Terminate Status
-    ${REQUEST_terminate_dict} =     Get Request    ${nsi_term_req_uuid}
+    ${REQUEST_terminate_dict}=     Get Request    ${nsi_term_req_uuid}
     Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}
