@@ -69,7 +69,7 @@ Deploy a Network Slice Instance
     Set Suite Variable     ${nsi_inst_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_inst_req_uuid}
 Wait For Instantiated
-    Wait until Keyword Succeeds     15 min    30 sec    Check Slice Instance Request Status
+    Wait until Keyword Succeeds     15 min    30 sec    Check Instance Status
     Set SIU
 Get Agreements
     ${result}=      Get Agreements
@@ -82,7 +82,7 @@ Terminate the Slice Instance
     Set Suite Variable     ${nsi_term_req_uuid}    ${nsi_result[1]}
     Log     ${nsi_term_req_uuid}
 Wait For Terminated
-    Wait until Keyword Succeeds     5 min    30 sec    Check Slice Terminate Request Status
+    Wait until Keyword Succeeds     5 min    30 sec    Check Terminate Status
 Remove Slice Template
     Log     ${nst_uuid}
     ${nst_result} =   Delete Slice Template     ${nst_uuid}
@@ -97,11 +97,11 @@ Clean the NSTD json file
     ${remove_json_file}=    Remove File    ${FILE_SOURCE_DIR}/${FILE_TEMPLATE_PATH}/test_nstd.json
 
 *** Keywords ***
-Check Slice Instance Request Status
+Check Instance Status
     ${REQUEST_instance_dict} =     GET REQUEST    ${nsi_inst_req_uuid}
     LOG     ${REQUEST_instance_dict[1]['status']}
     Should Be Equal    ${INSTANTIATED}    ${REQUEST_instance_dict[1]['status']}
-Check Slice Terminate Request Status
+Check Terminate Status
     ${REQUEST_terminate_dict} =     GET REQUEST    ${nsi_term_req_uuid}
     LOG     ${REQUEST_terminate_dict[1]['status']}
     Should Be Equal    ${TERMINATED}    ${REQUEST_terminate_dict[1]['status']}
