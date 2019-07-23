@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Network Slice Test 3.1.1 - Create a NST (upload NSs), instantiate/terminate a NSI with 3 NS (VNFs) and remove the NST (and NSs).
+Documentation     Network Slice Test 3.1.2 - Create a NST (upload NSs), instantiate/terminate a NSI with 3 NS (CNFs) and remove the NST (and NSs).
 Library           tnglib
 Library           Collections
 Library           DateTime
@@ -7,11 +7,11 @@ Library           DateTime
 *** Variables ***
 ${SP_HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${FILE_SOURCE_DIR}         ./packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}         eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
-${FILE_TEMPLATE_PATH}      NSTD_VNF/3nsid1v_nstd.yaml
-${NS_PACKAGE_SHORT_NAME}   test-nsid1v
-${NSI_NAME}                sliceTest_311-
-${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1
+${NS_PACKAGE_NAME}         eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
+${FILE_TEMPLATE_PATH}      NSTD_CNF/3nsid1c_nstd.yaml
+${NS_PACKAGE_SHORT_NAME}   test-ns-nsid1c
+${NSI_NAME}                sliceTest_312-
+${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.2
 ${INSTANTIATED}            INSTANTIATED
 ${TERMINATED}              TERMINATED
 
