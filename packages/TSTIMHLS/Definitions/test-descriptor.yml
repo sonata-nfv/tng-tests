@@ -59,56 +59,56 @@ phases:
         value: test
 - id: exercise
   steps:
-    - command: /bin/sh
-      dependencies: []
-      description: "Starting the initiator"
-      entrypoint: /app/entrypoint.sh
-      index: 1
-      instances: 1
-      name: initiator
-      output:
-      - {results: logs.txt}
-      run: initiator
-    - command: /bin/sh
-      description: "Starting the CPE that simulates the camera"
-      entrypoint: /app/entrypoint.sh
-      index: 1
-      instances: 1
-      name: cpe
-      output:
-      - {results: logs.txt}
-      run: cpe
-      start_delay: 5
-      dependencies: [initiator]
-    - command: /bin/sh
-      dependencies: [initiator]
-      description: "Read the available playlist in the MSE"
-      entrypoint: /app/entrypoint.sh
-      index: 1
-      instances: 1
-      name: playlistreader
-      output:
-      - {results: logs.txt}
-      run: playlistreader
-      start_delay: 25
-    - command: /bin/sh
-      dependencies: [initiator, cpe, playlistreader]
-      description: "Parse the results from the playlistreader"
-      entrypoint: /app/entrypoint.sh
-      index: 1
-      instances: 1
-      name: parser
-      output:
-      - {results: result.json}
-      run: parser
-      start_delay: 30
+  - command: /bin/sh
+    dependencies: []
+    description: "Starting the initiator"
+    entrypoint: /app/entrypoint.sh
+    index: 1
+    instances: 1
+    name: initiator
+    output:
+    - {results: logs.txt}
+    run: initiator
+  - command: /bin/sh
+    description: "Starting the CPE that simulates the camera"
+    entrypoint: /app/entrypoint.sh
+    index: 1
+    instances: 1
+    name: cpe
+    output:
+    - {results: logs.txt}
+    run: cpe
+    start_delay: 5
+    dependencies: [initiator]
+  - command: /bin/sh
+    dependencies: [initiator]
+    description: "Read the available playlist in the MSE"
+    entrypoint: /app/entrypoint.sh
+    index: 1
+    instances: 1
+    name: playlistreader
+    output:
+    - {results: logs.txt}
+    run: playlistreader
+    start_delay: 25
+  - command: /bin/sh
+    dependencies: [initiator, cpe, playlistreader]
+    description: "Parse the results from the playlistreader"
+    entrypoint: /app/entrypoint.sh
+    index: 1
+    instances: 1
+    name: parser
+    output:
+    - {results: result.json}
+    run: parser
+    start_delay: 30
 - id: verification
   steps:
   - step: parser
     description: "Check obtained results"
     name: parser
     conditions:
-    - condition: =
+    - condition: "="
       file: result.json
       find: segments
       name: segments
