@@ -1,0 +1,20 @@
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: eu.5gtango
+  name: ns-squid-haproxy
+  version: '0.1'
+  maintainer: Luis Hens
+  description: This is the 5GTANGO network service for year 1 demo
+files:
+- path: ns-squid-haproxy.yaml
+  type: application/vnd.5gtango.nsd
+  tags:
+  - eu.5gtango
+- path: haproxy_vnf.yaml
+  type: application/vnd.5gtango.vnfd
+- path: squid_vnf.yaml
+  type: application/vnd.5gtango.vnfd
+  tags:
+  - eu.5gtango
+uuid: 085ea49f-d5ba-48b1-81c7-99a253cbde94

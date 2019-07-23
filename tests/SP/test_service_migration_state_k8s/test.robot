@@ -1,16 +1,15 @@
 *** Settings ***
-Documentation     Test suite template for deploy and undeploy
+Documentation     Test for stateful VNF migration
 Library           tnglib
 Library           Collections
 
 *** Variables ***
-${SP_HOST}      http://qual-sp-bcn.5gtango.eu
-${FILE_SOURCE_DIR}  /home/paco/test/robot/packages
-${NS_PACKAGE_NAME}  service.tgo
-${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service
+${SP_HOST}      http://pre-int-sp-ath.5gtango.eu
+${FILE_SOURCE_DIR}  /home/tsoenen/5gtango/repositories/tng-tests/packages
+${NS_PACKAGE_NAME}  NSID1V.tgo
+${NS_PACKAGE_SHORT_NAME}  NSID1V
 ${READY}       READY
 ${PASSED}      PASSED
-
 
 *** Test Cases ***
 Setting the SP Path
@@ -22,7 +21,7 @@ Clean the Package Before Uploading
     FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
         Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
     END 
-Upload the NS Package
+Onboard the NS Package
     log     ${FILE_SOURCE_DIR}
     log     ${NS_PACKAGE_NAME}
     ${result} =      Upload Package     ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
@@ -40,6 +39,14 @@ Deploying Service
 Wait For Ready
     Wait until Keyword Succeeds     2 min   5 sec   Check Status
     Set SIU   
+Generate State in the VNF
+    #TODO
+Migrate the VNF
+    #TODO
+Wait for Migration to Finish
+    #TODO
+Check if Migration was successful
+    #TODO
 Terminate Service
     Log     ${TERMINATE}
     ${ter} =    Service Terminate   ${TERMINATE}
@@ -52,8 +59,6 @@ Clean the Package after terminating
     FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
         Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
     END   
-
-
 
 *** Keywords ***
 Check Status

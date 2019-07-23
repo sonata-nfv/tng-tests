@@ -4,6 +4,16 @@ The next table shows the relationship between the VnV tests and the used Test Pa
 
 | Test | Test Case | Service Package | Test Package|
 | --- | --- | --- | --- |
+|g1-01-deploy_service_and_test_sonata| test_vnv_hello_world-connectivity_sonata_vnf | NSID1V | TSTPING |
+|g1-02-deploy_service_and_test_osm| test_vnv_hello_worldconnectivity_sonata_vnf-connectivity_osm_vnf | NSID1V_cirros_OSM | TSTPING |
+|g1-03-deploy_service_and_test_onap||  | TSTPING |
+|g1-04-deploy_pre_onboarded_service_sonata| test_vnv_sonata_preonboarded | NSID1V| TSTPING|
+|g1-05-deploy_pre_onboarded_service_osm| test_vnv_osm_preonboarded | NSID1V_cirros_OSM | TSTPING |
+|g1-06-deploy_service_cloud_init_osm| test_vnv_osm_cloud_init | NS1D1V_cirros_OSM_cloud_init |  | TSTPING |
+|g1-07-deploy_service_charms_osm| test_vnv_osm_chams | NSID1V_osm_charms | TSTPING |
+|g1-08-grab_metrics_from_sonata||||
+|g1-09-storage_metrics_from_sonata||| |
+|g1-09-test_hybrid_package| test_hybrid_package | NSID1V_hybrid | TSTPING |
 |g2-01-multiple_parallel_probes| Modifying instances field |NSIMPSP_no_tags |TSTPING_2_instances_probes||
 |g2-01-multiple_parallel_probes| Using two probes |NSIMPSP_no_tags |TSTPING_2_parallel_probes||
 |g2-02-one_probe_start_after_another|Two probes where one has a dependency to the first one|NSIMPSP_no_tags|TSTPING_dependency_2_probes||
@@ -20,5 +30,4 @@ The next table shows the relationship between the VnV tests and the used Test Pa
 |test_vnv_hello_world | performance_osm_vnf | ?? | ?? |
 |test_vnv_hello_world | performance_sonata_cnf | NSINDP1C | TSTINDP |
 |test_vnv_hello_world | performance_sonata_vnf | NSIMPSP | TSTIMPSP |
-|test_vnv_osm_cloud_init| | NS1D1V_cirros_OSM_cloud_init | TSTPING |
 |vnv-onboarding-phase| | - | - |

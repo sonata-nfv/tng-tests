@@ -117,6 +117,10 @@ class configSSM(smbase):
             LOG.info("Config event received: " + str(request))
             response = self.configure_event(request)
 
+        if str(request["ssm_type"]) == "state":
+            LOG.info("State event received: " + str(request["content"]))
+            response = self.state_event(request["content"])
+
         # If a response message was generated, send it back to the FLM
         LOG.info("Response to request generated:" + str(response))
         topic = "generic.ssm." + str(self.sfuuid)
@@ -178,6 +182,16 @@ class configSSM(smbase):
 
         LOG.info("Generated response: " + str(response))
 
+        return response
+
+    def state_event(self, content):
+        """
+        This method handles a state event.
+        """
+
+        # Dummy content
+        response = {'status': 'completed'}
+        response['content'] = content['state']
         return response
 
 def main():

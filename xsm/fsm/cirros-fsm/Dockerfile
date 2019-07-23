@@ -33,13 +33,13 @@
 FROM python:3.4-slim
 MAINTAINER SONATA
 
-RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
-
 RUN apt-get update && apt-get install -y python-pip ssh && \
 pip install paramiko && apt-get install -y git
-RUN apt-get install python2.7 
 
-RUN pip3 install git+https://github.com/sonata-nfv/tng-cli
+RUN git clone https://github.com/sonata-nfv/tng-cli
+WORKDIR /tng-cli
+RUN python setup.py install
+WORKDIR /
 
 # configrurations
 ENV broker_host amqp://guest:guest@broker:5672/%2F
