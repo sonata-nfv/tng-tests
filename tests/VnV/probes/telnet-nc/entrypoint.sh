@@ -16,8 +16,8 @@ else
   opt1="$EXTERNAL_IP"
 fi
 
-{ echo "netcat starts:"; date +%Y%m%d%H%M%S%N; } | sed ':a;N;s/\n/ /;ba' >> $RESULTS_FILE
+{ echo "netcat starts:"; date +%s%N; } | sed ':a;N;s/\n/ /;ba' >> $RESULTS_FILE
 
 nc -zv $EXTERNAL_IP $PORT >> $RESULTS_FILE 2>&1;
 
-{ echo "netcat ends:"; date +%Y%m%d%H%M%S%N; } | sed ':a;N;s/\n/ /;ba' >> $RESULTS_FILE
+{ echo "netcat ends:"; date +%s%N; } | sed ':a;N;s/\n/ /;ba' >> $RESULTS_FILE
