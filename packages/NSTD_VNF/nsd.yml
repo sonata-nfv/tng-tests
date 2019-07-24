@@ -2,8 +2,8 @@
 descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml"
 
 vendor: "eu.5gtango"
-name: "test-nsid1v"
-version: "0.1"
+name: "nsid1v3"
+version: "0.3"
 author: "5GTANGO Test Team"
 description: "This is a integration test artifact."
 
