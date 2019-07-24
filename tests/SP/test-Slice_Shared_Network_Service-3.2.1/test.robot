@@ -5,8 +5,6 @@ Library           DateTime
 
 *** Variables ***
 ${HOST}                     http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
-${INSTANTIATED}             INSTANTIATED
-${TERMINATED}               TERMINATED
 ${FILE_SOURCE_DIR}          ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_SERVICE_NAME}        eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${FILE_TEMPLATE_PATH}       NSTD/3nsid1v_nstd.yaml
@@ -14,6 +12,8 @@ ${NS_PACKAGE_SHORT_NAME}    test-nsid1v
 ${NSI_1_NAME}               sliceTest_321_1
 ${NSI_2_NAME}               sliceTest_321_2
 ${NSI_DESCRIPTION}          Testing_slice_test_case_3.2.1
+${INSTANTIATED}             INSTANTIATED
+${TERMINATED}               TERMINATED
 
 
 *** Test Cases ***
