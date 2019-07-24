@@ -2,7 +2,7 @@
 author: "Santiago Rodriguez (Optare Solutions)"
 description: "Generic Probes Test"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
-name: "test-generic-probes-2-parallel"
+name: "test-generic-probes-2-instances"
 vendor: "eu.5gtango.optare"
 version: '0.1'
 
@@ -24,43 +24,23 @@ phases:
         probes:
           - id: ping
             description: "Ping probe"
-            image: sonatanfv/tng-vnv-probe-ping:latest
+            image: "sonatanfv/tng-vnv-probe-ping:latest"
             name: ping
             parameters:
               - key: EXTERNAL_IP
                 value: '$(cirros_vnf/endpoints/id:mgmt/address)'
-          - id: netcat
-            description: "Netcat probe"
-            image: sonatanfv/telnet-nc:latest
-            name: netcat
-            parameters:
-              - key: EXTERNAL_IP
-                value: 'www.google.com'
-              - key: PORT
-                value: '80'
   - id: exercise
     steps:
       - command: /bin/sh
         dependencies: []
-        description: "Executing ping"
+        description: "Starting the initiator"
         entrypoint: /app/entrypoint.sh
         index: 1
-        instances: 1
+        instances: 2
         name: ping
         output:
           - {results: results.log}
         run: ping
-        start_delay: 30
-      - command: /bin/sh
-        dependencies: []
-        description: "Executing netcat"
-        entrypoint: /app/entrypoint.sh
-        index: 2
-        instances: 1
-        name: netcat
-        output:
-          - {results: results.log}
-        run: netcat
         start_delay: 30
   - id: verification
     steps:
@@ -72,13 +52,4 @@ phases:
             file: results.log
             find: 100% packet loss
             name: ping-ok
-            verdict: pass
-      - step: netcat
-        description: "Check netcat results"
-        name: netcat
-        conditions:
-          - condition: present
-            file: results.log
-            find: 80 (?) open
-            name: netcat-ok
             verdict: pass
