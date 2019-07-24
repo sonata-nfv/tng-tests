@@ -7,25 +7,28 @@ Library           yaml
 
 *** Variables ***
 ${SP_HOST}      http://int-sp-ath.5gtango.eu
-${FILE_SOURCE_DIR}  ./packages
+${FILE_SOURCE_DIR}  ../../../packages
 ${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1c.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  test-ns-nsid1c
 ${READY}       READY
 ${PASSED}      PASSED
+${INFRA_FILE_PATH}    ../infra.yaml
+${First_VIM}     athens-k8s
+${Second_VIM}     aveiro-k8s
 
 *** Test Cases ***
 Setting the SP Path
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-Ensure that two openstack vims are available
-    ${data} =     Get Vims      k8s
-    Log      ${data[1]}
-    Set Suite Variable      ${vims}     ${data[1]}
-    Log      ${vims}
-    ${n_vims} =     Get Length     ${vims}
-    Log     ${n_vims}
-    Should Be True     ${n_vims} > 1
+Ensure that two k8s vims are available
+    ${result} =      Clean Infrastructure
+    ${result_vim1} =      Post Vim From File     ${First_VIM}    ${INFRA_FILE_PATH}
+    log      ${result_vim1}
+    ${result_vim2} =      Post Vim From File     ${Second_VIM}    ${INFRA_FILE_PATH}
+    log      ${result_vim2}
+    Should Be True     ${result_vim1[0]}
+    Should Be True     ${result_vim2[0]}
 Clean the Package Before Uploading
     @{packages} =   Get Packages
     log     ${NS_PACKAGE_SHORT_NAME}
