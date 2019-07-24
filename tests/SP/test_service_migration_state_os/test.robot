@@ -82,7 +82,7 @@ Verify that VNF was configured correctly through fSM, and touch a file in the VN
 Request migration event for VNF
     FOR       ${vim}  IN  @{vims}
         Log     ${vim}
-        Run Keyword If     '${vim['uuid']}' != '${old_vim}'     Set Suite Variable     ${new_vim}  ${vim['uuid']}
+        Run Keyword If     '${vim['vim_uuid']}' != '${old_vim}'     Set Suite Variable     ${new_vim}  ${vim['vim_uuid']}
     END
     Log     ${new_vim}
     ${payload} =     Create Dictionary     service_instance_uuid     ${service_instance_uuid}     vnf_uuid     ${old_vnfr_id}     vim_uuid     ${new_vim}
