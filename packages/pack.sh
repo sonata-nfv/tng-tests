@@ -19,7 +19,9 @@ tng-pkg -p NSID2V --skip-validation
 tng-pkg -p NSIMPSP --skip-validation
 tng-pkg -p NSIMPSP_no_tags --skip-validation
 tng-pkg -p NSINDP1C --skip-validation
-tng-pkg -p NSTD --skip-validation
+tng-pkg -p NSTD_VNF --skip-validation
+tng-pkg -p NSTD_CNF --skip-validation
+tng-pkg -p NSTD_hybrid --skip-validation
 tng-pkg -p TSTGNRPRB --skip-validation
 tng-pkg -p TSTIMPSP --skip-validation
 tng-pkg -p NSID1V_cirros_OSM --skip-validation
