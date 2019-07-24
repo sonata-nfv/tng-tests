@@ -1,0 +1,17 @@
+descriptor_extension: yml
+version: '0.5'
+files:
+- path: nsd.yml
+  type: application/vnd.5gtango.nsd
+  tags:
+  - eu.5gtango
+- path: vnfd_number_1.yml
+  type: application/vnd.5gtango.vnfd
+  tags:
+  - eu.5gtango
+package:
+  name: test-ns-nsid2c
+  version: '0.1'
+  maintainer: "5GTANGO Test Team"
+  description: "This is a integration test artifact."
+  vendor: eu.5gtango

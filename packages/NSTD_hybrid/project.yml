@@ -1,0 +1,32 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "test-slice-hybrid"
+  version: "0.1"
+  maintainer: "5GTANGO Test Team"
+  description: "This is a integration test artifact."
+files:
+  - path: "hybrid_nstd.yml"
+    type: "application/vnd.5gtango.nstd"
+  - path: "cnf_nsd.yml"
+    type: "application/vnd.5gtango.nsd"
+    tags:  # (optional)
+      - "eu.5gtango"
+    testing_tags:
+      - "eu.5gtango.testingtag.example"
+  - path: "cnf_vnfd1.yml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"
+  - path: "vnf_nsd.yml"
+    type: "application/vnd.5gtango.nsd"
+    tags:  # (optional)
+      - "eu.5gtango"
+    testing_tags:
+      - "eu.5gtango.testingtag.example"
+  - path: "vnf_vnfd1.yml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"

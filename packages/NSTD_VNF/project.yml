@@ -1,0 +1,22 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "test-slice-vnfs"
+  version: "0.1"
+  maintainer: "5GTANGO Test Team"
+  description: "This is a integration test artifact."
+files:
+  - path: "3nsid1v_nstd.yml"
+    type: "application/vnd.5gtango.nstd"
+  - path: "nsd.yml"
+    type: "application/vnd.5gtango.nsd"
+    tags:  # (optional)
+      - "eu.5gtango"
+    testing_tags:
+      - "eu.5gtango.testingtag.example"
+  - path: "vnfd1.yml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"

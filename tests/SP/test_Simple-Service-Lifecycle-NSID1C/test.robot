@@ -9,7 +9,7 @@ ${HOST}                http://pre-int-sp-ath.5gtango.eu   #  the name of SP we w
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
-
+${NS_PACKAGE_SHORT_NAME}	test-ns-nsid1c
 
 *** Test Cases ***
 Setting the SP Path
@@ -19,6 +19,13 @@ Setting the SP Path
     Set SP Path     ${HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
+    
+    
+Clean the Package Before Uploading
+    @{PACKAGES} =   Get Packages
+    FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
+        Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}'    Remove Package      ${PACKAGE['package_uuid']}
+    END 
     
 Upload the Package
     ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${FILE_NAME}

@@ -72,3 +72,5 @@ function_specific_managers:
        value: "start"
      - key: "type"
        value: "configure"
+     - key: "type"
+       value: "state"
