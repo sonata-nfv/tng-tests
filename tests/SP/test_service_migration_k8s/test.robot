@@ -29,6 +29,9 @@ Ensure that two k8s vims are available
     log      ${result_vim2}
     Should Be True     ${result_vim1[0]}
     Should Be True     ${result_vim2[0]}
+    ${data} =     Get Vims      k8s
+    Log      ${data[1]}
+    Set Suite Variable      ${vims}     ${data[1]}
 Clean the Package Before Uploading
     @{packages} =   Get Packages
     log     ${NS_PACKAGE_SHORT_NAME}
