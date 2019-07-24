@@ -107,10 +107,10 @@ class TestProject:
         return ret
 
     def yield_command(self, _format="eu.5gtango"):
-        yield ["tng-sdk-package", "--quiet", "-p", self.tmp_project_path,
+        yield ["tng-sdk-package", "-p", self.tmp_project_path,
                "-o", self.tmp_diretory, "--format", _format,
                "--validation_level", "skip"]
-        yield ["tng-sdk-package", "-q", "-p", self.tmp_project_path,
+        yield ["tng-sdk-package", "-p", self.tmp_project_path,
                "-o", self.tmp_diretory, "--format", _format,
                "--validation_level", "t"]
 
@@ -121,10 +121,10 @@ class TestProject:
         ps = []
         for j in range(self.number_tests):
             print(" ".join(command), " i = ", i, " j = ", j)
-            ret = subprocess.check_output(["python3", "sub_proc.py"]+command,
-                                          shell=False,
-                                          universal_newlines=True)
-            ret = ret.split()
+            subprocess.check_output(["python3", "sub_proc.py"]+command,
+                                    shell=False,
+                                    universal_newlines=True)
+            ret = self.read_sub_proc_return().split()
             process_time = ret[0]
             memory_usage = ret[1]
             ps_memory_usage = ret[2]
@@ -132,6 +132,11 @@ class TestProject:
             memory.append(memory_usage)
             ps.append(ps_memory_usage)
         self.results[command[-1]][i-self.i0].extend(times + memory + ps)
+
+    def read_sub_proc_return(self, path="sub_proc_return"):
+        with open(path) as f:
+            ret = f.read()
+        return ret
 
     def test_in_loop(self, n=100):
         while self.i <= n:

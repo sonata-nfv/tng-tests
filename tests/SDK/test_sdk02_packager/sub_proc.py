@@ -10,7 +10,7 @@ def main(command, *args, **kwargs):
     FNULL = open(os.devnull, 'w')
     memory_usages = 0
     t = time.time()
-    p = subprocess.Popen(command, shell=False, stdout=FNULL, *args, **kwargs)
+    p = subprocess.Popen(command, *args, **kwargs)
     _p = Process(p.pid)
     while p.poll() is None:
         memory_usages = (_p.memory_info().rss
@@ -21,4 +21,7 @@ def main(command, *args, **kwargs):
     return str(process_time), str(memory_usage), str(memory_usages)
 
 
-print(" ".join(main(sys.argv[1:])))
+ret = " ".join(main(sys.argv[1:]))
+
+with open("sub_proc_return", "w") as f:
+    f.write(ret)
