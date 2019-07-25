@@ -7,7 +7,7 @@ Library           yaml
 
 *** Variables ***
 ${SP_HOST}      http://int-sp-ath.5gtango.eu
-${FILE_SOURCE_DIR}  ../../../packages
+${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1c.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  test-ns-nsid1c
 ${READY}       READY
