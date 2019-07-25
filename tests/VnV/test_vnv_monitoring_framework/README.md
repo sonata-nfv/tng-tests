@@ -16,6 +16,6 @@
 | | 5 | Check monitoring metrics | Retrieve monitoring data for specific NS and VNF |
 | | 6 | Check Test Completion | VnV test execution is completed |
 | | 7 | Check Test Completion | VnV test execution is completed |
-| | 8 | Retrieve ,onitoring metrics | Check that monitoring data have been stored correctly |
+| | 8 | Retrieve ,monitoring metrics | Check that monitoring data have been stored correctly |
 | __Test Verdict__ | | Monitoring data collected, stored and retrieved correctly | |
 | __Additional resources__ | | | |
