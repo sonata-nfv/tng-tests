@@ -91,7 +91,7 @@ Check if Migration was successful
     Should Not Be Equal     ${new_vnfr_id}  ${old_vnfr_id}
     ${data} =     Get Function Instance     ${new_vnfr_id}
     Set Suite Variable     ${new_vnfr}  ${data[1]}
-    Set Suite Variable     ${new_vim}  ${new_vnfr['cloudnative_deployment_units']['vim_id']}  
+    Set Suite Variable     ${new_vim}  ${new_vnfr['cloudnative_deployment_units'][0]['vim_id']}  
     LOG     ${new_vim}
     Should Not Be Equal     ${new_vim}  ${old_vim}
 # Check if State was transferred correctly
