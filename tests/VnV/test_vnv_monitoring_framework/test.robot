@@ -16,6 +16,7 @@ ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated
 ${CREATE_SERVICE}       CREATE_SERVICE
+${INSTANCE_UUID}    2c70f324-a0b4-4917-aa85-a5dab6220094
 
 *** Test Cases ***
 Setting the VnV Path
@@ -53,8 +54,35 @@ Wait For Service Instance Ready
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 
 Retrieve list of monitoring metrics 
-    Get metrics ${SRV_UUID}
+    @{VNFS} =     Get Services     ${INSTANCE_UUID}
+    Should Be True    ${VNFS[0]}
+    FOR     ${VNF}  IN  @{VNFS[1]}
+        ${METRIC_LIST} =   Get Metrics      ${VNF['vnf_uuid']}    ${VNF['vdu_uuid']}
+        ${LGH} =  Get Length  ${METRIC_LIST[1]}
+        Should Be True    ${LGH} == 0
+        Log    ${METRIC_LIST}
+    END
 
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
+
+Stop Collecting Monitoring Data
+     ${resp} =    Stop monitoring    ${INSTANCE_UUID}
+
+Retrieve Stored Monitoring Data
+     ${DATA_SET} =   Get Vnv Tests    ${INSTANCE_UUID}
+     Should Be True    ${DATA_SET[0]}
+
+*** Keywords ***
+Check Create Service Request
+    ${requests} =     Get Requests
+    Should Be Equal     ${CREATE_SERVICE}   ${requests[1][0]['request_type']}
+Check Request Status
+    ${requests} =     Get Request     ${REQUEST}
+    Set Global Variable   ${INSTANCE_UUID}      ${requests[1]['instance_uuid']}
+    Should Be Equal    ${READY}  ${requests[1]['status']}
+Check Test Result Status
+    ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
+    ${results} =    Get Test Result     ${test_uuid[1][0]['uuid']}
+    Should Be Equal     ${PASSED}   ${results[1]['status']}
