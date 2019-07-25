@@ -13,8 +13,9 @@
 | | 2 | Test Package On-Boarding | Test Package is on-boarded in VnV catalog | 
 | | 3 | Check Service Instantiation | Immersive Media Service instance is up and running | 
 | | 4 | Check Test Execution | VnV launches executes the test |
-| | 5 | Check Test Completion | VnV test execution is completed |
-| | 6 | Check monitoring metrics | Retrieve monitoring data for specific NS and VNF |
-| | 7 | Check No Running Instances In SP | Check No Running Instances In SP	After test, the instantiated service must be deleted from Service Platform |
+| | 5 | Check monitoring metrics | Retrieve monitoring data for specific NS and VNF |
+| | 6 | Check Test Completion | VnV test execution is completed |
+| | 7 | Check Test Completion | VnV test execution is completed |
+| | 8 | Retrieve ,onitoring metrics | Check that monitoring data have been stored correctly |
 | __Test Verdict__ | | Monitoring data collected, stored and retrieved correctly | |
 | __Additional resources__ | | | |
