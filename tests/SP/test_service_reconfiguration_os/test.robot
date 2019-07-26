@@ -50,31 +50,29 @@ Deploying Service
     Set Suite Variable     ${REQUEST}  ${init[1]}
     Log     ${REQUEST}    
 Wait For Ready
-    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Wait until Keyword Succeeds     5 min   5 sec   Check Status
     Set SIU
 #Check monitoring rules
 #    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
 #    Should Be True     ${result[0]}
 #    Should Be Equal    ${result[1]}  3
-Trigger one Monitoring rule
-### fake the custom metric crossing the threshold by placing it on the pushgateway.code will go here once ready
 Check that scaling action has been triggered by the policy manager
-###code will go here once ready.
+###code will go here once ready. get generated action
 Evaluate the outcome of the MANO action
 ###code will go here once ready
-Terminate Service
-    Log     ${TERMINATE}
-    ${ter} =    Service Terminate   ${TERMINATE}
-    Log     ${ter}
-    Set Suite Variable     ${TERM_REQ}  ${ter[1]}
-Wait For Terminate Ready    
-    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate  
-Delete Runtime Policy
-    ${result} =     Delete Policy      ${POLICY_UUID}
-    Should Be True     ${result[0]}
-Remove the Package
-    ${result} =     Remove Package      ${PACKAGE_UUID}
-    Should Be True     ${result[0]} 
+#Terminate Service
+#    Log     ${TERMINATE}
+#    ${ter} =    Service Terminate   ${TERMINATE}
+#    Log     ${ter}
+#    Set Suite Variable     ${TERM_REQ}  ${ter[1]}
+#Wait For Terminate Ready    
+#    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate  
+#Delete Runtime Policy
+#    ${result} =     Delete Policy      ${POLICY_UUID}
+#    Should Be True     ${result[0]}
+#Remove the Package
+#    ${result} =     Remove Package      ${PACKAGE_UUID}
+#    Should Be True     ${result[0]} 
 
 
 *** Keywords ***
