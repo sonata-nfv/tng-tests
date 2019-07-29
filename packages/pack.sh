@@ -30,3 +30,13 @@ tng-pkg -p TSTIMHLS --skip-validation
 tng-pkg -p TSTPING_2_parallel_probes --skip-validation
 tng-pkg -p NSID1V_osm_charms --skip-validation
 tng-pkg -p NSSQHA --skip-validation
+tng-pkg -p NSID1V_cirros_SONATA_NS_testing_tag_matches_multiple_TD_testing_tag --skip-validation
+tng-pkg -p NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_1 --skip-validation
+tng-pkg -p NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_2 --skip-validation
+tng-pkg -p TSTIMPSP_NS_testing_tag_matches_multiple_TD_testing_tag --skip-validation
+tng-pkg -p TSTPING_2_instances_probes --skip-validation
+tng-pkg -p TSTPING_dependency_2_probes --skip-validation
+tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_1 --skip-validation
+tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_2 --skip-validation
+tng-pkg -p TSTPING_TD_testing_tag_matches_multiple_NS_testing_tag --skip-validation
+tng-pkg -p TSTPING_testing_tag_not_match --skip-validation
