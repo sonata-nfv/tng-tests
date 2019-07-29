@@ -34,7 +34,6 @@ connection_points:
     type: "external"
 
 testing_tags:
-  - "no_testing_tags_ns"
 
 ##
 ## The virtual links that interconnect

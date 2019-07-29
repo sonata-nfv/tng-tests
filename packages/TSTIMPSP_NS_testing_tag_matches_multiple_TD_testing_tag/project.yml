@@ -3,15 +3,16 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: "eu.5gtango"
-  name: "generic-probes-test-pingonly-2-parallel-probes"
+  name: "media-performance-test-single-ns-multiple-td"
   version: "0.1"
-  maintainer: "Santiago Rodríguez, OPTARE"
-  description: "This is a 5GTANGO test package for test probes"
+  maintainer: "Felipe Vicens, ATOS"
+  description: "This is a 5GTANGO test package for media perfomance Benchmarking"
 files:
   - path: "Definitions/test-descriptor.yml"
     type: "application/vnd.5gtango.tstd"
     testing_tags:
-  - path: "Icons/optare_solutions.png"
+      - "ns-tt-matches-multiple-td-tt"
+  - path: "Icons/upb_logo.png"
     type: "image/png"
   - path: "Licenses/LICENSE"
     type: "text/plain"
