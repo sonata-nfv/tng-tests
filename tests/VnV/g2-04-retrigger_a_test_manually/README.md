@@ -10,7 +10,7 @@
 | __Pre-test conditions__ | | The test plan to relaunch will be present in the VnV platform| |
 | __Test sequence__ | Step | Description | Result |
 | | 1 | Get one test plan with ERROR/COMPLETED status from the list of executed test plans|
-| | 2 | Using the REST API, change the status to SCHEDULED|
+| | 2 | Using the REST API, change the status to RETRIED|
 | | 3 | Check Service Instantiation | Service instance is up and running |
 | | 4 | Check Test Execution | VnV launches and executes the test |
 | | 5 | Check Test Completion | VnV test execution is completed |
