@@ -2,7 +2,7 @@
 author: "Santiago Rodriguez (Optare Solutions)"
 description: "Generic Probes Test"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
-name: "test-generic-probes-single-ns-multiple-td"
+name: "test-generic-probes-single-td-multiple-ns"
 vendor: "eu.5gtango.optare"
 version: '0.1'
 
