@@ -39,3 +39,4 @@ tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_1 --skip-valid
 tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_2 --skip-validation
 tng-pkg -p TSTPING_TD_testing_tag_matches_multiple_NS_testing_tag --skip-validation
 tng-pkg -p TSTPING_testing_tag_not_match --skip-validation
+tng-pkg -p TSTIMPSP_parser_multiple_cases --skip-validation
