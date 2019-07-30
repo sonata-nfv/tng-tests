@@ -1,7 +1,7 @@
 |||||
 | :--- | :--- | :--- | :--- |
-| __Test Case Name__ | | __Deploy_OSM_Cloud-Init__ | |
-| __Test Purpose__ | | Deploy a service that has cloud-init in OSM| |
+| __Test Case Name__ | | __Deploy_OSM_Simple__ | |
+| __Test Purpose__ | | Deploy a service in OSM| |
 | __Configuration__ | | The TD will be based on the PING test| |
 | __Test Tool__ | | Robot Framework| |
 | __Metric__ | | No metric (ping test)| |
