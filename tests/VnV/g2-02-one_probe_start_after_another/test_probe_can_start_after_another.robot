@@ -76,15 +76,9 @@ Wait For Service Instance Ready
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 
 Wait For Test Execution
-    #Register start time of test plan to know how long it takes to execute.
-#    ${start_date_test_plan} =   Get Current Date
-#    Set Global Variable  ${start_date_test_plan}
     Set SP Path     ${VNV_HOST}
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Check No Running Instances
-    #Register end time of test plan to know how long it takes to execute.
-#    ${end_date_test_plan} =   Get Current Date
-#    Set Global Variable  ${end_date_test_plan}
 #Setting the SP Path
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
@@ -98,24 +92,24 @@ Check No Running Instances
     #${instance} =     Get Service Instance      ${INSTANCE_UUID}
     #Should Be Equal  ${TERMINATED}   ${instance[1]['status']}
 Check Result Of Test Case
-    Set SP Path     ${VNV_HOST}
-    ${result} =     Sp Health Check
-    Should Be True  ${result}
-    #Get test descriptor UUID based on test descriptor name.
-    ${TEST_DESCRIPTOR_LIST} =  Get Test Descriptors
-    Log  ${TEST_DESCRIPTOR_LIST}
-    Log  ${TEST_DESCRIPTOR_LIST[1]}
-    FOR     ${TEST_DESCRIPTOR}  IN  @{TEST_DESCRIPTOR_LIST[1]}
-        Run Keyword If     '${TEST_DESCRIPTOR['name']}'== '${TEST_DESCRIPTOR_NAME}'     Set Suite Variable  ${TEST_DESCRIPTOR_UUID}   ${TEST_DESCRIPTOR['uuid']}
-    END
-    Log  ${TEST_DESCRIPTOR_UUID}
-    #Obtain test plan result uuid based on the test descriptor UUID.
-    ${TEST_PLAN_LIST} =  Get Test Plans
-    Log  ${TEST_PLAN_LIST}
-    FOR     ${TEST_PLAN}  IN  @{TEST_PLAN_LIST[1]}
-        Run Keyword If     '${TEST_PLAN['test_uuid']}'== '${TEST_DESCRIPTOR_UUID}'     Set Suite Variable  ${TEST_RESULT_UUID}   ${TEST_PLAN['test_result_uuid']}
-    END
-    Log  ${TEST_RESULT_UUID}
+   Set SP Path     ${VNV_HOST}
+   ${result} =     Sp Health Check
+   Should Be True  ${result}
+   #Get test descriptor UUID based on test descriptor name.
+   ${TEST_DESCRIPTOR_LIST} =  Get Test Descriptors
+   Log  ${TEST_DESCRIPTOR_LIST}
+   Log  ${TEST_DESCRIPTOR_LIST[1]}
+   FOR     ${TEST_DESCRIPTOR}  IN  @{TEST_DESCRIPTOR_LIST[1]}
+       Run Keyword If     '${TEST_DESCRIPTOR['name']}'== '${TEST_DESCRIPTOR_NAME}'     Set Suite Variable  ${TEST_DESCRIPTOR_UUID}   ${TEST_DESCRIPTOR['uuid']}
+   END
+   Log  ${TEST_DESCRIPTOR_UUID}
+   #Obtain test plan result uuid based on the test descriptor UUID.
+   ${TEST_PLAN_LIST} =  Get Test Plans
+   Log  ${TEST_PLAN_LIST}
+   FOR     ${TEST_PLAN}  IN  @{TEST_PLAN_LIST[1]}
+       Run Keyword If     '${TEST_PLAN['test_uuid']}'== '${TEST_DESCRIPTOR_UUID}'     Set Suite Variable  ${TEST_RESULT_UUID}   ${TEST_PLAN['test_result_uuid']}
+   END
+   Log  ${TEST_RESULT_UUID}
 
     ${TEST_RESULT} =  Get Test Result  ${TEST_RESULT_UUID}
     Log  ${TEST_RESULT[1]['results']}
@@ -127,20 +121,19 @@ Check Result Of Test Case
     Log  ${RESULT_PROBE_NETCAT}
 
     ${RESULT_PROBE_NETCAT_STR} =  Convert To String	 ${RESULT_PROBE_NETCAT}
-    #Obtains the string: ["netcat starts: 20190724113107074697103
+    #Obtains the string: ["netcat starts: 1564473111563763185
     ${RESULT_PROBE_NETCAT_STR_TEMP} =  Fetch From Left  ${RESULT_PROBE_NETCAT_STR}  \\n
     Log  ${RESULT_PROBE_NETCAT_STR_TEMP}
     #Obtain only the timestamp
     ${RESULT_PROBE_NETCAT_TIMESTAMP} =  Fetch From Right  ${RESULT_PROBE_NETCAT_STR_TEMP}  ['netcat starts:
     Log  ${RESULT_PROBE_NETCAT_TIMESTAMP}
-    #${RESULT_PROBE_NETCAT_STR_REGEX_MATCH} =  Remove String Using Regexp  ${RESULT_PROBE_NETCAT_STR}  /(\\n)(.*)(\\n)/g
 
     ${RESULT_PROBE_PING_STR} =  Convert To String	 ${RESULT_PROBE_PING}
-    #Obtains the string: ["ping starts: 20190724113107074697103
-    ${RESULT_PROBE_PING_STR_TEMP} =  Fetch From Left  ${RESULT_PROBE_PING_STR}  \\n
+    #Obtains the string: 1564473114198722192\n']
+    ${RESULT_PROBE_PING_STR_TEMP} =  Fetch From Right  ${RESULT_PROBE_PING_STR}  \\nping ends:
     Log  ${RESULT_PROBE_PING_STR_TEMP}
     #Obtain only the timestamp
-    ${RESULT_PROBE_PING_TIMESTAMP} =  Fetch From Right  ${RESULT_PROBE_PING_STR_TEMP}  ['ping starts:
+    ${RESULT_PROBE_PING_TIMESTAMP} =  Fetch From Left  ${RESULT_PROBE_PING_STR_TEMP}  \\n']
     Log  ${RESULT_PROBE_PING_TIMESTAMP}
 
     Should Be True     ${RESULT_PROBE_NETCAT_TIMESTAMP.strip()} > ${RESULT_PROBE_PING_TIMESTAMP.strip()}
