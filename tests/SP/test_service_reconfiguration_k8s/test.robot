@@ -40,52 +40,54 @@ Create Runtime Policy
     ${result} =     Create Policy      ${POLICIES_SOURCE_DIR}/${POLICY_NAME}
     Should Be True     ${result[0]}
     Set Suite Variable     ${POLICY_UUID}  ${result[1]}
-    Sleep   30
-Define Runtime Policy as Default
-    ${result} =     Define Policy As Default      ${POLICY_UUID}   service_uuid=${SERVICE_UUID}
-    Should Be True     ${result[0]}
+#Define Runtime Policy as Default
+#    ${result} =     Define Policy As Default      ${POLICY_UUID}   service_uuid=${SERVICE_UUID}
+#    Should Be True     ${result[0]}
 Deploying Service
     ${init} =   Service Instantiate     ${SERVICE_UUID}
     Log     ${init}
-    Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]}
     Set Suite Variable     ${REQUEST}  ${init[1]}
-    Log     ${SERVICE_INSTANCE_UUID}    
-Wait For Ready
-    Wait until Keyword Succeeds     7 min   5 sec   Check Status
-    Set SIU
-Check monitoring rules
-    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-    Should Be True     ${result[0]}
-    Should Be Equal    ${result[1]}  3
-Check that scaling action has been triggered by the policy manager
-    ${result} =     Get Policy action   ${SERVICE_INSTANCE_UUID}
-    Should Be True     ${result[0]}
-    Should Be True     ${result[1]}
-    Sleep   30
-Wait For Ready
-    Wait until Keyword Succeeds     7 min   5 sec   Check Status
-    Set SIU    
-Check that Mano has succesfully scaled out requested vnf
-    ${result} =     Get Service vnfrs   ${SERVICE_INSTANCE_UUID}
-    Should Be True     ${result[0]}
-    Should Be True    ${result[1]} > 2
-    Sleep   30
+    Log     ${REQUEST} 
 Wait For Ready
     Wait until Keyword Succeeds     10 min   5 sec   Check Status
     Set SIU
-#Terminate Service
-#    Log     ${SERVICE_INSTANCE_UUID}
-#    ${ter} =    Service Terminate   ${SERVICE_INSTANCE_UUID}
-#    Log     ${ter}
-#    Set Suite Variable     ${TERM_REQ}  ${ter[1]}
-#Wait For Terminate Ready    
-#    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate  
-#Delete Runtime Policy
-#    ${result} =     Delete Policy      ${POLICY_UUID}
+Get Service Instance
+    ${init} =   Get Request   ${REQUEST}
+    Log     ${init}
+    Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]['instance_uuid']}
+    Log     ${SERVICE_INSTANCE_UUID} 
+#Check monitoring rules
+#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
 #    Should Be True     ${result[0]}
-#Remove the Package
-#    ${result} =     Remove Package      ${PACKAGE_UUID}
-#    Should Be True     ${result[0]} 
+#    Should Be Equal    ${result[1]}  3
+#Wait for monitoring rules satisfaction
+#    Sleep   100s
+#Check that scaling action has been triggered by the policy manager
+#    ${result} =     Get Policy action   ${SERVICE_INSTANCE_UUID}
+#    Should Be True     ${result[0]}
+#    Should Be True     ${result[1]}
+#Deactivate Runtime Policy
+#    ${result} =     Deactivate Policy      ${SERVICE_INSTANCE_UUID}
+#    Should Be True     ${result[0]}
+#Wait for Mano execution of elasticity action
+#    Sleep   180s
+#Check that Mano has succesfully scaled out requested vnf
+#    ${result} =     Get Service vnfrs   ${SERVICE_INSTANCE_UUID}
+#    Should Be True     ${result[0]}
+#    Should Be True    int(${result[1]}) > 2
+Terminate Service
+    ${ter} =    Service Terminate   ${SERVICE_INSTANCE_UUID}
+    Log     ${ter}
+    Set Suite Variable     ${TERM_REQ}  ${ter[1]}
+Wait For Terminate Ready    
+    Wait until Keyword Succeeds     3 min   5 sec   Check Terminate 
+Delete Runtime Policy
+    ${result} =     Delete Policy      ${POLICY_UUID}
+    Should Be True     ${result[0]}
+Remove the Package
+    ${result} =     Remove Package      ${PACKAGE_UUID}
+    Should Be True     ${result[0]} 
+    
 
 *** Keywords ***
 Check Status

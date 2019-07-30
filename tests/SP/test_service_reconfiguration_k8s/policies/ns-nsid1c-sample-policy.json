@@ -1,0 +1,51 @@
+{
+	"descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/policy-descriptor/policy-schema.yml",
+	"name": "ns-nsid1c-sample-policy",
+	"vendor": "eu.5gtango",
+	"version": "0.1",
+	"network_service": {
+		"vendor": "eu.5gtango",
+		"name": "ns-nsid1c",
+		"version": "0.1"
+	},
+	"monitoring_rules": [
+		{
+			"name": "cnf1:cdu01:container_memory_usage_bytes:less30",
+			"description": "Trigger events if cnf1 memory usage is less than 30.",
+			"duration": 10,
+			"duration_unit": "s",
+			"condition": "container_memory_usage_bytes",
+			"threshold": " < 30"
+		}
+	],
+	"policyRules": [{
+		"name": "ElasticityRuleScaleOut",
+		"salience": 1,
+		"inertia": {
+			"value": 30,
+			"duration_unit": "m"
+		},
+		"conditions": {
+			"condition": "AND",
+			"rules": [{
+				"id": "cnf1.LogMetric",
+				"field": "cnf1.LogMetric",
+				"type": "string",
+				"input": "text",
+				"operator": "equal",
+				"value": "cnf1_cdu01_container_memory_usage_bytes_less30"
+			}]
+		},
+		"actions": [{
+			"action_object": "ElasticityAction",
+			"action_type": "ScalingType",
+			"name": "addvnf",
+			"value": "1",
+			"target": {
+				"name": "cnf1",
+				"vendor": "eu.5gtango",
+				"version": "0.1"
+			}
+		}]
+	}]
+}
