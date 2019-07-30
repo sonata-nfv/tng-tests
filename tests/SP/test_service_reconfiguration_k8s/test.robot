@@ -1,16 +1,16 @@
 *** Settings ***
-Documentation     Test suite template for deploy and undeploy with elasticity policy enforcement
+Documentation     Test suite template for deploy and undeploy of a NS composed of one cnf with elasticity policy enforcement
 Library           tnglib
 Library           Collections
 
 *** Variables ***
-${SP_HOST}                http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
+${SP_HOST}                http://pre-int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ../../../packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}           eu.5gtango.ns-squid-haproxy.0.1.tgo    # The package to be uploaded and tested
-${NS_PACKAGE_SHORT_NAME}  ns-squid-haproxy
+${NS_PACKAGE_NAME}           eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
+${NS_PACKAGE_SHORT_NAME}  ns-nsid1c
 ${POLICIES_SOURCE_DIR}     ./policies   # to be modified and added accordingly if policy is not on the same folder as test
-${POLICY_NAME}           NS-squid-haproxy-Elasticity-Policy-Premium.json    # The policy to be uploaded and tested
+${POLICY_NAME}           ns-nsid1c-sample-policy.json    # The policy to be uploaded and tested
 ${READY}       READY
 ${PASSED}      PASSED
 
@@ -47,35 +47,45 @@ Define Runtime Policy as Default
 Deploying Service
     ${init} =   Service Instantiate     ${SERVICE_UUID}
     Log     ${init}
+    Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]}
     Set Suite Variable     ${REQUEST}  ${init[1]}
-    Log     ${REQUEST}    
+    Log     ${SERVICE_INSTANCE_UUID}    
 Wait For Ready
-    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Wait until Keyword Succeeds     7 min   5 sec   Check Status
     Set SIU
-#Check monitoring rules
-#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-#    Should Be True     ${result[0]}
-#    Should Be Equal    ${result[1]}  3
-Trigger one Monitoring rule
-### fake the custom metric crossing the threshold by placing it on the pushgateway.code will go here once ready
-Check that scaling action has been triggered by the policy manager
-###code will go here once ready.
-Evaluate the outcome of the MANO action
-###code will go here once ready
-Terminate Service
-    Log     ${TERMINATE}
-    ${ter} =    Service Terminate   ${TERMINATE}
-    Log     ${ter}
-    Set Suite Variable     ${TERM_REQ}  ${ter[1]}
-Wait For Terminate Ready    
-    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate  
-Delete Runtime Policy
-    ${result} =     Delete Policy      ${POLICY_UUID}
+Check monitoring rules
+    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
     Should Be True     ${result[0]}
-Remove the Package
-    ${result} =     Remove Package      ${PACKAGE_UUID}
-    Should Be True     ${result[0]} 
-
+    Should Be Equal    ${result[1]}  3
+Check that scaling action has been triggered by the policy manager
+    ${result} =     Get Policy action   ${SERVICE_INSTANCE_UUID}
+    Should Be True     ${result[0]}
+    Should Be True     ${result[1]}
+    Sleep   30
+Wait For Ready
+    Wait until Keyword Succeeds     7 min   5 sec   Check Status
+    Set SIU    
+Check that Mano has succesfully scaled out requested vnf
+    ${result} =     Get Service vnfrs   ${SERVICE_INSTANCE_UUID}
+    Should Be True     ${result[0]}
+    Should Be True    ${result[1]} > 2
+    Sleep   30
+Wait For Ready
+    Wait until Keyword Succeeds     10 min   5 sec   Check Status
+    Set SIU
+#Terminate Service
+#    Log     ${SERVICE_INSTANCE_UUID}
+#    ${ter} =    Service Terminate   ${SERVICE_INSTANCE_UUID}
+#    Log     ${ter}
+#    Set Suite Variable     ${TERM_REQ}  ${ter[1]}
+#Wait For Terminate Ready    
+#    Wait until Keyword Succeeds     2 min   5 sec   Check Terminate  
+#Delete Runtime Policy
+#    ${result} =     Delete Policy      ${POLICY_UUID}
+#    Should Be True     ${result[0]}
+#Remove the Package
+#    ${result} =     Remove Package      ${PACKAGE_UUID}
+#    Should Be True     ${result[0]} 
 
 *** Keywords ***
 Check Status
