@@ -20,8 +20,8 @@ The next table shows the relationship between the VnV tests and the used Test Pa
 |g2-03-mapping_strategy| NS and TD testing tags don't match |NSID1V_cirros_SONATA_no_tags |TSTPING_testing_tag_not_match ||
 |g2-03-mapping_strategy| Single NS testing tag matches with multiple TDs testing tags|NSID1V_cirros_SONATA_NS_testing_tag_matches_multiple_TD_testing_tag|TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_1, TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_2|
 |g2-03-mapping_strategy| Single TD testing tag matches with multiple NSs testing tags|NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_1, NSIMPSP_TD_testing_tag_matches_multiple_NS_testing_tag_2|TSTPING_TD_testing_tag_matches_multiple_NS_testing_tag|
-|g2-04-retrigger_a_test_manually| |NSID1V_cirros_SONATA_no_tags |TSTPING_2_instances_probes|
-|g2-05-parser_multiple_cases| |NSIMPSP_no_tags |TSTIMPSP_parser_multiple_cases||
+|g2-04-retrigger_a_test_manually| Retrigger a test manually |NSID1V_cirros_SONATA_no_tags |TSTPING_2_instances_probes|
+|g2-05-parser_multiple_cases| Extract the verdicts of the test result in multiple cases |NSIMPSP_no_tags |TSTIMPSP_parser_multiple_cases||
 |test_analytic_engine| | NSIMPSP| TSTIMPSP |
 |test_immersive-media-pilot_e2e-HLS| | NSIMPSP | TSTIMHLS |
 |test_immservive-media-pilot_e2e-streaming-performance | | NSIMPSP | TSTIMPSP |
