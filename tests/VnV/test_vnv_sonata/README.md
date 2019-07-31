@@ -1,8 +1,8 @@
 |||||
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __Deploy_SONATA_Simple__ | |
-| __Test Purpose__ | | Deploy a service in OSM| |
-| __Configuration__ | | The TD will be based on the PING test| |
+| __Test Purpose__ | | Deploy a service in SONATA| |
+| __Configuration__ | | The TD is based on the PING test| |
 | __Test Tool__ | | Robot Framework| |
 | __Metric__ | | No metric (ping test)| |
 | __References__ | | https://github.com/sonata-nfv/tng-vnv-executor/ | |
