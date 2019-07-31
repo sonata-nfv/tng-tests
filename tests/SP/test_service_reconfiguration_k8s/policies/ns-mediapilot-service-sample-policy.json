@@ -1,21 +1,21 @@
 {
 	"descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/policy-descriptor/policy-schema.yml",
-	"name": "ns-nsid1c-sample-policy",
+	"name": "ns-mediapilot-service-sample-policy",
 	"vendor": "eu.5gtango",
 	"version": "0.1",
 	"network_service": {
-		"vendor": "eu.5gtango",
-		"name": "ns-nsid1c",
-		"version": "0.1"
+		"vendor": "eu.sonata-nfv",
+		"name": "ns-mediapilot-service",
+		"version": "0.5"
 	},
 	"monitoring_rules": [
 		{
-			"name": "cnf1:cdu01:container_memory_usage_bytes:less30",
-			"description": "Trigger events if cnf1 memory usage is less than 30.",
+			"name": "vnf-mse:cdu01:container_memory_usage_bytes:greater0",
+			"description": "Trigger events if vnf-mse memory usage is greater than 0.",
 			"duration": 10,
 			"duration_unit": "s",
 			"condition": "container_memory_usage_bytes",
-			"threshold": " < 30"
+			"threshold": " > 0"
 		}
 	],
 	"policyRules": [{
@@ -28,12 +28,12 @@
 		"conditions": {
 			"condition": "AND",
 			"rules": [{
-				"id": "cnf1.LogMetric",
-				"field": "cnf1.LogMetric",
+				"id": "vnf-mse.LogMetric",
+				"field": "vnf-mse.LogMetric",
 				"type": "string",
 				"input": "text",
 				"operator": "equal",
-				"value": "cnf1_cdu01_container_memory_usage_bytes_less30"
+				"value": "vnf_mse_cdu01_container_memory_usage_bytes_greater0"
 			}]
 		},
 		"actions": [{
@@ -42,9 +42,9 @@
 			"name": "addvnf",
 			"value": "1",
 			"target": {
-				"name": "cnf1",
+				"name": "vnf-mse",
 				"vendor": "eu.5gtango",
-				"version": "0.1"
+				"version": "0.5"
 			}
 		}]
 	}]
