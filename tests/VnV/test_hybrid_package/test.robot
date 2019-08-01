@@ -8,8 +8,8 @@ Library         DateTime
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
 ${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
-${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1v-sonata-hybrid.0.2.tgo
-${NS_PACKAGE_SHORT_NAME}  test-ns-nsid1v
+${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1v-and-tstping-sonata.0.2.tgo
+${NS_PACKAGE_SHORT_NAME}  test-ns-nsid1v-and-tstping-sonata
 ${TST_PACKAGE_SHORT_NAME}  generic-probes-test-pingonly
 ${READY}       READY
 ${PASSED}      PASSED
