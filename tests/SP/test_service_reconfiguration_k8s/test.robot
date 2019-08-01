@@ -6,10 +6,10 @@ Library           Collections
 *** Variables ***
 ${SP_HOST}                http://pre-int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${READY}       READY
-${FILE_SOURCE_DIR}     packages   # to be modified and added accordingly if package is not on the same folder as test
+${FILE_SOURCE_DIR}     packages   # to be modified and added accordingly if package is not on the same folder as test (../../../packages from local pc)
 ${NS_PACKAGE_NAME}           eu.5gtango.ns-mediapilot-service.0.5.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service
-${POLICIES_SOURCE_DIR}     tests/SP/test_service_reconfiguration_k8s/policies   # to be modified and added accordingly if policy is not on the same folder as test
+${POLICIES_SOURCE_DIR}     tests/SP/test_service_reconfiguration_k8s/policies   # to be modified and added accordingly if policy is not on the same folder as test ( ./policies from local pc)
 ${POLICY_NAME}           ns-mediapilot-service-sample-policy.json    # The policy to be uploaded and tested
 ${READY}       READY
 ${PASSED}      PASSED
@@ -56,10 +56,10 @@ Get Service Instance
     Log     ${init}
     Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]['instance_uuid']}
     Log     ${SERVICE_INSTANCE_UUID} 
-Check monitoring rules
-    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-    Should Be True     ${result[0]}
-    Should Be Equal    ${result[1]}  1
+#Check monitoring rules
+#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
+#    Should Be True     ${result[0]}
+#    Should Be Equal    ${result[1]}  1
 Wait for monitoring rules satisfaction
     Sleep   100s
 Check that scaling action has been triggered by the policy manager
