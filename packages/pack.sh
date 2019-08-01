@@ -4,8 +4,10 @@ set -e
 # directly call the validator (to make error pasing simple)
 tng-validate --project NSID1V -t
 tng-validate --project NSID2V -t
+tng-validate --project NSID3V -t
 tng-validate --project NSID1C -t
 tng-validate --project NSID2C -t
+tng-validate --project NSID3C -t
 tng-validate --project NSINDP1C -t
 
 # package all projects

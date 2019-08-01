@@ -25,6 +25,12 @@ Setting the VnV Path
     Set SP Path     ${VNV_HOST}
     ${result} =     Sp Health Check
     Should Be True  ${result}
+Clean the Packages
+    #@{PACKAGES} =   Get Packages
+    #FOR     ${PACKAGE}  IN  @{PACKAGES[1]}
+    #    Run Keyword If     '${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'     Remove Package      ${PACKAGE['package_uuid']}
+    #END
+    Remove All Packages
 Upload the NS Package
     ${result}=      Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
@@ -34,6 +40,11 @@ Upload the TST Package
     Should Be True     ${result[0]}
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
+    #get test uuid from package
+    @{TESTS} =    Get Test Descriptors
+    FOR    ${TEST}    IN  @{TESTS[1]}
+        Run Keyword If    '${TEST['name']}'== 'test-generic-probes' and '${TEST['vendor']}'== 'eu.5gtango.optare' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
+    END
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Obtain GrayLogs
     ${to_date} =  Get Current Date
@@ -41,14 +52,10 @@ Obtain GrayLogs
     Get Logs  ${from_date}  ${to_date}  ${VNV_HOST}  ${param_file}
 
 *** Keywords ***
-Check Create Service Request
-    ${requests} =     Get Requests
-    Should Be Equal     ${CREATE_SERVICE}   ${requests[1][0]['request_type']}
-Check Request Status
-    ${requests} =     Get Request     ${REQUEST}
-    Set Global Variable   ${INSTANCE_UUID}      ${requests[1]['instance_uuid']}
-    Should Be Equal    ${READY}  ${requests[1]['status']}
 Check Test Result Status
-    ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
-    ${results} =    Get Test Result     ${test_uuid[1][0]['uuid']}
+    ${plans} =    Get Test Plans
+    FOR    ${plan}    IN  @{plans[1]}
+        Run Keyword If    '${plan['test_uuid']}'== '${TEST_UUID}'    Set Suite Variable    ${TEST_RESULT_UUID}    ${plan['test_result_uuid']}
+    END
+    ${results} =    Get Test Result     ${TEST_RESULT_UUID}
     Should Be Equal     ${PASSED}   ${results[1]['status']}
