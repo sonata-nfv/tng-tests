@@ -1,8 +1,8 @@
 |||||
 | :--- | :--- | :--- | :--- |
 | __Test Case Name__ | | __Test Service Lifecycle in OS with elasticity policies__ | |
-| __Test Purpose__ | | Check the lifecycle of a Network Service with an elasticity policy activated. Check collaboration between MANO, monitoring engine and policy engine components| |
-| __Configuration__ | | A NS composed by one haproxy and one squid VNF are deployed on the Service Platform| |
+| __Test Purpose__ | | Check the lifecycle of a Network Service with an elasticity policy activated. Check collaboration between MANO, monitoring engine and policy engine components. Test Service Lifecycle in Openstack with elasticity policies| |
+| __Configuration__ | | A NS composed by one haproxy and one squid VNF are deployed on the Service Platform. ns-squid-haproxy NS is deployed on the Service Platform upon openstack| |
 | __Test Tool__ | | Robot Framework, using Tnglib | |
 | __Metric__ | | Boolean (success or not), execution time | |
 | __References__ | |  | |
