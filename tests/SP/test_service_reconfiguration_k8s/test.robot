@@ -56,10 +56,10 @@ Get Service Instance
     Log     ${init}
     Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]['instance_uuid']}
     Log     ${SERVICE_INSTANCE_UUID} 
-#Check monitoring rules
-#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-#    Should Be True     ${result[0]}
-#    Should Be Equal    ${result[1]}  1
+Check monitoring rules
+    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
+    Should Be True     ${result[0]}
+    Should Be Equal    ${result[1]}  1
 Wait for monitoring rules satisfaction
     Sleep   100s
 Check that scaling action has been triggered by the policy manager
