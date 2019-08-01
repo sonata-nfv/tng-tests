@@ -4,8 +4,10 @@ set -e
 # directly call the validator (to make error pasing simple)
 tng-validate --project NSID1V -t
 tng-validate --project NSID2V -t
+tng-validate --project NSID3V -t
 tng-validate --project NSID1C -t
 tng-validate --project NSID2C -t
+tng-validate --project NSID3C -t
 tng-validate --project NSINDP1C -t
 
 # package all projects
@@ -15,7 +17,9 @@ tng-pkg -p NSID1V_cirros_OSM --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA_no_tags --skip-validation
 tng-pkg -p NSID2C --skip-validation
+tng-pkg -p NSID3C --skip-validation
 tng-pkg -p NSID2V --skip-validation
+tng-pkg -p NSID3V --skip-validation
 tng-pkg -p NSIMPSP --skip-validation
 tng-pkg -p NSIMPSP_no_tags --skip-validation
 tng-pkg -p NSINDP1C --skip-validation
