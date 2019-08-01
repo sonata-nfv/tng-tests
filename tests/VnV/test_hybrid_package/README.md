@@ -1,13 +1,13 @@
 |||||
 | :--- | :--- | :--- | :--- |
-| __Test Case Name__ | | __Deploy_SONATA_Simple__ | |
-| __Test Purpose__ | | Deploy a service in SONATA| |
-| __Configuration__ | | The TD is based on the PING test| |
+| __Test Case Name__ | | __Test_hybrid_package__ | |
+| __Test Purpose__ | | Validate the capability of the V&V to accept packages that contains NSs and TDs| |
+| __Configuration__ | | The TD will be based on the PING test| |
 | __Test Tool__ | | Robot Framework| |
 | __Metric__ | | No metric (ping test)| |
-| __References__ | | https://github.com/sonata-nfv/tng-vnv-executor/ | |
+| __References__ | |  | |
 | __Applicability__ | | N/A |
-| __Pre-test conditions__ | | The packages that contain the NS and Tests will be created before the test execution| |
+| __Pre-test conditions__ | | The packages that contain the NS and TD is be created before the test execution| |
 | __Test sequence__ | Step | Description | Result |
 | | 1 | Setting variables | The VnV env variables are setted|
 | | 2 | Service Package On-Boarding | Service Package is on-boarded in VnV catalog|
