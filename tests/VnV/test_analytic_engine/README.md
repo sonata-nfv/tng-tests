@@ -1,6 +1,6 @@
 |||||
 | :--- | :--- | :--- | :--- |
-| __Test Case Name__ | | __Analyze Immersive Media Pilot Streaming Monitoring Metrics__ | |
+| __Test Case Name__ | | __Analyze VnV test monitoring metrics results__ | |
 | __Test Purpose__ | | Check that analytics engine is correctly integrated at VnV environment.| |
 | __Configuration__ | | A NS composed by three VNFs (CMS, MA, MSE) is deployed on the Service Platform. A defined test plan has been executed prior to this test and is completed succesfully| |
 | __Test Tool__ | | robot framework| |
