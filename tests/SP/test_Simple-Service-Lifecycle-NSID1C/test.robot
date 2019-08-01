@@ -51,13 +51,10 @@ Terminate Service
     Set Suite Variable     ${TERM_REQ}  ${ter[1]}
     Wait until Keyword Succeeds     2 min   5 sec   Check Terminate
     
-Delete Package
-	${result}=   Remove Package    package_uuid=${PACKAGE_UUID}
-
 Obtain GrayLogs
     ${to_date} =  Get Current Date
     Set Suite Variable  ${param_file}   True
-    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
+    Get Logs  ${from_date}  ${to_date}  ${HOST}  ${param_file}
 
 *** Keywords ***
 Check Status

@@ -16,7 +16,7 @@ ${TST_PACKAGE_NAME}  eu.5gtango.generic-probes-test-pingonly-single-td-multiple-
 ${NS_PACKAGE_SHORT_NAME_1}  ns-nsid1v-1-td-tt-n-ns-tt-1
 ${NS_PACKAGE_SHORT_NAME_2}  ns-nsid1v-1-td-tt-n-ns-tt-2
 ${TST_PACKAGE_SHORT_NAME}  generic-probes-test-pingonly-single-td-multiple-ns
-${TEST_DESCRIPTOR_NAME}  test-generic-probes-single-ns-multiple-td
+${TEST_DESCRIPTOR_NAME}  test-generic-probes-single-td-multiple-ns
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated

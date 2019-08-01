@@ -15,7 +15,9 @@ tng-pkg -p NSID1V_cirros_OSM --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA_no_tags --skip-validation
 tng-pkg -p NSID2C --skip-validation
+tng-pkg -p NSID3C --skip-validation
 tng-pkg -p NSID2V --skip-validation
+tng-pkg -p NSID3V --skip-validation
 tng-pkg -p NSIMPSP --skip-validation
 tng-pkg -p NSIMPSP_no_tags --skip-validation
 tng-pkg -p NSINDP1C --skip-validation
@@ -33,10 +35,10 @@ tng-pkg -p NSSQHA --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA_NS_testing_tag_matches_multiple_TD_testing_tag --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_1 --skip-validation
 tng-pkg -p NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_2 --skip-validation
-tng-pkg -p TSTIMPSP_NS_testing_tag_matches_multiple_TD_testing_tag --skip-validation
 tng-pkg -p TSTPING_2_instances_probes --skip-validation
 tng-pkg -p TSTPING_dependency_2_probes --skip-validation
 tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_1 --skip-validation
 tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_2 --skip-validation
 tng-pkg -p TSTPING_TD_testing_tag_matches_multiple_NS_testing_tag --skip-validation
 tng-pkg -p TSTPING_testing_tag_not_match --skip-validation
+tng-pkg -p TSTIMPSP_parser_multiple_cases --skip-validation
