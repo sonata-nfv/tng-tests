@@ -1,16 +1,16 @@
 *** Settings ***
-Documentation     Test suite template for deploy and undeploy of a NS composed of one cnf with elasticity policy enforcement
+Documentation     Test suite template for deploy and undeploy with elasticity policy enforcement at Opestack
 Library           tnglib
 Library           Collections
 
 *** Variables ***
-${SP_HOST}                http://pre-int-sp-ath.5gtango.eu   #  the name of SP we want to use
+${SP_HOST}                http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${READY}       READY
 ${FILE_SOURCE_DIR}     ../../../packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}           eu.5gtango.ns-mediapilot-service.0.5.tgo    # The package to be uploaded and tested
-${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service
+${NS_PACKAGE_NAME}           eu.5gtango.ns-squid-haproxy.0.1.tgo    # The package to be uploaded and tested
+${NS_PACKAGE_SHORT_NAME}  ns-squid-haproxy
 ${POLICIES_SOURCE_DIR}     ./policies   # to be modified and added accordingly if policy is not on the same folder as test
-${POLICY_NAME}           ns-mediapilot-service-sample-policy.json    # The policy to be uploaded and tested
+${POLICY_NAME}           NS-squid-haproxy-Elasticity-Policy-Premium.json    # The policy to be uploaded and tested
 ${READY}       READY
 ${PASSED}      PASSED
 
@@ -56,10 +56,10 @@ Get Service Instance
     Log     ${init}
     Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]['instance_uuid']}
     Log     ${SERVICE_INSTANCE_UUID} 
-#Check monitoring rules
-#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-#    Should Be True     ${result[0]}
-#    Should Be Equal    ${result[1]}  1
+Check monitoring rules
+    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
+    Should Be True     ${result[0]}
+    Should Be Equal    ${result[1]}  3
 Wait for monitoring rules satisfaction
     Sleep   100s
 Check that scaling action has been triggered by the policy manager
@@ -74,7 +74,7 @@ Wait for Mano execution of elasticity action
 Check that Mano has succesfully scaled out requested vnf
     ${result} =     Get Service vnfrs   ${SERVICE_INSTANCE_UUID}
     Should Be True     ${result[0]}
-    Should Be True    int(${result[1]}) > 3
+    Should Be True    int(${result[1]}) > 2
 Terminate Service
     ${ter} =    Service Terminate   ${SERVICE_INSTANCE_UUID}
     Log     ${ter}
@@ -87,7 +87,6 @@ Delete Runtime Policy
 Remove the Package
     ${result} =     Remove Package      ${PACKAGE_UUID}
     Should Be True     ${result[0]} 
-    
 
 *** Keywords ***
 Check Status

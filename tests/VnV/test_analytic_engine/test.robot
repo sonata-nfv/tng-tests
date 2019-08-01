@@ -6,12 +6,6 @@ Library         DateTime
 
 *** Variables ***
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
-${SP_HOST}      http://qual-sp-bcn.5gtango.eu
-${FILE_SOURCE_DIR}  ./packages
-${NS_PACKAGE_NAME}  eu.5gtango.ns-mediapilot-service.0.5.tgo
-${TST_PACKAGE_NAME}  eu.5gtango.media-performance-test.0.1.tgo
-${NS_PACKAGE_SHORT_NAME}  ns-mediapilot-service
-${TST_PACKAGE_SHORT_NAME}  media-performance-test
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated
@@ -25,11 +19,23 @@ Setting the VnV Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 Fetch Results of latest Test succesfull execution
-###Fetch Results of latest Test succesfull execution code will go here once ready
+    ${result} =     Get Latest Succesful Test Results
+    Should Be True     ${result[0]}
+    Set Suite Variable     ${TEST_RESULTS_UUID}  ${result[1]['uuid']}
+    Log     ${TEST_RESULTS_UUID}
+Fetch All Available Analytic Services
+    ${result} =     Get Analytic Services
+    Should Be True     ${result[0]}
+    Log     ${result[1]}
+    Should Be True    int(${result[1]}) > 6
 Invoke a test analytic process
-###Invoke a test analytic process code will go here once ready
-Select a set of healthy test monitoring metrics	
-###Select healthy metrics code will go here once ready
+    ${result} =     Invoke Analytic Process      testr_uuid=${TEST_RESULTS_UUID}   service_name='filter_healthy_metrics'
+    Should Be True     ${result}
+Check Analytic results	
+    ${result} =     Get Analytic Results
+    Should Be True     ${result[0]}
+    Should Be True    int(${result[1]}) > 0
+
 
 
 *** Keywords ***

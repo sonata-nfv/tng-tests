@@ -6,10 +6,10 @@ Library           Collections
 *** Variables ***
 ${SP_HOST}                http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${READY}       READY
-${FILE_SOURCE_DIR}     ../../../packages   # to be modified and added accordingly if package is not on the same folder as test
+${FILE_SOURCE_DIR}     packages   # to be modified and added accordingly if package is not on the same folder as test (../../../packages from local pc)
 ${NS_PACKAGE_NAME}           eu.5gtango.ns-squid-haproxy.0.1.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME}  ns-squid-haproxy
-${POLICIES_SOURCE_DIR}     ./policies   # to be modified and added accordingly if policy is not on the same folder as test
+${POLICIES_SOURCE_DIR}    tests/SP/test_service_reconfiguration_os/policies   # to be modified and added accordingly if policy is not on the same folder as test ( ./policies from local pc)
 ${POLICY_NAME}           NS-squid-haproxy-Elasticity-Policy-Premium.json    # The policy to be uploaded and tested
 ${READY}       READY
 ${PASSED}      PASSED
