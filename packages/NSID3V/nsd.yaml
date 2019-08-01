@@ -64,8 +64,8 @@ virtual_links:
 forwarding_graphs:
   - fg_id: "fg01"
     number_of_endpoints: 3
-    number_of_virtual_links: 4
-    constituent_virtual_links: 
+    number_of_virtual_links: 5
+    constituent_virtual_links:
       - "input-2-test_vnf1"
       - "test_vnf1-output-2-test_vnf2-input"
       - "test_vnf2-output-3-test_vnf3-input"
@@ -94,3 +94,4 @@ forwarding_graphs:
             position: 7
           - connection_point_ref: "output"
             position: 8
+
