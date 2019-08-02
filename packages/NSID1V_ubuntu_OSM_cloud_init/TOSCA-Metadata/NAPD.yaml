@@ -1,12 +1,12 @@
 package_content:
-- source: cirros_1vnf_nsd.yaml
+- source: ubuntu_1vnf_nsd.yaml
   content-type: application/vnd.etsi.osm.nsd
   algorithm: SHA-256
   testing_tags:
   - etsi.osm.testingtag.example.rho
   tags: []
   hash: 780f8d2fb67116f3e48d9d74d9a93b8d5774f44097915ad8c1e8fa9c29b2cd01
-- source: cirros_vnfd.yaml
+- source: ubuntu_vnfd.yaml
   content-type: application/vnd.etsi.osm.vnfd
   algorithm: SHA-256
   testing_tags: []
@@ -14,7 +14,7 @@ package_content:
     - "file-ref:cloud_init/cloud-config.txt"
   hash: 71a6a99ce66e0786a4cf15cb31414171d18fc9b44757fffa030ac444d108b9b5
 release_date_time: '2019-06-19T17:26:30Z'
-name: test-ns-nsid1v_cirros_osm
+name: ubuntu-simple-cloud-init
 package_type: application/vnd.5gtango.package.nsp
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml
 version: '0.1'
