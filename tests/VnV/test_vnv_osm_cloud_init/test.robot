@@ -7,7 +7,7 @@ Library         DateTime
 *** Variables ***
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
 ${SP_HOST}      http://qual-sp-bcn.5gtango.eu
-${FILE_SOURCE_DIR}  ./packages
+${FILE_SOURCE_DIR}  packages
 ${NS_PACKAGE_NAME}   eu.5gtango.ubuntu-simple-cloud-init.0.1.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.cloud-init-osm-test.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  ubuntu-osm-cloud-init
