@@ -45,4 +45,6 @@ tng-pkg -p TSTPING_TD_testing_tag_matches_multiple_NS_testing_tag --skip-validat
 tng-pkg -p TSTPING_testing_tag_not_match --skip-validation
 tng-pkg -p TSTIMPSP_parser_multiple_cases --skip-validation
 tng-pkg -p NSID1V_AND_TSTPING_cirros_SONATA --skip-validation
+tng-pkg -p TSTTELNET_osm_cloud_init --skip-validation
+tng-pkg -p NSID1V_ubuntu_OSM_cloud_init --skip-validation
 
