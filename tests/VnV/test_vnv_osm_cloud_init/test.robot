@@ -2,7 +2,7 @@
 Documentation   Test suite for the VnV E2E test
 Library         tnglib
 Library         Collections
-Library         DateTimetests/VnV/test_vnv_osm/test.robot
+Library         DateTime
 
 *** Variables ***
 ${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
