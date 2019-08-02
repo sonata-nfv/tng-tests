@@ -2,7 +2,7 @@ vnfd:vnfd-catalog:
     vnfd:
     -   id: ubuntu_vnfd
         name: ubuntu_vnf_image
-        short-name: cirros_vnf
+        short-name: ubuntu_vnf
         description: Simple VNF example with a Ubuntu
         vendor: OSM
         version: '1.0'
