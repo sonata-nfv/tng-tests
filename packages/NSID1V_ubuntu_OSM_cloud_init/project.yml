@@ -11,6 +11,8 @@ files:
   type: application/vnd.etsi.osm.nsd
   tags:
   - etsi.osm
+  testing_tags:
+    - "osm-cloud-init-test"
 - path: ubuntu_vnfd.yaml
   type: application/vnd.etsi.osm.vnfd
   tags:
