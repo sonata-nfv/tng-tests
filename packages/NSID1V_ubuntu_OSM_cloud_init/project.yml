@@ -1,17 +1,17 @@
 version: '4.1'
 package:
-  name: cirros-simple-cloud-init
+  name: ubuntu-simple-cloud-init
   vendor: osm
   version: '0.1'
-  maintainer: Name, Company, Contact
-  description: Some description about this sample
+  maintainer: Ignacio Dominguez (Atos)
+  description: Ubuntu simple with 1 VNF and cloud-init
 descriptor_extension: yml
 files:
-- path: cirros_1vnf_nsd.yaml
+- path: ubuntu_1vnf_nsd.yaml
   type: application/vnd.etsi.osm.nsd
   tags:
   - etsi.osm
-- path: cirros_vnfd.yaml
+- path: ubuntu_vnfd.yaml
   type: application/vnd.etsi.osm.vnfd
   tags:
   - file-ref:cloud_init/cloud-config.txt
