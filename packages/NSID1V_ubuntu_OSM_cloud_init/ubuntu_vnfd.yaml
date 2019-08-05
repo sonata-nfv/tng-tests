@@ -18,9 +18,9 @@ vnfd:vnfd-catalog:
             description: ubuntu_vnfd-VM
             count: 1
             vm-flavor:
-                vcpu-count: 1
-                memory-mb: 256
-                storage-gb: 2
+                vcpu-count: 2
+                memory-mb: 4096
+                storage-gb: 40
 
             # Image/checksum or image including the full path
             image: US1604
