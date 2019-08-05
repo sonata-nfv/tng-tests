@@ -32,8 +32,7 @@ vnfd:vnfd-catalog:
                 virtual-interface:
                     type: PARAVIRT
                 external-connection-point-ref: vnf-cp0
-
-            cloud-init-file: cloud_init/cloud-config.txt
+            cloud-init-file: cloud-config.txt
 
         connection-point:
         -   name: vnf-cp0
