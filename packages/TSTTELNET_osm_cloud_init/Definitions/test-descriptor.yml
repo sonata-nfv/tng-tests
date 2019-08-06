@@ -45,7 +45,7 @@ phases:
         output:
           - {results: results.log}
         run: netcat
-        start_delay: 30
+        start_delay: 180
   - id: verification
     steps:
       - step: netcat
