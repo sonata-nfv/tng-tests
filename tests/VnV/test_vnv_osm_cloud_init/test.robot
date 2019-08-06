@@ -43,7 +43,7 @@ Wait For Test Execution
     #get test uuid from package
     @{TESTS} =    Get Test Descriptors
     FOR    ${TEST}    IN  @{TESTS[1]}
-        Run Keyword If    '${TEST['name']}'== 'cloud-init-osm-test' and '${TEST['vendor']}'== 'eu.5gtango' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
+        Run Keyword If    '${TEST['name']}'== 'telnet-osm-cloud-init-test' and '${TEST['vendor']}'== 'eu.5gtango' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
     END
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Obtain GrayLogs
