@@ -30,7 +30,7 @@ phases:
             name: netcat
             parameters:
               - key: EXTERNAL_IP
-                value: '$(ubuntu_vnf/endpoints/name:mgmt/address)'
+                value: '$(ubuntu_vnf_image/endpoints/name:mgmt/address)'
               - key: PORT
                 value: '80'
   - id: exercise
