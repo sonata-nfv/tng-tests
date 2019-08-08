@@ -1,0 +1,12 @@
+ns_release_date_time: 2019-06-19T17:26:30Z
+ns_provider_id: eu.5gtango.egm
+ns_product_name: test-ns-mqtt_osm
+ns_package_version: 0.1
+
+Hash: 7aacc8dd0ff6fdedc64e04bfcb94d681033a778075a110cb7f455bc844043dbc
+Source: mosquitto_nsd.yaml
+Algorithm: SHA-256
+
+Hash: 1472d100585165847d985fdcada5b79a7bc69265a3e2ee396fbcfffbb391a732
+Source: mosquitto_vnfd.yaml
+Algorithm: SHA-256
