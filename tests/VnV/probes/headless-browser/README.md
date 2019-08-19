@@ -10,11 +10,11 @@ The previous containers can be executed with the following commands:
 
 danielvifal/docker-chromium-rec (docker_chromium-rec folder)
 
-docker run -e WEB="https://rooms.quobis.com" -e CALLED="quobisqa1@quobis" -e PASSWORD="PNrdj3G948WP" -e USER="apps" --privileged docker-chromium-rec:latest
+docker run -e WEB="https://rooms.quobis.com" -e CALLED="quobisqa1@quobis" -e PASSWORD="PNrdj3G948WP" -e USER="apps" docker-chromium-rec:latest
 
 danielvifal/docker-chromium (docker_chromium folder)
 
-docker run -e WEB="https://rooms.quobis.com" -e CALLER="quobisqa3@quobis" -e PASSWORD="oWc0n2M84xt2" -e CALLED="quobisqa1" -e DURATION=10000 -e USER="apps" --privileged docker-chromium:latest
+docker run -e WEB="https://rooms.quobis.com" -e CALLER="quobisqa3@quobis" -e PASSWORD="oWc0n2M84xt2" -e CALLED="quobisqa1" -e DURATION=10000 -e USER="apps" docker-chromium:latest
 
 
 ## Head-less browser results in the VnV
