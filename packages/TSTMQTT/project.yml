@@ -1,0 +1,18 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: eu.5gtango.egm
+  name: mqtt-osm-stress-test
+  version: '0.9'
+  maintainer: Benoit Orihuela, EGM, benoit.orihuela@eglobalmark.com
+  description: This is a 5GTANGO test package for MQTT benchmarking in OSM
+files:
+- path: Definitions/test-descriptor.yml
+  type: application/vnd.5gtango.tstd
+  testing_tags:
+  - "osm-mosquitto"
+- path: Icons/upb_logo.png
+  type: image/png
+- path: Licenses/LICENSE
+  type: text/plain

@@ -1,0 +1,38 @@
+nsd:nsd-catalog:
+  nsd:
+  - id: mosquitto_ns
+    name: Mosquitto broker
+    short-name: Mosquitto broker
+    description: VNF for a MQTT based Mosquitto broker
+    vendor: "Easy Global Market"
+    logo: "mobius-icon.png"
+    version: "1.1"
+
+    constituent-vnfd:
+    - member-vnf-index: 1
+      vnfd-id-ref: mosquitto_vnf
+      start-by-default: "true"
+
+    vld:
+    - id: mgmt_vl
+      name: MGMT_VL
+      short-name: MGMT_VL
+      description: "Management Network"
+      type: ELAN
+      mgmt-network: 'true'
+      vim-network-name: 'provider'
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: mosquitto_vnf
+        vnfd-connection-point-ref: mosquitto_mgmt
+
+    - id: data_vl1
+      name: DATA_VL1
+      short-name: DATA_VL1
+      description: "Data Network"
+      type: ELAN
+      vim-network-name: 'provider2'
+      vnfd-connection-point-ref:
+      - member-vnf-index-ref: 1
+        vnfd-id-ref: mosquitto_vnf
+        vnfd-connection-point-ref: mosquitto_data
