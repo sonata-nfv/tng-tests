@@ -23,7 +23,8 @@ const maxDuration = 90000;
                                             args: ['--use-fake-device-for-media-stream',
                                                    '--use-fake-ui-for-media-stream',
                                                    '--disable-notifications',
-                                                   '--unsafely-allow-protected-media-identifier-for-domain']
+                                                   '--unsafely-allow-protected-media-identifier-for-domain',
+                                                   '--no-sandbox']
                                           });
   const page = await browser.newPage();
   await page.setRequestInterception(true);
