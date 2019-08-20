@@ -48,6 +48,8 @@ tng-pkg -p TSTIMPSP_parser_multiple_cases --skip-validation
 tng-pkg -p NSID1V_AND_TSTPING_cirros_SONATA --skip-validation
 tng-pkg -p TSTTELNET_osm_cloud_init --skip-validation
 tng-pkg -p NSID1V_ubuntu_OSM_cloud_init --skip-validation
+tng-pkg -p HEADLESS_BROWSER --skip-validation
 tng-pkg -p NSCPE_onap --skip-validation
 tng-pkg -p NSMQTT_OSM --skip-validation
 tng-pkg -p TSTMQTT --skip-validation
+
