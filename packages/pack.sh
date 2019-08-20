@@ -9,6 +9,7 @@ tng-validate --project NSID1C -t
 tng-validate --project NSID2C -t
 tng-validate --project NSID3C -t
 tng-validate --project NSINDP1C -t
+tng-validate --project NSCPE_onap -t
 
 # package all projects
 tng-pkg -p NSID1C --skip-validation
@@ -48,3 +49,7 @@ tng-pkg -p NSID1V_AND_TSTPING_cirros_SONATA --skip-validation
 tng-pkg -p TSTTELNET_osm_cloud_init --skip-validation
 tng-pkg -p NSID1V_ubuntu_OSM_cloud_init --skip-validation
 tng-pkg -p HEADLESS_BROWSER --skip-validation
+tng-pkg -p NSCPE_onap --skip-validation
+tng-pkg -p NSMQTT_OSM --skip-validation
+tng-pkg -p TSTMQTT --skip-validation
+

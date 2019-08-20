@@ -1,0 +1,25 @@
+---
+version: '0.5'
+package:
+  name: mqtt-osm-cloud-init
+  vendor: eu.5gtango.egm
+  version: '0.1'
+  maintainer: Benoit Orihuela, Easy Global Market, benoit.orihuela@eglobalmark.com
+  description: A VNF running a MQTT-based Mosquitto broker
+descriptor_extension: yml
+files:
+- path: mosquitto_nsd.yaml
+  type: application/vnd.etsi.osm.nsd
+  tags:
+  - etsi.osm
+  testing_tags:
+  - "osm-mosquitto"
+- path: mosquitto_vnfd.yaml
+  type: application/vnd.etsi.osm.vnfd
+  tags:
+  - file-ref:cloud_init/cloud-config.txt
+  - etsi.osm
+- path: cloud_init/mosquitto_cloud_init.cfg
+  type: text/x-shellscript
+  tags:
+  - etsi.osm

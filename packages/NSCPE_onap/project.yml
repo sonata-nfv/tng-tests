@@ -1,0 +1,26 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "onap-vcpe"
+  version: "0.1"
+  maintainer: "5GTANGO Team"
+  description: "This is an ONAP example containing a ONAP vCPE service"
+files:
+  # We include a "fake" NSD and VNFD to make the VnV happy. (the actual ONAP vCPE service is in the ZIP file)
+  - path: "nsd.yaml"  # just to make platform happy
+    type: "application/vnd.5gtango.nsd"
+    tags:
+      - "lf.onap.fake.nsd"
+    testing_tags:
+      - "not-sure-what-you-need-here"
+  - path: "vnfd1.yaml"  # just to make platform happy
+    type: "application/vnd.5gtango.vnfd"
+    tags:
+      - "lf.onap.fake.vnfd"
+  # We include the original ONAP package (given as ZIP file) to be forwarded to ONAP
+  - path: "onap_package.zip"
+    type: "application/zip"
+    tags:
+      - "lf.onap.package"
