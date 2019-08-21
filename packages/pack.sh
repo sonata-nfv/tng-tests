@@ -51,7 +51,9 @@ tng-pkg -p NSID1V_ubuntu_OSM_cloud_init --skip-validation
 tng-pkg -p HEADLESS_BROWSER --skip-validation
 tng-pkg -p NSCPE_onap --skip-validation
 tng-pkg -p NSMQTT_OSM --skip-validation
+tng-pkg -p TSTMQTT --skip-validation
 tng-pkg -p TSTINDP --skip-validation
+tng-pkg -p TSTINDP_FUNC --skip-validation
 
 
 
