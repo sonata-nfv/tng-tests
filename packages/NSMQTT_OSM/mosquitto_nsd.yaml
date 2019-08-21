@@ -1,8 +1,8 @@
 nsd:nsd-catalog:
   nsd:
   - id: mosquitto_ns
-    name: Mosquitto broker
-    short-name: Mosquitto broker
+    name: Mosquitto_NS
+    short-name: Mosquitto_NS
     description: VNF for a MQTT based Mosquitto broker
     vendor: "Easy Global Market"
     logo: "mobius-icon.png"
