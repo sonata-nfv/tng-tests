@@ -3,7 +3,7 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: "eu.5gtango"
-  name: "comm-pilot-test headless-browser"
+  name: "comm-pilot-test-headless-browser"
   version: "0.1"
   maintainer: "Santiago Rodríguez, OPTARE"
   description: "This is a 5GTANGO test package for test probes"
