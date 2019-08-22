@@ -1,0 +1,74 @@
+vnfd:vnfd-catalog:
+    vnfd:
+    -   id: mosquitto_vnf
+        name: Mosquitto_VNF
+        short-name: Mosquitto_VNF
+        logo: mosquitto-icon.png
+        vendor: "Easy Global Market"
+        version: '1.1'
+        description: VNF for the Mosquitto MQTT bus
+
+        connection-point:
+        -   name: mosquitto_mgmt
+            type: VPORT
+        -   name: mosquitto_data
+            type: VPORT
+            port-security-enabled: false
+
+        mgmt-interface:
+            cp: mosquitto_mgmt
+
+        vdu:
+        -   id: mosquitto_vdu
+            name: mosquitto_vdu
+            count: 1
+            image: ubuntu_bionic_mosquitto
+            image-checksum: a5394ae42d4d29e8c9563b25357e62e1
+            
+            cloud-init-file: mosquitto_cloud_init.cfg
+
+            interface:
+            -   name: iface30
+                type: EXTERNAL
+                virtual-interface:
+                    type: VIRTIO
+                external-connection-point-ref: mosquitto_mgmt23
+            -   name: iface31
+                type: EXTERNAL
+                virtual-interface:
+                    type: VIRTIO
+                external-connection-point-ref: mosquitto_data
+
+            vm-flavor:
+                memory-mb: 2048
+                storage-gb: 20
+                vcpu-count: 2
+
+        vnf-configuration:
+
+            initial-config-primitive:
+            -   name: config
+                parameter:
+                -   name: ssh-hostname
+                    value: <rw_mgmt_ip>
+                -   name: ssh-username
+                    value: ubuntu
+                -   name: ssh-password
+                    value: ubuntu
+                seq: '1'
+
+            config-primitive:
+            -   name: config
+                parameter:
+                -   data-type: STRING
+                    default-value: <rw_mgmt_ip>
+                    name: ssh-hostname
+                -   data-type: STRING
+                    default-value: ubuntu
+                    name: ssh-username
+                -   data-type: STRING
+                    default-value: ubuntu
+                    name: ssh-password
+                -   data-type: STRING
+                    name: ssh-private-key
+

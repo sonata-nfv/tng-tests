@@ -109,7 +109,7 @@
                 <threadCounts>true</threadCounts>
               </value>
             </objProp>
-            <stringProp name="filename">requests_10.csv</stringProp>
+            <stringProp name="filename">/home/ignacio/PycharmProjects/tng-tests/tests/SP/jmeter/requests_10.csv</stringProp>
           </ResultCollector>
           <hashTree/>
           <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
@@ -1197,7 +1197,7 @@
                 <threadCounts>true</threadCounts>
               </value>
             </objProp>
-            <stringProp name="filename">requests_20.csv</stringProp>
+            <stringProp name="filename">/home/ignacio/PycharmProjects/tng-tests/tests/SP/jmeter/requests_20.csv</stringProp>
           </ResultCollector>
           <hashTree/>
           <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
@@ -5005,7 +5005,7 @@
                 <threadCounts>true</threadCounts>
               </value>
             </objProp>
-            <stringProp name="filename">requests_50.csv</stringProp>
+            <stringProp name="filename">/home/ignacio/PycharmProjects/tng-tests/tests/SP/jmeter/requests_50.csv</stringProp>
           </ResultCollector>
           <hashTree/>
           <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
@@ -5038,7 +5038,7 @@
                 <threadCounts>true</threadCounts>
               </value>
             </objProp>
-            <stringProp name="filename"></stringProp>
+            <stringProp name="filename">/home/ignacio/PycharmProjects/tng-tests/tests/SP/jmeter/requests_50.csv</stringProp>
           </ResultCollector>
           <hashTree/>
         </hashTree>
