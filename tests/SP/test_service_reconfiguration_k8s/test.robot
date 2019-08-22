@@ -2,6 +2,7 @@
 Documentation     Test suite template for deploy and undeploy of a NS composed of one cnf with elasticity policy enforcement
 Library           tnglib
 Library           Collections
+Library           DateTime
 
 *** Variables ***
 ${SP_HOST}                http://pre-int-sp-ath.5gtango.eu   #  the name of SP we want to use
@@ -16,6 +17,9 @@ ${PASSED}      PASSED
 
 *** Test Cases ***
 Setting the SP Path
+    #From date to obtain GrayLogs
+    ${from_date} =   Get Current Date
+    Set Global Variable  ${from_date}
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
@@ -86,7 +90,11 @@ Delete Runtime Policy
     Should Be True     ${result[0]}
 Remove the Package
     ${result} =     Remove Package      ${PACKAGE_UUID}
-    Should Be True     ${result[0]} 
+    Should Be True     ${result[0]}
+Obtain GrayLogs
+    ${to_date} =  Get Current Date
+    Set Suite Variable  ${param_file}   True
+    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
     
 
 *** Keywords ***
