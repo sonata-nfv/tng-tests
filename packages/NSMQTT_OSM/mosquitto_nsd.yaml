@@ -20,7 +20,7 @@ nsd:nsd-catalog:
       description: "Management Network"
       type: ELAN
       mgmt-network: 'true'
-      vim-network-name: 'provider'
+      vim-network-name: 'tng-net'
       vnfd-connection-point-ref:
       - member-vnf-index-ref: 1
         vnfd-id-ref: mosquitto_vnf
@@ -31,7 +31,7 @@ nsd:nsd-catalog:
       short-name: DATA_VL1
       description: "Data Network"
       type: ELAN
-      vim-network-name: 'provider2'
+      vim-network-name: 'tng-net'
       vnfd-connection-point-ref:
       - member-vnf-index-ref: 1
         vnfd-id-ref: mosquitto_vnf

@@ -17,7 +17,7 @@ files:
 - path: mosquitto_vnfd.yaml
   type: application/vnd.etsi.osm.vnfd
   tags:
-  - file-ref:cloud_init/cloud-config.txt
+  - file-ref:cloud_init/mosquitto_cloud_init.cfg
   - etsi.osm
 - path: cloud_init/mosquitto_cloud_init.cfg
   type: text/x-shellscript
