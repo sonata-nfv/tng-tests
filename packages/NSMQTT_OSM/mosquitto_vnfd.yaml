@@ -13,7 +13,6 @@ vnfd:vnfd-catalog:
             type: VPORT
         -   name: mosquitto_data
             type: VPORT
-            port-security-enabled: false
 
         mgmt-interface:
             cp: mosquitto_mgmt

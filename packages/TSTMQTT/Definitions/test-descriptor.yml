@@ -29,7 +29,7 @@ phases:
         name: mqttprobe
         parameters:
         - key: IP
-          value: '$(Mosquitto_VNF/endpoints/name:mgmt_vl/address)'
+          value: '$(Mosquitto_VNF/endpoints/name:data_vl1/address)'
         - key: PORT
           value: '1883'
         - key: CLIENTS
