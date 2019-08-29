@@ -40,6 +40,7 @@ tng-pkg -p NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_1
 tng-pkg -p NSID1V_cirros_SONATA_TD_testing_tag_matches_multiple_NS_testing_tag_2 --skip-validation
 tng-pkg -p TSTPING_2_instances_probes --skip-validation
 tng-pkg -p TSTPING_dependency_2_probes --skip-validation
+tng-pkg -p TSTPING_SONATA --skip-validation
 tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_1 --skip-validation
 tng-pkg -p TSTPING_NS_testing_tag_matches_multiple_TD_testing_tag_2 --skip-validation
 tng-pkg -p TSTPING_TD_testing_tag_matches_multiple_NS_testing_tag --skip-validation
