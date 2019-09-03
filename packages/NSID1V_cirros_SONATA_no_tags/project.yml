@@ -13,7 +13,6 @@ files:
     tags:  # (optional)
       - "eu.5gtango"
     testing_tags:
-      - "no_testing_tags_ns"
   - path: "vnfd1.yaml"
     type: "application/vnd.5gtango.vnfd"
     tags:  # (optional)

@@ -15,6 +15,9 @@ ${READY}       READY
 ${PASSED}      PASSED
 ${USERNAME}     cirros
 ${PASSWORD}     cubswin:)
+${INFRA_FILE_PATH}    ../infra.yaml
+${First_VIM}     athens-33
+${Second_VIM}     barcelona-120
 
 *** Test Cases ***
 Setting the SP Path
@@ -22,13 +25,16 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True   ${result}
 Ensure that two openstack vims are available
+    ${result} =      Clean Infrastructure
+    ${result_vim1} =      Post Vim From File     ${First_VIM}    ${INFRA_FILE_PATH}
+    log      ${result_vim1}
+    ${result_vim2} =      Post Vim From File     ${Second_VIM}    ${INFRA_FILE_PATH}
+    log      ${result_vim2}
+    Should Be True     ${result_vim1[0]}
+    Should Be True     ${result_vim2[0]}
     ${data} =     Get Vims      heat
     Log      ${data[1]}
     Set Suite Variable      ${vims}     ${data[1]}
-    Log      ${vims}
-    ${n_vims} =     Get Length     ${vims}
-    Log     ${n_vims}
-    Should Be True     ${n_vims} > 1
 Clean the Package Before Uploading
     @{packages} =   Get Packages
     log     ${NS_PACKAGE_SHORT_NAME}
@@ -76,7 +82,7 @@ Verify that VNF was configured correctly through fSM, and touch a file in the VN
 Request migration event for VNF
     FOR       ${vim}  IN  @{vims}
         Log     ${vim}
-        Run Keyword If     '${vim['uuid']}' != '${old_vim}'     Set Suite Variable     ${new_vim}  ${vim['uuid']}
+        Run Keyword If     '${vim['vim_uuid']}' != '${old_vim}'     Set Suite Variable     ${new_vim}  ${vim['vim_uuid']}
     END
     Log     ${new_vim}
     ${payload} =     Create Dictionary     service_instance_uuid     ${service_instance_uuid}     vnf_uuid     ${old_vnfr_id}     vim_uuid     ${new_vim}

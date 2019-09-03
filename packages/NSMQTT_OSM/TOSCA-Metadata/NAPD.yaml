@@ -1,0 +1,23 @@
+package_content:
+- source: mosquitto_nsd.yaml
+  content-type: application/vnd.etsi.osm.nsd
+  algorithm: SHA-256
+  testing_tags:
+  - etsi.osm.testingtag.mosquitto
+  tags: []
+  hash: 7aacc8dd0ff6fdedc64e04bfcb94d681033a778075a110cb7f455bc844043dbc
+- source: mosquitto_vnfd.yaml
+  content-type: application/vnd.etsi.osm.vnfd
+  algorithm: SHA-256
+  testing_tags: []
+  tags:
+    - "file-ref:cloud_init/mosquitto_cloud_init.cfg"
+  hash: 1472d100585165847d985fdcada5b79a7bc69265a3e2ee396fbcfffbb391a732
+release_date_time: '2019-06-19T17:26:30Z'
+name: test-ns-mqtt_osm
+package_type: application/vnd.5gtango.package.nsp
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/package-specification/napd-schema.yml
+version: '0.1'
+maintainer: 5GTANGO Test Team
+description: This is a integration test artifact.
+vendor: eu.5gtango
