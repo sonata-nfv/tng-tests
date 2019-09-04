@@ -1,0 +1,28 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "test-ns-nsid1v-and-tstping-sonata"
+  version: "0.2"
+  maintainer: "5GTANGO Test Team"
+  description: "This is a integration test artifact."
+files:
+  - path: "Definitions/nsd.yaml"
+    type: "application/vnd.5gtango.nsd"
+    tags:  # (optional)
+      - "eu.5gtango"
+    testing_tags:
+      - "eu.5gtango.sonata"
+  - path: "Definitions/vnfd1.yaml"
+    type: "application/vnd.5gtango.vnfd"
+    tags:  # (optional)
+      - "eu.5gtango"
+  - path: "Definitions/test-descriptor.yml"
+    type: "application/vnd.5gtango.tstd"
+    testing_tags:
+      - "eu.5gtango.sonata"
+  - path: "Icons/optare_solutions.png"
+    type: "image/png"
+  - path: "Licenses/LICENSE"
+    type: "text/plain"
