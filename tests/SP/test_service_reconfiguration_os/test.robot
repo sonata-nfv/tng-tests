@@ -2,6 +2,7 @@
 Documentation     Test suite template for deploy and undeploy with elasticity policy enforcement at Opestack
 Library           tnglib
 Library           Collections
+Library           DateTime
 
 *** Variables ***
 ${SP_HOST}                http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
@@ -16,6 +17,9 @@ ${PASSED}      PASSED
 
 *** Test Cases ***
 Setting the SP Path
+    #From date to obtain GrayLogs
+    ${from_date} =   Get Current Date
+    Set Global Variable  ${from_date}
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
@@ -56,10 +60,10 @@ Get Service Instance
     Log     ${init}
     Set Suite Variable     ${SERVICE_INSTANCE_UUID}  ${init[1]['instance_uuid']}
     Log     ${SERVICE_INSTANCE_UUID} 
-Check monitoring rules
-    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
-    Should Be True     ${result[0]}
-    Should Be Equal    ${result[1]}  3
+#Check monitoring rules
+#    ${result} =     Get Policy Rules      ${SERVICE_INSTANCE_UUID}
+#    Should Be True     ${result[0]}
+#    Should Be Equal    ${result[1]}  3
 Wait for monitoring rules satisfaction
     Sleep   100s
 Check that scaling action has been triggered by the policy manager
@@ -86,7 +90,11 @@ Delete Runtime Policy
     Should Be True     ${result[0]}
 Remove the Package
     ${result} =     Remove Package      ${PACKAGE_UUID}
-    Should Be True     ${result[0]} 
+    Should Be True     ${result[0]}
+Obtain GrayLogs
+    ${to_date} =  Get Current Date
+    Set Suite Variable  ${param_file}   True
+    Get Logs  ${from_date}  ${to_date}  ${SP_HOST}  ${param_file}
 
 *** Keywords ***
 Check Status
