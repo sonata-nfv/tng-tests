@@ -38,6 +38,10 @@ phases:
           value: '100'
         - key: SIZE
           value: '100'  
+        - key: QOS
+          value: '0'  
+        - key: ROUNDS
+          value: '50'  
         - key: USERNAME
           value: 'hub-iot'
         - key: PASSWORD
