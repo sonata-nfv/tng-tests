@@ -1,3 +1,9 @@
 *.tgo
 .ipynb_checkpoints
 .idea
+.pydevproject
+.project
+graylogs.log
+log.html
+output.xml
+report.html
