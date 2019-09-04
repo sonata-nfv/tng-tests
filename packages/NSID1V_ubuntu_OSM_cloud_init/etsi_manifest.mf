@@ -1,0 +1,13 @@
+ns_release_date_time: 2019-06-19T17:26:30Z
+ns_provider_id: eu.5gtango
+ns_product_name: test-ns-nsid1v_ubuntu_osm
+ns_package_version: 0.1
+
+Hash: 780f8d2fb67116f3e48d9d74d9a93b8d5774f44097915ad8c1e8fa9c29b2cd01
+Source: ubuntu_1vnf_nsd.yaml
+Algorithm: SHA-256
+
+Hash: 71a6a99ce66e0786a4cf15cb31414171d18fc9b44757fffa030ac444d108b9b5
+Source: ubuntu_vnfd.yaml
+Algorithm: SHA-256
+

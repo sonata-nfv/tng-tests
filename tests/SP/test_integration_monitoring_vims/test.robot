@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Test suite template for deploy and undeploy
+Documentation     Test VIM integration from monitoring perspective
 Library           tnglib
 Library           Collections
 Library           Process
@@ -20,16 +20,15 @@ Setting the SP Path
 
 
 GET monitoring Targets
-	@{TARGETS} =  Get Prometheus Targets
-	Set Global Variable    @{TARGETS}
+    @{TARGETS} =  Get Prometheus Targets
+    Set Global Variable    @{TARGETS}
 
 CHECK targets Status from Monitoring Framework
     @{TRGS_STATUS} =  Get Metric    ${MTC_NAME}
 
-	FOR     ${TARGET}  IN  @{TARGETS[1]}
-		Find Record  ${TARGET}   @{TRGS_STATUS} 
-		#Should Contain    ${resp.stdout}    success
-		Log    ${TARGET}
+    FOR     ${TARGET}  IN  @{TARGETS[1]}
+        Find Record  ${TARGET}   @{TRGS_STATUS} 
+        Log    ${TARGET}
     END
 
 *** Keywords ***

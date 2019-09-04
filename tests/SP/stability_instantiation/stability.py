@@ -10,13 +10,28 @@ import graylog
 import logging
 from graylog.rest import ApiException
 from pprint import pprint
+import subprocess
+import sys
+
+
+class Unbuffered(object):
+   def __init__(self, stream):
+       self.stream = stream
+   def write(self, data):
+       self.stream.write(data)
+       self.stream.flush()
+   def writelines(self, datas):
+       self.stream.writelines(datas)
+       self.stream.flush()
+   def __getattr__(self, attr):
+       return getattr(self.stream, attr)
 
 def get_logging(_from, to, query):
     # query = "source:pre-int-sp-ath AND type:E" # Object | Query (Lucene syntax)
     # _from = "2019-04-25 17:11:01.201" # Object | Timerange start. See description for date format
     # to = "2019-04-25 17:26:01.201" # Object | Timerange end. See description for date format
-    try: 
-        # Message search with absolute timerange.  
+    try:
+        # Message search with absolute timerange.
         api_instance = graylog.SearchuniversalabsoluteApi()
         api_response = api_instance.search_absolute(query, _from, to)
         reply = api_response.to_dict()
@@ -24,8 +39,8 @@ def get_logging(_from, to, query):
         print(e)
 
     for message in reply["messages"]:
-        pprint(message["message"]["timestamp"] + " " + 
-		       message["message"]["container_name"] + ": " + 
+        pprint(message["message"]["timestamp"] + " " +
+		       message["message"]["container_name"] + ": " +
 			   message["message"].get("message"))
         print("\n")
 
@@ -91,6 +106,8 @@ def instantiation(time_start, sp_path, _exit):
 			time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 			get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 			_exit += 1
+			break
+
 		counter += 1
 
 	if counter == 60:
@@ -99,6 +116,7 @@ def instantiation(time_start, sp_path, _exit):
 		get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 		_exit += 1
 
+	print(str(request))
 	service_instance_uuid = request[1]['instance_uuid']
 	return service_instance_uuid
 
@@ -122,8 +140,9 @@ def termination(time_start, service_instance_uuid, sp_path, _exit):
 		if request[1]['status'] == 'ERROR':
 			print("termination finished in error mode")
 			time_finish = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-			get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))   
+			get_logging(time_start, time_finish, query="source:{} AND type:E".format(sp_path))
 			_exit += 1
+			break
 		counter += 1
 
 	if counter == 12:
@@ -136,6 +155,7 @@ def termination(time_start, service_instance_uuid, sp_path, _exit):
 	tnglib.remove_all_packages()
 
 # Configuring the logging connection
+sys.stdout = Unbuffered(sys.stdout)
 configuration = graylog.Configuration()
 configuration.username = "api"
 configuration.password = "apiapi"
@@ -147,10 +167,10 @@ level = logging.DEBUG
 logging.getLogger("tnglib").setLevel(level)
 logging.getLogger(__name__).setLevel(level)
 logging.basicConfig(level=level)
-	
+
 # Prering the timers
 test_start = current_time = int(time.time())
-test_end = int(time.time()) + 86400
+test_end = int(time.time()) + 14400
 counter = 0
 _exit = 0
 
@@ -164,10 +184,44 @@ while current_time < test_end:
 	termination(time_start, service_instance_uuid, sp_path, _exit)
 	counter += 1
 	current_time = int(time.time())
+	if _exit > 1:
+		break
 
 # Test finished
 print("The amount of repetitions was: {}".format(counter))
 if _exit != 0:
 	print("The test failed {} times".format(_exit))
+
 print("Test Passed")
+
+# Instances time
+bashCommand = "docker exec -ti son-postgres psql -h localhost -U sonatatest -d  gatekeeper -c 'SELECT  instance_uuid, created_at, updated_at, request_type, status FROM requests;'"
+process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+output, error = process.communicate()
+print("Output\n{}".format(output))
+
+bashCommand = "docker exec -ti son-postgres psql -h localhost -U sonatatest -d  gatekeeper -c 'DELETE FROM requests *;'"
+process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+output, error = process.communicate()
+
+# Kubernetes Wrapper times
+print("\n")
+print("\n")
+print("\n")
+print("##############")
+print("## K8S LOGS ##")
+print("##############")
+get_logging(time_start, time_finish, query="source:{} AND container_name:tng-sp-ia-k8s AND time".format(sp_path))
+
+# Heat Wrapper times
+print("\n")
+print("\n")
+print("\n")
+print("###############")
+print("## Heat LOGS ##")
+print("###############")
+get_logging(time_start, time_finish, query="source:{} AND container_name:vim-wrapper-heat AND time".format(sp_path))
+
+if _exit > 0:
+	exit(1)
 exit(0)

@@ -3,7 +3,7 @@ vnfd:vnfd-catalog:
     -   id: cirros_vnf
         name: cirros_vnf
         short-name: cirros_vnf
-        description: Simple VNF example with a cirros 
+        description: Simple VNF example with a cirross 
         vendor: OSM
         version: '1.0'
 
@@ -22,8 +22,8 @@ vnfd:vnfd-catalog:
             count: 1
             vm-flavor:
                 vcpu-count: 1
-                memory-mb: 256
-                storage-gb: 2
+                memory-mb: 1024
+                storage-gb: 10
 
             # Image/checksum or image including the full path
             image: cirros034

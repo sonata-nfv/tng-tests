@@ -14,7 +14,7 @@
 | | 3 | Check Service Instantiation | Service instance is up and running |
 | | 4 | Check Test Execution | VnV launches and executes the test |
 | | 5 | Check Test Completion | VnV test execution is completed |
-| | 6 | Check Stored Results | The test results are stored in the test results repository |
-| | 7 | Check No Running Instances In SP | After test, the instantiated service must be deleted from Service Platform|  
+| | 6 | Check No Running Instances In SP | After test, the instantiated service must be deleted from Service Platform|  
+| | 7 | Check Stored Results | The test results are stored in the test results repository |
 | __Test Verdict__ | | The results will show content from all probes | |
 | __Additional resources__ | | | |
