@@ -35,7 +35,6 @@ Upload the NS Package
     Should Be True     ${result[0]}
 Upload the TST Package
     ${result}=      Upload Package      ${FILE_SOURCE_DIR}/${TST_PACKAGE_NAME}
-    Log  ${result[1]}
     Should Be True     ${result[0]}
 Wait For Service Instance Ready
     Set SP Path     ${VNV_HOST}
@@ -43,13 +42,9 @@ Wait For Service Instance Ready
     Should Be True   ${result}
     Sleep   120
     ${request_list} =   Get Requests
-    Log Variables
-    Log ${request_list}
     Set Suite Variable  ${REQUEST}  ${request_list[1][0]['request_uuid']}
-    Log ${REQUEST}
     Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 Wait For Test Execution
-    Log Variables
     Set SP Path     ${VNV_HOST}
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Obtain GrayLogs
