@@ -8,9 +8,9 @@ Library           OperatingSystem
 *** Variables ***
 #${SP_HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${FILE_SOURCE_DIR}         ./packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}         eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
+${NS_PACKAGE_NAME}         eu.5gtango.test-ns-nsid3v.0.1.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME}   test-nsid1v
-${FILE_TEMPLATE_PATH}      NSTD
+${FILE_TEMPLATE_PATH}      NSTD_VNF
 ${FILE_TEMPLATE_NAME}      3nsid1v_nstd.yml
 ${NSI_NAME}                sliceTest_331-
 ${NSI_DESCRIPTION}         Testing_slice_test_case_3.3.1
