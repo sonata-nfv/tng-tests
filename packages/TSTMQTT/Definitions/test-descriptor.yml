@@ -58,6 +58,7 @@ phases:
       output:
       - {results: results.log}
       run: mqttprobe
+      start_delay: 60
   - id: verification
     steps:
     - step: parser
