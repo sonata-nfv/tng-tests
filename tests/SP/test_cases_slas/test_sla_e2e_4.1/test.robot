@@ -20,6 +20,9 @@ Setting the SP Path
     ${result} =     Sp Health Check
     Should Be True  ${result}
 
+Clean all packages
+    Remove All Packages
+
 Upload the Package
     ${result} =     Upload Package      ${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}
     Should Be True     ${result[0]}
