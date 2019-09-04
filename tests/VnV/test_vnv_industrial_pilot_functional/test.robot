@@ -9,7 +9,7 @@ ${VNV_HOST}     http://int-vnv.5gtango.eu
 ${SP_HOST}      http://172.31.8.180
 ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.tng-smpilot-ns1-k8s-egm.1.0.tgo
-${TST_PACKAGE_NAME}  eu.5gtango.industrial-pilot-testfunc-egm.0.4.tgo
+${TST_PACKAGE_NAME}  eu.5gtango.industrial-pilot-testfunc-egm.0.5.tgo
 ${NS_PACKAGE_SHORT_NAME}  tng-smpilot-ns1-k8s-egm
 ${TST_PACKAGE_SHORT_NAME}  industrial-pilot-testfunc-egm
 ${READY}       READY
