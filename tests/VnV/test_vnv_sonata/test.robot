@@ -76,5 +76,7 @@ Check Request Status
     Should Be Equal    ${READY}  ${requests[1]['status']}
 Check Test Result Status
     ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
+    Log  ${test_uuid}    
     ${results} =    Get Test Result     ${test_uuid[1][0]['uuid']}
+    Log  ${results}     
     Should Be Equal     ${PASSED}   ${results[1]['status']}
