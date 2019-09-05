@@ -59,7 +59,7 @@ Retrieve list of monitoring metrics
     FOR     ${VNF}  IN  @{VNFS[1]}
         ${METRIC_LIST} =   Get Metrics      ${VNF['vnf_uuid']}    ${VNF['vdu_uuid']}
         ${LGH} =  Get Length  ${METRIC_LIST[1]}
-        Should Be True    ${LGH} == 0
+        Should Be True    ${LGH} > 0
         Log    ${METRIC_LIST}
     END
 
