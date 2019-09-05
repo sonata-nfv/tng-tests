@@ -27,5 +27,5 @@ nsd:nsd-catalog:
             -   vnfd-id-ref: cirros_vnf
                 member-vnf-index-ref: '1'
                 vnfd-connection-point-ref: vnf-cp0
-            vim-network-name: exnet
+            vim-network-name: external
 
