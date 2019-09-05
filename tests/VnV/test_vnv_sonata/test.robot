@@ -68,6 +68,7 @@ Obtain GrayLogs
 *** Keywords ***
 Check Create Service Request
     ${requests} =     Get Requests
+    Log  ${requests}
     Should Be Equal     ${CREATE_SERVICE}   ${requests[1][0]['request_type']}
 Check Request Status
     ${requests} =     Get Request     ${REQUEST}
