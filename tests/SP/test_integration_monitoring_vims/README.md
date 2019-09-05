@@ -12,6 +12,6 @@
 | __Test sequence__ | Step | Description | Result |
 | | 1 | GET list of attached VIMs | VIM list received|
 | | 2 | GET 'up' metric for targets | 'up' metric list received  |
-| | 2 | Check each target's status | 'up' metric value should be '1'  |
+| | 3 | Check each target's status | 'up' metric value should be '1'  |
 | __Test Verdict__ | | All VIMs are integrated correctly | |
 | __Additional resources__ | | | |
