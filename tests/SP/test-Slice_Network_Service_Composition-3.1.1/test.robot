@@ -5,10 +5,10 @@ Library           Collections
 Library           DateTime
 
 *** Variables ***
-${SP_HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
+#${SP_HOST}                 http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${FILE_SOURCE_DIR}         ./packages   # to be modified and added accordingly if package is not on the same folder as test
-${NS_PACKAGE_NAME}         eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
-${FILE_TEMPLATE_PATH}      NSTD_VNF/3nsid1v_nstd.yaml
+${NS_PACKAGE_NAME}         eu.5gtango.test-slice-vnfs.0.1.tgo    # The package to be uploaded and tested
+${FILE_TEMPLATE_PATH}      NSTD_VNF/3nsid1v_nstd.yml
 ${NS_PACKAGE_SHORT_NAME}   test-nsid1v
 ${NSI_NAME}                sliceTest_311-
 ${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1

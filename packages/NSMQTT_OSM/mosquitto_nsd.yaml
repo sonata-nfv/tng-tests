@@ -31,7 +31,7 @@ nsd:nsd-catalog:
       short-name: DATA_VL1
       description: "Data Network"
       type: ELAN
-      vim-network-name: 'tng-net'
+      vim-network-name: 'external'
       vnfd-connection-point-ref:
       - member-vnf-index-ref: 1
         vnfd-id-ref: mosquitto_vnf
