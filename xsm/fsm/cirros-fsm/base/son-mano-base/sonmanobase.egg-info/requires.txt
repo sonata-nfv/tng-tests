@@ -1,4 +1,0 @@
-pytest==2.9.2
-PyYAML
-requests
-pycodestyle
