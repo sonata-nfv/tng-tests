@@ -13,7 +13,6 @@ vnfd:vnfd-catalog:
             type: VPORT
         -   name: mosquitto_data
             type: VPORT
-            port-security-enabled: false
 
         mgmt-interface:
             cp: mosquitto_mgmt
@@ -23,7 +22,6 @@ vnfd:vnfd-catalog:
             name: mosquitto_vdu
             count: 1
             image: ubuntu_bionic_mosquitto
-            image-checksum: a5394ae42d4d29e8c9563b25357e62e1
             
             cloud-init-file: mosquitto_cloud_init.cfg
 
@@ -32,7 +30,7 @@ vnfd:vnfd-catalog:
                 type: EXTERNAL
                 virtual-interface:
                     type: VIRTIO
-                external-connection-point-ref: mosquitto_mgmt23
+                external-connection-point-ref: mosquitto_mgmt
             -   name: iface31
                 type: EXTERNAL
                 virtual-interface:

@@ -79,6 +79,6 @@ phases:
         conditions:
           - condition: present
             file: results.log
-            find: 80 (?) open
+            find: 80 (http) open
             name: netcat-ok
             verdict: pass

@@ -4,14 +4,14 @@ Library           tnglib
 Library           DateTime
 
 *** Variables ***
-${HOST}                        http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
+#${HOST}                        http://int-sp-ath.5gtango.eu   #  the name of SP we want to use
 ${FILE_SOURCE_DIR}             ./packages   # to be modified and added accordingly if package is not on the same folder as test
 ${FILE_SERVICE_NAME_VNF}       eu.5gtango.test-ns-nsid1v.0.1.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME_VNF}   test-ns-nsid1v
 ${FILE_SERVICE_NAME_CNF}       eu.5gtango.test-ns-nsid1c.0.1.tgo    # The package to be uploaded and tested
 ${NS_PACKAGE_SHORT_NAME_CNF}   test-ns-nsid1c
-${FILE_TEMPLATE_CNF}           NSTD_CNF/3nsidc_nstd.yaml
-${FILE_TEMPLATE_HYBRID}        NSTD_hybrid/hybrid_nstd.yaml
+${FILE_TEMPLATE_CNF}           NSTD_CNF/3nsidc_nstd.yml
+${FILE_TEMPLATE_HYBRID}        NSTD_hybrid/hybrid_nstd.yml
 ${NSI_1_NAME}                  sliceTest_322_cnf
 ${NSI_2_NAME}                  sliceTest_322_hybrid
 ${NSI_DESCRIPTION}             Testing_slice_test_case_3.2.2

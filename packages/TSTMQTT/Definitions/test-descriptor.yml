@@ -29,7 +29,7 @@ phases:
         name: mqttprobe
         parameters:
         - key: IP
-          value: '$(mosquitto_vnf/endpoints/id:mgmt/address)'
+          value: '$(Mosquitto_VNF/endpoints/name:data_vl1/address)'
         - key: PORT
           value: '1883'
         - key: CLIENTS
@@ -38,6 +38,10 @@ phases:
           value: '100'
         - key: SIZE
           value: '100'  
+        - key: QOS
+          value: '0'  
+        - key: ROUNDS
+          value: '50'  
         - key: USERNAME
           value: 'hub-iot'
         - key: PASSWORD
@@ -54,6 +58,7 @@ phases:
       output:
       - {results: results.log}
       run: mqttprobe
+      start_delay: 60
   - id: verification
     steps:
     - step: parser

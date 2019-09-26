@@ -1,8 +1,8 @@
 nsd:nsd-catalog:
   nsd:
   - id: mosquitto_ns
-    name: Mosquitto broker
-    short-name: Mosquitto broker
+    name: Mosquitto_NS
+    short-name: Mosquitto_NS
     description: VNF for a MQTT based Mosquitto broker
     vendor: "Easy Global Market"
     logo: "mobius-icon.png"
@@ -20,7 +20,7 @@ nsd:nsd-catalog:
       description: "Management Network"
       type: ELAN
       mgmt-network: 'true'
-      vim-network-name: 'provider'
+      vim-network-name: 'tng-net'
       vnfd-connection-point-ref:
       - member-vnf-index-ref: 1
         vnfd-id-ref: mosquitto_vnf
@@ -31,7 +31,7 @@ nsd:nsd-catalog:
       short-name: DATA_VL1
       description: "Data Network"
       type: ELAN
-      vim-network-name: 'provider2'
+      vim-network-name: 'external'
       vnfd-connection-point-ref:
       - member-vnf-index-ref: 1
         vnfd-id-ref: mosquitto_vnf
