@@ -1,0 +1,51 @@
+{
+	"descriptor_schema": "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/policy-descriptor/policy-schema.yml",
+	"name": "ns-communication-pilot-service-sample-policy",
+	"vendor": "quobis",
+	"version": "0.5",
+	"network_service": {
+		"vendor": "quobis",
+		"name": "communication-pilot",
+		"version": "0.5"
+	},
+	"monitoring_rules": [
+		{
+			"name": "wac-vnf:vdu01:sippoServerSessions:greater4",
+			"description": "Trigger events if sippoServerSessions is greater than 4.",
+			"duration": 10,
+			"duration_unit": "s",
+			"condition": "sippoServerSessions",
+			"threshold": " < 4"
+		}
+	],
+	"policyRules": [{
+		"name": "ElasticityRuleScaleOut",
+		"salience": 1,
+		"inertia": {
+			"value": 30,
+			"duration_unit": "m"
+		},
+		"conditions": {
+			"condition": "AND",
+			"rules": [{
+				"id": "wac-vnf.LogMetric",
+				"field": "wac-vnf.LogMetric",
+				"type": "string",
+				"input": "text",
+				"operator": "equal",
+				"value": "wac_vnf_vdu01_sippoServerSessions_greater4"
+			}]
+		},
+		"actions": [{
+			"action_object": "ElasticityAction",
+			"action_type": "ScalingType",
+			"name": "addvnf",
+			"value": "1",
+			"target": {
+				"name": "wac-vnf",
+				"vendor": "quobis",
+				"version": "0.6"
+			}
+		}]
+	}]
+}
