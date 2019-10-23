@@ -1,0 +1,12 @@
+MANIFEST.in
+setup.py
+sonmanobase/__init__.py
+sonmanobase/messaging.py
+sonmanobase/plugin.py
+sonmanobase.egg-info/PKG-INFO
+sonmanobase.egg-info/SOURCES.txt
+sonmanobase.egg-info/dependency_links.txt
+sonmanobase.egg-info/requires.txt
+sonmanobase.egg-info/top_level.txt
+test/__init__.py
+test/test_messaging.py

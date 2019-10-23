@@ -1,0 +1,45 @@
+vnfd:vnfd-catalog:
+    vnfd:
+    -   id: cirros_vnf
+        name: cirros_vnf
+        short-name: cirros_vnf
+        description: Simple VNF example with a cirross 
+        vendor: OSM
+        version: '1.0'
+
+        # Place the logo as png in icons directory and provide the name here
+        logo: cirros-64.png
+
+        # Management interface
+        mgmt-interface:
+            cp: eth0
+
+        # Atleast one VDU need to be specified
+        vdu:
+        -   id: cirros_vnfd-VM
+            name: cirros_vnfd-VM
+            description: cirros_vnfd-VM
+            count: 1
+            vm-flavor:
+                vcpu-count: 1
+                memory-mb: 1024
+                storage-gb: 10
+
+            # Image/checksum or image including the full path
+            image: cirros034
+            #checksum: 
+
+            interface:
+            -   name: vdu-eth0
+                type: EXTERNAL
+                virtual-interface:
+                    type: PARAVIRT
+                external-connection-point-ref: vnf-cp0
+
+        connection-point:
+        -   name: vnf-cp0
+            type: VPORT
+            
+        mgmt-interface:
+            cp: vnf-cp0
+

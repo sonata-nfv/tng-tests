@@ -1,0 +1,26 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "ns-mediapilot-service"
+  version: "0.5"
+  maintainer: "Ignacio Dominguez"
+  description: "This is the 5GTANGO network service for the media pilot with k8s"
+files:
+  - path: "Definitions/mediapilot-ns.yml"
+    type: "application/vnd.5gtango.nsd"
+    testing_tags:
+      - "http"
+      - "rtmp-media-service"
+      - "hls-media-service"
+  - path: "Definitions/ma-vnfd.yml"
+    type: "application/vnd.5gtango.vnfd"
+  - path: "Definitions/mse-vnfd.yml"
+    type: "application/vnd.5gtango.vnfd"
+  - path: "Definitions/cms-vnfd.yml"
+    type: "application/vnd.5gtango.vnfd"
+  - path: "Icons/atos_logo.png"
+    type: "image/png"
+  - path: "Licenses/LICENSE"
+    type: "text/plain"

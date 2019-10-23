@@ -1,0 +1,62 @@
+#descriptor_version: "1.0"
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml
+vendor: "eu.sonata-nfv"
+name: "ns-mediapilot-service"
+version: "0.5"
+author: "Ignacio Dominguez @: atos"
+description: "This NS provides the video streaming service for the immersive media pilot."
+
+##
+## The various network functions this service
+## is composed of.
+##
+network_functions: 
+  - vnf_id: "vnf-ma"
+    vnf_vendor: "eu.5gtango"
+    vnf_name: "vnf-ma"
+    vnf_version: "0.5"
+  - vnf_id: "vnf-mse"
+    vnf_vendor: "eu.5gtango"
+    vnf_name: "vnf-mse"
+    vnf_version: "0.5"
+  - vnf_id: "vnf-cms"
+    vnf_vendor: "eu.5gtango"
+    vnf_name: "vnf-cms"
+    vnf_version: "0.5"
+
+##
+## The NS connection points to the
+## outside world.
+##
+connection_points:
+  - id: "nscpexternal"
+    interface: "ipv4"
+    type: "external"
+
+testing_tags: 
+  - "http"
+  - "rtmp-media-service"
+
+##
+## The virtual links that interconnect
+## the different connections points.
+##
+virtual_links:
+  - id: "vlexternal"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf-ma:rtmp"
+      - "vnf-mse:hls"
+      - "vnf-cms:api"
+      - "nscpexternal"
+  - id: "vlapi"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vnf-cms:api"
+      - "vnf-ma:api"
+      - "vnf-mse:api"
+  - id: "aggregator-mse"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vnf-ma:rtmp"
+      - "vnf-mse:rtmp"

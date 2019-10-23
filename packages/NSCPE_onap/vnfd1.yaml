@@ -1,0 +1,70 @@
+# FAKE 5GTANGO VNFD 
+#
+# This package contains a original ONAP package.
+# To make our platforms happy, we still need some VNFD to at least
+# have some name etc. to be listed in the portal.
+# This fake VNFD does exactly this.
+---
+descriptor_schema: "https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/function-descriptor/vnfd-schema.yml"
+
+vendor: "eu.5gtango"
+name: "cpevnf"
+version: "0.1"
+author: "5GTANGO Team"
+description: "This is a fake descriptor to wrap a ONAP package"
+
+virtual_deployment_units:
+  - id: "vdu01"
+    vm_image: "http://www.google.com"
+    vm_image_format: "qcow2"
+    vm_image_md5: ee1eca47dc88f4879d8a229cc70a07c6
+    resource_requirements:
+      cpu:
+        vcpus: 1
+      memory:
+        size: 2
+        size_unit: "GB"
+      storage:
+        size: 10
+        size_unit: "GB"
+    connection_points:
+      - id: "eth0"
+        interface: "ipv4"
+        type: "internal"
+      - id: "eth1"
+        interface: "ipv4"
+        type: "internal"
+      - id: "eth2"
+        interface: "ipv4"
+        type: "internal"
+
+virtual_links:
+  - id: "mgmt-2-mgmt"
+    connectivity_type: "E-LAN"
+    connection_points_reference:
+      - "vdu01:eth0"
+      - "mgmt"
+    dhcp: True
+  - id: "input-2-vdu01"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:eth1"
+      - "input"
+    dhcp: True
+  - id: "vdu01-2-output"
+    connectivity_type: "E-Line"
+    connection_points_reference:
+      - "vdu01:eth2"
+      - "output"
+    dhcp: True
+
+connection_points:
+  - id: "mgmt"
+    interface: "ipv4"
+    type: "management"
+  - id: "input"
+    interface: "ipv4"
+    type: "external"
+  - id: "output"
+    interface: "ipv4"
+    type: "external"

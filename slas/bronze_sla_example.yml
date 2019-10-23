@@ -1,0 +1,45 @@
+---
+created_at: '2019-04-10T09:05:08.918+00:00'
+md5: 5f31b587b2718b3f3c9b5e3c73f0a904
+published: false
+signature: 
+slad:
+  vendor: tango-sla-mgmt
+  name: Bronze SLA Example
+  descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/service-descriptor/nsd-schema.yml
+  version: '0.1'
+  sla_template:
+    template_name: Bronze SLA Example
+    service:
+      guaranteeTerms:
+      - guarantee_unit: "%"
+        guarantee_name: Availability
+        guarantee_period: Daily
+        guarantee_definition: ''
+        guarantee_threshold: '95'
+        guarantee_operator: greater
+        target_slo:
+        - target_kpi: Downtime
+          target_duration: 10s
+          target_period: 24h
+          target_value: 4320s
+          target_service_level: Downtime less than 4320 seconds
+          target_operator: less
+        guaranteeID: g3
+      ns_uuid: 7601ad39-ea3f-4676-9435-f033b91e107c
+      ns_name: mediapilot-service
+      ns_vendor: eu.sonata-nfv
+      ns_version: '0.3'
+    template_initiator: t@ngo
+    offer_date: '2019-04-10T09:05:08Z'
+    expiration_date: '2020-12-01T00:00:00Z'
+    provider_name: UPRC
+  licences:
+    service_based:
+      service_licence_type: public
+      service_licence_expiration_date: 10/04/2020
+      allowed_service_instances: '10'
+status: active
+updated_at: '2019-04-10T09:05:08.918+00:00'
+username: 
+uuid: 83136a00-eb20-4042-a632-b52d6a3717e6

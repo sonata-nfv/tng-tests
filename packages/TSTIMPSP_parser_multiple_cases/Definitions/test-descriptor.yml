@@ -1,0 +1,92 @@
+---
+author: "Ignacio Dominguez, Felipe Vicens (ATOS)"
+description: "Performance test for video analysis"
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
+name: "test-immersive-media-parser-multi-cases"
+vendor: "eu.5gtango.atos"
+version: '0.1'
+
+service_platforms:
+  - "SONATA"
+testing_category:
+  - "benchmarking"
+
+phases:
+- id: setup
+  steps:
+  - action: deploy
+    description: "Deploying a NS"
+    name: deployment
+  - action: configure
+    description: "Configuration"
+    name: configuration
+    probes:
+    - id: netcat
+      description: "Netcat probe"
+      image: sonatanfv/telnet-nc:latest
+      name: netcat
+      parameters:
+      - key: EXTERNAL_IP
+        value: 'www.google.com'
+      - key: PORT
+        value: '80'
+    - id: parser
+      description: "Parser"
+      image: "ignaciodomin/media-parser:dev"
+      name: parser
+      parameters: []
+- id: exercise
+  steps:
+  - dependencies: []
+    description: "Starting the CCE that simulates the consumer"
+    entrypoint: /app/entrypoint.sh
+    index: 1
+    instances: 1
+    name: parser
+    output:
+    - {results: result.json}
+    run: parser
+  - command: /bin/sh
+    dependencies: []
+    description: "Executing netcat"
+    entrypoint: /app/entrypoint.sh
+    index: 2
+    instances: 1
+    name: netcat
+    output:
+    - {results: results.log}
+    run: netcat
+- id: verification
+  steps:
+  - step: parser
+    description: "Check obtained results"
+    name: parser
+    conditions:
+    - condition: <
+      file: result.json
+      find: lost-frames
+      name: lost-frames
+      type: json
+      value: '90'
+      verdict: pass
+    - condition: ==
+      file: result.json
+      find: I-frames
+      name: I-frames
+      type: json
+      value: '264'
+      verdict: pass
+  - step: netcat
+    description: "Check netcat results"
+    name: netcat
+    conditions:
+    - condition: present
+      file: results.log
+      find: 80 (http) open
+      name: netcat-ok
+      verdict: pass
+    - condition: not present
+      file: results.log
+      find: 8000 (http) open
+      name: netcat-ok2
+      verdict: pass

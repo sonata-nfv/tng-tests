@@ -1,0 +1,16 @@
+---
+descriptor_extension: yml
+version: '0.5'
+package:
+  vendor: "eu.5gtango"
+  name: "test-ns-nsid1v_cirros_osm"
+  version: "0.1"
+  maintainer: "5GTANGO Test Team"
+  description: "This is a integration test artifact."
+files:
+  - path: "cirros_1vnf_nsd.yaml"
+    type: "application/vnd.etsi.osm.nsd"
+    testing_tags:
+      - "etsi.osm.testingtag.example"
+  - path: "cirros_vnfd.yaml"
+    type: "application/vnd.etsi.osm.vnfd"

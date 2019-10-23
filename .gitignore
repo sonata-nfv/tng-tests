@@ -1,0 +1,5 @@
+*.tgo
+.ipynb_checkpoints
+.idea
+.pydevproject
+.project
