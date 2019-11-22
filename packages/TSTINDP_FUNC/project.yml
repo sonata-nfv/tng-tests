@@ -1,16 +1,16 @@
 descriptor_extension: yml
-version: '0.5'
+version: '0.1'
 package:
   vendor: eu.5gtango
-  name: industrial-pilot-test-egm
-  version: '1.0'
+  name: industrial-pilot-testfunc-egm
+  version: '0.5'
   maintainer: Aureliano Sinatra, EGM
-  description: This is a 5GTANGO test package for mqtt Benchmarking
+  description: This is a 5GTANGO test package for NS1 functional test
 files:
 - path: Definitions/test-descriptor.yml
   type: application/vnd.5gtango.tstd
   testing_tags:
-  - industrial-pilot-broker
+  - industrial-pilot-NS1-functional
 - path: Icons/upb_logo.png
   type: image/png
 - path: Licenses/LICENSE
