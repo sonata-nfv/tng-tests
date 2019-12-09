@@ -5,11 +5,11 @@ Library         Collections
 Library         DateTime
 
 *** Variables ***
-${VNV_HOST}     http://int-vnv.5gtango.eu
-${SP_HOST}      http://172.31.8.180
+${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
+${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
-${NS_PACKAGE_NAME}  eu.5gtango.tng-smpilot-ns1-k8s-egm.1.0.tgo
-${TST_PACKAGE_NAME}  eu.5gtango.industrial-pilot-test-egm.1.0.tgo
+${NS_PACKAGE_NAME}  eu.5gtango.tng-smpilot-ns1-k8s-egm.1.1.tgo
+${TST_PACKAGE_NAME}  eu.5gtango.industrial-pilot-test-egm.1.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  tng-smpilot-ns1-k8s-egm
 ${TST_PACKAGE_SHORT_NAME}  industrial-pilot-test-egm
 ${READY}       READY
