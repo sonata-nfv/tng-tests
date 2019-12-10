@@ -4,14 +4,14 @@ description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
 name: "test-industrial-pilot-ns1"
 vendor: "eu.5gtango.egm"
-version: '1.0'
+version: '1.1'
 
 service_platforms:
   - "SONATA"
 test_category:
   - "benchmarking"
 testing_tags:
-  - "industrial-pilot-broker"
+  - "industrial-pilot-broker-egm"
 
 phases:
   - id: setup
@@ -56,9 +56,9 @@ phases:
       run: mqttprobe
   - id: verification
     steps:
-    - step: parser
+    - step: mqttprobe
       description: "Check obtained results"
-      name: parser
+      name: mqttprobe
       conditions:
           - condition: present
             file: results.out

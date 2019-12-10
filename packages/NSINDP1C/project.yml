@@ -6,7 +6,7 @@ files:
   tags:
   - eu.5gtango
   testing_tags:
-  - industrial-pilot-broker
+  - industrial-pilot-broker-egm
   - industrial-pilot-NS1-functional
 - path: Definitions/vnfd/vnfd_cc.yml
   type: application/vnd.5gtango.vnfd
@@ -20,7 +20,7 @@ files:
   - eu.5gtango
 package:
   name: tng-smpilot-ns1-k8s-egm
-  version: '1.0'
+  version: '1.1'
   maintainer: Manuel Peuster (Paderborn University)
   vendor: eu.5gtango
   description: 'Smart manufacturing pilot: Factory edge service (NS1) for vim-emu.'

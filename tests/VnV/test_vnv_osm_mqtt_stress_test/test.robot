@@ -5,8 +5,8 @@ Library         Collections
 Library         DateTime
 
 *** Variables ***
-${VNV_HOST}     http://int-vnv.5gtango.eu
-${SP_HOST}      http://172.31.8.163
+${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
+${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.egm.mqtt-osm-cloud-init.0.1.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.egm.mqtt-osm-stress-test.0.9.tgo
@@ -37,7 +37,7 @@ Upload the TST Package
     ${result}=      Upload Package      ${FILE_SOURCE_DIR}/${TST_PACKAGE_NAME}
     Should Be True     ${result[0]}
 Wait For Service Instance Ready
-    Set SP Path     ${VNV_HOST}
+    Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
     Sleep   120
