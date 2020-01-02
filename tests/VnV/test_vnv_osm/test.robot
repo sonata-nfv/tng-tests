@@ -5,13 +5,13 @@ Library         Collections
 Library         DateTime
 
 *** Variables ***
-${VNV_HOST}     http://pre-int-vnv-bcn.5gtango.eu
+${VNV_HOST}     http://int-vnv-bcn.5gtango.eu
 ${SP_HOST}      http://qual-sp-bcn.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1v_cirros_osm.0.1.tgo
-${TST_PACKAGE_NAME}  eu.5gtango.generic-probes-test-pingonly.0.1.tgo
+${TST_PACKAGE_NAME}  eu.5gtango.generic-probes-test-pingonly-osm.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  test-ns-nsid1v-cirros-osm
-${TST_PACKAGE_SHORT_NAME}  generic-probes-test-pingonly
+${TST_PACKAGE_SHORT_NAME}  generic-probes-test-pingonly-osm
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated
@@ -43,7 +43,7 @@ Wait For Test Execution
     #get test uuid from package
     @{TESTS} =    Get Test Descriptors
     FOR    ${TEST}    IN  @{TESTS[1]}
-        Run Keyword If    '${TEST['name']}'== 'test-generic-probes' and '${TEST['vendor']}'== 'eu.5gtango.optare' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
+        Run Keyword If    '${TEST['name']}'== 'test-generic-probes-osm' and '${TEST['vendor']}'== 'eu.5gtango.optare' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
     END
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Obtain GrayLogs
