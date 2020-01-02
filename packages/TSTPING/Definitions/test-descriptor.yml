@@ -28,7 +28,7 @@ phases:
             name: ping
             parameters:
               - key: EXTERNAL_IP
-                value: '$(testvnf/endpoints/name:id/address)'
+                value: '$(testvnf/endpoints/id:mgmt/address)'
   - id: exercise
     steps:
       - command: /bin/sh
