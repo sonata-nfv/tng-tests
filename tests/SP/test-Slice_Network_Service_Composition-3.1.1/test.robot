@@ -47,7 +47,7 @@ Network Slice Template On-Boarding
 Network Slice Instantiation
     log     ${NSI_NAME}
     log     ${NSI_DESCRIPTION}
-    Set Timeout    600
+    Set Timeout    ${600}
     ${date} = 	Get Current Date
     ${nsi_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_result}
