@@ -40,7 +40,7 @@ Deploying Service
     Set Suite Variable     ${REQUEST}  ${init[1]}
     Log     ${REQUEST}
 Wait For Ready
-    Wait until Keyword Succeeds     3 min   5 sec   Check Status
+    Wait until Keyword Succeeds     5 min   5 sec   Check Status
     Set SIU
 Terminate Service
     ${ter} =    Service Terminate   ${TERMINATE}
