@@ -46,6 +46,7 @@ Network Slice Template On-Boarding
 
 First Network Slice Instantiation
     ${date}= 	Get Current Date
+    Set Timeout    ${600}    
     ${nsi_1_result}=    Slice Instantiate     ${nst_uuid}    name=${NSI_1_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_1_result}
     Should Be True     ${nsi_1_result[0]}
@@ -59,6 +60,7 @@ Validates First Instantiation Process
 
 Second Network Slice Instantiation
     ${date}= 	Get Current Date
+    Set Timeout    ${600}    
     ${nsi_2_result}=    Slice Instantiate     ${nst_uuid}    name=${NSI_2_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_2_result}
     Should Be True     ${nsi_2_result[0]}
