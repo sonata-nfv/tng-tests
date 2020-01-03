@@ -76,6 +76,11 @@ Wait For Service Instance Ready
 
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
+    #get test uuid from package
+    @{TESTS} =    Get Test Descriptors
+    FOR    ${TEST}    IN  @{TESTS[1]}
+        Run Keyword If    '${TEST['name']}'== 'test-immersive-media-parser-multi-cases' and '${TEST['vendor']}'== 'eu.5gtango.atos' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
+    END
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Check No Running Instances
 #Setting the SP Path
@@ -104,6 +109,9 @@ Check Request Status
     Set Global Variable   ${INSTANCE_UUID}      ${requests[1]['instance_uuid']}
     Should Be Equal    ${READY}  ${requests[1]['status']}
 Check Test Result Status
-    ${test_uuid} =     Get Test Uuid By Instance Uuid   ${INSTANCE_UUID}
-    ${results} =    Get Test Result     ${test_uuid[1][0]['uuid']}
+    ${plans} =    Get Test Plans
+    FOR    ${plan}    IN  @{plans[1]}
+        Run Keyword If    '${plan['test_uuid']}'== '${TEST_UUID}'    Set Suite Variable    ${TEST_RESULT_UUID}    ${plan['test_result_uuid']}
+    END
+    ${results} =    Get Test Result     ${TEST_RESULT_UUID}
     Should Be Equal     ${PASSED}   ${results[1]['status']}
