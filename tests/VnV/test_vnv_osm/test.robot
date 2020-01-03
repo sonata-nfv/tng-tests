@@ -5,8 +5,8 @@ Library         Collections
 Library         DateTime
 
 *** Variables ***
-${VNV_HOST}     http://int-vnv-bcn.5gtango.eu
-${SP_HOST}      http://qual-sp-bcn.5gtango.eu
+${VNV_HOST}     http://int-vnv.5gtango.eu
+${SP_HOST}      http://sta-sp-ave-3.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.test-ns-nsid1v_cirros_osm.0.1.tgo
 ${TST_PACKAGE_NAME}  eu.5gtango.generic-probes-test-pingonly-osm.0.1.tgo
