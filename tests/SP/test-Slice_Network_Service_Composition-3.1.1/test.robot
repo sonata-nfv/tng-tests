@@ -14,6 +14,7 @@ ${NSI_NAME}                sliceTest_311-
 ${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1
 ${INSTANTIATED}            INSTANTIATED
 ${TERMINATED}              TERMINATED
+${TIMEOUT}                 600
 
 *** Test Cases ***
 Setting Up Test Environment
@@ -47,6 +48,7 @@ Network Slice Template On-Boarding
 Network Slice Instantiation
     log     ${NSI_NAME}
     log     ${NSI_DESCRIPTION}
+    Set Timeout ${TIMEOUT}
     ${date} = 	Get Current Date
     ${nsi_result} =    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_result}
