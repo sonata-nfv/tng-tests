@@ -78,6 +78,7 @@ phases:
     output:
     - {results: logs.txt}
     run: initiator
+    start_delay: 10    
   - command: /bin/sh
     description: "Starting the CPE that simulates the camera"
     entrypoint: /app/entrypoint.sh
