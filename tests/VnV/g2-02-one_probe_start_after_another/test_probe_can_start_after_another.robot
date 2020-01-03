@@ -120,8 +120,8 @@ Check Result Of Test Case
     Log  ${TEST_RESULT[1]['results']}
 
     # A loop should be implemented to obtain the results for the different probes.
-    Set Suite Variable  ${RESULT_PROBE_PING}   ${TEST_RESULT[1]['results'][0]['ping']}
-    Set Suite Variable  ${RESULT_PROBE_NETCAT}   ${TEST_RESULT[1]['results'][1]['netcat']}
+    Set Suite Variable  ${RESULT_PROBE_PING}   ${TEST_RESULT[1]['results'][1]['ping']}
+    Set Suite Variable  ${RESULT_PROBE_NETCAT}   ${TEST_RESULT[1]['results'][0]['netcat']}
     Log  ${RESULT_PROBE_PING}
     Log  ${RESULT_PROBE_NETCAT}
 
