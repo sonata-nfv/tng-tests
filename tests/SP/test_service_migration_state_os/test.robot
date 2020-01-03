@@ -17,7 +17,7 @@ ${USERNAME}     cirros
 ${PASSWORD}     cubswin:)
 ${INFRA_FILE_PATH}    ../infra.yaml
 ${First_VIM}     athens-33
-${Second_VIM}     athens-0
+${Second_VIM}     aveiro-31
 
 *** Test Cases ***
 Setting the SP Path
