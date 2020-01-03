@@ -37,7 +37,7 @@ Wait For Service Instance Ready
     Set SP Path     ${SP_HOST}
     ${result} =     Sp Health Check
     Should Be True   ${result}
-    Sleep   120
+    #Sleep   120
     Wait until Keyword Succeeds     3 min   1 sec   Check Create Service Request
     ${request_list} =   Get Requests
     Set Suite Variable  ${REQUEST}  ${request_list[1][0]['request_uuid']}
