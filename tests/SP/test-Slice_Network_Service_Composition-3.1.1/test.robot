@@ -14,7 +14,6 @@ ${NSI_NAME}                sliceTest_311-
 ${NSI_DESCRIPTION}         Testing_slice_test_case_3.1.1
 ${INSTANTIATED}            INSTANTIATED
 ${TERMINATED}              TERMINATED
-${TIMEOUT}                 600
 
 *** Test Cases ***
 Setting Up Test Environment
