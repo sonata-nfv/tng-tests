@@ -42,6 +42,7 @@ Upload the Package
     Set Suite Variable    ${SERVICE_UUID}    ${service[1]}
     Log     ${SERVICE_UUID}
 Generate the SLA Template
+    Set Timeout    ${600}
     ${result}=      Create Sla Template         templateName=${sla_name}   nsd_uuid=${SERVICE_UUID}   expireDate=20/12/2030   guaranteeId=g1   provider_name=UPRC   dflavour_name=    template_initiator=admin    provider_name=admin   service_licence_type=public   allowed_service_instances=5    service_licence_expiration_date=20/12/2030
     Set Suite Variable     ${SLA_UUID}   ${result[1]}
     Should be True      ${result[0]}
