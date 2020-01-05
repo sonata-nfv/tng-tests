@@ -49,7 +49,7 @@ Wait For Test Execution
     #get test uuid from package
     @{TESTS} =    Get Test Descriptors
     FOR    ${TEST}    IN  @{TESTS[1]}
-        Run Keyword If    '${TEST['name']}'== 'mqtt-osm-stress-test' and '${TEST['vendor']}'== 'eu.5gtango.optare' and '${TEST['version']}'== '0.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
+        Run Keyword If    '${TEST['name']}'== 'test-industrial-pilot-ns1' and '${TEST['vendor']}'== 'eu.5gtango.egm' and '${TEST['version']}'== '1.1'    Set Global Variable   ${TEST_UUID}      ${TEST['uuid']}
     END
     Wait until Keyword Succeeds     20 min   5 sec   Check Test Result Status
 Obtain GrayLogs
