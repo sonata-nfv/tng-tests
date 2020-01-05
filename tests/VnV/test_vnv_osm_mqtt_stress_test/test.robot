@@ -36,14 +36,6 @@ Upload the NS Package
 Upload the TST Package
     ${result}=      Upload Package      ${FILE_SOURCE_DIR}/${TST_PACKAGE_NAME}
     Should Be True     ${result[0]}
-Wait For Service Instance Ready
-    Set SP Path     ${SP_HOST}
-    ${result} =     Sp Health Check
-    Should Be True   ${result}
-    Sleep   120
-    ${request_list} =   Get Requests
-    Set Suite Variable  ${REQUEST}  ${request_list[1][0]['request_uuid']}
-    Wait until Keyword Succeeds     5 min   5 sec   Check Request Status
 Wait For Test Execution
     Set SP Path     ${VNV_HOST}
     #get test uuid from package
