@@ -63,6 +63,7 @@ Upload the Slice Template
 Deploy a Network Slice Instance
     Log     ${NSI_NAME}
     Log     ${NSI_DESCRIPTION}
+    Set Timeout    ${600}    
     ${date}= 	Get Current Date
     ${nsi_result}=    Slice Instantiate     ${nst_uuid}    name=${NSI_NAME}${date}    description=${NSI_DESCRIPTION}
     Log     ${nsi_result}
