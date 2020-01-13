@@ -13,7 +13,7 @@ echo "port = $PORT"
 echo "packet size = $SIZE"
 echo "messages per client = $COUNT"
 echo "clients = $CLIENTS"
-echo "rounds = $ROUNDS"
+echo "rounds = $( eval echo {1..$ROUNDS} )"
 echo "qos = $QOS"
 
 echo "******* mqttprobe: executing benchmark *******"
@@ -21,7 +21,8 @@ echo "******* mqttprobe: executing benchmark *******"
 for i in $( eval echo {1..$ROUNDS} )
 do
     echo "Executing round $i"
-    mqtt-benchmark --broker tcp://$IP:$PORT --count $(COUNT) --size $(SIZE) --clients $(( CLIENTS * i )) --qos $QOS --format json --username $USERNAME --password $PASSWORD > $RESULTS_FILE
+    echo "mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json"
+    mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json >> $RESULTS_FILE
 	sleep 1
 done
 
