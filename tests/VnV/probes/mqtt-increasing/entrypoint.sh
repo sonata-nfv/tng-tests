@@ -2,6 +2,7 @@
 
 echo "******* mqttprobe: starting entrypoint.sh ******"
 
+set -e
 source /app/config.cfg
 
 echo "******* mqttprobe: creating folder /output/${PROBE}/${HOSTNAME} *******"
@@ -22,7 +23,7 @@ for i in $( eval echo {1..$ROUNDS} )
 do
     echo "Executing round $i"
     echo "mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json"
-    mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json >> $RESULTS_FILE
+    mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json --quiet >> $RESULTS_FILE
 	sleep 1
 done
 
