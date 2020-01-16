@@ -2,16 +2,16 @@
 author: "Aureliano Sinatra (EGM)"
 description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
-name: "test-industrial-pilot-ns1-rampup"
+name: "test-industrial-pilot-ns1-low-data-rate"
 vendor: "eu.5gtango.egm"
-version: '0.7'
+version: '0.1'
 
 service_platforms:
   - "SONATA"
 test_category:
   - "benchmarking"
 testing_tags:
-  - "IPreq008"
+  - "IPreq013-lowdr"
 
 phases:
   - id: setup
@@ -25,7 +25,7 @@ phases:
       probes:
       - id: mqttprobe
         description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-probe:v2.0"
+        image: "easyglobalmarket/mqtt-probe:v3.0"
         name: mqttprobe
         parameters:
         - key: IP
@@ -39,11 +39,11 @@ phases:
         - key: SIZE
           value: '125' 
         - key: ROUNDS
-          value: '5'
+          value: '100'
         - key: QOS
-          value: '2'
+          value: '2' 
         - key: INTERVAL
-          value: '20'        
+          value: '20'       
   - id: exercise
     steps:
     - command: /bin/sh

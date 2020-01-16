@@ -9,6 +9,9 @@ files:
   - industrial-pilot-broker-egm
   - industrial-pilot-NS1-functional
   - IPreq008
+  - IPreq008-crash
+  - IPreq013-lowdr
+  - IPreq09
 - path: Definitions/vnfd/vnfd_cc.yml
   type: application/vnd.5gtango.vnfd
   tags:
@@ -19,7 +22,7 @@ files:
   - eu.5gtango
 package:
   name: tng-smpilot-ns1-k8s-egm
-  version: '1.3'
+  version: '1.7'
   maintainer: Manuel Peuster (Paderborn University)
   vendor: eu.5gtango
   description: 'Smart manufacturing pilot: Factory edge service (NS1) for vim-emu.'
