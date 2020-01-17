@@ -8,19 +8,19 @@ echo "******* mqttprobe: creating folder /output/${PROBE}/${HOSTNAME} *******"
 
 mkdir -p /output/${PROBE}/${HOSTNAME}
 
-echo "ip = $IP"
-echo "port = $PORT"
-echo "rounds = $( eval echo {1..$ROUNDS} )"
-echo "interval = $INTERVAL"
-echo "TOPIC = $TOPIC"
-echo "CLIENTS = $CLIENTS"
-echo "COUNT = $COUNT"
+echo "mqtt-pubsub ip = $IP"
+echo "mqtt-pubsub port = $PORT"
+echo "mqtt-pubsub rounds = $( eval echo {1..$ROUNDS} )"
+echo "mqtt-pubsub interval = $INTERVAL"
+echo "mqtt-pubsub TOPIC = $TOPIC"
+echo "mqtt-pubsub CLIENTS = $CLIENTS"
+echo "mqtt-pubsub COUNT = $COUNT"
 
 echo "******* mqttprobe: executing benchmark *******"
 
 sleep $INTERVAL 
 
-for (( i=1; i<=$ROUNDS; c++ ))
+for i in $( eval echo {1..$ROUNDS} )
 do  
     echo "Executing round $i"
 	export DATE=$(($(date +%s%N)/1000000))
@@ -29,4 +29,4 @@ do
 	sleep $INTERVAL
 done
 
-echo "output redirect to: $RESULTS_FILE"
+echo "probe closed output redirect to $RESULTS_FILE"
