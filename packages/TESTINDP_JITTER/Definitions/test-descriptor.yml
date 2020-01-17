@@ -4,7 +4,7 @@ description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
 name: "test-industrial-pilot-ns1-jitter"
 vendor: "eu.5gtango.egm"
-version: '1.0'
+version: '1.3'
 
 service_platforms:
   - "SONATA"
@@ -32,12 +32,12 @@ phases:
           value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
         - key: PORT
           value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
-        - key: INTERVAL
-          value: '20'
         - key: TOPIC
           value: 'WIMMS1/EM63/DATE'
         - key: QOS
-          value: 0  
+          value: '0' 
+        - key: INTERVAL
+          value: '200'   
       - id: publisher
         description: "A service initial configuration container"
         image: "easyglobalmarket/mqtt-pub"
@@ -54,7 +54,7 @@ phases:
         - key: TOPIC
           value: 'WIMMS1/EM63/DATE'
         - key: CLIENTS
-          value: '1'
+          value: '100'
         - key: COUNT
           value: '1'     
   - id: exercise
@@ -79,6 +79,7 @@ phases:
       output:
       - {results: logs.txt}
       run: publisher  
+      start_delay: 10
   - id: verification
     steps:
     - step: subscriber

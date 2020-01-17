@@ -5,7 +5,7 @@ build:
 push:
 	docker push easyglobalmarket/mqtt-sub:latest	
 run:
-	docker run --rm -e "IP=192.168.99.100" -e "PORT=1883" -e "TOPIC=WIMMS1/#" -e "QOS=2"  --name mqtt-sub -d  easyglobalmarket/mqtt-sub
+	docker run --rm -e "IP=192.168.99.100" -e "PORT=1883" -e "TOPIC=WIMMS1/#" -e "QOS=2" -e "RESULTS_FILE=/output/res.txt" --name mqtt-sub -d  easyglobalmarket/mqtt-sub
 stop:
 	docker stop mqtt-sub
 	docker rm mqtt-sub

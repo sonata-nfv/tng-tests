@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "******* mqttprobe: starting entrypoint.sh ******"
+echo "******* mqttsub: starting entrypoint.sh ******"
 
 source /mqtt-pubsub/config.cfg
 
-echo "******* mqttprobe: creating folder /output/${PROBE}/${HOSTNAME} *******"
+echo "******* mqttsub: creating folder /output/${PROBE}/${HOSTNAME} *******"
 
 mkdir -p /output/${PROBE}/${HOSTNAME}
 
@@ -14,9 +14,10 @@ echo "interval = $INTERVAL"
 echo "TOPIC = $TOPIC"
 echo "QOS = $QOS"
 
-echo "******* mqttprobe: executing benchmark *******"
+echo "******* mqttsub: executing benchmark *******"
 
 echo "Subscribing:   mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS"
-mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS >> $RESULTS_FILE
 
-echo "output redirect to: $RESULTS_FILE"
+mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS --interval $INTERVAL --file $RESULTS_FILE
+
+echo "probe closed output redirect to $RESULTS_FILE"
