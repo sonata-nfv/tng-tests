@@ -12,9 +12,11 @@ echo "ip = $IP"
 echo "port = $PORT"
 echo "interval = $INTERVAL"
 echo "TOPIC = $TOPIC"
+echo "QOS = $QOS"
 
 echo "******* mqttprobe: executing benchmark *******"
 
-mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC
+echo "Subscribing:   mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS"
+mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS >> $RESULTS_FILE
 
 echo "output redirect to: $RESULTS_FILE"
