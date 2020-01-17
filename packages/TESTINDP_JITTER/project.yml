@@ -3,7 +3,7 @@ version: '0.5'
 package:
   vendor: eu.5gtango
   name: test-industrial-pilot-ns1-jitter
-  version: '0.7'
+  version: '1.0'
   maintainer: Aureliano Sinatra, EGM
   description: This is a 5GTANGO test package for mqtt Benchmarking
 files:

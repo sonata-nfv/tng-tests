@@ -4,7 +4,7 @@ description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
 name: "test-industrial-pilot-ns1-jitter"
 vendor: "eu.5gtango.egm"
-version: '0.7'
+version: '1.0'
 
 service_platforms:
   - "SONATA"
@@ -36,6 +36,8 @@ phases:
           value: '20'
         - key: TOPIC
           value: 'WIMMS1/EM63/DATE'
+        - key: QOS
+          value: 0  
       - id: publisher
         description: "A service initial configuration container"
         image: "easyglobalmarket/mqtt-pub"
@@ -48,7 +50,13 @@ phases:
         - key: INTERVAL
           value: '20'
         - key: ROUNDS
-          value: '10' 
+          value: '10'
+        - key: TOPIC
+          value: 'WIMMS1/EM63/DATE'
+        - key: CLIENTS
+          value: '1'
+        - key: COUNT
+          value: '1'     
   - id: exercise
     steps:
     - command: /bin/sh
@@ -79,6 +87,6 @@ phases:
       conditions:
           - condition: present
             file: results.out
-            find: 'OnMessage'
+            find: 'Latency'
             name: subscription-received
             verdict: pass

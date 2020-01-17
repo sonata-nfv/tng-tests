@@ -5,7 +5,7 @@ build:
 push:
 	docker push easyglobalmarket/mqtt-pub:latest	
 run:
-	docker run  -e "IP=$(ip)" -e "PORT=$(port)" -e "CLIENTS=$(clients)" -e "COUNT=$(count)" -e "SIZE=$(size)" -e "USERNAME=$(username)" -e "PASSWORD=$(password)" --name docker-mqtt-probe --net=egm easyglobalmarket/mqtt-probe
+	docker run --rm -e "IP=192.168.99.100" -e "PORT=1883" -e "TOPIC=WIMMS1/EM63/DATE" -e "ROUNDS=10" -e "INTERVAL=5"  --name mqtt-pub -d easyglobalmarket/mqtt-pub
 stop:
-	docker stop docker-mqtt-probe
-	docker rm docker-mqtt-probe
+	docker stop mqtt-pub
+	docker rm mqtt-pub

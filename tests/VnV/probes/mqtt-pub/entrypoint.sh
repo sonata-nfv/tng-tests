@@ -12,7 +12,9 @@ echo "ip = $IP"
 echo "port = $PORT"
 echo "rounds = $( eval echo {1..$ROUNDS} )"
 echo "interval = $INTERVAL"
-echo "BULK_DATA = $BULK_DATA"
+echo "TOPIC = $TOPIC"
+echo "CLIENTS = $CLIENTS"
+echo "COUNT = $COUNT"
 
 echo "******* mqttprobe: executing benchmark *******"
 
@@ -22,8 +24,8 @@ for (( i=1; i<=$ROUNDS; c++ ))
 do  
     echo "Executing round $i"
 	export DATE=$(($(date +%s%N)/1000000))
-	echo "mqtt-bench publish --host $IP --port $PORT --topic "WIMMS1/EM63/DATE"  --message $DATE 	 "
-	mqtt-bench publish --host $IP --port $PORT --topic "WIMMS1/EM63/DATE"  --message $DATE 	 
+	echo "mqtt-bench publish --host $IP --port $PORT --topic $TOPIC  --message $DATE 	 "
+	mqtt-bench publish --host $IP --port $PORT --topic $TOPIC  --thread-num $CLIENTS --publish-num $COUNT --message $DATE 	 
 	sleep $INTERVAL
 done
 

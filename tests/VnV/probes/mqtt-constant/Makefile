@@ -1,9 +1,9 @@
 build:
-	docker build -t easyglobalmarket/mqtt-probe:v3.0 .
+	docker build -t easyglobalmarket/mqtt-constant .
 push:
-	docker push easyglobalmarket/mqtt-probe:v3.0	
+	docker push easyglobalmarket/mqtt-constant	
 run:
-	docker run  -e "IP=$(ip)" -e "PORT=$(port)" -e "CLIENTS=$(clients)" -e "COUNT=$(count)" -e "SIZE=$(size)" -e "USERNAME=$(username)" -e "PASSWORD=$(password)" --name docker-mqtt-probe --net=egm easyglobalmarket/mqtt-probe
+	docker run  -e "IP=$(ip)" -e "PORT=$(port)" -e "CLIENTS=$(clients)" -e "COUNT=$(count)" -e "SIZE=$(size)" -e "USERNAME=$(username)" -e "PASSWORD=$(password)" --name mqtt-constant --net=egm easyglobalmarket/mqtt-constant
 stop:
-	docker stop docker-mqtt-probe
-	docker rm docker-mqtt-probe
+	docker stop mqtt-constant
+	docker rm mqtt-constant
