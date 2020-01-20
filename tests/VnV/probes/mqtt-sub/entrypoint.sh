@@ -1,18 +1,18 @@
 #!/bin/bash
 
-echo "******* mqttsub: starting entrypoint.sh ******"
+echo "******* mqttsubscriber: starting entrypoint.sh ******"
 
-source /mqtt-pubsub/config.cfg
+source /mqtt-subscriber/config.cfg
 
-echo "******* mqttsub: creating folder /output/${PROBE}/${HOSTNAME} *******"
+echo "******* mqttsubscriber: creating folder /output/${PROBE}/${HOSTNAME} *******"
 
 mkdir -p /output/${PROBE}/${HOSTNAME}
 
-echo "ip = $IP"
-echo "port = $PORT"
-echo "interval = $INTERVAL"
-echo "TOPIC = $TOPIC"
-echo "QOS = $QOS"
+echo "mqttsubscriber ip = $IP"
+echo "mqttsubscriber port = $PORT"
+echo "mqttsubscriber interval = $INTERVAL"
+echo "mqttsubscriber TOPIC = $TOPIC"
+echo "mqttsubscriber QOS = $QOS"
 
 echo "******* mqttsub: executing benchmark *******"
 
