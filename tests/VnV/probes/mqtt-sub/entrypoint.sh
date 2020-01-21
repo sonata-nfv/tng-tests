@@ -18,18 +18,19 @@ echo "******* mqttsub: executing benchmark *******"
 
 echo "Subscribing:   mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS"
 
-SUBSCRIBED = false
+subscribed=false
 
 START=$(date +%s)
+echo "Start: $NOW"
 
 while true
 do
-    NOW=`date '+%H%M'`
+    NOW=$(date +%s)
     echo "Time is now: $NOW"
     
-    if [ $SUBSCRIBED = false]
-    then
+    if [[ "$subscribed" == false ]]; then
         mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS --interval $INTERVAL --file $RESULTS_FILE
+        subscribed= true
     fi
 
 	END=$(date +%s)
@@ -37,7 +38,7 @@ do
 	echo "It took $DIFF seconds"
     
     sleep 1
-    if [ $DIFF -le $INTERVAL ]
+    if [ "$DIFF" -ge $INTERVAL ]
     then
         echo "Bye bye!"
         echo "probe closed output redirect to $RESULTS_FILE"
