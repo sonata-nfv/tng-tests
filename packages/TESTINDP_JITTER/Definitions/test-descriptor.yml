@@ -4,7 +4,7 @@ description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
 name: "test-industrial-pilot-ns1-jitter"
 vendor: "eu.5gtango.egm"
-version: '1.0'
+version: '1.9'
 
 service_platforms:
   - "SONATA"
@@ -25,22 +25,22 @@ phases:
       probes:
       - id: subscriber
         description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-sub"
+        image: "easyglobalmarket/mqtt-subscriber"
         name: subscriber
         parameters:
         - key: IP
           value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
         - key: PORT
           value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
-        - key: INTERVAL
-          value: '20'
         - key: TOPIC
-          value: 'WIMMS1/EM63/DATE'
+          value: 'test'
         - key: QOS
-          value: 0  
+          value: '0' 
+        - key: INTERVAL
+          value: '200'   
       - id: publisher
         description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-pub"
+        image: "easyglobalmarket/mqtt-publisher"
         name: publisher
         parameters:
         - key: IP
@@ -52,9 +52,9 @@ phases:
         - key: ROUNDS
           value: '10'
         - key: TOPIC
-          value: 'WIMMS1/EM63/DATE'
+          value: 'test'
         - key: CLIENTS
-          value: '1'
+          value: '100'
         - key: COUNT
           value: '1'     
   - id: exercise
@@ -62,23 +62,24 @@ phases:
     - command: /bin/sh
       dependencies: []
       description: "Starting the mqtt subscriber"
-      entrypoint: /mqtt-pubsub/entrypoint.sh
+      entrypoint: /mqtt-subscriber/entrypoint.sh
       index: 1
       instances: 1
       name: subscriber
       output:
-      - {results: logs.txt}
+      - {results: results.log}
       run: subscriber
     - command: /bin/sh
       dependencies: []
       description: "Starting the mqtt publisher"
-      entrypoint: /mqtt-pubsub/entrypoint.sh
+      entrypoint: /mqtt-publisher/entrypoint.sh
       index: 1
       instances: 1
       name: publisher
       output:
-      - {results: logs.txt}
+      - {results: results.log}
       run: publisher  
+      start_delay: 10
   - id: verification
     steps:
     - step: subscriber
@@ -86,7 +87,7 @@ phases:
       name: subscriber
       conditions:
           - condition: present
-            file: results.out
+            file: results.log
             find: 'Latency'
             name: subscription-received
             verdict: pass

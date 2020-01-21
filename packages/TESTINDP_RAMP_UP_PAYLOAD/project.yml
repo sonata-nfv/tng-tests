@@ -2,15 +2,15 @@ descriptor_extension: yml
 version: '0.5'
 package:
   vendor: eu.5gtango
-  name: test-industrial-pilot-ns1-jitter
-  version: '1.9'
+  name: industrial-pilot-test-egm-rampup-payload
+  version: '0.2'
   maintainer: Aureliano Sinatra, EGM
   description: This is a 5GTANGO test package for mqtt Benchmarking
 files:
 - path: Definitions/test-descriptor.yml
   type: application/vnd.5gtango.tstd
   testing_tags:
-  - IPreq09
+  - IPreq008-payload
 - path: Icons/upb_logo.png
   type: image/png
 - path: Licenses/LICENSE

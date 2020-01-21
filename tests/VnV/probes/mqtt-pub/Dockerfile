@@ -3,7 +3,7 @@ FROM python:3.7.2-slim
 LABEL maintainer="Aureliano Sinatra <sinaure@gmail.com>"
 
 
-ENV INSTALL_PATH /mqtt-pubsub
+ENV INSTALL_PATH /mqtt-publisher
 RUN mkdir -p $INSTALL_PATH
 
 WORKDIR $INSTALL_PATH
@@ -18,6 +18,6 @@ RUN pip install -r requirements.txt
 ADD entrypoint.sh $INSTALL_PATH
 ADD config.cfg $INSTALL_PATH
 ADD input.txt $INSTALL_PATH
+ENV PROBE "publisher"
 
-
-ENTRYPOINT [ "/mqtt-pubsub/entrypoint.sh" ]
+ENTRYPOINT [ "/mqtt-publisher/entrypoint.sh" ]

@@ -1,32 +1,31 @@
 #!/bin/bash
 
-echo "******* mqttprobe: starting entrypoint.sh ******"
+echo "******* publisher: starting entrypoint.sh ******"
 
-source /mqtt-pubsub/config.cfg
+source /mqtt-publisher/config.cfg
 
 echo "******* mqttprobe: creating folder /output/${PROBE}/${HOSTNAME} *******"
 
 mkdir -p /output/${PROBE}/${HOSTNAME}
 
-echo "ip = $IP"
-echo "port = $PORT"
-echo "rounds = $( eval echo {1..$ROUNDS} )"
-echo "interval = $INTERVAL"
-echo "TOPIC = $TOPIC"
-echo "CLIENTS = $CLIENTS"
-echo "COUNT = $COUNT"
+echo "mqtt-publisher ip = $IP"
+echo "mqtt-publisher port = $PORT"
+echo "mqtt-publisher rounds = $( eval echo {1..$ROUNDS} )"
+echo "mqtt-publisher interval = $INTERVAL"
+echo "mqtt-publisher TOPIC = $TOPIC"
+echo "mqtt-publisher CLIENTS = $CLIENTS"
+echo "mqtt-publisher COUNT = $COUNT"
 
-echo "******* mqttprobe: executing benchmark *******"
+echo "******* publisher: executing benchmark *******"
 
 sleep $INTERVAL 
 
-for (( i=1; i<=$ROUNDS; c++ ))
+for i in $( eval echo {1..$ROUNDS} )
 do  
     echo "Executing round $i"
-	export DATE=$(($(date +%s%N)/1000000))
-	echo "mqtt-bench publish --host $IP --port $PORT --topic $TOPIC  --message $DATE 	 "
-	mqtt-bench publish --host $IP --port $PORT --topic $TOPIC  --thread-num $CLIENTS --publish-num $COUNT --message $DATE 	 
+	echo "mqtt-bench publish --host $IP --port $PORT --topic $TOPIC  --message $(($(date +%s%N)/1000000)) 	 "
+	mqtt-bench publish --host $IP --port $PORT --topic $TOPIC  --thread-num $CLIENTS --publish-num $COUNT --message $(($(date +%s%N)/1000000))	 
 	sleep $INTERVAL
 done
 
-echo "output redirect to: $RESULTS_FILE"
+echo "probe closed output redirect to $RESULTS_FILE"
