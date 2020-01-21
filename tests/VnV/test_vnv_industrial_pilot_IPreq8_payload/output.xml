@@ -1,0 +1,2653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.4 on win32)" generated="20200121 09:29:12.442" rpa="false">
+<suite id="s1" name="Test" source="C:\Users\asinatra\Desktop\ECLIPSE_WORKSPACE\tng-tests\tests\VnV\test_vnv_industrial_pilot_IPreq8_payload\test.robot">
+<test id="s1-t1" name="Setting the VnV Path">
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<assign>
+<var>${from_date}</var>
+</assign>
+<msg timestamp="20200121 09:29:12.943" level="INFO">${from_date} = 2020-01-21 09:29:12.943</msg>
+<status status="PASS" starttime="20200121 09:29:12.942" endtime="20200121 09:29:12.943"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${from_date}</arg>
+</arguments>
+<msg timestamp="20200121 09:29:12.944" level="INFO">${from_date} = 2020-01-21 09:29:12.943</msg>
+<status status="PASS" starttime="20200121 09:29:12.943" endtime="20200121 09:29:12.944"></status>
+</kw>
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${VNV_HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:12.944" endtime="20200121 09:29:12.944"></status>
+</kw>
+<kw name="Sp Health Check" library="tnglib">
+<doc>Check if SP is reachable.</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200121 09:29:13.459" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20200121 09:29:12.944" endtime="20200121 09:29:13.459"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:13.460" endtime="20200121 09:29:13.460"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:12.942" endtime="20200121 09:29:13.461" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Clean the Packages">
+<kw name="Get Packages" library="tnglib">
+<doc>Returns info on all available packages.</doc>
+<assign>
+<var>@{PACKAGES}</var>
+</assign>
+<msg timestamp="20200121 09:29:13.891" level="INFO">@{PACKAGES} = [ True | [{'package_uuid': '04f6b6cd-80ca-45fc-8963-0fbefdfbaa9f', 'name': 'industrial-pilot-test-egm-rampup', 'version': '0.7', 'created_at': '2020-01-16T10:53:21.142+00:00'}, {'package_uuid': '92212...</msg>
+<status status="PASS" starttime="20200121 09:29:13.462" endtime="20200121 09:29:13.892"></status>
+</kw>
+<kw name="${PACKAGE} IN [ @{PACKAGES[1]} ]" type="for">
+<kw name="${PACKAGE} = {'package_uuid': '04f6b6cd-80ca-45fc-8963-0fbefdfbaa9f', 'name': 'industrial-pilot-test-egm-rampup', 'version': '0.7', 'created_at': '2020-01-16T10:53:21.142+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:13.892" endtime="20200121 09:29:13.893"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.892" endtime="20200121 09:29:13.893"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '92212b3a-9fba-4881-9d6e-4bdb51880820', 'name': 'ns-mediapilot-service', 'version': '0.9', 'created_at': '2020-01-16T23:15:39.121+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:13.894" endtime="20200121 09:29:13.895"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.893" endtime="20200121 09:29:13.895"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'bfb3bcc6-4eba-408a-ac16-618a762377f6', 'name': 'media-mse-stress-test', 'version': '0.2', 'created_at': '2020-01-16T23:16:43.970+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:13.895" endtime="20200121 09:29:13.896"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.895" endtime="20200121 09:29:13.896"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '24a8eac3-6ce4-4685-807e-cf33753778d5', 'name': 'test-industrial-pilot-ns1-jitter', 'version': '1.9', 'created_at': '2020-01-20T13:42:59.928+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:13.896" endtime="20200121 09:29:13.897"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.896" endtime="20200121 09:29:13.897"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '335b8829-7936-4cbd-8621-d1b1dca6d639', 'name': 'tng-smpilot-ns1-k8s-egm', 'version': '1.8', 'created_at': '2020-01-20T15:20:39.470+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<kw name="Remove Package" library="tnglib">
+<doc>Removes one package from the catalogue.</doc>
+<arguments>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:13.898" endtime="20200121 09:29:14.323"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.897" endtime="20200121 09:29:14.323"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.897" endtime="20200121 09:29:14.323"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'a56acf5c-b39a-45c0-9001-55ae5cdd36f2', 'name': 'industrial-pilot-test-egm-rampup-payload', 'version': '0.1', 'created_at': '2020-01-20T15:20:42.511+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<kw name="Remove Package" library="tnglib">
+<doc>Removes one package from the catalogue.</doc>
+<arguments>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:14.324" endtime="20200121 09:29:14.753"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:14.323" endtime="20200121 09:29:14.753"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:14.323" endtime="20200121 09:29:14.753"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.892" endtime="20200121 09:29:14.753"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:13.461" endtime="20200121 09:29:14.753" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Upload the NS Package">
+<kw name="Upload Package" library="tnglib">
+<doc>Uploads a package from file.</doc>
+<arguments>
+<arg>${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200121 09:29:18.551" level="INFO">${result} = (True, '0f71da3a-0a7d-4c21-9ced-3c2e563edb50')</msg>
+<status status="PASS" starttime="20200121 09:29:14.754" endtime="20200121 09:29:18.551"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:18.551" endtime="20200121 09:29:18.552"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:14.754" endtime="20200121 09:29:18.552" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Upload the TST Package">
+<kw name="Upload Package" library="tnglib">
+<doc>Uploads a package from file.</doc>
+<arguments>
+<arg>${FILE_SOURCE_DIR}/${TST_PACKAGE_NAME}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200121 09:29:21.113" level="INFO">${result} = (True, 'd97762df-e6c0-4cb2-9280-0fcb80e805ee')</msg>
+<status status="PASS" starttime="20200121 09:29:18.554" endtime="20200121 09:29:21.114"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${result[1]}</arg>
+</arguments>
+<msg timestamp="20200121 09:29:21.117" level="INFO">d97762df-e6c0-4cb2-9280-0fcb80e805ee</msg>
+<status status="PASS" starttime="20200121 09:29:21.114" endtime="20200121 09:29:21.118"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:21.118" endtime="20200121 09:29:21.120"></status>
+</kw>
+<status status="PASS" starttime="20200121 09:29:18.553" endtime="20200121 09:29:21.120" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Wait For Service Instance Ready">
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${SP_HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:21.123" endtime="20200121 09:29:21.124"></status>
+</kw>
+<kw name="Sp Health Check" library="tnglib">
+<doc>Check if SP is reachable.</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200121 09:29:21.633" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20200121 09:29:21.124" endtime="20200121 09:29:21.633"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:29:21.634" endtime="20200121 09:29:21.635"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>120</arg>
+</arguments>
+<msg timestamp="20200121 09:31:21.636" level="INFO">Slept 2 minutes</msg>
+<status status="PASS" starttime="20200121 09:29:21.635" endtime="20200121 09:31:21.636"></status>
+</kw>
+<kw name="Get Requests" library="tnglib">
+<doc>Returns info on all requests.</doc>
+<assign>
+<var>${request_list}</var>
+</assign>
+<msg timestamp="20200121 09:31:22.551" level="INFO">${request_list} = (True, [{'request_uuid': '11472955-863d-4547-adf3-f7fc371b68e7', 'request_type': 'CREATE_SERVICE', 'status': 'INSTANTIATING', 'created_at': '2020-01-21T08:29:38.755Z', 'instance_uuid': ''}, {'request_...</msg>
+<status status="PASS" starttime="20200121 09:31:21.637" endtime="20200121 09:31:22.551"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+<arg>${request_list[1][0]['request_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:22.554" level="INFO">${REQUEST} = 11472955-863d-4547-adf3-f7fc371b68e7</msg>
+<status status="PASS" starttime="20200121 09:31:22.552" endtime="20200121 09:31:22.554"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>5 min</arg>
+<arg>5 sec</arg>
+<arg>Check Request Status</arg>
+</arguments>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:23.002" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:22.556" endtime="20200121 09:31:23.003"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:23.005" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:23.003" endtime="20200121 09:31:23.005"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:23.007" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:23.006" endtime="20200121 09:31:23.007"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:22.555" endtime="20200121 09:31:23.007"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:28.483" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:28.008" endtime="20200121 09:31:28.483"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:28.484" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:28.483" endtime="20200121 09:31:28.484"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:28.486" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:28.485" endtime="20200121 09:31:28.486"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:28.008" endtime="20200121 09:31:28.486"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:33.936" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:33.487" endtime="20200121 09:31:33.936"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:33.937" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:33.936" endtime="20200121 09:31:33.937"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:33.939" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:33.938" endtime="20200121 09:31:33.939"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:33.487" endtime="20200121 09:31:33.939"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:39.458" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:38.941" endtime="20200121 09:31:39.458"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:39.461" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:39.459" endtime="20200121 09:31:39.462"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:39.465" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:39.462" endtime="20200121 09:31:39.465"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:38.940" endtime="20200121 09:31:39.466"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:44.913" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:44.469" endtime="20200121 09:31:44.913"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:44.917" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:44.914" endtime="20200121 09:31:44.918"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:44.920" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:44.918" endtime="20200121 09:31:44.920"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:44.467" endtime="20200121 09:31:44.920"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:50.390" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:49.921" endtime="20200121 09:31:50.390"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:50.391" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:50.390" endtime="20200121 09:31:50.391"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:50.392" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:50.391" endtime="20200121 09:31:50.392"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:49.921" endtime="20200121 09:31:50.392"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:31:55.859" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:31:55.395" endtime="20200121 09:31:55.859"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:55.861" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:31:55.859" endtime="20200121 09:31:55.861"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:31:55.863" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:55.861" endtime="20200121 09:31:55.863"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:31:55.394" endtime="20200121 09:31:55.863"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:01.310" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:00.864" endtime="20200121 09:32:01.310"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:01.315" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:01.312" endtime="20200121 09:32:01.316"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:01.321" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:01.317" endtime="20200121 09:32:01.321"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:00.864" endtime="20200121 09:32:01.321"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:06.768" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:06.322" endtime="20200121 09:32:06.769"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:06.769" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:06.769" endtime="20200121 09:32:06.769"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:06.770" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:06.770" endtime="20200121 09:32:06.770"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:06.321" endtime="20200121 09:32:06.770"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:12.234" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:11.772" endtime="20200121 09:32:12.234"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:12.235" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:12.235" endtime="20200121 09:32:12.236"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:12.237" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:12.236" endtime="20200121 09:32:12.237"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:11.771" endtime="20200121 09:32:12.237"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:17.677" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:17.238" endtime="20200121 09:32:17.677"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:17.679" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:17.678" endtime="20200121 09:32:17.680"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:17.682" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:17.680" endtime="20200121 09:32:17.682"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:17.237" endtime="20200121 09:32:17.683"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:23.150" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:22.685" endtime="20200121 09:32:23.150"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:23.152" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:23.150" endtime="20200121 09:32:23.152"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:23.156" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:23.154" endtime="20200121 09:32:23.156"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:22.684" endtime="20200121 09:32:23.157"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:28.609" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:28.158" endtime="20200121 09:32:28.609"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:28.613" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:28.610" endtime="20200121 09:32:28.614"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:28.618" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:28.614" endtime="20200121 09:32:28.618"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:28.158" endtime="20200121 09:32:28.619"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:34.133" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:33.622" endtime="20200121 09:32:34.133"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:34.136" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:34.134" endtime="20200121 09:32:34.137"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:34.139" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:34.137" endtime="20200121 09:32:34.140"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:33.622" endtime="20200121 09:32:34.140"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:39.597" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:39.142" endtime="20200121 09:32:39.597"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:39.598" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:39.597" endtime="20200121 09:32:39.598"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:39.599" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:39.598" endtime="20200121 09:32:39.599"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:39.141" endtime="20200121 09:32:39.599"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:45.067" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:44.602" endtime="20200121 09:32:45.067"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:45.068" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:45.067" endtime="20200121 09:32:45.068"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:45.069" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:45.068" endtime="20200121 09:32:45.069"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:44.601" endtime="20200121 09:32:45.069"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:50.557" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:50.070" endtime="20200121 09:32:50.557"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:50.558" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:50.557" endtime="20200121 09:32:50.558"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:50.559" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:50.559" endtime="20200121 09:32:50.560"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:50.070" endtime="20200121 09:32:50.560"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:32:56.009" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:32:55.561" endtime="20200121 09:32:56.009"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:56.010" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:32:56.009" endtime="20200121 09:32:56.010"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:32:56.011" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:32:56.011" endtime="20200121 09:32:56.012"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:32:55.561" endtime="20200121 09:32:56.012"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:01.481" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:01.019" endtime="20200121 09:33:01.481"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:01.483" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:01.482" endtime="20200121 09:33:01.483"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:01.484" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:01.483" endtime="20200121 09:33:01.484"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:01.015" endtime="20200121 09:33:01.484"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:06.974" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:06.487" endtime="20200121 09:33:06.974"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:06.975" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:06.974" endtime="20200121 09:33:06.975"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:06.976" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:06.975" endtime="20200121 09:33:06.976"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:06.486" endtime="20200121 09:33:06.976"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:12.414" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:11.976" endtime="20200121 09:33:12.415"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:12.416" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:12.415" endtime="20200121 09:33:12.416"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:12.417" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:12.417" endtime="20200121 09:33:12.418"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:11.976" endtime="20200121 09:33:12.418"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:17.860" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:17.420" endtime="20200121 09:33:17.860"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:17.862" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:17.861" endtime="20200121 09:33:17.862"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:17.863" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:17.862" endtime="20200121 09:33:17.864"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:17.420" endtime="20200121 09:33:17.865"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:23.311" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:22.867" endtime="20200121 09:33:23.311"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:23.312" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:23.311" endtime="20200121 09:33:23.312"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:23.314" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:23.313" endtime="20200121 09:33:23.314"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:22.867" endtime="20200121 09:33:23.314"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:28.768" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:28.317" endtime="20200121 09:33:28.768"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:28.769" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:28.768" endtime="20200121 09:33:28.769"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:28.770" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:28.769" endtime="20200121 09:33:28.770"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:28.315" endtime="20200121 09:33:28.771"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:34.226" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:33.774" endtime="20200121 09:33:34.226"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:34.227" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:34.226" endtime="20200121 09:33:34.227"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:34.229" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:34.228" endtime="20200121 09:33:34.229"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:33.773" endtime="20200121 09:33:34.229"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:39.691" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:39.230" endtime="20200121 09:33:39.692"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:39.695" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:39.693" endtime="20200121 09:33:39.696"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:39.699" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:39.697" endtime="20200121 09:33:39.700"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:39.230" endtime="20200121 09:33:39.700"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:45.156" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:44.703" endtime="20200121 09:33:45.156"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:45.157" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:45.156" endtime="20200121 09:33:45.158"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:45.160" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:45.158" endtime="20200121 09:33:45.160"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:44.702" endtime="20200121 09:33:45.161"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:50.746" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:50.162" endtime="20200121 09:33:50.746"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:50.748" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:50.747" endtime="20200121 09:33:50.749"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:50.752" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:50.750" endtime="20200121 09:33:50.753"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:50.162" endtime="20200121 09:33:50.753"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:33:56.224" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:33:55.755" endtime="20200121 09:33:56.224"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:56.226" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:33:56.225" endtime="20200121 09:33:56.226"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:33:56.227" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:33:56.226" endtime="20200121 09:33:56.227"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:33:55.754" endtime="20200121 09:33:56.227"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:01.852" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:01.229" endtime="20200121 09:34:01.852"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:01.853" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:01.852" endtime="20200121 09:34:01.853"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:01.854" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:01.854" endtime="20200121 09:34:01.855"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:01.228" endtime="20200121 09:34:01.855"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:08.421" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:06.857" endtime="20200121 09:34:08.421"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:08.422" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:08.421" endtime="20200121 09:34:08.422"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:08.423" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:08.422" endtime="20200121 09:34:08.423"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:06.857" endtime="20200121 09:34:08.424"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:13.882" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:13.425" endtime="20200121 09:34:13.882"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:13.884" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:13.883" endtime="20200121 09:34:13.884"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:13.885" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:13.884" endtime="20200121 09:34:13.885"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:13.425" endtime="20200121 09:34:13.885"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:19.454" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:18.887" endtime="20200121 09:34:19.454"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:19.457" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:19.456" endtime="20200121 09:34:19.457"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:19.459" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:19.458" endtime="20200121 09:34:19.459"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:18.886" endtime="20200121 09:34:19.459"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:24.920" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:24.460" endtime="20200121 09:34:24.920"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:24.921" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:24.920" endtime="20200121 09:34:24.921"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:24.922" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:24.921" endtime="20200121 09:34:24.922"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:24.459" endtime="20200121 09:34:24.922"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:30.370" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:29.923" endtime="20200121 09:34:30.370"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:30.371" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:30.370" endtime="20200121 09:34:30.372"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:30.373" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:30.372" endtime="20200121 09:34:30.373"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:29.923" endtime="20200121 09:34:30.373"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:35.829" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:35.374" endtime="20200121 09:34:35.829"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:35.830" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:35.829" endtime="20200121 09:34:35.830"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:35.831" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:35.830" endtime="20200121 09:34:35.832"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:35.374" endtime="20200121 09:34:35.832"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:41.303" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:40.833" endtime="20200121 09:34:41.303"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:41.304" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:41.303" endtime="20200121 09:34:41.304"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:41.305" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:41.304" endtime="20200121 09:34:41.305"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:40.832" endtime="20200121 09:34:41.305"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:46.756" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:46.307" endtime="20200121 09:34:46.756"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:46.757" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:46.756" endtime="20200121 09:34:46.757"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:46.758" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:46.757" endtime="20200121 09:34:46.759"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:46.307" endtime="20200121 09:34:46.759"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:52.225" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:51.760" endtime="20200121 09:34:52.225"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:52.228" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:52.226" endtime="20200121 09:34:52.228"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:52.231" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:52.229" endtime="20200121 09:34:52.231"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:51.760" endtime="20200121 09:34:52.232"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:34:57.695" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:34:57.235" endtime="20200121 09:34:57.695"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:57.698" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:34:57.696" endtime="20200121 09:34:57.698"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:34:57.700" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:34:57.699" endtime="20200121 09:34:57.700"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:34:57.233" endtime="20200121 09:34:57.701"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:03.176" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:02.704" endtime="20200121 09:35:03.176"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:03.178" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:03.177" endtime="20200121 09:35:03.178"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:03.179" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:03.178" endtime="20200121 09:35:03.179"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:02.702" endtime="20200121 09:35:03.180"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:08.653" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:08.183" endtime="20200121 09:35:08.653"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:08.654" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:08.654" endtime="20200121 09:35:08.654"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:08.655" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:08.654" endtime="20200121 09:35:08.655"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:08.181" endtime="20200121 09:35:08.655"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:14.163" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:13.660" endtime="20200121 09:35:14.164"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:14.168" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:14.165" endtime="20200121 09:35:14.169"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:14.172" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:14.169" endtime="20200121 09:35:14.172"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:13.657" endtime="20200121 09:35:14.173"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:19.623" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:19.174" endtime="20200121 09:35:19.623"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:19.628" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:19.624" endtime="20200121 09:35:19.629"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:19.633" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:19.630" endtime="20200121 09:35:19.633"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:19.174" endtime="20200121 09:35:19.635"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:25.113" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:24.636" endtime="20200121 09:35:25.113"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:25.115" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:25.114" endtime="20200121 09:35:25.115"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:25.116" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:25.115" endtime="20200121 09:35:25.116"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:24.635" endtime="20200121 09:35:25.117"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:30.576" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:30.119" endtime="20200121 09:35:30.576"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:30.577" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:30.576" endtime="20200121 09:35:30.578"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:30.579" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:30.578" endtime="20200121 09:35:30.579"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:30.117" endtime="20200121 09:35:30.580"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:36.061" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:35.584" endtime="20200121 09:35:36.062"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:36.065" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:36.062" endtime="20200121 09:35:36.065"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:36.070" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:36.066" endtime="20200121 09:35:36.070"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:35.582" endtime="20200121 09:35:36.070"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:41.518" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:41.072" endtime="20200121 09:35:41.518"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:41.519" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:41.518" endtime="20200121 09:35:41.519"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:41.520" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:41.519" endtime="20200121 09:35:41.520"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:41.072" endtime="20200121 09:35:41.520"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:46.980" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:46.523" endtime="20200121 09:35:46.980"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:46.981" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:46.980" endtime="20200121 09:35:46.981"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:46.982" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:46.981" endtime="20200121 09:35:46.982"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:46.522" endtime="20200121 09:35:46.982"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:52.466" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:51.987" endtime="20200121 09:35:52.467"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:52.469" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:52.468" endtime="20200121 09:35:52.469"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:52.470" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:52.469" endtime="20200121 09:35:52.470"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:51.983" endtime="20200121 09:35:52.470"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:35:57.922" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:35:57.474" endtime="20200121 09:35:57.922"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:57.923" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:35:57.922" endtime="20200121 09:35:57.923"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:35:57.924" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:35:57.924" endtime="20200121 09:35:57.924"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:35:57.472" endtime="20200121 09:35:57.925"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:36:03.452" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:36:02.926" endtime="20200121 09:36:03.452"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:03.454" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:36:03.452" endtime="20200121 09:36:03.454"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:03.456" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:36:03.454" endtime="20200121 09:36:03.456"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:02.925" endtime="20200121 09:36:03.457"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:36:08.920" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:36:08.460" endtime="20200121 09:36:08.921"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:08.921" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:36:08.921" endtime="20200121 09:36:08.922"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:08.923" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:36:08.922" endtime="20200121 09:36:08.923"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:08.458" endtime="20200121 09:36:08.923"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:36:14.495" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:36:13.926" endtime="20200121 09:36:14.495"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:14.496" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:36:14.495" endtime="20200121 09:36:14.496"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:14.497" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:36:14.496" endtime="20200121 09:36:14.497"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:13.924" endtime="20200121 09:36:14.497"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:36:19.962" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:36:19.501" endtime="20200121 09:36:19.962"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:19.963" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:36:19.962" endtime="20200121 09:36:19.963"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:19.964" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:36:19.963" endtime="20200121 09:36:19.964"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:19.500" endtime="20200121 09:36:19.964"></status>
+</kw>
+<kw name="Check Request Status">
+<kw name="Get Request" library="tnglib">
+<doc>Returns info on a specific request.</doc>
+<arguments>
+<arg>${REQUEST}</arg>
+</arguments>
+<assign>
+<var>${requests}</var>
+</assign>
+<msg timestamp="20200121 09:36:25.492" level="INFO">${requests} = (True, {'blacklist': [], 'callback': '', 'created_at': '2020-01-21T08:29:38.755Z', 'vim_list': [], 'customer_email': '', 'customer_name': '', 'description': '', 'duration': 0.216412544250488, 'egresse...</msg>
+<status status="PASS" starttime="20200121 09:36:24.968" endtime="20200121 09:36:25.493"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+<arg>${requests[1]['instance_uuid']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:25.496" level="INFO">${INSTANCE_UUID} = None</msg>
+<status status="PASS" starttime="20200121 09:36:25.493" endtime="20200121 09:36:25.496"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${READY}</arg>
+<arg>${requests[1]['status']}</arg>
+</arguments>
+<msg timestamp="20200121 09:36:25.498" level="FAIL">READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:36:25.497" endtime="20200121 09:36:25.498"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:24.966" endtime="20200121 09:36:25.499"></status>
+</kw>
+<msg timestamp="20200121 09:36:25.499" level="FAIL">Keyword 'Check Request Status' failed after retrying for 5 minutes. The last error was: READY != INSTANTIATING</msg>
+<status status="FAIL" starttime="20200121 09:31:22.555" endtime="20200121 09:36:25.499"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:29:21.121" endtime="20200121 09:36:25.500" critical="yes">Keyword 'Check Request Status' failed after retrying for 5 minutes. The last error was: READY != INSTANTIATING</status>
+</test>
+<test id="s1-t6" name="Wait For Test Execution">
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${VNV_HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20200121 09:36:25.502" endtime="20200121 09:36:25.503"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>20 min</arg>
+<arg>5 sec</arg>
+<arg>Check Test Result Status</arg>
+</arguments>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:36:30.718" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:36:25.504" endtime="20200121 09:36:30.719"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:36:30.721" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:36:30.719" endtime="20200121 09:36:30.721"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:25.503" endtime="20200121 09:36:30.721"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:36:40.919" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:36:35.726" endtime="20200121 09:36:40.920"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:36:40.920" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:36:40.920" endtime="20200121 09:36:40.921"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:35.725" endtime="20200121 09:36:40.921"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:36:51.005" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:36:45.923" endtime="20200121 09:36:51.005"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:36:51.006" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:36:51.005" endtime="20200121 09:36:51.006"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:45.923" endtime="20200121 09:36:51.006"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:37:01.082" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:36:56.007" endtime="20200121 09:37:01.083"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:37:01.085" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:37:01.083" endtime="20200121 09:37:01.085"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:56.007" endtime="20200121 09:37:01.086"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:37:11.164" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:37:06.091" endtime="20200121 09:37:11.164"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:37:11.167" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:37:11.165" endtime="20200121 09:37:11.167"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:37:06.088" endtime="20200121 09:37:11.168"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:37:21.279" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:37:16.171" endtime="20200121 09:37:21.279"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:37:21.280" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:37:21.280" endtime="20200121 09:37:21.281"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:37:16.169" endtime="20200121 09:37:21.281"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:37:31.200" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:37:26.283" endtime="20200121 09:37:31.201"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:37:31.202" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:37:31.201" endtime="20200121 09:37:31.202"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:37:26.283" endtime="20200121 09:37:31.203"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:37:41.319" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:37:36.208" endtime="20200121 09:37:41.319"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:37:41.320" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:37:41.319" endtime="20200121 09:37:41.320"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:37:36.205" endtime="20200121 09:37:41.320"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:37:51.269" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:37:46.322" endtime="20200121 09:37:51.269"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:37:51.270" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:37:51.269" endtime="20200121 09:37:51.270"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:37:46.322" endtime="20200121 09:37:51.271"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:38:01.485" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:37:56.275" endtime="20200121 09:38:01.485"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:38:01.486" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:38:01.486" endtime="20200121 09:38:01.487"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:37:56.273" endtime="20200121 09:38:01.487"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:38:11.644" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:38:06.490" endtime="20200121 09:38:11.644"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:38:11.645" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:38:11.644" endtime="20200121 09:38:11.645"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:38:06.489" endtime="20200121 09:38:11.645"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:38:21.794" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:38:16.647" endtime="20200121 09:38:21.795"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:38:21.796" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:38:21.795" endtime="20200121 09:38:21.796"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:38:16.646" endtime="20200121 09:38:21.797"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:38:31.744" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:38:26.800" endtime="20200121 09:38:31.744"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:38:31.744" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:38:31.744" endtime="20200121 09:38:31.744"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:38:26.799" endtime="20200121 09:38:31.745"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:38:41.859" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:38:36.747" endtime="20200121 09:38:41.859"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:38:41.860" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:38:41.860" endtime="20200121 09:38:41.860"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:38:36.746" endtime="20200121 09:38:41.860"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:38:51.784" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:38:46.862" endtime="20200121 09:38:51.785"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:38:51.785" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:38:51.785" endtime="20200121 09:38:51.785"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:38:46.861" endtime="20200121 09:38:51.785"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:39:02.068" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:38:56.787" endtime="20200121 09:39:02.069"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:39:02.070" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:39:02.069" endtime="20200121 09:39:02.070"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:38:56.787" endtime="20200121 09:39:02.070"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:39:12.330" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:39:07.072" endtime="20200121 09:39:12.330"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:39:12.331" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:39:12.330" endtime="20200121 09:39:12.331"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:39:07.072" endtime="20200121 09:39:12.331"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:39:22.301" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:39:17.332" endtime="20200121 09:39:22.302"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:39:22.303" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:39:22.302" endtime="20200121 09:39:22.303"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:39:17.331" endtime="20200121 09:39:22.303"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:39:32.475" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:39:27.305" endtime="20200121 09:39:32.475"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:39:32.475" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:39:32.475" endtime="20200121 09:39:32.475"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:39:27.304" endtime="20200121 09:39:32.476"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:39:42.593" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:39:37.480" endtime="20200121 09:39:42.593"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:39:42.593" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:39:42.593" endtime="20200121 09:39:42.593"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:39:37.478" endtime="20200121 09:39:42.593"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:39:52.666" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:39:47.595" endtime="20200121 09:39:52.667"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:39:52.668" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:39:52.667" endtime="20200121 09:39:52.668"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:39:47.595" endtime="20200121 09:39:52.669"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<msg timestamp="20200121 09:40:02.802" level="INFO">${test_uuid} = (True, [])</msg>
+<status status="PASS" starttime="20200121 09:39:57.669" endtime="20200121 09:40:02.802"></status>
+</kw>
+<kw name="Get Test Result" library="tnglib">
+<doc>Returns info on a specific test result.</doc>
+<arguments>
+<arg>${test_uuid[1][0]['uuid']}</arg>
+</arguments>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20200121 09:40:02.803" level="FAIL">Resolving variable '${test_uuid[1][0]['uuid']}' failed: IndexError: list index out of range</msg>
+<status status="FAIL" starttime="20200121 09:40:02.802" endtime="20200121 09:40:02.803"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:39:57.669" endtime="20200121 09:40:02.803"></status>
+</kw>
+<kw name="Check Test Result Status">
+<kw name="Get Test Uuid By Instance Uuid" library="tnglib">
+<doc>Returns the test_uuid on a specific test result filtering by instance_uuid.</doc>
+<arguments>
+<arg>${INSTANCE_UUID}</arg>
+</arguments>
+<assign>
+<var>${test_uuid}</var>
+</assign>
+<status status="FAIL" starttime="20200121 09:40:07.805" endtime="20200121 09:40:12.839"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:40:07.803" endtime="20200121 09:40:12.839"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:25.503" endtime="20200121 09:40:12.839"></status>
+</kw>
+<status status="FAIL" starttime="20200121 09:36:25.501" endtime="20200121 09:40:12.840" critical="yes">Execution terminated by signal</status>
+</test>
+<test id="s1-t7" name="Obtain GrayLogs">
+<tags>
+<tag>robot:exit</tag>
+</tags>
+<status status="FAIL" starttime="20200121 09:40:12.840" endtime="20200121 09:40:12.841" critical="yes">Test execution stopped due to a fatal error.</status>
+</test>
+<doc>Test suite for the MQTT broker stress test</doc>
+<status status="FAIL" starttime="20200121 09:29:12.444" endtime="20200121 09:40:12.843"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="3">Critical Tests</stat>
+<stat pass="4" fail="3">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="2" info="combined" combined="NOT robot:exit">NOT robot:exit</stat>
+<stat pass="0" fail="1">robot:exit</stat>
+</tag>
+<suite>
+<stat pass="4" fail="3" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
