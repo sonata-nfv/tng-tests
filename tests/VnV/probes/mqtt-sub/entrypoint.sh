@@ -21,7 +21,7 @@ echo "Subscribing:   mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC
 subscribed=false
 
 START=$(date +%s)
-echo "Start: $NOW"
+echo "Start: $START"
 
 while true
 do
@@ -29,12 +29,13 @@ do
     echo "Time is now: $NOW"
     
     if [[ "$subscribed" == false ]]; then
+        echo "shell before subscribe"
         mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS --interval $INTERVAL --file $RESULTS_FILE
-        subscribed= true
+        echo "shell subscribed!"
+        subscribed=true
     fi
 
-	END=$(date +%s)
-	DIFF=$(( $END - $START ))
+	DIFF=$(( $NOW - $START ))
 	echo "It took $DIFF seconds"
     
     sleep 1

@@ -2,16 +2,16 @@
 author: "Aureliano Sinatra (EGM)"
 description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
-name: "test-industrial-pilot-ns1-low-data-rate"
+name: "test-industrial-pilot-ns1-jitter-rampup"
 vendor: "eu.5gtango.egm"
-version: '0.2'
+version: '0.3'
 
 service_platforms:
   - "SONATA"
 test_category:
   - "benchmarking"
 testing_tags:
-  - "IPreq013-lowdr"
+  - "IPreq09-rampup"
 
 phases:
   - id: setup
@@ -23,43 +23,24 @@ phases:
       description: "Configuration"
       name: configuration
       probes:
-      - id: mqttconstant
-        description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-constant"
-        name: mqttconstant
-        parameters:
-        - key: IP
-          value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
-        - key: PORT
-          value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
-        - key: CLIENTS
-          value: '100'
-        - key: COUNT
-          value: '1'
-        - key: SIZE
-          value: '125' 
-        - key: ROUNDS
-          value: '100'
-        - key: QOS
-          value: '2' 
-        - key: INTERVAL
-          value: '20'
       - id: subscriber
         description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-sub"
+        image: "easyglobalmarket/mqtt-subscriber"
         name: subscriber
         parameters:
         - key: IP
           value: '$(smpilot-cc/endpoints/id:floating_ip/address)'
         - key: PORT
           value: '$(smpilot-cc/endpoints/id:floating_ip/ports/id:mqtt/port)'
-        - key: INTERVAL
-          value: '20'
         - key: TOPIC
-          value: 'WIMMS1/EM63/DATE'
+          value: 'test'
+        - key: QOS
+          value: '0' 
+        - key: INTERVAL
+          value: '200'   
       - id: publisher
         description: "A service initial configuration container"
-        image: "easyglobalmarket/mqtt-pub"
+        image: "easyglobalmarket/mqtt-publisher-rampup"
         name: publisher
         parameters:
         - key: IP
@@ -71,60 +52,42 @@ phases:
         - key: ROUNDS
           value: '10'
         - key: TOPIC
-          value: 'WIMMS1/EM63/DATE'
+          value: 'test'
         - key: CLIENTS
           value: '1'
         - key: COUNT
-          value: '1'            
+          value: '1'     
   - id: exercise
     steps:
     - command: /bin/sh
       dependencies: []
-      description: "Starting the mqtt probe"
-      entrypoint: /app/entrypoint.sh
-      index: 2
-      instances: 1
-      name: mqttconstant
-      output:
-      - {results: logs.txt}
-      run: mqttconstant
-    - command: /bin/sh
-      dependencies: []
       description: "Starting the mqtt subscriber"
-      entrypoint: /mqtt-pubsub/entrypoint.sh
+      entrypoint: /mqtt-subscriber/entrypoint.sh
       index: 1
       instances: 1
       name: subscriber
       output:
-      - {results: logs.txt}
+      - {results: results.log}
       run: subscriber
     - command: /bin/sh
       dependencies: []
       description: "Starting the mqtt publisher"
-      entrypoint: /mqtt-pubsub/entrypoint.sh
-      index: 2
+      entrypoint: /mqtt-publisher/entrypoint.sh
+      index: 1
       instances: 1
       name: publisher
       output:
-      - {results: logs.txt}
-      run: publisher    
+      - {results: results.log}
+      run: publisher  
+      start_delay: 10
   - id: verification
     steps:
-    - step: mqttconstant
-      description: "Check obtained results"
-      name: mqttconstant
-      conditions:
-          - condition: present
-            file: results.out
-            find: '"failures": 0'
-            name: no-error
-            verdict: pass
     - step: subscriber
       description: "Check obtained results"
       name: subscriber
       conditions:
           - condition: present
-            file: results.out
+            file: results.log
             find: 'Latency'
             name: subscription-received
-            verdict: pass        
+            verdict: pass

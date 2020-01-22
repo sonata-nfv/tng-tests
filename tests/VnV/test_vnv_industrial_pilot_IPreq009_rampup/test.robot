@@ -8,8 +8,8 @@ Library         DateTime
 ${VNV_HOST}     http://int-vnv.5gtango.eu
 ${SP_HOST}      http://sta-sp-ave-2.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
-${NS_PACKAGE_NAME}  eu.5gtango.tng-smpilot-ns1-k8s-egm.1.7.tgo
-${TST_PACKAGE_NAME}  eu.5gtango.test-industrial-pilot-ns1-low-data-rate.0.2.tgo
+${NS_PACKAGE_NAME}  eu.5gtango.tng-smpilot-ns1-k8s-egm.1.9.tgo
+${TST_PACKAGE_NAME}  eu.5gtango.test-industrial-pilot-ns1-jitter-rampup.0.3.tgo
 ${NS_PACKAGE_SHORT_NAME}  tng-smpilot-ns1-k8s-egm
 ${TST_PACKAGE_SHORT_NAME}  industrial-pilot-test-egm-rampup
 ${READY}       READY
