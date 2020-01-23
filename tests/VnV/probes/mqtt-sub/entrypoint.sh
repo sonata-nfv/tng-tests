@@ -23,27 +23,18 @@ subscribed=false
 START=$(date +%s)
 echo "Start: $START"
 
-while true
-do
-    NOW=$(date +%s)
-    echo "Time is now: $NOW"
-    
-    if [[ "$subscribed" == false ]]; then
-        echo "shell before subscribe"
-        mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS --interval $INTERVAL --file $RESULTS_FILE
-        echo "shell subscribed!"
-        subscribed=true
-    fi
+echo "shell before subscribe"
+mqtt-bench subscribe --host $IP --port $PORT --topic $TOPIC --qos $QOS --interval $INTERVAL --file $RESULTS_FILE        
+sleep 1
+echo "shell subscribed!"
 
-	DIFF=$(( $NOW - $START ))
-	echo "It took $DIFF seconds"
-    
-    sleep 1
-    if [ "$DIFF" -ge $INTERVAL ]
-    then
-        echo "Bye bye!"
-        echo "probe closed output redirect to $RESULTS_FILE"
-        exit 0
-    fi
-done
+NOW=$(date +%s)
+DIFF=$(( $NOW - $START ))
+echo "It took $DIFF seconds"
+
+if [ "$DIFF" -ge $INTERVAL ]; then
+   echo "Bye bye!"
+   echo "probe closed output redirect to $RESULTS_FILE"
+   exit 0
+fi
 

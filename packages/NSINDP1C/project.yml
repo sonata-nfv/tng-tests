@@ -14,6 +14,7 @@ files:
   - IPreq013-lowdr
   - IPreq09
   - IPreq09-rampup
+  - IPreq09-rampup-long
 - path: Definitions/vnfd/vnfd_cc.yml
   type: application/vnd.5gtango.vnfd
   tags:
@@ -24,7 +25,7 @@ files:
   - eu.5gtango
 package:
   name: tng-smpilot-ns1-k8s-egm
-  version: '1.9'
+  version: '2.0'
   maintainer: Manuel Peuster (Paderborn University)
   vendor: eu.5gtango
   description: 'Smart manufacturing pilot: Factory edge service (NS1) for vim-emu.'

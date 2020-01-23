@@ -18,8 +18,6 @@ echo "mqtt-publisher COUNT = $COUNT"
 
 echo "******* publisher: executing benchmark *******"
 
-sleep $INTERVAL 
-
 for i in $( eval echo {1..$ROUNDS} )
 do  
     echo "Executing round $i"
