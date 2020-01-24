@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.4 on win32)" generated="20200124 16:03:51.120" rpa="false">
+<suite id="s1" name="Test" source="C:\Users\asinatra\Desktop\ECLIPSE_WORKSPACE\tng-tests\tests\VnV\test_vnv_industrial_pilot_IPreq008_crash\test.robot">
+<test id="s1-t1" name="Setting the VnV Path">
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<assign>
+<var>${from_date}</var>
+</assign>
+<msg timestamp="20200124 16:03:51.568" level="INFO">${from_date} = 2020-01-24 16:03:51.567</msg>
+<status status="PASS" starttime="20200124 16:03:51.567" endtime="20200124 16:03:51.568"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${from_date}</arg>
+</arguments>
+<msg timestamp="20200124 16:03:51.568" level="INFO">${from_date} = 2020-01-24 16:03:51.567</msg>
+<status status="PASS" starttime="20200124 16:03:51.568" endtime="20200124 16:03:51.568"></status>
+</kw>
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${VNV_HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:51.568" endtime="20200124 16:03:51.569"></status>
+</kw>
+<kw name="Sp Health Check" library="tnglib">
+<doc>Check if SP is reachable.</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200124 16:03:52.053" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20200124 16:03:51.569" endtime="20200124 16:03:52.053"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.053" endtime="20200124 16:03:52.053"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:51.567" endtime="20200124 16:03:52.053" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Clean the Packages">
+<kw name="Get Packages" library="tnglib">
+<doc>Returns info on all available packages.</doc>
+<assign>
+<var>@{PACKAGES}</var>
+</assign>
+<msg timestamp="20200124 16:03:52.733" level="INFO">@{PACKAGES} = [ True | [{'package_uuid': '92212b3a-9fba-4881-9d6e-4bdb51880820', 'name': 'ns-mediapilot-service', 'version': '0.9', 'created_at': '2020-01-16T23:15:39.121+00:00'}, {'package_uuid': 'bfb3bcc6-4eba-40...</msg>
+<status status="PASS" starttime="20200124 16:03:52.056" endtime="20200124 16:03:52.733"></status>
+</kw>
+<kw name="${PACKAGE} IN [ @{PACKAGES[1]} ]" type="for">
+<kw name="${PACKAGE} = {'package_uuid': '92212b3a-9fba-4881-9d6e-4bdb51880820', 'name': 'ns-mediapilot-service', 'version': '0.9', 'created_at': '2020-01-16T23:15:39.121+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.734" endtime="20200124 16:03:52.735"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.734" endtime="20200124 16:03:52.735"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'bfb3bcc6-4eba-408a-ac16-618a762377f6', 'name': 'media-mse-stress-test', 'version': '0.2', 'created_at': '2020-01-16T23:16:43.970+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.736" endtime="20200124 16:03:52.737"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.735" endtime="20200124 16:03:52.737"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '24a8eac3-6ce4-4685-807e-cf33753778d5', 'name': 'test-industrial-pilot-ns1-jitter', 'version': '1.9', 'created_at': '2020-01-20T13:42:59.928+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.738" endtime="20200124 16:03:52.739"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.737" endtime="20200124 16:03:52.739"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'd97762df-e6c0-4cb2-9280-0fcb80e805ee', 'name': 'industrial-pilot-test-egm-rampup-payload', 'version': '0.2', 'created_at': '2020-01-21T08:29:20.868+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.740" endtime="20200124 16:03:52.741"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.739" endtime="20200124 16:03:52.741"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '8c0b8a84-589d-4a02-ba3e-66ba9a7ff2bd', 'name': 'test-industrial-pilot-ns1-jitter-rampup', 'version': '0.1', 'created_at': '2020-01-22T10:22:11.184+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.741" endtime="20200124 16:03:52.742"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.741" endtime="20200124 16:03:52.742"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'b6a19603-ea64-4021-8c42-ad61025a089d', 'name': 'test-industrial-pilot-ns1-jitter-rampup', 'version': '0.2', 'created_at': '2020-01-22T10:45:18.043+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.742" endtime="20200124 16:03:52.743"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.742" endtime="20200124 16:03:52.743"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '54e630f8-187c-46f7-b50e-f94dee298b35', 'name': 'test-industrial-pilot-ns1-jitter-rampup', 'version': '0.3', 'created_at': '2020-01-22T11:29:38.327+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.743" endtime="20200124 16:03:52.744"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.743" endtime="20200124 16:03:52.744"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'b1a76a60-23dc-455f-809c-74923490dcd0', 'name': 'test-industrial-pilot-ns1-jitter-rampup-long', 'version': '0.1', 'created_at': '2020-01-23T09:20:00.913+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.744" endtime="20200124 16:03:52.745"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.744" endtime="20200124 16:03:52.746"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': 'b75bd926-21aa-4eb9-a5d4-b36b409f0994', 'name': 'tng-smpilot-ns1-k8s-egm', 'version': '2.0', 'created_at': '2020-01-24T14:53:16.229+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<kw name="Remove Package" library="tnglib">
+<doc>Removes one package from the catalogue.</doc>
+<arguments>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:52.747" endtime="20200124 16:03:53.243"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.746" endtime="20200124 16:03:53.243"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.746" endtime="20200124 16:03:53.243"></status>
+</kw>
+<kw name="${PACKAGE} = {'package_uuid': '186969bc-4a20-448f-81dc-3cee7d106c06', 'name': 'industrial-pilot-test-egm-rampup', 'version': '0.8', 'created_at': '2020-01-24T14:53:19.961+00:00'}" type="foritem">
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${PACKAGE['name']}'== '${NS_PACKAGE_SHORT_NAME}' or '${PACKAGE['name']}'== '${TST_PACKAGE_SHORT_NAME}'</arg>
+<arg>Remove Package</arg>
+<arg>${PACKAGE['package_uuid']}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:53.244" endtime="20200124 16:03:53.246"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:53.243" endtime="20200124 16:03:53.246"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.734" endtime="20200124 16:03:53.246"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:52.055" endtime="20200124 16:03:53.247" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Upload the NS Package">
+<kw name="Upload Package" library="tnglib">
+<doc>Uploads a package from file.</doc>
+<arguments>
+<arg>${FILE_SOURCE_DIR}/${NS_PACKAGE_NAME}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200124 16:03:59.542" level="INFO">${result} = (True, '7d807466-153a-4250-bdc8-dcf424f36245')</msg>
+<status status="PASS" starttime="20200124 16:03:53.250" endtime="20200124 16:03:59.542"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:03:59.543" endtime="20200124 16:03:59.544"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:53.248" endtime="20200124 16:03:59.545" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Upload the TST Package">
+<kw name="Upload Package" library="tnglib">
+<doc>Uploads a package from file.</doc>
+<arguments>
+<arg>${FILE_SOURCE_DIR}/${TST_PACKAGE_NAME}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200124 16:04:02.222" level="INFO">${result} = (True, '3d414ba7-ed36-4bbf-904a-6c48f9faf1a8')</msg>
+<status status="PASS" starttime="20200124 16:03:59.549" endtime="20200124 16:04:02.222"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${result[1]}</arg>
+</arguments>
+<msg timestamp="20200124 16:04:02.223" level="INFO">3d414ba7-ed36-4bbf-904a-6c48f9faf1a8</msg>
+<status status="PASS" starttime="20200124 16:04:02.222" endtime="20200124 16:04:02.223"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:04:02.223" endtime="20200124 16:04:02.224"></status>
+</kw>
+<status status="PASS" starttime="20200124 16:03:59.546" endtime="20200124 16:04:02.225" critical="yes"></status>
+</test>
+<test id="s1-t5" name="Wait For Service Instance Ready">
+<kw name="Set Sp Path" library="tnglib">
+<doc>Set the path were the SP can be reached.</doc>
+<arguments>
+<arg>${SP_HOST}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:04:02.226" endtime="20200124 16:04:02.227"></status>
+</kw>
+<kw name="Sp Health Check" library="tnglib">
+<doc>Check if SP is reachable.</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200124 16:04:02.743" level="INFO">${result} = True</msg>
+<status status="PASS" starttime="20200124 16:04:02.227" endtime="20200124 16:04:02.743"></status>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<status status="PASS" starttime="20200124 16:04:02.744" endtime="20200124 16:04:02.744"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>120</arg>
+</arguments>
+<status status="FAIL" starttime="20200124 16:04:02.744" endtime="20200124 16:04:37.192"></status>
+</kw>
+<status status="FAIL" starttime="20200124 16:04:02.225" endtime="20200124 16:04:37.193" critical="yes">Execution terminated by signal</status>
+</test>
+<test id="s1-t6" name="Wait For Test Execution">
+<tags>
+<tag>robot:exit</tag>
+</tags>
+<status status="FAIL" starttime="20200124 16:04:37.193" endtime="20200124 16:04:37.194" critical="yes">Test execution stopped due to a fatal error.</status>
+</test>
+<test id="s1-t7" name="Obtain GrayLogs">
+<tags>
+<tag>robot:exit</tag>
+</tags>
+<status status="FAIL" starttime="20200124 16:04:37.195" endtime="20200124 16:04:37.195" critical="yes">Test execution stopped due to a fatal error.</status>
+</test>
+<doc>Test suite for the MQTT broker stress test</doc>
+<status status="FAIL" starttime="20200124 16:03:51.138" endtime="20200124 16:04:37.197"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="3">Critical Tests</stat>
+<stat pass="4" fail="3">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="1" info="combined" combined="NOT robot:exit">NOT robot:exit</stat>
+<stat pass="0" fail="2">robot:exit</stat>
+</tag>
+<suite>
+<stat pass="4" fail="3" id="s1" name="Test">Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

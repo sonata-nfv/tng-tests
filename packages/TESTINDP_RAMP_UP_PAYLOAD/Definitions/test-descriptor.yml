@@ -35,15 +35,15 @@ phases:
         - key: CLIENTS
           value: '100'
         - key: COUNT
-          value: '1'
+          value: '1000'
         - key: SIZE
           value: '125' 
         - key: ROUNDS
           value: '10'
         - key: QOS
-          value: '2'
+          value: '0'
         - key: INTERVAL
-          value: '30'        
+          value: '20'        
   - id: exercise
     steps:
     - command: /bin/sh
