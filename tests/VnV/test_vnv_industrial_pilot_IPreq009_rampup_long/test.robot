@@ -9,9 +9,9 @@ ${VNV_HOST}     http://int-vnv.5gtango.eu
 ${SP_HOST}      http://sta-sp-ave-2.5gtango.eu
 ${FILE_SOURCE_DIR}  ./packages
 ${NS_PACKAGE_NAME}  eu.5gtango.tng-smpilot-ns1-k8s-egm.2.0.tgo
-${TST_PACKAGE_NAME}  eu.5gtango.industrial-pilot-test-egm-rampup-crash.0.3.tgo
+${TST_PACKAGE_NAME}  eu.5gtango.test-industrial-pilot-ns1-jitter-rampup-long.0.1.tgo
 ${NS_PACKAGE_SHORT_NAME}  tng-smpilot-ns1-k8s-egm
-${TST_PACKAGE_SHORT_NAME}  industrial-pilot-test-egm-rampup-crash
+${TST_PACKAGE_SHORT_NAME}  industrial-pilot-test-egm-rampup-long
 ${READY}       READY
 ${PASSED}      PASSED
 ${TERMINATED}   terminated

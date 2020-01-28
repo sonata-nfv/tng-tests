@@ -4,7 +4,7 @@ description: "Performance test for mqtt broker"
 descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
 name: "test-industrial-pilot-ns1-rampup"
 vendor: "eu.5gtango.egm"
-version: '0.7'
+version: '0.8'
 
 service_platforms:
   - "SONATA"
@@ -35,13 +35,13 @@ phases:
         - key: CLIENTS
           value: '100'
         - key: COUNT
-          value: '1'
+          value: '1000'
         - key: SIZE
           value: '125' 
         - key: ROUNDS
           value: '5'
         - key: QOS
-          value: '2'
+          value: '0'
         - key: INTERVAL
           value: '20'        
   - id: exercise

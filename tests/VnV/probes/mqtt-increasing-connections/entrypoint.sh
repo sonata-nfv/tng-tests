@@ -26,10 +26,6 @@ do
     echo "mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json"
     mqtt-benchmark --broker tcp://$IP:$PORT --count $COUNT --size $SIZE --clients $(( $CLIENTS * i )) --qos $QOS --format json --quiet >> $RESULTS_FILE
 	sleep $INTERVAL
-	if grep -q "had error connecting to the broker" "$RESULTS_FILE"; then
-		echo "Exit probe: had error connecting to the broker"
-  		exit 1 
-	fi
 done
 
 echo "output redirect to: $RESULTS_FILE"
