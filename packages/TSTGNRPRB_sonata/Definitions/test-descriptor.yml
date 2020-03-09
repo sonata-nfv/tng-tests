@@ -32,10 +32,10 @@ phases:
                 value: '$(cnf1/endpoints/id:floating_ip/address)'
               - key: PORT
                 value: '80'
-          - id: wrk2
+          - id: wrk
             description: "Wrk2 check probe"
             image: sonatanfv/tng-vnv-probe-wrk2:latest
-            name: services-check
+            name: wrk
             parameters:
               - key: EXTERNAL_IP
                 value: '$(cnf1/endpoints/id:floating_ip/address)'
@@ -58,17 +58,21 @@ phases:
   - id: exercise
     steps:
       - description: "Executing telnet"
+        command: /bin/sh
         entrypoint: /app/entrypoint.sh
-        index: 2
+        index: 1
         instances: 1
         name: telnet
+        dependencies: []
         output:
           - {results: results.log}
       - description: "Executing wrk2 check"
+        command: /bin/sh
         entrypoint: /app/entrypoint.sh
-        index: 4
+        dependencies: []
+        index: 2
         instances: 1
-        name: wrk2
+        name: wrk
         output:
           - {results: results.log}
   - id: verification
