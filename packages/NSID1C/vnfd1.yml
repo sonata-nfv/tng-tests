@@ -8,16 +8,16 @@ description: "This is a integration test artifact"
 
 cloudnative_deployment_units:
   - id: "cdu01"
-    image: "ubuntu:trusty"
+    image: "nginx"
     connection_points:
       - id: "data"
-        port: 1883
+        port: 80
 
 connection_points:
   - id: "data"
     interface: "ipv4"
     type: "serviceendpoint"
-    port: 1883
+    port: 80
 
 virtual_links:
   - id: "data-link"
