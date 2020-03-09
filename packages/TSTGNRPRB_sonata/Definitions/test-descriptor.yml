@@ -1,0 +1,88 @@
+---
+author: "Felipe Vicens (ATOS)"
+description: "Generic Probes Test"
+descriptor_schema: https://raw.githubusercontent.com/sonata-nfv/tng-schema/master/test-descriptor/testdescriptor-schema.yml
+name: "test-generic-probes"
+vendor: "eu.5gtango.atos"
+version: '0.1'
+
+service_platforms:
+  - "SONATA"
+test_category:
+  - "basic-tests"
+testing_tags:
+  - "generic-probes"
+
+phases:
+  - id: setup
+    steps:
+      - action: deploy
+        description: "Deploying a NS"
+        name: deployment
+      - action: configure
+        description: "Configuration"
+        name: configuration
+        probes:
+          - id: telnet
+            description: "Telnet probe"
+            image: sonatanfv/tng-vnv-probe-telnet:latest
+            name: telnet
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(cnf1/endpoints/id:floating_ip/address)'
+              - key: PORT
+                value: '80'
+          - id: wrk
+            description: "Wrk2 check probe"
+            image: sonatanfv/tng-vnv-probe-wrk2:latest
+            name: wrk
+            parameters:
+              - key: EXTERNAL_IP
+                value: '$(cnf1/endpoints/id:floating_ip/address)'
+              - key: PROTOCOL
+                value: 'http'
+              - key: PORT
+                value: '80'
+              - key: URL_PATH
+                value: '/'
+              - key: CONNECTIONS
+                value: '10'
+              - key: DURATION
+                value: '60'
+              - key: THREADS
+                value: '2'
+              - key: TIMEOUT
+                value: '60'
+              - key: RATE
+                value: '100'
+  - id: exercise
+    steps:
+      - description: "Executing telnet"
+        command: /bin/sh
+        entrypoint: /app/entrypoint.sh
+        index: 1
+        instances: 1
+        name: telnet
+        dependencies: []
+        output:
+          - {results: results.log}
+      - description: "Executing wrk2 check"
+        command: /bin/sh
+        entrypoint: /app/entrypoint.sh
+        dependencies: []
+        index: 2
+        instances: 1
+        name: wrk
+        output:
+          - {results: results.log}
+  - id: verification
+    steps:
+      - step: telnet
+        description: "Check telnet results"
+        name: telnet
+        conditions:
+          - condition: present
+            file: results.log
+            find: Connected to
+            name: telnet-ok
+            verdict: pass
